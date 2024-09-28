@@ -1,6 +1,6 @@
 # Nushell Environment Config File
 #
-# version = "0.97.1"
+# version = "0.98.1"
 
 def create_left_prompt [] {
     let dir = match (do --ignore-shell-errors { $env.PWD | path relative-to $nu.home-path }) {
@@ -86,7 +86,7 @@ $env.NU_PLUGIN_DIRS = [
     ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
 ]
 
-use git-completions.nu *
+use ~/.config/nushell/completions/git-completions.nu *
 
 $env.EDITOR = 'nvim'
 $env.HOMEBREW_PREFIX = $'($env.HOME)/.brew'
