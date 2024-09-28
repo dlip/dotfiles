@@ -4,3 +4,4 @@ if [ -d "/nix" ]; then
   if [ -e /etc/profiles/per-user/dane/etc/profile.d/hm-session-vars.sh ]; then . /etc/profiles/per-user/dane/etc/profile.d/hm-session-vars.sh; fi
 else
   export IS_NIX=false
+fi
