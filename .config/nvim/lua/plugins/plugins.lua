@@ -1,4 +1,6 @@
 return {
+  { "williamboman/mason-lspconfig.nvim", enabled = not vim.env.IS_NIX },
+  { "williamboman/mason.nvim", enabled = not vim.env.IS_NIX },
   { "alexghergh/nvim-tmux-navigation" },
   {
     "neovim/nvim-lspconfig",

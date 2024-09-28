@@ -1,9 +1,11 @@
 export PATH=~/bin:~/.local/bin:~/.docker/bin:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:/Applications/Ollama.app/Contents/Resources:$PATH
 export EDITOR=nvim
 
-if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
-
-if [ -e /bin/bash ]; then
+if [ -d "/nix" ]; then
+  export IS_NIX=true
+  if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
+else
+  export IS_NIX=false
   eval "$($HOME/.brew/bin/brew shellenv)"
   export HOMEBREW_NO_INSTALL_FROM_API=1
   export HOMEBREW_NO_AUTO_UPDATE=1
@@ -11,7 +13,6 @@ if [ -e /bin/bash ]; then
   export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/mysql-client@8.4/include"
   export PKG_CONFIG_PATH="${HOMEBREW_PREFIX}/opt/mysql-client@8.4/lib/pkgconfig"
 fi
-
 
 # yazi - keep current dir when exiting
 function y() {
@@ -39,4 +40,3 @@ bindkey '^[e' edit-command-line
 set -o emacs
 alias e="$EDITOR"
 
-export PATH=/Users/dane.lipscombe/.local/bin:$PATH
