@@ -70,6 +70,7 @@
     nodejs
     notify-desktop
     notify
+    nushell
     openssl
     openvpn
     # openvpn_aws

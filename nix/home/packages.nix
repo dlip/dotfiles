@@ -49,6 +49,7 @@
     util-linux
     wget
     wireguard-tools
+    yazi
     zip
     zoxide
     zsh
