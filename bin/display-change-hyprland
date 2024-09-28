@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+echo "Display change $(date)"
+echo "Lid $(cat /proc/acpi/button/lid/LID/state)"
+
+if [ -f "/proc/acpi/button/lid/LID/state" ]; then
+  grep -q closed /proc/acpi/button/lid/LID/state
+  LID_CLOSED=$?
+elif [ -f "/proc/acpi/button/lid/LID0/state" ]; then
+  grep -q closed /proc/acpi/button/lid/LID0/state
+  LID_CLOSED=$?
+else
+  LID_CLOSED=0
+fi
+
+# monitor command sometimes errors when reloading config
+for _ in {1..30}; do
+  if hyprctl monitors | grep -q "Couldn't read"; then
+    echo "Error getting monitors, retrying..."
+    sleep 0.1
+    continue
+  fi
+  break
+done
+
+IMONITOR=$(hyprctl monitors | grep -E 'Monitor (eDP)' | head -n 1 | cut -d' ' -f2-2)
+MONITOR=$(hyprctl monitors | grep -E 'Monitor (DP|HDMI)' | head -n 1 | cut -d' ' -f2-2)
+echo "monitor $MONITOR"
+hyprctl monitors
+# hyprctl monitors | grep -q HDMI
+#HDMI_CONNECTED=$?
+
+if [ "$LID_CLOSED" -eq 0 ]; then
+  echo "lid closed"
+  if [ -n "$MONITOR" ]; then
+    echo "monitor connected"
+    echo "disabling laptop monitor"
+    hyprctl keyword monitor "eDP-1,disable"
+    echo "turning monitors on"
+    hyprctl dispatch dpms on
+  else
+    echo "monitor not connected"
+    echo "locking the session"
+    pidof hyprlock || hyprlock && display-change-hyprland
+  fi
+else
+  echo "lid open"
+  echo "enabling laptop monitor"
+  hyprctl keyword monitor "eDP-1,preferred,auto,1"
+  echo "turning monitors on"
+  hyprctl dispatch dpms on
+fi
+
+echo "Display change finished"
+echo "-----------------------"

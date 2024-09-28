@@ -1,0 +1,24 @@
+startup() {
+  #. /etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh
+  # tmux new-session -d -s work
+  # tmux send-keys -t work 'p nixconfig' C-m
+  # kitty tmux a -t work&
+  display-change
+  google-chrome-stable&
+  wezterm -e p nixconfig&
+  # alacritty -e bash -c "sleep 2 && ~/code/nixconfig/bin/p nixconfig"&
+  # google-chrome-stable&
+  obsidian&
+  discord&
+  # teams&
+  warpd&
+  #xfce4-screensaver&
+  # For some reason leftwm is getting the wrong dimensions
+  # leftwm command SoftReload
+}
+
+# https://github.com/NixOS/nixpkgs/issues/119513
+if [ -z $_XPROFILE_SOURCED ]; then
+  export _XPROFILE_SOURCED=1
+  sleep 1 && startup&
+fi

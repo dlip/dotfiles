@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+session="work"
+zellij -s $session
+# zellij action "NewTab: {run: {command: {cmd: htop}}}"

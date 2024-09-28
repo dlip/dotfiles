@@ -1,0 +1,26 @@
+{pkgs, ...}: {
+  imports = [
+    # ./vscode
+  ];
+
+  home.packages = with pkgs; [
+    audacity
+    discord
+    emoji-menu
+    power-menu
+    feh
+    inkscape
+    gimp
+    kitty
+    mlt
+    # memento
+    obsidian
+    openscad
+    qalculate-gtk
+    slack
+    xclip
+    xorg.xmodmap
+    zathura
+    zoom-us
+  ];
+}

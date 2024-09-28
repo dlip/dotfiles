@@ -1,0 +1,62 @@
+#!/usr/bin/env python
+# Make a file easier to practice typing by putting each paragraph on a single line and replace non ascii characters
+import sys
+import os
+import subprocess
+
+if len(sys.argv) < 2:
+    print("Error: Usage typify <file>")
+    sys.exit(1)
+
+filename = sys.argv[1]
+if not os.path.isfile(filename):
+    print(f"Error: file {file} does not exist")
+    sys.exit(1)
+
+lines = ""
+if filename.endswith(".txt"):
+    with open(filename) as file:
+        lines = file.readlines()
+else:
+    result = subprocess.run(["pandoc", "-t", "plain", filename], stdout=subprocess.PIPE)
+    lines = result.stdout.decode("utf-8").splitlines()
+
+output = ""
+replacements = [
+    [" ", " "],
+    ["—", "-"],
+    ["–", "-"],
+    ["“", '"'],
+    ["”", '"'],
+    ["‘", "'"],
+    ["’", "'"],
+    ["à", "a"],
+    ["ã", "a"],
+    ["æ", "ae"],
+    ["ç", "c"],
+    ["é", "e"],
+    ["è", "e"],
+    ["í", "i"],
+    ["ì", "i"],
+    ["ó", "o"],
+    ["ö", "o"],
+    ["ô", "o"],
+    ["™", "TM"],
+    ["•", "."],
+]
+
+
+for line in lines:
+    if len(line.strip()) == 0:
+        if output != "":
+            output = output.strip()
+            for replacement in replacements:
+                output = output.replace(replacement[0], replacement[1])
+            for c in output:
+                if not c.isascii():
+                    raise Exception(f"'{c}' is not an ascii character, please map it")
+
+            print(output + "\n")
+            output = ""
+    else:
+        output += line.strip().replace("\n", "") + " "

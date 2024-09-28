@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ -z "${1:-}" ]; then
+  echo "Error: gn <branch>"
+  exit 1
+fi
+branch=$1
+remote=origin
+
+topdir=$(git rev-parse --show-toplevel)
+default_file="$topdir/.git/default-branch"
+
+if [ -f "$default_file" ]; then
+  echo "found default-branch file"
+  main=$(cat "$default_file")
+else
+  # a bit slow since it needs to do a remote call
+  # main=$(git remote show origin | grep 'HEAD branch' | cut -d' ' -f5)
+  if git rev-parse --verify $remote/main >/dev/null 2>&1; then
+    main="main"
+  else
+    main="master"
+  fi
+  echo "$main" >"$default_file"
+fi
+
+git fetch "$remote" "$main"
+git checkout "$remote/$main"
+git checkout -b "$branch"
+git push -u "$remote" "$branch"

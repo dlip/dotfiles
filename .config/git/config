@@ -1,0 +1,25 @@
+[include]
+  path = local
+[user]
+  name = Dane Lipscombe
+[advice]
+	detachedHead = false
+[push]
+	autoSetupRemote = true
+[init]
+	defaultBranch = main
+[pull]
+	rebase = false
+[diff]
+	tool = nvimdiff
+[difftool]
+	prompt = false
+[merge]
+  tool = nvimdiff
+[mergetool]
+  prompt = false
+  keepBackup = false
+[mergetool "nvimdiff"]
+  layout = "LOCAL,BASE,REMOTE / MERGED"
+[credential]
+	helper = store

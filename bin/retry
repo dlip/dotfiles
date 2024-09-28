@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+until "$@"; do
+  echo "Retrying again in 3 seconds"
+  sleep 3
+done

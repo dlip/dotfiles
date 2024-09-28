@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd $HOMEBREW_PREFIX
+git fetch origin master
+git checkout origin/master
+cd -
+brew upgrade
+brew-install
