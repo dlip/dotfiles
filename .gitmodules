@@ -1,3 +1,6 @@
 [submodule ".brew"]
 	path = .brew
 	url = https://github.com/Homebrew/brew
+[submodule ".antidote"]
+	path = .antidote
+	url = https://github.com/mattmc3/antidote
