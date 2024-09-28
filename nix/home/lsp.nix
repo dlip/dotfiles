@@ -37,7 +37,7 @@ in {
       ruff # python
       # rust-analyzer # rust
       # rustfmt
-      # shfmt
+      shfmt
       # solang
       stylua
       lua-language-server
