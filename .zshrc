@@ -1,7 +1,7 @@
 export PATH=~/bin:~/.local/bin:~/.docker/bin:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:/Applications/Ollama.app/Contents/Resources:$PATH
 export EDITOR=nvim
 
-if $IS_NIX; then
+if [ "$IS_NIX" = true ]; then
   if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
 else
   eval "$($HOME/.brew/bin/brew shellenv)"
