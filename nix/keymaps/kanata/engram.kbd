@@ -100,9 +100,9 @@
 (deflayer nav
   _    _    _    _    _    _    _    _    _    _    _     _    _
   _    _    _    _    _    _    _    _    _    _    _     _    _    _
-  @udo @cut @cpy @pst _    _    _    _    home up   end   pgup _    _
+  prnt mmid mrgt mlft _    _    _    _    home up   end   pgup _    _
   @sft @del @esc @ret _    _    _    _    @lft @dwn @rgt  @pgd _
-  prnt mmid mrgt mlft _    _    _    _    mbck mfwd XX    XX
+  @udo @cut @cpy @pst _    _    _    _    mbck mfwd XX    XX
   _    _    @fun @fun      -              _    _    _     _    _    _
 )
 
