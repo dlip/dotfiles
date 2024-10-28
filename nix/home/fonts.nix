@@ -7,7 +7,7 @@
     hachimarupop
     hanazono
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     # noto-fonts-emoji # broken
     (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono" "RobotoMono" "SourceCodePro"];})
   ];
