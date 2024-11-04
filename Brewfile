@@ -1,7 +1,5 @@
 tap "deviceinsight/packages"
 tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/core"
 brew "bash"
 brew "direnv"
 brew "fd"
