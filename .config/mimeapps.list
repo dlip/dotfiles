@@ -19,6 +19,8 @@ x-scheme-handler/postman=Postman.desktop
 x-scheme-handler/sidequest=SideQuest.desktop
 x-scheme-handler/slack=slack.desktop
 x-scheme-handler/unknown=google-chrome.desktop
+x-scheme-handler/tg=org.telegram.desktop.desktop;
+x-scheme-handler/tonsite=org.telegram.desktop.desktop;
 
 [Default Applications]
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
@@ -41,5 +43,7 @@ x-scheme-handler/postman=Postman.desktop
 x-scheme-handler/sidequest=SideQuest.desktop
 x-scheme-handler/slack=slack.desktop
 x-scheme-handler/unknown=google-chrome.desktop
+x-scheme-handler/tg=org.telegram.desktop.desktop
+x-scheme-handler/tonsite=org.telegram.desktop.desktop
 
 [Removed Associations]
