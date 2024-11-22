@@ -12,6 +12,7 @@ if [ -z "${2:-}" ]; then
 fi
 FILE=$1
 COMMAND=$2
+QUIET=${3:-n}
 POS_FILE="$1.pos"
 POS=0
 LINE_COUNT=$(($(wc -l <"$FILE")))
@@ -27,20 +28,36 @@ while [ $POS -lt $LINE_COUNT ]; do
   LINE="$(tail -n $(($LINE_COUNT - $POS)) "$FILE" | head -n 1 || true)"
 
   POS=$((POS + 1))
-  echo "Current position: line $POS of $LINE_COUNT"
+
+  if [[ "$QUIET" == "n" ]]; then
+    echo "Current position: line $POS of $LINE_COUNT"
+  fi
   OPTION=""
   if [ ! -z "$LINE" ]; then
     if [[ "$COMMAND" == "typeracer" ]]; then
       typeracer -r "$(echo $LINE)"
     elif [[ "$COMMAND" == "read" ]]; then
-      echo "$LINE"
+      COLS=$(tput cols)
+      LEN=${#LINE}
+      for ((i = 0; i < ${#LINE}; i++)); do
+        echo -n "${LINE:$i:1}"
+        if [[ $((($i + 1) % $COLS)) == 0 && $(($i + 1)) != $LEN ]]; then
+          echo ""
+          read
+        fi
+      done
+      echo ""
       read
     else
       echo "$LINE" | $COMMAND
     fi
-    read -p "Press enter to continue, q to save and quit or ctrl+c to quit without saving: " OPTION
+    if [[ "$QUIET" == "n" ]]; then
+      read -p "Press enter to continue, q to save and quit or ctrl+c to quit without saving: " OPTION
+    fi
   else
-    echo "Skipping empty line"
+    if [[ "$QUIET" == "n" ]]; then
+      echo "Skipping empty line"
+    fi
   fi
   echo "$POS" >"$POS_FILE"
   if [[ "$OPTION" == "q" ]]; then
