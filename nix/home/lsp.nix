@@ -35,7 +35,7 @@ in {
       # python311Packages.python-lsp-server
       # racket-minimal # requires `raco pkg install fmt`
       ruff # python
-      # rust-analyzer # rust
+      rust-analyzer # rust
       # rustfmt
       shfmt
       # solang

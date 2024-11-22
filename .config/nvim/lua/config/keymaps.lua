@@ -6,7 +6,7 @@ local map = vim.keymap.set
 map("n", "<cr>", "<cmd>:wa<cr>", { desc = "Write all", remap = true })
 map("x", "y", "y`]", { desc = "Yank without moving cursor", remap = true })
 map("x", "p", "P", { desc = "Paste without yank", remap = true })
-map("n", "x", '"_x', { desc = "Delete without yank", remap = true })
+-- map("n", "x", '"_x', { desc = "Delete without yank", remap = true })
 map("n", "<bs>", '"_X', { desc = "Backspace without yank", remap = true })
 map("n", "ga", "<c-6>", { desc = "Open alternate file", remap = true })
 map("n", "U", "<c-r>", { desc = "Redo", remap = true })

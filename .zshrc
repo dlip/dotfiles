@@ -38,3 +38,4 @@ bindkey '^[e' edit-command-line
 set -o emacs
 alias e="$EDITOR"
 
+if [ -e ~/.zshrc.local ]; then . ~/.zshrc.local; fi

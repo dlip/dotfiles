@@ -9,6 +9,10 @@
     "${config.xdg.configHome}/warpd/config".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/code/nixconfig/home/files/warpd.yaml";
     # "${config.home.homeDirectory}/.xprofile".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/code/nixconfig/home/files/xprofile";
 
+    "${config.home.homeDirectory}/.zshrc.local".text = ''
+      export PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig";
+    '';
+
     "${config.xdg.configHome}/feh/themes".text = ''
       feh --reverse --auto-rotate --fullscreen
     '';
