@@ -5,8 +5,7 @@
   ...
 }: {
   imports = [
-    ../waybar
-    ../swaync
+    ./swaync
   ];
 
   home.packages = with pkgs; [
@@ -25,5 +24,6 @@
     udiskie
     networkmanagerapplet
     rofimoji
+    waybar
   ];
 }
