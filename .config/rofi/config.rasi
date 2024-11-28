@@ -1,0 +1,13 @@
+configuration {
+  disable-history: false;
+  display-drun: "";
+  font: "RobotoMono Nerd Font 10";
+  icon-theme: "Papirus";
+  location: 0;
+  show-icons: true;
+  sidebar-mode: false;
+  terminal: "kitty";
+  xoffset: 0;
+  yoffset: 0;
+}
+@theme "rofi.theme"

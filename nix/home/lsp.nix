@@ -19,6 +19,7 @@ in {
       # haskellPackages.haskell-language-server
       marksman # markdown
       # myNodePackages."@prisma/language-server"
+      nil
       # nodePackages.bash-language-server
       # nodePackages.dockerfile-language-server-nodejs
       # nodePackages.eslint_d
