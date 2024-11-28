@@ -4,10 +4,6 @@
   lib,
   ...
 }: {
-  imports = [
-    ./swaync
-  ];
-
   home.packages = with pkgs; [
     brightnessctl
     cliphist
@@ -25,5 +21,6 @@
     networkmanagerapplet
     rofimoji
     waybar
+    swaynotificationcenter
   ];
 }
