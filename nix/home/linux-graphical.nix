@@ -5,7 +5,6 @@
 }: {
   imports = [
     ./hyprland.nix
-    ./rofi
     ./graphical.nix
   ];
 
