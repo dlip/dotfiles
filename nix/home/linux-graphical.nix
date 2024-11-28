@@ -29,7 +29,7 @@
     kdenlive
     kooha
     krita
-    # kicad
+    kicad-unstable
     libreoffice
     mpv
     neovide
