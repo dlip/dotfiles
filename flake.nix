@@ -101,9 +101,11 @@
       import pkgs {
         inherit system;
         config.allowUnfree = true;
-        # https://github.com/NixOS/nixpkgs/issues/273611
         config.permittedInsecurePackages = [
-          "electron-25.9.0"
+          # opentabletdriver
+          "dotnet-runtime-6.0.36"
+          "dotnet-sdk-wrapped-6.0.428"
+          "dotnet-sdk-6.0.428"
         ];
         overlays =
           (import ./nix/overlays inputs)

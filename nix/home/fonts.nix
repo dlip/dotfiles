@@ -9,6 +9,9 @@
     noto-fonts
     noto-fonts-cjk-sans
     # noto-fonts-emoji # broken
-    (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono" "RobotoMono" "SourceCodePro"];})
+    nerd-fonts.fira-code
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.roboto-mono
+    nerd-fonts.sauce-code-pro
   ];
 }

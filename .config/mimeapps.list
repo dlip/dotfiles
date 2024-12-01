@@ -21,6 +21,7 @@ x-scheme-handler/slack=slack.desktop
 x-scheme-handler/unknown=google-chrome.desktop
 x-scheme-handler/tg=org.telegram.desktop.desktop;
 x-scheme-handler/tonsite=org.telegram.desktop.desktop;
+image/svg+xml=org.inkscape.Inkscape.desktop;
 
 [Default Applications]
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop

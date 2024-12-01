@@ -9,7 +9,7 @@
   ];
   home.activation = {
     copyFont = let
-      font_src = "${pkgs.nerdfonts.override {fonts = ["SourceCodePro"];}}/share/fonts/truetype/NerdFonts/SauceCodeProNerdFontMono-Regular.ttf";
+      font_src = "${pkgs.nerd-fonts.sauce-code-pro}/share/fonts/truetype/NerdFonts/SauceCodeProNerdFontMono-Regular.ttf";
       font_dst = "${config.home.homeDirectory}/.termux/font.ttf";
     in
       lib.hm.dag.entryAfter ["writeBoundary"] ''
