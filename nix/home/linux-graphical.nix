@@ -5,6 +5,7 @@
   imports = [
     ./hyprland.nix
     ./graphical.nix
+    ./desktop-entries.nix
   ];
 
   home.packages = with pkgs; [
@@ -19,8 +20,9 @@
     easyeffects
     gparted
     gramps
-    firefox
     f3d
+    firefox
+    freecad-wayland
     fstl
     helvum
     keyd
