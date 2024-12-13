@@ -5,7 +5,6 @@ if [ "$IS_NIX" = true ]; then
   if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
 else
   eval "$($HOME/.brew/bin/brew shellenv)"
-  export HOMEBREW_NO_INSTALL_FROM_API=1
   export HOMEBREW_NO_AUTO_UPDATE=1
   export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/mysql-client@8.4/lib"
   export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/mysql-client@8.4/include"

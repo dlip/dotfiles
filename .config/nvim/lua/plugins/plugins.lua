@@ -3,6 +3,18 @@ return {
   { "williamboman/mason.nvim", enabled = not vim.env.IS_NIX },
   { "alexghergh/nvim-tmux-navigation" },
   {
+    "nvim-neotest/neotest",
+    opts = {
+      adapters = {
+        require("neotest-python")({
+          runner = "django",
+          args = { "--log-level", "DEBUG" },
+          python = ".direnv/python-3.11/bin/python",
+        }),
+      },
+    },
+  },
+  {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
     opts = {
