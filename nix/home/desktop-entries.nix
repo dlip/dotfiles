@@ -5,5 +5,9 @@
       genericName = "Google Chrome Wayland";
       exec = "google-chrome-stable --enable-features=UseOzonePlatform --ozone-platform=wayland";
     };
+    freecad-nvidia = {
+      name = "Freecad NVidia";
+      exec = "nvidia-offload freecad";
+    };
   };
 }

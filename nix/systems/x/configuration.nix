@@ -130,7 +130,6 @@ in {
   };
   hardware.steam-hardware.enable = true;
 
-  programs.talon.enable = true;
   # TODO: get this working
   networking.wireguard.interfaces = {
     wg0 = {

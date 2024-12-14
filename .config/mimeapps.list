@@ -1,11 +1,11 @@
 [Added Associations]
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
 application/x-wine-extension-ini=neovide.desktop
-application/zip=org.gnome.FileRoller.desktop
+application/zip=org.freecad.FreeCAD.desktop;org.gnome.FileRoller.desktop;
 image/jpeg=krita_jpeg.desktop;gimp.desktop;feh.desktop;
 image/png=feh.desktop
 inode/directory=thunar.desktop
-model/stl=fstl.desktop
+model/stl=PrusaSlicer.desktop;f3d-plugin-native.desktop;fstl.desktop;
 text/csv=neovide.desktop
 text/html=google-chrome.desktop
 text/markdown=neovide.desktop
