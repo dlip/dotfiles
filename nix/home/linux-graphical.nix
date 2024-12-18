@@ -22,7 +22,7 @@
     gramps
     f3d
     firefox
-    freecad
+    freecad-wayland
     fstl
     helvum
     keyd
