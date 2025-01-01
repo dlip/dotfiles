@@ -2,9 +2,9 @@ export PATH=~/bin:~/.local/bin:~/.docker/bin:/Applications/Visual\ Studio\ Code.
 export EDITOR=nvim
 export XDG_DATA_DIRS=~/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:$XDG_DATA_DIRS
 
-if [ "$IS_NIX" = true ]; then
-  if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
-else
+if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
+
+if [ -e "$HOME/.brew/bin/brew" ]; then
   eval "$($HOME/.brew/bin/brew shellenv)"
   export HOMEBREW_NO_AUTO_UPDATE=1
   export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/mysql-client@8.4/lib"
