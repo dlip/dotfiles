@@ -10,11 +10,11 @@
 
   home.packages = with pkgs; [
     anki
-    alttab
     arandr
     brightnessctl
     blender
     # calibre # Test /get ... /nix/store/ncv68hjnidcd2bm5abkhklrijhn0cgn6-stdenv-linux/setup: line 1721: 20786 Segmentation fault      (core dumped) python setup.py test ${EXCLUDED_FLAGS[@]}
+    cheese
     dbeaver-bin
     drawio
     easyeffects
@@ -29,7 +29,7 @@
     kdenlive
     kooha
     krita
-    kicad-unstable
+    # kicad-unstable
     libreoffice
     mpv
     neovide

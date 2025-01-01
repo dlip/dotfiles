@@ -9,7 +9,7 @@ model/stl=PrusaSlicer.desktop;f3d-plugin-native.desktop;fstl.desktop;
 text/csv=neovide.desktop
 text/html=google-chrome.desktop
 text/markdown=neovide.desktop
-text/plain=neovide.desktop
+text/plain=PrusaSlicer.desktop;neovide.desktop;
 video/x-matroska=mpv.desktop
 x-scheme-handler/about=google-chrome.desktop
 x-scheme-handler/http=google-chrome.desktop
@@ -22,6 +22,7 @@ x-scheme-handler/unknown=google-chrome.desktop
 x-scheme-handler/tg=org.telegram.desktop.desktop;
 x-scheme-handler/tonsite=org.telegram.desktop.desktop;
 image/svg+xml=org.inkscape.Inkscape.desktop;
+model/obj=PrusaSlicer.desktop;
 
 [Default Applications]
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
@@ -34,7 +35,7 @@ model/stl=fstl.desktop
 text/csv=neovide.desktop
 text/html=google-chrome.desktop
 text/markdown=neovide.desktop
-text/plain=neovide.desktop
+text/plain=PrusaSlicer.desktop
 video/x-matroska=mpv.desktop
 x-scheme-handler/about=google-chrome.desktop
 x-scheme-handler/http=google-chrome.desktop

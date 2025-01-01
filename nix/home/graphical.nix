@@ -10,6 +10,7 @@
     power-menu
     feh
     inkscape
+    ghostty
     gimp
     kitty
     mlt

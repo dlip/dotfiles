@@ -26,6 +26,7 @@
     docker-compose
     eksctl
     exiv2
+    ffmpeg
     file
     fluxcd
     ghc

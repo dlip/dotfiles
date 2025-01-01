@@ -2,7 +2,7 @@
   home.packages = with pkgs; [
     alvr
     # minecraft
-    bottles
+    # bottles
     # heroic
     # lutris
     mangohud
