@@ -34,7 +34,7 @@ in {
         with pkgs.vscode-extensions;
           if pkgs.system == "aarch64-linux"
           then [
-            ms-vscode.cpptools
+            # ms-vscode.cpptools
             # ms-vsliveshare.vsliveshare
             # chenglou92.rescript-vscode
             hashicorp.terraform

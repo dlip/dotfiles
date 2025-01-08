@@ -17,6 +17,7 @@ in {
       gopls # golang
       # golangci-lint
       # haskellPackages.haskell-language-server
+      markdownlint-cli2
       marksman # markdown
       # myNodePackages."@prisma/language-server"
       nil
