@@ -14,6 +14,7 @@ in {
     [
       alejandra # nix
       # codespell
+      gh-markdown-preview
       gopls # golang
       # golangci-lint
       # haskellPackages.haskell-language-server
