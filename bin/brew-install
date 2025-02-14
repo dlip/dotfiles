@@ -3,4 +3,4 @@ set -euo pipefail
 
 # ncurses build error with kitty
 unset TERMINFO
-brew bundle --verbose --no-upgrade --file=~/Brewfile
+brew bundle --force --verbose --no-upgrade --file=~/Brewfile
