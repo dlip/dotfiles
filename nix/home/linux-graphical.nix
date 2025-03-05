@@ -26,7 +26,7 @@
     fstl
     helvum
     keyd
-    kdenlive
+    # kdePackages.kdenlive
     kooha
     krita
     # kicad-unstable
@@ -45,6 +45,8 @@
     # super-slicer-latest
     prusa-slicer
     tdesktop
+    via
+    vial
     vlc
     warpd
     whatsapp-for-linux

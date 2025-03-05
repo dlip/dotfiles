@@ -245,9 +245,7 @@ in {
   environment.variables.DICPATH = "/run/current-system/sw/share/hunspell:/run/current-system/sw/share/hyphen";
 
   hardware.ledger.enable = true;
-  # services.udev.packages = with pkgs; [yubikey-personalization via vial];
-  # To use the smart card mode (CCID) of Yubikey, you will need the PCSC-Lite daemon:
-  services.pcscd.enable = true;
+  services.udev.packages = with pkgs; [via vial];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
