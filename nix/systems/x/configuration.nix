@@ -108,11 +108,11 @@ in {
   # };
 
   services.kanata = {
-    enable = false;
+    enable = true;
     keyboards = {
       laptop = {
         devices = ["/dev/input/by-path/platform-i8042-serio-0-event-kbd"];
-        config = builtins.readFile ../../keymaps/kanata/engram.kbd;
+        config = builtins.readFile ../../keymaps/kanata/qwerty.kbd;
       };
     };
   };
