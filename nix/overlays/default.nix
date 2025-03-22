@@ -8,7 +8,7 @@ inputs @ {
   nix-on-droid,
   mac-app-util,
   # vscodeNodeDebug2,
-  nixvim,
+  # nixvim,
   hyprland,
   hyprcursor-catppuccin,
   ...
@@ -33,12 +33,12 @@ inputs @ {
       makeFlags = oldAttrs.makeFlags ++ ["O_NERD=1"];
     });
 
-    nixvim = nixvim.legacyPackages.${final.system}.makeNixvimWithModule {
-      module = import ./nixvim;
-      extraSpecialArgs = {
-        extraPluginsSrc = final.lib.filterAttrs (n: v: final.lib.hasPrefix "vimplugin-" n) inputs;
-      };
-    };
+    # nixvim = nixvim.legacyPackages.${final.system}.makeNixvimWithModule {
+    #   module = import ./nixvim;
+    #   extraSpecialArgs = {
+    #     extraPluginsSrc = final.lib.filterAttrs (n: v: final.lib.hasPrefix "vimplugin-" n) inputs;
+    #   };
+    # };
 
     rofimoji = prev.rofimoji.overrideAttrs (oldAttrs: {
       rofi = final.rofi-wayland;
