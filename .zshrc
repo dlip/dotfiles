@@ -1,4 +1,4 @@
-export PATH=~/bin:~/.local/bin:~/.docker/bin:~/.docker/cli-plugins:/Applications/Docker.app/Contents/Resources/bin:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:/Applications/Ollama.app/Contents/Resources:$PATH
+export PATH=~/bin:~/.local/bin:~/go/bin:~/.docker/bin:~/.docker/cli-plugins:/Applications/Docker.app/Contents/Resources/bin:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:/Applications/Ollama.app/Contents/Resources:$PATH
 export EDITOR=nvim
 export XDG_DATA_DIRS=~/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:$XDG_DATA_DIRS
 
@@ -39,3 +39,8 @@ set -o emacs
 alias e="$EDITOR"
 
 if [ -e ~/.zshrc.local ]; then . ~/.zshrc.local; fi
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/dane.lipscombe/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions

@@ -15,8 +15,8 @@ after-startup-command = []
 start-at-login = false
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
-enable-normalization-flatten-containers = true
-enable-normalization-opposite-orientation-for-nested-containers = true
+enable-normalization-flatten-containers = false
+enable-normalization-opposite-orientation-for-nested-containers = false
 
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
@@ -92,20 +92,12 @@ alt-cmd-ctrl-r = 'layout tiles horizontal vertical'
 alt-cmd-ctrl-m = 'layout accordion horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-alt-cmd-ctrl-h = 'focus left'
-alt-cmd-ctrl-j = 'focus down'
-alt-cmd-ctrl-k = 'focus up'
-alt-cmd-ctrl-l = 'focus right'
 alt-cmd-ctrl-left = 'focus left'
 alt-cmd-ctrl-down = 'focus down'
 alt-cmd-ctrl-up = 'focus up'
 alt-cmd-ctrl-right = 'focus right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-alt-cmd-ctrl-shift-h = 'move left'
-alt-cmd-ctrl-shift-j = 'move down'
-alt-cmd-ctrl-shift-k = 'move up'
-alt-cmd-ctrl-shift-l = 'move right'
 alt-cmd-ctrl-shift-left = 'move left'
 alt-cmd-ctrl-shift-down = 'move down'
 alt-cmd-ctrl-shift-up = 'move up'
@@ -164,6 +156,16 @@ alt-cmd-ctrl-shift-j = ['join-with down', 'mode main']
 alt-cmd-ctrl-shift-k = ['join-with up', 'mode main']
 alt-cmd-ctrl-shift-l = ['join-with right', 'mode main']
 
+alt-cmd-ctrl-h = 'split horizontal'
+alt-cmd-ctrl-v = 'split vertical'
+
+alt-cmd-ctrl-f = 'fullscreen'
+
+alt-cmd-ctrl-s = 'layout v_accordion'               # 'layout stacking' in i3
+alt-cmd-ctrl-w = 'layout h_accordion'               # 'layout tabbed' in i3
+alt-cmd-ctrl-e = 'layout tiles horizontal vertical' # 'layout toggle split' in i3
+
+alt-shift-space = 'layout floating tiling' # 'floating toggle' in i3
 # window rules
 # osascript -e 'id of app "Obsidian"'
 [[on-window-detected]]
