@@ -17,6 +17,7 @@
     cheese
     dbeaver-bin
     drawio
+    easyeda2kicad
     easyeffects
     gparted
     gramps
@@ -29,7 +30,7 @@
     # kdePackages.kdenlive
     kooha
     krita
-    # kicad-unstable
+    kicad-unstable
     libreoffice
     mpv
     neovide
