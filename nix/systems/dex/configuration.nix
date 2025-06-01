@@ -182,13 +182,21 @@ in rec {
           "/mnt/services/yaruki:/app/data"
         ];
       };
-      actual = {
-        image = "actualbudget/actual-server";
-        ports = ["5006:5006"];
-        volumes = [
-          "/mnt/services/actual:/data"
-        ];
-      };
+      # actual = {
+      #   image = "actualbudget/actual-server";
+      #   ports = ["5006:5006"];
+      #   volumes = [
+      #     "/mnt/services/actual:/data"
+      #   ];
+      # };
+    };
+  };
+
+
+  services.actual = {
+    enable = true;
+    settings = {
+      port = 5006;
     };
   };
 
