@@ -129,6 +129,11 @@ in {
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
   hardware.steam-hardware.enable = true;
+  programs.obs-studio= {
+    enable = true;
+    plugins = [ pkgs.obs-studio-plugins.droidcam-obs];
+    enableVirtualCamera = true;
+  };
 
   # TODO: get this working
   networking.wireguard.interfaces = {

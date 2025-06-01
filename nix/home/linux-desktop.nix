@@ -34,7 +34,7 @@
     tiramisu
     traceroute
     usbutils
-    ventoy
+    # ventoy
     xdotool
     xorg.xhost # add root to xsession: xhost si:localuser:root
   ];

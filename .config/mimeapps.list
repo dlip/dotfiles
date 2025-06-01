@@ -26,6 +26,7 @@ model/obj=PrusaSlicer.desktop;
 application/octet-stream=neovide.desktop;
 text/x-python=neovide.desktop;
 application/vnd.rar=org.gnome.FileRoller.desktop;
+application/json=neovide.desktop;
 
 [Default Applications]
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop

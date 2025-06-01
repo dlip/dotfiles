@@ -9,5 +9,9 @@
       name = "Freecad NVidia";
       exec = "nvidia-offload freecad";
     };
+    freecad-obs = {
+      name = "OBS NVidia";
+      exec = "nvidia-offload obs";
+    };
   };
 }
