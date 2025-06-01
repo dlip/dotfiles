@@ -201,7 +201,7 @@
                 users = {
                   dane = {
                     imports = [
-                      ./nix/home/linux-desktop.nix
+                      ./nix/home
                     ];
                   };
                 };
