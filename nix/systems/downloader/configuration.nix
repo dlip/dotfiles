@@ -117,9 +117,12 @@ in {
     group = "root";
   };
   services.bazarr = {enable = true;};
-  # https://github.com/NixOS/nixpkgs/issues/155475
-  systemd.services.prowlarr.environment.HOME = "/var/empty";
-  services.prowlarr = {enable = true;};
+  
+  services.prowlarr = {
+    enable = true;
+    user = "root";
+    group = "root";
+  };
 
   services.qbittorrent = {
     enable = true;
