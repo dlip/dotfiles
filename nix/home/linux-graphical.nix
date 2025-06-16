@@ -31,7 +31,7 @@
     kdePackages.kdenlive
     kooha
     krita
-    kicad-unstable
+    # kicad-unstable
     libreoffice
     mpv
     neovide

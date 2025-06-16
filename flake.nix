@@ -34,6 +34,9 @@
       url = "github:jchook/emoji-menu";
       flake = false;
     };
+    niri-flake = {
+      url = "github:sodiboo/niri-flake";
+    };
     power-menu = {
       url = "github:jluttine/rofi-power-menu";
       flake = false;
