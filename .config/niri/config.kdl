@@ -2,7 +2,7 @@
 // "/-" comments out the following node.
 // Check the wiki for a full description of the configuration:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
-workspace "default"
+workspace "other"
 workspace "telegram"
 workspace "discord"
 workspace "web"
@@ -266,6 +266,10 @@ spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 spawn-at-startup "thunar"
 spawn-at-startup "hypridle"
 spawn-at-startup "udiskie" "--tray"
+spawn-at-startup "google-chrome-stable" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland" "--enable-wayland-ime"
+spawn-at-startup "obsidian" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland" "--enable-wayland-ime"
+spawn-at-startup "fcitx5" "-d" "-r"
+spawn-at-startup "fcitx5-remote" "-r"
 spawn-at-startup "xwayland-satellite"
 environment {
     DISPLAY ":0"
@@ -331,6 +335,10 @@ window-rule {
     open-on-workspace "web"
 }
 
+window-rule {
+    match app-id="obsidian"
+    open-on-workspace "notes"
+}
 
 window-rule {
     match app-id="thunar"
@@ -374,7 +382,8 @@ binds {
     Mod+Shift+C hotkey-overlay-title="Clipboard" { spawn "rofi" "-modi" "clipboard:cliphist-rofi-img" "-show" "clipboard" "-show-icons"; }
     Mod+T hotkey-overlay-title="Open a Terminal" { spawn "kitty"; }
     Mod+P hotkey-overlay-title="Power menu" { spawn "rofi" "-show" "power-menu" "-modi" "power-menu:power-menu"; }
-    Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Mod+Space hotkey-overlay-title="Run an Application" { spawn "rofi" "-show-icons" "-show" "combi" "-combi-modi" "drun,run" "-modi" "combi"; }
+
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "sway-lock-screen"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
