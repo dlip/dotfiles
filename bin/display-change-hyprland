@@ -41,7 +41,7 @@ if [ "$LID_CLOSED" -eq 0 ]; then
   else
     echo "monitor not connected"
     echo "locking the session"
-    pidof hyprlock || hyprlock && display-change-hyprland
+    sway-lock-screen
   fi
 else
   echo "lid open"

@@ -6,6 +6,13 @@
     enable = true;
   };
 
+  environment.systemPackages = with pkgs; [
+    swaylock
+  ];
+
+
+
+
   # services.greetd = {
   #   enable = true;
   #   settings = rec {

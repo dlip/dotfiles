@@ -4,6 +4,7 @@
 }: {
   imports = [
     ./hyprland.nix
+    ./niri.nix
     ./graphical.nix
     ./desktop-entries.nix
   ];

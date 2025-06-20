@@ -12,7 +12,7 @@
 in {
   home.packages = with pkgs;
     [
-      alejandra # nix
+      # alejandra # nix
       # codespell
       gh-markdown-preview
       gopls # golang
@@ -22,6 +22,7 @@ in {
       marksman # markdown
       # myNodePackages."@prisma/language-server"
       nil
+      nixfmt-rfc-style
       # nodePackages.bash-language-server
       # nodePackages.dockerfile-language-server-nodejs
       # nodePackages.eslint_d

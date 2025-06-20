@@ -2,6 +2,13 @@
 // "/-" comments out the following node.
 // Check the wiki for a full description of the configuration:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
+workspace "default"
+workspace "telegram"
+workspace "discord"
+workspace "web"
+workspace "terminal"
+workspace "notes"
+workspace "files"
 
 // Input device configuration.
 // Find the full list of options on the wiki:
@@ -132,7 +139,7 @@ layout {
     // preset-window-heights { }
 
     // You can change the default width of the new windows.
-    default-column-width { proportion 0.5; }
+    default-column-width { proportion 1.0; }
     // If you leave the brackets empty, the windows themselves will decide their initial width.
     // default-column-width {}
 
@@ -254,8 +261,15 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
-// This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "waybar"
+spawn-at-startup "kitty" "-e" "t" "dotfiles"
+spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
+spawn-at-startup "thunar"
+spawn-at-startup "hypridle"
+spawn-at-startup "udiskie" "--tray"
+spawn-at-startup "xwayland-satellite"
+environment {
+    DISPLAY ":0"
+}
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -306,6 +320,23 @@ window-rule {
     open-floating true
 }
 
+window-rule {
+    match app-id="kitty"
+    open-on-workspace "terminal"
+}
+
+
+window-rule {
+    match app-id="google-chrome"
+    open-on-workspace "web"
+}
+
+
+window-rule {
+    match app-id="thunar"
+    open-on-workspace "files"
+}
+
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
 /-window-rule {
@@ -340,10 +371,11 @@ binds {
     // shows a list of important hotkeys.
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
+    Mod+Shift+C hotkey-overlay-title="Clipboard" { spawn "rofi" "-modi" "clipboard:cliphist-rofi-img" "-show" "clipboard" "-show-icons"; }
+    Mod+T hotkey-overlay-title="Open a Terminal" { spawn "kitty"; }
+    Mod+P hotkey-overlay-title="Power menu" { spawn "rofi" "-show" "power-menu" "-modi" "power-menu:power-menu"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "sway-lock-screen"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
