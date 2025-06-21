@@ -3,8 +3,8 @@
 // Check the wiki for a full description of the configuration:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
 workspace "other"
-workspace "telegram"
-workspace "discord"
+workspace "chat"
+workspace "none"
 workspace "web"
 workspace "terminal"
 workspace "notes"
@@ -264,10 +264,12 @@ layout {
 spawn-at-startup "kitty" "-e" "t" "dotfiles"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 spawn-at-startup "thunar"
+spawn-at-startup "telegram-desktop"
 spawn-at-startup "hypridle"
 spawn-at-startup "udiskie" "--tray"
 spawn-at-startup "google-chrome-stable" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland" "--enable-wayland-ime"
 spawn-at-startup "obsidian" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland" "--enable-wayland-ime"
+spawn-at-startup "discord" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland" "--enable-wayland-ime"
 spawn-at-startup "fcitx5" "-d" "-r"
 spawn-at-startup "fcitx5-remote" "-r"
 spawn-at-startup "xwayland-satellite"
@@ -322,6 +324,16 @@ window-rule {
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     open-floating true
+}
+
+window-rule {
+    match app-id="org.telegram.desktop"
+    open-on-workspace "chat"
+}
+
+window-rule {
+    match app-id="discord"
+    open-on-workspace "chat"
 }
 
 window-rule {
