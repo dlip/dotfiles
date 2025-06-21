@@ -5,17 +5,19 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   params = {
     hostname = "x";
   };
-in {
+in
+{
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     (import ../common params)
     # ../common/desktop/sway.nix
-    ../common/desktop/hyprland.nix
+    # ../common/desktop/hyprland.nix
     ../common/desktop/niri.nix
     # ../common/desktop/leftwm.nix
     # ../common/desktop/kde.nix
@@ -27,11 +29,18 @@ in {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  boot.supportedFilesystems = ["ntfs"];
+  boot.supportedFilesystems = [ "ntfs" ];
 
   users.users.dane = {
     isNormalUser = true;
-    extraGroups = ["wheel" "docker" "networkmanager" "dialout" "adbusers" "cdrom"]; # Enable ‘sudo’ for the user.
+    extraGroups = [
+      "wheel"
+      "docker"
+      "networkmanager"
+      "dialout"
+      "adbusers"
+      "cdrom"
+    ]; # Enable ‘sudo’ for the user.
     shell = "/etc/profiles/per-user/dane/bin/zsh";
   };
 
@@ -51,7 +60,7 @@ in {
   hardware.enableAllFirmware = true;
   hardware.opentabletdriver.enable = true;
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     # Modesetting is required.
     modesetting.enable = true;
@@ -112,15 +121,18 @@ in {
     enable = true;
     keyboards = {
       laptop = {
-        devices = ["/dev/input/by-path/platform-i8042-serio-0-event-kbd"];
+        devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
         config = builtins.readFile ../../keymaps/kanata/qwerty.kbd;
       };
     };
   };
 
   networking.firewall = {
-    allowedTCPPorts = [3000];
-    allowedUDPPorts = [51820 32412]; # Clients and peers can use the same port, see listenport
+    allowedTCPPorts = [ 3000 ];
+    allowedUDPPorts = [
+      51820
+      32412
+    ]; # Clients and peers can use the same port, see listenport
   };
 
   programs.steam = {
@@ -133,15 +145,15 @@ in {
 
   programs.obs-studio = {
     enable = true;
-    plugins = [ pkgs.obs-studio-plugins.droidcam-obs];
+    plugins = [ pkgs.obs-studio-plugins.droidcam-obs ];
     enableVirtualCamera = true;
-    package = pkgs.obs-studio.override {cudaSupport = true;};
+    package = pkgs.obs-studio.override { cudaSupport = true; };
   };
 
   # TODO: get this working
   networking.wireguard.interfaces = {
     wg0 = {
-      ips = ["10.100.0.5/24"];
+      ips = [ "10.100.0.5/24" ];
       privateKeyFile = config.sops.secrets.wireguard-key.path;
       listenPort = 51820;
 
