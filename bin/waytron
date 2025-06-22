@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+EXEC=$1
+
+$1 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime
