@@ -48,8 +48,8 @@ input {
     mouse {
         // off
         // natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
+        accel-speed -0.3
+        accel-profile "adaptive"
         // scroll-method "no-scroll"
     }
 
@@ -64,7 +64,7 @@ input {
     }
 
     // Uncomment this to make the mouse warp to the center of newly focused windows.
-    // warp-mouse-to-focus
+    warp-mouse-to-focus
 
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
@@ -266,7 +266,7 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "terminal"
 spawn-at-startup "kitty" "-e" "t" "dotfiles"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 spawn-at-startup "thunar"
-spawn-at-startup "telegram-desktop"
+spawn-at-startup "Telegram"
 spawn-at-startup "hypridle"
 spawn-at-startup "udiskie" "--tray"
 spawn-at-startup "waytron" "google-chrome-stable"
@@ -299,10 +299,10 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Animations
 animations {
     // Uncomment to turn off all animations.
-   off
+   // off
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
-    // slowdown 3.0
+    slowdown 0.5
 }
 
 // Window rules let you adjust behavior for individual windows.
