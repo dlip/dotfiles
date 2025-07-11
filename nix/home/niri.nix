@@ -6,6 +6,20 @@
   home.packages = with pkgs; [
     waybar
     xwayland-satellite
+    brightnessctl
+    cliphist
+    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+    fuzzel
+    grimblast
+    libnotify
+    playerctl
+    sway-contrib.grimshot
+    swayidle
+    udiskie
+    networkmanagerapplet
+    rofi-wayland
+    rofimoji
+    swaynotificationcenter
   ];
   systemd.user.services.waybar = {
     Unit = {

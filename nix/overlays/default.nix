@@ -1,4 +1,4 @@
-inputs @ {
+inputs@{
   # , poetry2nix
   # actual-server,
   emoji-menu,
@@ -9,11 +9,12 @@ inputs @ {
   mac-app-util,
   # vscodeNodeDebug2,
   # nixvim,
-  hyprland,
-  hyprcursor-catppuccin,
+  # hyprland,
+  # hyprcursor-catppuccin,
   niri-flake,
   ...
-}: [
+}:
+[
   nix-on-droid.overlays.default
   helix.overlays.default
   # poetry2nix.overlay
@@ -25,13 +26,17 @@ inputs @ {
     #   nodejs = final.nodejs-16_x;
     # };
     # vscodeNodeDebug2 = final.callPackage ./vscodeNodeDebug2 {src = vscodeNodeDebug2;};
-    emoji-menu = final.writeShellScriptBin "emoji-menu" (builtins.readFile "${emoji-menu}/bin/emoji-menu");
+    emoji-menu = final.writeShellScriptBin "emoji-menu" (
+      builtins.readFile "${emoji-menu}/bin/emoji-menu"
+    );
     # myEspanso = final.callPackage ./espanso {};
-    hyprland = hyprland.packages.${final.system}.hyprland;
-    hyprcursor-catppuccin = hyprcursor-catppuccin.packages.${final.system}.hyprcursor-catppuccin;
-    power-menu = final.writeShellScriptBin "power-menu" (builtins.readFile "${power-menu}/rofi-power-menu");
+    # hyprland = hyprland.packages.${final.system}.hyprland;
+    # hyprcursor-catppuccin = hyprcursor-catppuccin.packages.${final.system}.hyprcursor-catppuccin;
+    power-menu = final.writeShellScriptBin "power-menu" (
+      builtins.readFile "${power-menu}/rofi-power-menu"
+    );
     nnn = prev.nnn.overrideAttrs (oldAttrs: {
-      makeFlags = oldAttrs.makeFlags ++ ["O_NERD=1"];
+      makeFlags = oldAttrs.makeFlags ++ [ "O_NERD=1" ];
     });
 
     # nixvim = nixvim.legacyPackages.${final.system}.makeNixvimWithModule {
@@ -46,12 +51,12 @@ inputs @ {
     });
     # helix = helix.packages.${final.system}.default;
 
-    myNodePackages = final.callPackage ./nodePackages {};
+    myNodePackages = final.callPackage ./nodePackages { };
     # myPythonPackages = final.callPackage ./pythonPackages { };
     # skyscraper = final.callPackage ./skyscraper { };
     # solang = final.callPackage ./solang { };
     # juliusSpeech = final.callPackage ./juliusSpeech { };
-    talon = final.callPackage ./talon {};
+    talon = final.callPackage ./talon { };
     # inherit (final.callPackages "${openvpn-aws}/derivations/openvpn.nix" { }) openvpn_aws;
   })
   # Repos with no build step
@@ -60,17 +65,21 @@ inputs @ {
   (final: prev: {
     vimPlugins =
       prev.vimPlugins
-      // builtins.listToAttrs (map
-        (input: let
-          name = final.lib.removePrefix "vimplugin-" input;
-        in {
-          inherit name;
-          value = final.vimUtils.buildVimPlugin {
+      // builtins.listToAttrs (
+        map (
+          input:
+          let
+            name = final.lib.removePrefix "vimplugin-" input;
+          in
+          {
             inherit name;
-            pname = name;
-            src = builtins.getAttr input inputs;
-          };
-        })
-        (builtins.attrNames (final.lib.filterAttrs (k: v: final.lib.hasPrefix "vimplugin" k) inputs)));
+            value = final.vimUtils.buildVimPlugin {
+              inherit name;
+              pname = name;
+              src = builtins.getAttr input inputs;
+            };
+          }
+        ) (builtins.attrNames (final.lib.filterAttrs (k: v: final.lib.hasPrefix "vimplugin" k) inputs))
+      );
   })
 ]

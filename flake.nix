@@ -13,14 +13,14 @@
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hyprcursor-catppuccin = {
-      url = "github:NotAShelf/hyprcursor-catppuccin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # hyprland = {
+    #   url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    # hyprcursor-catppuccin = {
+    #   url = "github:NotAShelf/hyprcursor-catppuccin";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     nix-on-droid = {
       url = "github:t184256/nix-on-droid/release-22.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -85,34 +85,35 @@
     };
   };
 
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    nixpkgs-stable,
-    home-manager,
-    flake-utils,
-    nix-on-droid,
-    sops-nix,
-    nix-darwin,
-    talon,
-    ...
-  }: let
-    pkgsForSystem = {
-      system,
-      pkgs ? nixpkgs,
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      nixpkgs-stable,
+      home-manager,
+      flake-utils,
+      nix-on-droid,
+      sops-nix,
+      nix-darwin,
+      talon,
+      ...
     }:
-      import pkgs {
-        inherit system;
-        config.allowUnfree = true;
-        config.permittedInsecurePackages = [
-          # opentabletdriver
-          "dotnet-runtime-6.0.36"
-          "dotnet-sdk-wrapped-6.0.428"
-          "dotnet-sdk-6.0.428"
-        ];
-        overlays =
-          (import ./nix/overlays inputs)
-          ++ [
+    let
+      pkgsForSystem =
+        {
+          system,
+          pkgs ? nixpkgs,
+        }:
+        import pkgs {
+          inherit system;
+          config.allowUnfree = true;
+          config.permittedInsecurePackages = [
+            # opentabletdriver
+            "dotnet-runtime-6.0.36"
+            "dotnet-sdk-wrapped-6.0.428"
+            "dotnet-sdk-6.0.428"
+          ];
+          overlays = (import ./nix/overlays inputs) ++ [
             (final: prev: {
               stable = pkgsForSystem {
                 inherit system;
@@ -120,54 +121,50 @@
               };
             })
           ];
+        };
+
+      configs = {
+        dane = [
+          ./nix/home
+          {
+            home = {
+              username = "dane";
+              homeDirectory = "/home/dane";
+            };
+          }
+        ];
+        docker = [
+          ./nix/home/default.nix
+          ./nix/home/desktop.nix
+          {
+            home = {
+              username = "root";
+              homeDirectory = "/root";
+            };
+          }
+        ];
       };
+    in
+    flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = pkgsForSystem { inherit system; };
 
-    configs = {
-      dane = [
-        ./nix/home
-        {
-          home = {
-            username = "dane";
-            homeDirectory = "/home/dane";
-          };
-        }
-      ];
-      docker = [
-        ./nix/home/default.nix
-        ./nix/home/desktop.nix
-        {
-          home = {
-            username = "root";
-            homeDirectory = "/root";
-          };
-        }
-      ];
-    };
-  in
-    flake-utils.lib.eachDefaultSystem
-    (system: let
-      pkgs = pkgsForSystem {inherit system;};
-
-      createHomeConfiguration = name: config:
-        flake-utils.lib.mkApp
-        {
-          drv =
-            (
-              home-manager.lib.homeManagerConfiguration
-              {
+        createHomeConfiguration =
+          name: config:
+          flake-utils.lib.mkApp {
+            drv =
+              (home-manager.lib.homeManagerConfiguration {
                 inherit pkgs;
                 modules = config;
-              }
-            )
-            .activationPackage;
-        };
-    in rec {
-      inherit pkgs;
-      defaultApp = apps.repl;
-      apps = {
-        repl =
-          flake-utils.lib.mkApp
-          {
+              }).activationPackage;
+          };
+      in
+      rec {
+        inherit pkgs;
+        defaultApp = apps.repl;
+        apps = {
+          repl = flake-utils.lib.mkApp {
             drv = pkgs.writeShellScriptBin "repl" ''
               confnix=$(mktemp)
               echo "builtins.getFlake (toString $(git rev-parse --show-toplevel))" >$confnix
@@ -175,24 +172,25 @@
               nix repl $confnix
             '';
           };
-        homeConfigurations = builtins.mapAttrs createHomeConfiguration configs;
-      };
-      packages = with pkgs; {
-        inherit actualServer;
+          homeConfigurations = builtins.mapAttrs createHomeConfiguration configs;
+        };
+        packages = with pkgs; {
+          inherit actualServer;
 
-        pushNixStoreDockerImage = pkgs.callPackage ./nix/pkgs/pushNixStoreDockerImage {};
-      };
-      devShell = pkgs.mkShell {
-        buildInputs = [
-          pkgs.nixvim
-        ];
-      };
-    })
+          pushNixStoreDockerImage = pkgs.callPackage ./nix/pkgs/pushNixStoreDockerImage { };
+        };
+        devShell = pkgs.mkShell {
+          buildInputs = [
+            pkgs.nixvim
+          ];
+        };
+      }
+    )
     // {
       nixosConfigurations = {
         dex = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          pkgs = pkgsForSystem {system = "x86_64-linux";};
+          pkgs = pkgsForSystem { system = "x86_64-linux"; };
           modules = [
             ./nix/systems/dex/configuration.nix
             home-manager.nixosModules.home-manager
@@ -214,7 +212,7 @@
         };
         x = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          pkgs = pkgsForSystem {system = "x86_64-linux";};
+          pkgs = pkgsForSystem { system = "x86_64-linux"; };
           modules = [
             ./nix/systems/x/configuration.nix
             sops-nix.nixosModules.default
@@ -241,7 +239,7 @@
         };
         ptv = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          pkgs = pkgsForSystem {system = "x86_64-linux";};
+          pkgs = pkgsForSystem { system = "x86_64-linux"; };
           modules = [
             ./nix/systems/ptv/configuration.nix
             home-manager.nixosModules.home-manager
@@ -277,7 +275,7 @@
             };
           }
         ];
-        pkgs = pkgsForSystem {system = "aarch64-linux";};
+        pkgs = pkgsForSystem { system = "aarch64-linux"; };
         home-manager-path = home-manager.outPath;
       };
       # nix run nix-darwin -- switch --flake .#default
@@ -304,7 +302,9 @@
             };
           }
         ];
-        specialArgs = {pkgs = pkgsForSystem {system = "aarch64-darwin";};};
+        specialArgs = {
+          pkgs = pkgsForSystem { system = "aarch64-darwin"; };
+        };
       };
     };
 }
