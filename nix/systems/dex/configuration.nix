@@ -6,7 +6,8 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   dex-services = import ./services.nix;
   downloader-services = import ../downloader/services.nix;
   domain = "dex-lips.duckdns.org";
@@ -14,7 +15,8 @@
   params = {
     hostname = "dex";
   };
-in rec {
+in
+rec {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -28,12 +30,24 @@ in rec {
   networking.firewall.enable = true;
   networking.firewall.allowPing = true;
 
-  networking.firewall.allowedTCPPorts = [443 445 139 80 22 8000 6443 1234];
-  networking.firewall.allowedUDPPorts = [137 138];
+  networking.firewall.allowedTCPPorts = [
+    443
+    445
+    139
+    80
+    22
+    8000
+    6443
+    1234
+  ];
+  networking.firewall.allowedUDPPorts = [
+    137
+    138
+  ];
 
   # services.xserver.videoDrivers = ["nvidia"];
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     # Modesetting is required.
     modesetting.enable = true;
@@ -79,8 +93,8 @@ in rec {
     enable = true;
     description = "Mount backup";
 
-    after = ["network.target"];
-    wantedBy = ["multi-user.target"];
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "oneshot";
       User = "root";
@@ -88,9 +102,7 @@ in rec {
     };
 
     script =
-      /*
-      bash
-      */
+      # bash
       ''
         UUID=""
         for ID in 8c4746b9-7ccb-4a94-8e72-502ea6ff4a49 05d74c77-c9f2-4101-af0b-b1c7141a4fd0; do
@@ -116,7 +128,7 @@ in rec {
 
   users.users.tv = {
     isNormalUser = true;
-    extraGroups = []; # Enable ‘sudo’ for the user.
+    extraGroups = [ ]; # Enable ‘sudo’ for the user.
     shell = "/etc/profiles/per-user/tv/bin/zsh";
   };
 
@@ -124,14 +136,20 @@ in rec {
     isNormalUser = true;
     home = "/media/media/home/ryoko";
     createHome = true;
-    extraGroups = []; # Enable ‘sudo’ for the user.
+    extraGroups = [ ]; # Enable ‘sudo’ for the user.
   };
 
   users.users.dane = {
     isNormalUser = true;
     home = "/home/dane";
     createHome = true;
-    extraGroups = ["wheel" "docker" "networkmanager" "dialout" "adbusers"]; # Enable ‘sudo’ for the user.
+    extraGroups = [
+      "wheel"
+      "docker"
+      "networkmanager"
+      "dialout"
+      "adbusers"
+    ]; # Enable ‘sudo’ for the user.
     shell = "/etc/profiles/per-user/dane/bin/zsh";
   };
 
@@ -159,8 +177,11 @@ in rec {
     containers = {
       homepage = {
         image = "ghcr.io/benphelps/homepage:latest";
-        volumes = ["/mnt/services/homepage/config:/app/config" "/var/run/docker.sock:/var/run/docker.sock"];
-        extraOptions = ["--network=host"];
+        volumes = [
+          "/mnt/services/homepage/config:/app/config"
+          "/var/run/docker.sock:/var/run/docker.sock"
+        ];
+        extraOptions = [ "--network=host" ];
         environment = {
           PORT = "3001";
         };
@@ -177,7 +198,7 @@ in rec {
       # };
       yaruki = {
         image = "dlip/yaruki";
-        ports = ["8095:8080"];
+        ports = [ "8095:8080" ];
         volumes = [
           "/mnt/services/yaruki:/app/data"
         ];
@@ -191,7 +212,6 @@ in rec {
       # };
     };
   };
-
 
   services.actual = {
     enable = true;
@@ -223,14 +243,17 @@ in rec {
 
   hardware.bluetooth.enable = true;
   networking.nat.enable = true;
-  networking.nat.internalInterfaces = ["wg0" "ve-+"];
+  networking.nat.internalInterfaces = [
+    "wg0"
+    "ve-+"
+  ];
   networking.nat.externalInterface = "enp8s0";
 
   networking.wireguard.interfaces = {
     # "wg0" is the network interface name. You can name the interface arbitrarily.
     wg0 = {
       # Determines the IP address and subnet of the server's end of the tunnel interface.
-      ips = ["10.100.0.1/24"];
+      ips = [ "10.100.0.1/24" ];
 
       # The port that WireGuard listens to. Must be accessible by the client.
       listenPort = 51820;
@@ -259,27 +282,27 @@ in rec {
         # g
         {
           publicKey = "AyT/WKTrPwaiCFLRx68Jz/isw4Rv/4PQ+y3qlNJ32HA=";
-          allowedIPs = ["10.100.0.3/32"];
+          allowedIPs = [ "10.100.0.3/32" ];
         }
         # flip
         {
           publicKey = "MLNoLlIYeq6F8NBwg/Cu95fwO7BiJbcTRq4dj5MLAzA=";
-          allowedIPs = ["10.100.0.4/32"];
+          allowedIPs = [ "10.100.0.4/32" ];
         }
         # x
         {
           publicKey = "lszSFzhXlH1JPG655cXOVawciMryUHTzQ3quh8fQnWc=";
-          allowedIPs = ["10.100.0.5/32"];
+          allowedIPs = [ "10.100.0.5/32" ];
         }
         # ptv
         {
           publicKey = "y1+RKIv+REkE/sSD1YEvSP/QQCZKeWKW+Qe9EE94oyU=";
-          allowedIPs = ["10.100.0.6/32"];
+          allowedIPs = [ "10.100.0.6/32" ];
         }
         # rmob
         {
           publicKey = "SjRIualgEpDnqE5ohIrYD+u7aeIz3zrVVwXHohenVmA=";
-          allowedIPs = ["10.100.0.7/32"];
+          allowedIPs = [ "10.100.0.7/32" ];
         }
       ];
     };
@@ -332,7 +355,7 @@ in rec {
     ''*/10 * * * * root eval "export `cat /var/run/secrets/traefik-env`" && ${pkgs.curl}/bin/curl http://www.duckdns.org/update/lips-home/$DUCKDNS_TOKEN''
   ];
 
-  systemd.services.traefik.serviceConfig.EnvironmentFile = ["/var/run/secrets/traefik-env"];
+  systemd.services.traefik.serviceConfig.EnvironmentFile = [ "/var/run/secrets/traefik-env" ];
   services.traefik = {
     enable = true;
     staticConfigOptions = {
@@ -386,10 +409,9 @@ in rec {
               };
             };
           }
-          // pkgs.lib.attrsets.mapAttrs'
-          (name: port:
-            pkgs.lib.attrsets.nameValuePair "${name}"
-            {
+          // pkgs.lib.attrsets.mapAttrs' (
+            name: port:
+            pkgs.lib.attrsets.nameValuePair "${name}" {
               rule = "Host(`${name}.${domain}`)";
               service = "${name}";
               tls = {
@@ -400,50 +422,50 @@ in rec {
                 ];
                 certResolver = "letsencrypt";
               };
-            })
-          (dex-services // downloader-services);
+            }
+          ) (dex-services // downloader-services);
 
         services =
-          (pkgs.lib.attrsets.mapAttrs'
-            (name: port:
-              pkgs.lib.attrsets.nameValuePair "${name}"
-              {
-                loadBalancer.servers = [{url = "http://127.0.0.1:${toString port}/";}];
-              })
-            dex-services)
-          // (pkgs.lib.attrsets.mapAttrs'
-            (name: port:
-              pkgs.lib.attrsets.nameValuePair "${name}"
-              {
-                loadBalancer.servers = [{url = "http://${containers.downloader.localAddress}:${toString port}/";}];
-              })
-            downloader-services);
+          (pkgs.lib.attrsets.mapAttrs' (
+            name: port:
+            pkgs.lib.attrsets.nameValuePair "${name}" {
+              loadBalancer.servers = [ { url = "http://127.0.0.1:${toString port}/"; } ];
+            }
+          ) dex-services)
+          // (pkgs.lib.attrsets.mapAttrs' (
+            name: port:
+            pkgs.lib.attrsets.nameValuePair "${name}" {
+              loadBalancer.servers = [
+                { url = "http://${containers.downloader.localAddress}:${toString port}/"; }
+              ];
+            }
+          ) downloader-services);
       };
     };
   };
   /*
-  services.nginx = {
-    enable = true;
-    recommendedProxySettings = true;
-    virtualHosts =
-      (pkgs.lib.attrsets.mapAttrs'
-        (name: port:
-          pkgs.lib.attrsets.nameValuePair "${name}.${domain}" {
-            locations."/" = {
-              proxyPass = "http://127.0.0.1:${toString port}";
-              proxyWebsockets = true;
-            };
-          })
-        dex-services)
-      // (pkgs.lib.attrsets.mapAttrs'
-        (name: port:
-          pkgs.lib.attrsets.nameValuePair "${name}.${domain}" {
-            locations."/" = {
-              proxyPass = "http://${containers.downloader.localAddress}:${toString port}";
-            };
-          })
-        downloader-services);
-  };
+    services.nginx = {
+      enable = true;
+      recommendedProxySettings = true;
+      virtualHosts =
+        (pkgs.lib.attrsets.mapAttrs'
+          (name: port:
+            pkgs.lib.attrsets.nameValuePair "${name}.${domain}" {
+              locations."/" = {
+                proxyPass = "http://127.0.0.1:${toString port}";
+                proxyWebsockets = true;
+              };
+            })
+          dex-services)
+        // (pkgs.lib.attrsets.mapAttrs'
+          (name: port:
+            pkgs.lib.attrsets.nameValuePair "${name}.${domain}" {
+              locations."/" = {
+                proxyPass = "http://${containers.downloader.localAddress}:${toString port}";
+              };
+            })
+          downloader-services);
+    };
   */
   services.syncthing = {
     enable = true;
@@ -528,7 +550,7 @@ in rec {
     passwordFile = config.sops.secrets.paperless-adminpass.path;
   };
 
-  sops.secrets.photoprism-adminpass = {};
+  sops.secrets.photoprism-adminpass = { };
 
   services.photoprism = {
     enable = true;
@@ -572,7 +594,11 @@ in rec {
         "--keep-daily 7"
         "--keep-weekly 4"
       ];
-      extraBackupArgs = ["--exclude-file=/etc/restic-ignore" "--verbose" "2"];
+      extraBackupArgs = [
+        "--exclude-file=/etc/restic-ignore"
+        "--verbose"
+        "2"
+      ];
       timerConfig = {
         OnCalendar = "daily";
         Persistent = true;
@@ -628,10 +654,10 @@ in rec {
   services.openssh.enable = true;
 
   services.kanata = {
-    enable = true;
+    enable = false;
     keyboards = {
       laptop = {
-        devices = ["/dev/input/by-path/platform-i8042-serio-0-event-kbd"];
+        devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
         config = builtins.readFile ../../keymaps/kanata/engram.kbd;
       };
     };

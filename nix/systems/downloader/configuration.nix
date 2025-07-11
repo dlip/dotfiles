@@ -117,11 +117,9 @@ in {
     group = "root";
   };
   services.bazarr = {enable = true;};
-  
+
   services.prowlarr = {
     enable = true;
-    user = "root";
-    group = "root";
   };
 
   services.qbittorrent = {
