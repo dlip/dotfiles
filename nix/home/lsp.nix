@@ -1,16 +1,21 @@
-{pkgs, ...}: let
-  extraPackages = with pkgs;
-    if system == "aarch64-linux"
-    then [
-      nodePackages.vscode-css-languageserver-bin
-      nodePackages.vscode-json-languageserver-bin
-      nodePackages.vscode-html-languageserver-bin
-    ]
-    else [
-      nodePackages.vscode-langservers-extracted
-    ];
-in {
-  home.packages = with pkgs;
+{ pkgs, ... }:
+let
+  extraPackages =
+    with pkgs;
+    if system == "aarch64-linux" then
+      [
+        nodePackages.vscode-css-languageserver-bin
+        nodePackages.vscode-json-languageserver-bin
+        nodePackages.vscode-html-languageserver-bin
+      ]
+    else
+      [
+        nodePackages.vscode-langservers-extracted
+      ];
+in
+{
+  home.packages =
+    with pkgs;
     [
       # alejandra # nix
       # codespell
@@ -33,6 +38,7 @@ in {
       # nodePackages.vim-language-server
       # nodePackages.yaml-language-server
       # openscad-lsp
+      prettier
       # proselint
       pyright # python
       # python311Packages.black

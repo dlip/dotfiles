@@ -1,7 +1,8 @@
 {
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ./default.nix
     ./syncthing
@@ -16,7 +17,7 @@
     # mimic
     btop
     evtest
-    fusee-launcher
+    # fusee-launcher
     iotop
     iputils
     kanata

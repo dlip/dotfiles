@@ -1,9 +1,10 @@
 {
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
-    ./hyprland.nix
+    # ./hyprland.nix
     ./niri.nix
     ./graphical.nix
     ./desktop-entries.nix
