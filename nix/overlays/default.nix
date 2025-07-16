@@ -3,7 +3,7 @@ inputs@{
   # actual-server,
   emoji-menu,
   power-menu,
-  helix,
+  # helix,
   sops-nix,
   nix-on-droid,
   mac-app-util,
@@ -16,7 +16,7 @@ inputs@{
 }:
 [
   nix-on-droid.overlays.default
-  helix.overlays.default
+  # helix.overlays.default
   # poetry2nix.overlay
   # packages
   (final: prev: {

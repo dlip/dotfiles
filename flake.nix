@@ -45,9 +45,9 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    helix = {
-      url = "github:mattwparas/helix/steel-event-system";
-    };
+    # helix = {
+    #   url = "github:mattwparas/helix/steel-event-system";
+    # };
     mac-app-util.url = "github:hraban/mac-app-util";
     vimplugin-telescope-gitsigns = {
       url = "github:radyz/telescope-gitsigns";
