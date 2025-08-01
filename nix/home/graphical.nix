@@ -1,10 +1,11 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     # ./vscode
   ];
 
   home.packages = with pkgs; [
-    audacity
+    # audacity
     discord
     emoji-menu
     power-menu

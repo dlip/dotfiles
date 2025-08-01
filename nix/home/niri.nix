@@ -20,6 +20,7 @@
     rofi-wayland
     rofimoji
     swaynotificationcenter
+    hypridle
   ];
   systemd.user.services.waybar = {
     Unit = {

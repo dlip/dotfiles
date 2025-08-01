@@ -112,6 +112,7 @@
             "dotnet-runtime-6.0.36"
             "dotnet-sdk-wrapped-6.0.428"
             "dotnet-sdk-6.0.428"
+            "libsoup-2.74.3"
           ];
           overlays = (import ./nix/overlays inputs) ++ [
             (final: prev: {

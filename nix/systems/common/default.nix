@@ -1,16 +1,19 @@
-{hostname}: {
+{ hostname }:
+{
   config,
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   restic-dex = pkgs.writeShellScriptBin "restic-dex" ''
     export RESTIC_REPOSITORY="/media/backup/restic"
     export RESTIC_PASSWORD_FILE="${config.sops.secrets.restic-encryption.path}"
 
     ${pkgs.restic}/bin/restic $@
   '';
-in {
+in
+{
   imports = [
     ./cachix.nix
     ./services/notify-problems.nix
@@ -33,7 +36,7 @@ in {
   system.autoUpgrade = {
     enable = false;
     flake = "github:dlip/nixconfig";
-    flags = ["--no-write-lock-file"];
+    flags = [ "--no-write-lock-file" ];
   };
 
   nix = {
@@ -52,7 +55,7 @@ in {
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
-    fcitx5.addons = with pkgs; [fcitx5-mozc];
+    fcitx5.addons = with pkgs; [ fcitx5-mozc ];
   };
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
@@ -73,7 +76,9 @@ in {
   # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_AU.UTF-8";
-    extraLocaleSettings = {LC_ALL = "en_AU.UTF-8";};
+    extraLocaleSettings = {
+      LC_ALL = "en_AU.UTF-8";
+    };
   };
 
   fonts.packages = with pkgs; [
@@ -94,14 +99,14 @@ in {
 
   sops.defaultSopsFile = ./.. + builtins.toPath "/${hostname}/secrets/secrets.yaml";
   # This will automatically import SSH keys as age keys
-  sops.age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
   # This is using an age key that is expected to already be in the filesystem
   sops.age.keyFile = "/var/lib/sops-nix/key.txt";
   # This will generate a new key if the key specified above does not exist
   sops.age.generateKey = true;
 
-  sops.secrets.restic-encryption = {};
-  sops.secrets.wireguard-key = {};
+  sops.secrets.restic-encryption = { };
+  sops.secrets.wireguard-key = { };
 
   # keyring
   services.gnome.gnome-keyring.enable = true;
@@ -142,7 +147,7 @@ in {
 
   networking.firewall = {
     enable = true;
-    allowedUDPPorts = [51820]; # wireguard
+    allowedUDPPorts = [ 51820 ]; # wireguard
     allowedTCPPorts = [
       1701
       9001 # weylus
@@ -158,7 +163,10 @@ in {
   # };
 
   services.printing.enable = true;
-  services.printing.drivers = with pkgs; [brgenml1lpr brgenml1cupswrapper];
+  services.printing.drivers = with pkgs; [
+    brgenml1lpr
+    brgenml1cupswrapper
+  ];
 
   programs.nm-applet.enable = true;
   hardware.graphics.enable32Bit = true;
@@ -241,11 +249,18 @@ in {
     hyphen
   ];
 
-  environment.pathsToLink = ["share/hunspell" "share/myspell" "share/hyphen"];
+  environment.pathsToLink = [
+    "share/hunspell"
+    "share/myspell"
+    "share/hyphen"
+  ];
   environment.variables.DICPATH = "/run/current-system/sw/share/hunspell:/run/current-system/sw/share/hyphen";
 
   hardware.ledger.enable = true;
-  services.udev.packages = with pkgs; [via vial];
+  services.udev.packages = with pkgs; [
+    via
+    vial
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
