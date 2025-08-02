@@ -19,7 +19,7 @@ repo_path=$(zoxide query -l "$PROJECTS/" | sed "s|$PROJECTS/||" | fzf $filter_pa
 session=$(basename $repo_path)
 if [ -n "$repo_path" ]; then
   cd "$PROJECTS/$repo_path"
-  HAS_SESSION=$(tmux has-session -t $session 2>/dev/null && echo 1 || echo 0)
+  HAS_SESSION=$(tmux has-session -t=$session 2>/dev/null && echo 1 || echo 0)
   if [[ "$HAS_SESSION" == "1" ]]; then
     if [ -n "${TMUX:-}" ]; then
       tmux switch-client -t "$session"
