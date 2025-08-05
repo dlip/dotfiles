@@ -1,0 +1,6 @@
+{
+  "SKIP_HOST_UPDATE": true,
+  "BACKGROUND_COLOR": "#121214",
+  "offloadAdmControls": false,
+  "chromiumSwitches": {}
+}
