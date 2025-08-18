@@ -1,11 +1,13 @@
 {
   pkgs,
   ...
-}: let
+}:
+let
   downloader-services = import ./services.nix;
-in {
+in
+{
   imports = [
-    ../common/services/qbittorrent.nix
+    # ../common/services/qbittorrent.nix
     ../common/services/ssmtp.nix
     pkgs.sops-nix.nixosModules.default
   ];
@@ -26,9 +28,13 @@ in {
     '';
   };
 
-  environment.systemPackages = with pkgs; [traceroute];
+  environment.systemPackages = with pkgs; [ traceroute ];
   networking = {
-    nameservers = ["1.1.1.1" "8.8.8.8" "8.8.4.4"];
+    nameservers = [
+      "1.1.1.1"
+      "8.8.8.8"
+      "8.8.4.4"
+    ];
     firewall = {
       enable = true;
       allowedTCPPorts = pkgs.lib.attrsets.attrValues downloader-services;
@@ -51,13 +57,13 @@ in {
 
   sops.defaultSopsFile = ../common/secrets/secrets.yaml;
   # This will automatically import SSH keys as age keys
-  sops.age.sshKeyPaths = ["/var/lib/ssh/ssh_host_ed25519_key"];
+  sops.age.sshKeyPaths = [ "/var/lib/ssh/ssh_host_ed25519_key" ];
   # This is using an age key that is expected to already be in the filesystem
   sops.age.keyFile = "/var/lib/sops-nix/key.txt";
   # This will generate a new key if the key specified above does not exist
   sops.age.generateKey = true;
   # Secrets
-  sops.secrets.nordvpnLogin = {};
+  sops.secrets.nordvpnLogin = { };
 
   # qbittorrent stops downloading when vpn gets reconnected
   systemd.services.restart-qbittorrent = {
@@ -75,8 +81,8 @@ in {
   };
 
   systemd.timers.restart-qbittorrent = {
-    wantedBy = ["timers.target"];
-    partOf = ["restart-qbittorrent.service"];
+    wantedBy = [ "timers.target" ];
+    partOf = [ "restart-qbittorrent.service" ];
     timerConfig = {
       OnActiveSec = "4h";
       OnUnitActiveSec = "4h";
@@ -91,8 +97,8 @@ in {
   };
 
   systemd.services.transmission = {
-    bindsTo = ["openvpn-nordvpn.service"];
-    after = ["openvpn-nordvpn.service"];
+    bindsTo = [ "openvpn-nordvpn.service" ];
+    after = [ "openvpn-nordvpn.service" ];
     serviceConfig.Restart = "always";
   };
 
@@ -116,7 +122,9 @@ in {
     user = "root";
     group = "root";
   };
-  services.bazarr = {enable = true;};
+  services.bazarr = {
+    enable = true;
+  };
 
   services.prowlarr = {
     enable = true;

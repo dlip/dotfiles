@@ -559,6 +559,19 @@ rec {
     passwordFile = config.sops.secrets.photoprism-adminpass.path;
   };
 
+  sops.secrets.kavita-token = {
+    owner = "kavita";
+    group = "kavita";
+  };
+
+  services.kavita = {
+    enable = true;
+    tokenKeyFile = config.sops.secrets.kavita-token.path;
+    settings = {
+      Port = 6000;
+    };
+  };
+
   # services.homepage-dashboard.enable = true;
 
   environment.etc.restic-ignore.text = ''

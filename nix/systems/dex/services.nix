@@ -13,4 +13,5 @@
   paperless = 28981;
   yaruki = 8095;
   photoprism = 2342;
+  kavita = 6000;
 }
