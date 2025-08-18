@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   home.packages = with pkgs; [
     archivemount
     age
@@ -14,6 +15,7 @@
     nix-index
     stable.awscli2
     blisp
+    bun
     docker-buildx
     cargo
     cargo-wasi
@@ -52,7 +54,7 @@
     kubetail
     lldb
     lsof
-    (lua.withPackages (ps: with ps; [luacheck]))
+    (lua.withPackages (ps: with ps; [ luacheck ]))
     massren
     mdbook
     mdl
@@ -81,7 +83,12 @@
     php
     # poetry
     postgresql
-    (python3.withPackages (ps: with ps; [pyusb tkinter]))
+    (python3.withPackages (
+      ps: with ps; [
+        pyusb
+        tkinter
+      ]
+    ))
     pwgen
     # python39Packages.grip
     # python39Packages.pip
