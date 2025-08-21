@@ -4,6 +4,6 @@
 [submodule ".tmux/plugins/tpm"]
 	path = .tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "/home/dane/.config/yazi/plugins/compress.yazi"]
-	path = /home/dane/.config/yazi/plugins/compress.yazi
+[submodule ".config/yazi/plugins/compress.yazi"]
+	path = .config/yazi/plugins/compress.yazi
 	url = https://github.com/KKV9/compress.yazi.git
