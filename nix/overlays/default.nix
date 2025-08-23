@@ -59,14 +59,14 @@ inputs@{
     talon = final.callPackage ./talon { };
     # inherit (final.callPackages "${openvpn-aws}/derivations/openvpn.nix" { }) openvpn_aws;
     # freecad fix https://github.com/NixOS/nixpkgs/issues/429237
-    coin3d = prev.coin3d.overrideAttrs {
-      src = final.fetchFromGitHub {
-        owner = "coin3d";
-        repo = "coin";
-        rev = "v4.0.3";
-        hash = "sha256-dUFmcUOdNc3ZFtr+Hnh3Q3OY/JA/WxmiRJiU2RFSSus=";
-      };
-    };
+    # coin3d = prev.coin3d.overrideAttrs {
+    #   src = final.fetchFromGitHub {
+    #     owner = "coin3d";
+    #     repo = "coin";
+    #     rev = "v4.0.3";
+    #     hash = "sha256-dUFmcUOdNc3ZFtr+Hnh3Q3OY/JA/WxmiRJiU2RFSSus=";
+    #   };
+    # };
   })
   # Repos with no build step
   (final: prev: prev.lib.filterAttrs (k: v: prev.lib.hasPrefix "repo" k) inputs)

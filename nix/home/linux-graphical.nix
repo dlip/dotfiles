@@ -28,6 +28,7 @@
     firefox
     freecad-wayland
     fstl
+    hakuneko
     helvum
     keyd
     kdePackages.kdenlive

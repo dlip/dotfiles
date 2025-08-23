@@ -55,9 +55,11 @@
     lldb
     lsof
     (lua.withPackages (ps: with ps; [ luacheck ]))
+    manga-tui
     massren
     mdbook
     mdl
+    mokuro
     mysql80
     # musikcube
     # myPythonPackages.shirah-reader
