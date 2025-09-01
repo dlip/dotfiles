@@ -9,8 +9,8 @@ model/stl=PrusaSlicer.desktop;f3d-plugin-native.desktop;fstl.desktop;
 text/csv=calc.desktop;neovide.desktop;
 text/html=google-chrome.desktop
 text/markdown=neovide.desktop
-text/plain=calc.desktop;PrusaSlicer.desktop;neovide.desktop;
-video/x-matroska=mpv.desktop
+text/plain=neovide.desktop;calc.desktop;PrusaSlicer.desktop;
+video/x-matroska=vlc.desktop;mpv.desktop;
 x-scheme-handler/about=google-chrome.desktop
 x-scheme-handler/http=google-chrome.desktop
 x-scheme-handler/https=google-chrome.desktop
@@ -27,6 +27,8 @@ application/octet-stream=neovide.desktop;
 text/x-python=neovide.desktop;
 application/vnd.rar=org.gnome.FileRoller.desktop;
 application/json=neovide.desktop;
+application/x-openvpn-profile=neovide.desktop;
+application/x-shellscript=neovide.desktop;
 
 [Default Applications]
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
@@ -53,5 +55,6 @@ x-scheme-handler/tg=org.telegram.desktop.desktop
 x-scheme-handler/tonsite=org.telegram.desktop.desktop
 application/octet-stream=neovide.desktop
 application/vnd.rar=org.gnome.FileRoller.desktop
+x-scheme-handler/discord-712465656758665259=discord-712465656758665259.desktop
 
 [Removed Associations]

@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   ...
 }:
 {
@@ -11,12 +12,15 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --remember --cmd ${pkgs.niri}/bin/niri-session";
+        command = "${pkgs.tuigreet}/bin/tuigreet /usr/bin/env --xsessions ${config.services.displayManager.sessionData.desktops}/share/xsessions --sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions --remember --remember-user-session";
+        user = "greeter";
       };
     };
   };
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
   environment.systemPackages = with pkgs; [
+    xorg.xinit
+    tuigreet
     swaylock
     file-roller
     adwaita-icon-theme # default gnome cursors

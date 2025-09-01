@@ -179,7 +179,7 @@ in
   # hardware.pulseaudio.enable = true;
 
   # disable suspend on lid closed
-  services.logind.lidSwitch = "ignore";
+  services.logind.settings.Login.HandleLidSwitch = "ignore";
   # services.autorandr = {
   #   enable = true;
   # };
