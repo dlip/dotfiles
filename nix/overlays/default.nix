@@ -12,10 +12,12 @@ inputs@{
   # hyprland,
   # hyprcursor-catppuccin,
   niri-flake,
+  nixgl,
   ...
 }:
 [
   nix-on-droid.overlays.default
+  nixgl.overlay
   # helix.overlays.default
   # poetry2nix.overlay
   # packages

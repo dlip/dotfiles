@@ -1,16 +1,7 @@
 { pkgs, ... }:
 let
   extraPackages =
-    with pkgs;
-    if system == "aarch64-linux" then
       [
-        nodePackages.vscode-css-languageserver-bin
-        nodePackages.vscode-json-languageserver-bin
-        nodePackages.vscode-html-languageserver-bin
-      ]
-    else
-      [
-        nodePackages.vscode-langservers-extracted
       ];
 in
 {

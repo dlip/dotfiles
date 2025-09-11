@@ -22,7 +22,7 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
     nix-on-droid = {
-      url = "github:t184256/nix-on-droid/release-22.11";
+      url = "github:nix-community/nix-on-droid/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
@@ -83,6 +83,7 @@
     talon = {
       url = "github:nix-community/talon-nix";
     };
+    nixgl.url = "github:nix-community/nixGL";
   };
 
   outputs =

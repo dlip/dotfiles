@@ -3,16 +3,30 @@
   lib,
   pkgs,
   ...
-}: let
-  tools =
-    pkgs.callPackage ./tools.nix {
-    };
-in {
+}:
+let
+  tools = pkgs.callPackage ./tools.nix {
+  };
+in
+{
+
+  imports = [ ./dbus.nix ];
+  dbus.enable = true;
   # Simply install just the packages
-  environment.packages = with pkgs;
+  environment.packages =
+    with pkgs;
     [
       # User-facing stuff that you really really want to have
       vim # or some other editor, e.g. nano or neovim
+      i3
+      i3status
+      nixgl.auto.nixGLDefault
+      xfce.xfce4-session
+      xorg.xinit
+      xfce.xfce4-panel
+      xfce.xfdesktop
+      kitty
+      anki
 
       # Some common stuff that people expect to have
       #diffutils
