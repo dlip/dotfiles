@@ -25,6 +25,7 @@
     kmonad
     krename
     mecab
+    mkvtoolnix-cli
     # nix-du
     ns-usbloader
     pinentry
