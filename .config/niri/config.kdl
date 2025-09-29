@@ -48,8 +48,8 @@ input {
     mouse {
         // off
         // natural-scroll
-        // accel-speed -0.3
-        // accel-profile "adaptive"
+        accel-speed -0.8
+        accel-profile "adaptive"
         // scroll-method "no-scroll"
     }
 

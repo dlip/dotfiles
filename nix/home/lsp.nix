@@ -1,8 +1,7 @@
 { pkgs, ... }:
 let
-  extraPackages =
-      [
-      ];
+  extraPackages = [
+  ];
 in
 {
   home.packages =
@@ -44,7 +43,7 @@ in
       lua-language-server
       # taplo
       # terraform-ls
-      # tree-sitter
+      tree-sitter
       # vale
       # vim-vint
       # yamllint

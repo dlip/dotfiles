@@ -17,7 +17,7 @@
     swayidle
     udiskie
     networkmanagerapplet
-    rofi-wayland
+    rofi
     rofimoji
     swaynotificationcenter
     hypridle

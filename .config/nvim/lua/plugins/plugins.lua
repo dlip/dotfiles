@@ -1,6 +1,6 @@
 return {
-  { "williamboman/mason-lspconfig.nvim", enabled = not vim.env.IS_NIX },
-  { "williamboman/mason.nvim", enabled = not vim.env.IS_NIX },
+  { "mason-org/mason-lspconfig.nvim", enabled = not vim.env.IS_NIX },
+  { "mason-org/mason.nvim", enabled = not vim.env.IS_NIX },
   { "alexghergh/nvim-tmux-navigation" },
   {
     "nvim-neotest/neotest",

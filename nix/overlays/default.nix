@@ -49,7 +49,7 @@ inputs@{
     # };
 
     rofimoji = prev.rofimoji.overrideAttrs (oldAttrs: {
-      rofi = final.rofi-wayland;
+      rofi = final.rofi;
     });
     # helix = helix.packages.${final.system}.default;
 
