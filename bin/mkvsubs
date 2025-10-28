@@ -31,51 +31,50 @@ for file in *.mkv; do
     fi
 
     echo "Available subtitle tracks:"
-    for i in "${!subs[@]}"; do
-        id=$(echo "${subs[$i]}" | jq -r '.id')
-        lang=$(echo "${subs[$i]}" | jq -r '.properties.language // "und"')
-        codec=$(echo "${subs[$i]}" | jq -r '.properties.codec_id')
-        name=$(echo "${subs[$i]}" | jq -r '.properties.track_name // empty')
+    declare -A track_map=()
+    for sub in "${subs[@]}"; do
+        id=$(echo "$sub" | jq -r '.id')
+        lang=$(echo "$sub" | jq -r '.properties.language // "und"')
+        codec=$(echo "$sub" | jq -r '.properties.codec_id')
+        name=$(echo "$sub" | jq -r '.properties.track_name // empty')
+        track_map["$id"]="$sub"
+
         if [[ -n "$name" && "$name" != "null" ]]; then
-            echo "  [$i] Track ID $id — ${lang} — ${codec} — \"$name\""
+            echo "  [$id] ${lang} — ${codec} — \"$name\""
         else
-            echo "  [$i] Track ID $id — ${lang} — ${codec}"
+            echo "  [$id] ${lang} — ${codec}"
         fi
     done
 
     if [[ -n "$default_selection" ]]; then
         echo
-        echo "Using default selection: $default_selection"
-        idx="$default_selection"
+        echo "Using default selection: Track ID $default_selection"
+        id="$default_selection"
     else
         echo
-        read -p "Enter the number of the subtitle track to extract
-(or press Enter to skip, or type 'dN' to set N as default): " choice
+        read -p "Enter the Track ID to extract (or press Enter to skip, or type 'dN' to set N as default): " choice
 
-        # If empty → skip
         if [[ -z "$choice" ]]; then
             echo "Skipping $file"
             continue
         fi
 
-        # If matches 'dN' pattern (e.g. d1)
         if [[ "$choice" =~ ^d([0-9]+)$ ]]; then
-            idx="${BASH_REMATCH[1]}"
-            default_selection="$idx"
-            echo "Default selection set to $default_selection"
+            id="${BASH_REMATCH[1]}"
+            default_selection="$id"
+            echo "Default selection set to Track ID $default_selection"
         else
-            idx="$choice"
+            id="$choice"
         fi
     fi
 
-    # Extract selected track info
-    if ! [[ "$idx" =~ ^[0-9]+$ ]] || (( idx < 0 || idx >= ${#subs[@]} )); then
-        echo "Invalid selection. Skipping $file."
+    # Validate Track ID
+    if [[ -z "${track_map[$id]+found}" ]]; then
+        echo "Invalid Track ID: $id. Skipping $file."
         continue
     fi
 
-    track_json="${subs[$idx]}"
-    id=$(echo "$track_json" | jq -r '.id')
+    track_json="${track_map[$id]}"
     lang=$(echo "$track_json" | jq -r '.properties.language // "und"')
 
     base="${file%.*}"
