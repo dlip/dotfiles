@@ -15,13 +15,15 @@ if ! which jq >/dev/null 2>&1; then
     exit 1
 fi
 
+default_selection=""
 shopt -s nullglob
+
 for file in *.mkv; do
     echo "----------------------------------------------------"
     echo "File: $file"
     echo "----------------------------------------------------"
 
-    # Get all subtitle track info as JSON
+    # Get subtitle track info as JSON
     mapfile -t subs < <(mkvmerge -J "$file" | jq -c '.tracks[] | select(.type=="subtitles")')
     if [ ${#subs[@]} -eq 0 ]; then
         echo "No subtitles found in $file"
@@ -34,7 +36,6 @@ for file in *.mkv; do
         lang=$(echo "${subs[$i]}" | jq -r '.properties.language // "und"')
         codec=$(echo "${subs[$i]}" | jq -r '.properties.codec_id')
         name=$(echo "${subs[$i]}" | jq -r '.properties.track_name // empty')
-
         if [[ -n "$name" && "$name" != "null" ]]; then
             echo "  [$i] Track ID $id — ${lang} — ${codec} — \"$name\""
         else
@@ -42,10 +43,34 @@ for file in *.mkv; do
         fi
     done
 
-    echo
-    read -p "Enter the number of the subtitle track to extract (or press Enter to skip): " idx
-    if [[ -z "$idx" ]]; then
-        echo "Skipping $file"
+    if [[ -n "$default_selection" ]]; then
+        echo
+        echo "Using default selection: $default_selection"
+        idx="$default_selection"
+    else
+        echo
+        read -p "Enter the number of the subtitle track to extract
+(or press Enter to skip, or type 'dN' to set N as default): " choice
+
+        # If empty → skip
+        if [[ -z "$choice" ]]; then
+            echo "Skipping $file"
+            continue
+        fi
+
+        # If matches 'dN' pattern (e.g. d1)
+        if [[ "$choice" =~ ^d([0-9]+)$ ]]; then
+            idx="${BASH_REMATCH[1]}"
+            default_selection="$idx"
+            echo "Default selection set to $default_selection"
+        else
+            idx="$choice"
+        fi
+    fi
+
+    # Extract selected track info
+    if ! [[ "$idx" =~ ^[0-9]+$ ]] || (( idx < 0 || idx >= ${#subs[@]} )); then
+        echo "Invalid selection. Skipping $file."
         continue
     fi
 
