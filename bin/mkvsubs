@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Check dependencies using 'which'
+if ! which mkvmerge >/dev/null 2>&1; then
+    echo "Error: mkvmerge not found. Please install mkvtoolnix."
+    exit 1
+fi
+if ! which mkvextract >/dev/null 2>&1; then
+    echo "Error: mkvextract not found. Please install mkvtoolnix."
+    exit 1
+fi
+if ! which jq >/dev/null 2>&1; then
+    echo "Error: jq not found. Please install jq."
+    exit 1
+fi
+
+shopt -s nullglob
+for file in *.mkv; do
+    echo "----------------------------------------------------"
+    echo "File: $file"
+    echo "----------------------------------------------------"
+
+    # Get all subtitle track info as JSON
+    mapfile -t subs < <(mkvmerge -J "$file" | jq -c '.tracks[] | select(.type=="subtitles")')
+    if [ ${#subs[@]} -eq 0 ]; then
+        echo "No subtitles found in $file"
+        continue
+    fi
+
+    echo "Available subtitle tracks:"
+    for i in "${!subs[@]}"; do
+        id=$(echo "${subs[$i]}" | jq -r '.id')
+        lang=$(echo "${subs[$i]}" | jq -r '.properties.language // "und"')
+        codec=$(echo "${subs[$i]}" | jq -r '.properties.codec_id')
+        name=$(echo "${subs[$i]}" | jq -r '.properties.track_name // empty')
+
+        if [[ -n "$name" && "$name" != "null" ]]; then
+            echo "  [$i] Track ID $id — ${lang} — ${codec} — \"$name\""
+        else
+            echo "  [$i] Track ID $id — ${lang} — ${codec}"
+        fi
+    done
+
+    echo
+    read -p "Enter the number of the subtitle track to extract (or press Enter to skip): " idx
+    if [[ -z "$idx" ]]; then
+        echo "Skipping $file"
+        continue
+    fi
+
+    track_json="${subs[$idx]}"
+    id=$(echo "$track_json" | jq -r '.id')
+    lang=$(echo "$track_json" | jq -r '.properties.language // "und"')
+
+    base="${file%.*}"
+    out="${base}.${lang}.srt"
+
+    echo "Extracting subtitle track $id ($lang) → $out"
+    mkvextract tracks "$file" "$id:$out"
+
+    echo "Done."
+    echo
+done
+
+echo "All done!"
