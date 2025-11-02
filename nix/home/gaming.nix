@@ -2,7 +2,7 @@
 {
   home.packages = with pkgs; [
     alvr
-    chiaki-ng
+    # chiaki-ng
     # minecraft
     # bottles
     heroic
