@@ -29,6 +29,8 @@ application/vnd.rar=org.gnome.FileRoller.desktop;
 application/json=neovide.desktop;
 application/x-openvpn-profile=neovide.desktop;
 application/x-shellscript=neovide.desktop;
+application/x-7z-compressed=org.gnome.FileRoller.desktop;
+application/xml=neovide.desktop;
 
 [Default Applications]
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop

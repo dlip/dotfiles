@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.05";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     flake-utils = {
       url = "github:numtide/flake-utils";
     };
@@ -114,6 +114,7 @@
             "dotnet-sdk-wrapped-6.0.428"
             "dotnet-sdk-6.0.428"
             "libsoup-2.74.3"
+            "freeimage-3.18.0-unstable-2024-04-18"
           ];
           overlays = (import ./nix/overlays inputs) ++ [
             (final: prev: {
@@ -121,6 +122,8 @@
                 inherit system;
                 pkgs = nixpkgs-stable;
               };
+
+              emulationstation-de = final.callPackage ./nix/overlays/emulationstation-de { };
             })
           ];
         };
