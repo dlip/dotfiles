@@ -331,6 +331,10 @@ rec {
         hostPath = "/media/media2";
         isReadOnly = false;
       };
+      "/media/roms" = {
+        hostPath = "/media/roms";
+        isReadOnly = false;
+      };
       "/d" = {
         hostPath = "/d";
         isReadOnly = false;
@@ -394,36 +398,35 @@ rec {
     };
     dynamicConfigOptions = {
       http = {
-        routers =
-          {
-            traefik = {
-              rule = "Host(`traefik.${domain}`)";
-              service = "api@internal";
-              tls = {
-                domains = [
-                  {
-                    main = "*.${domain}";
-                  }
-                ];
-                certResolver = "letsencrypt";
-              };
+        routers = {
+          traefik = {
+            rule = "Host(`traefik.${domain}`)";
+            service = "api@internal";
+            tls = {
+              domains = [
+                {
+                  main = "*.${domain}";
+                }
+              ];
+              certResolver = "letsencrypt";
+            };
+          };
+        }
+        // pkgs.lib.attrsets.mapAttrs' (
+          name: port:
+          pkgs.lib.attrsets.nameValuePair "${name}" {
+            rule = "Host(`${name}.${domain}`)";
+            service = "${name}";
+            tls = {
+              domains = [
+                {
+                  main = "*.${domain}";
+                }
+              ];
+              certResolver = "letsencrypt";
             };
           }
-          // pkgs.lib.attrsets.mapAttrs' (
-            name: port:
-            pkgs.lib.attrsets.nameValuePair "${name}" {
-              rule = "Host(`${name}.${domain}`)";
-              service = "${name}";
-              tls = {
-                domains = [
-                  {
-                    main = "*.${domain}";
-                  }
-                ];
-                certResolver = "letsencrypt";
-              };
-            }
-          ) (dex-services // downloader-services);
+        ) (dex-services // downloader-services);
 
         services =
           (pkgs.lib.attrsets.mapAttrs' (
@@ -646,6 +649,14 @@ rec {
       };
       media2 = {
         path = "/media/media2";
+        browsable = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+      };
+      roms = {
+        path = "/media/roms";
         browsable = "yes";
         "read only" = "no";
         "guest ok" = "no";

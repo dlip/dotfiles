@@ -7,33 +7,48 @@
   pkgs,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usb_storage" "usbhid" "uas" "sd_mod" "btintel" "nvme" "rtsx_pci_sdmmc"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "ahci"
+    "usb_storage"
+    "usbhid"
+    "uas"
+    "sd_mod"
+    "btintel"
+    "nvme"
+    "rtsx_pci_sdmmc"
+  ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/dc9c2954-7c2f-4c7a-85c7-feda0111f655";
     fsType = "ext4";
   };
 
-  boot.initrd.luks.devices."luks-ebfbfe12-c14d-4f80-a45f-1b1cbb197bd5".device = "/dev/disk/by-uuid/ebfbfe12-c14d-4f80-a45f-1b1cbb197bd5";
+  boot.initrd.luks.devices."luks-ebfbfe12-c14d-4f80-a45f-1b1cbb197bd5".device =
+    "/dev/disk/by-uuid/ebfbfe12-c14d-4f80-a45f-1b1cbb197bd5";
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/820A-C888";
     fsType = "vfat";
   };
 
-  boot.initrd.secrets = {"lukskey" = "/root/lukskey";};
+  boot.initrd.secrets = {
+    "lukskey" = "/root/lukskey";
+  };
 
   fileSystems."/media/media" = {
     device = "/dev/disk/by-uuid/ffea1765-0616-4311-ac3b-fde6e83ef011"; # UUID for /dev/mapper/media
     fsType = "btrfs";
+    options = [ "nofail" ];
     encrypted = {
       enable = true;
       label = "media";
@@ -44,6 +59,7 @@
   fileSystems."/media/media2" = {
     device = "/dev/disk/by-uuid/bd148b15-4950-4da8-9fd1-17d8a32390d5"; # UUID for /dev/mapper/media2
     fsType = "btrfs";
+    options = [ "nofail" ];
     encrypted = {
       enable = true;
       label = "media2";
@@ -52,16 +68,16 @@
     };
   };
 
-  fileSystems."/media/media3" = {
-    device = "/dev/disk/by-uuid/5e2a3276-1da2-4e4a-928d-fb000ca24fa9"; # UUID for encrypted partition
-    fsType = "ext4";
-    encrypted = {
-      enable = true;
-      label = "media3";
-      blkDev = "/dev/disk/by-uuid/247f0476-38a2-4e2e-a059-2139ffb58324"; # UUID for dev
-      keyFile = "/lukskey";
-    };
-  };
+  # fileSystems."/media/media3" = {
+  #   device = "/dev/disk/by-uuid/5e2a3276-1da2-4e4a-928d-fb000ca24fa9"; # UUID for encrypted partition
+  #   fsType = "ext4";
+  #   encrypted = {
+  #     enable = true;
+  #     label = "media3";
+  #     blkDev = "/dev/disk/by-uuid/247f0476-38a2-4e2e-a059-2139ffb58324"; # UUID for dev
+  #     keyFile = "/lukskey";
+  #   };
+  # };
   # Why does this not work???
   # fileSystems."/media/backup" = {
   #   device =
@@ -77,30 +93,41 @@
   #   };
   # };
 
+  fileSystems."/media/roms" = {
+    device = "/dev/disk/by-uuid/bc366fb1-061c-4222-a6a3-05b35b85760b";
+    fsType = "ext4";
+    options = [
+      "nofail"
+    ];
+  };
   fileSystems."/media/games" = {
     device = "/dev/disk/by-uuid/0BB20EC37670AE62";
     fsType = "ntfs";
-    options = ["rw" "uid=1000"];
+    options = [
+      "rw"
+      "uid=1000"
+      "nofail"
+    ];
   };
 
   fileSystems."/d" = {
     device = "/media/media";
-    options = ["bind"];
+    options = [ "bind" ];
   };
 
   fileSystems."/f" = {
     device = "/media/media2";
-    options = ["bind"];
+    options = [ "bind" ];
   };
 
   fileSystems."/audiobooks" = {
     device = "/media/media/audiobooks";
-    options = ["bind"];
+    options = [ "bind" ];
   };
 
   fileSystems."/podcasts" = {
     device = "/media/media/podcasts";
-    options = ["bind"];
+    options = [ "bind" ];
   };
 
   # swapDevices = [{device = "/.swapfile";}];
