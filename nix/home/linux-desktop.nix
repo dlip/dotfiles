@@ -37,7 +37,7 @@
     traceroute
     usbutils
     usbimager
-    # ventoy
+    ventoy
     xdotool
     xorg.xhost # add root to xsession: xhost si:localuser:root
   ];

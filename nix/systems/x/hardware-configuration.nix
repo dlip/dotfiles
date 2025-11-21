@@ -7,26 +7,46 @@
   pkgs,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "thunderbolt" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel" "iwlwifi"];
-  boot.extraModulePackages = [];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "nvme"
+    "thunderbolt"
+    "usb_storage"
+    "sd_mod"
+    "rtsx_pci_sdmmc"
+  ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [
+    "kvm-intel"
+    "iwlwifi"
+  ];
+  boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/bd5f124c-0d5a-4c3b-b4ec-755503b74099";
     fsType = "ext4";
   };
 
-  boot.initrd.luks.devices."luks-e6807611-6e16-4a57-aa19-80e7efd2ec72".device = "/dev/disk/by-uuid/e6807611-6e16-4a57-aa19-80e7efd2ec72";
+  boot.initrd.luks.devices."luks-e6807611-6e16-4a57-aa19-80e7efd2ec72".device =
+    "/dev/disk/by-uuid/e6807611-6e16-4a57-aa19-80e7efd2ec72";
 
   fileSystems."/boot/efi" = {
     device = "/dev/disk/by-uuid/2FAC-32E0";
     fsType = "vfat";
+  };
+
+  fileSystems."/media/games" = {
+    device = "//10.10.0.123/games";
+    fsType = "cifs";
+    options = [
+      "uid=1000,gid=100,x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,credentials=/etc/nixos/smb-secrets"
+    ];
   };
 
   swapDevices = [

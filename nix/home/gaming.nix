@@ -6,6 +6,11 @@ let
         genesis-plus-gx
         snes9x
         beetle-psx-hw
+        mesen
+        nestopia
+        fceumm
+        mame
+        fbneo
       ]
     )
   );
@@ -15,21 +20,21 @@ in
     alvr
     # chiaki-ng
     # minecraft
-    # bottles
+    bottles
     heroic
     lutris
     mangohud
     moonlight-qt
     gamemode
+    # gamescope
     protontricks
     protonup
-    pegasus-frontend
     sidequest
     ra
     (stable.emulationstation-de { retroarch = ra; })
     vulkan-tools
-    # wine
-    wine64
+    wine
+    # wine64
     winetricks
   ];
 }

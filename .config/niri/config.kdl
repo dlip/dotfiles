@@ -306,6 +306,7 @@ animations {
 }
 
 // Window rules let you adjust behavior for individual windows.
+// List with `niri msg windows`
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
 
@@ -319,12 +320,13 @@ window-rule {
     default-column-width {}
 }
 
-// Open the Firefox picture-in-picture player as floating by default.
 window-rule {
-    // This app-id regular expression will work for both:
-    // - host Firefox (app-id is "firefox")
-    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id=r#"^com\.libretro\.RetroArch$"#
+    open-focused true
+}
+
+window-rule {
+    match app-id=r#"$"# title="^Picture-in-Picture$"
     open-floating true
 }
 

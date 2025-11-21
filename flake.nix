@@ -115,6 +115,7 @@
             "dotnet-sdk-6.0.428"
             "libsoup-2.74.3"
             "freeimage-3.18.0-unstable-2024-04-18"
+            "ventoy-1.1.07"
           ];
           overlays = (import ./nix/overlays inputs) ++ [
             (final: prev: {
