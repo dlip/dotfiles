@@ -247,6 +247,7 @@ in
     hunspellDicts.en_US-large
     hunspellDicts.en_AU-large
     hyphen
+    gptfdisk
   ];
 
   environment.pathsToLink = [

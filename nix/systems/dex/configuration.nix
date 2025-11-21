@@ -331,8 +331,16 @@ rec {
         hostPath = "/media/media2";
         isReadOnly = false;
       };
-      "/media/roms" = {
-        hostPath = "/media/roms";
+      "/media/media3" = {
+        hostPath = "/media/media3";
+        isReadOnly = false;
+      };
+      # "/media/roms" = {
+      #   hostPath = "/media/roms";
+      #   isReadOnly = false;
+      # };
+      "/media/games" = {
+        hostPath = "/media/games";
         isReadOnly = false;
       };
       "/d" = {
@@ -655,8 +663,8 @@ rec {
         "create mask" = "0644";
         "directory mask" = "0755";
       };
-      roms = {
-        path = "/media/roms";
+      media3 = {
+        path = "/media/media3";
         browsable = "yes";
         "read only" = "no";
         "guest ok" = "no";

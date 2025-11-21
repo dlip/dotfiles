@@ -52,7 +52,7 @@
     encrypted = {
       enable = true;
       label = "media";
-      blkDev = "/dev/disk/by-uuid/7c1152e4-b2a0-421a-815a-ea10ee700667"; # UUID for /dev/sda1
+      blkDev = "/dev/disk/by-uuid/7c1152e4-b2a0-421a-815a-ea10ee700667"; # UUID for /dev/sda
       keyFile = "/lukskey";
     };
   };
@@ -63,21 +63,21 @@
     encrypted = {
       enable = true;
       label = "media2";
-      blkDev = "/dev/disk/by-uuid/d5f1a797-6655-4ae4-995a-f42dc02f832a"; # UUID for /dev/sda1
+      blkDev = "/dev/disk/by-uuid/d5f1a797-6655-4ae4-995a-f42dc02f832a"; # UUID for /dev/sdb
       keyFile = "/lukskey";
     };
   };
 
-  # fileSystems."/media/media3" = {
-  #   device = "/dev/disk/by-uuid/5e2a3276-1da2-4e4a-928d-fb000ca24fa9"; # UUID for encrypted partition
-  #   fsType = "ext4";
-  #   encrypted = {
-  #     enable = true;
-  #     label = "media3";
-  #     blkDev = "/dev/disk/by-uuid/247f0476-38a2-4e2e-a059-2139ffb58324"; # UUID for dev
-  #     keyFile = "/lukskey";
-  #   };
-  # };
+  fileSystems."/media/media3" = {
+    device = "/dev/disk/by-uuid/a7e87ab8-6f99-432d-a3e1-90c0418a3227"; # UUID for /dev/mapper/media3
+    fsType = "ext4";
+    encrypted = {
+      enable = true;
+      label = "media3";
+      blkDev = "/dev/disk/by-uuid/dfd9f448-cd9d-4f9f-a1b9-9adcea897582"; # UUID for /dev/sde1
+      keyFile = "/lukskey";
+    };
+  };
   # Why does this not work???
   # fileSystems."/media/backup" = {
   #   device =
@@ -93,13 +93,13 @@
   #   };
   # };
 
-  fileSystems."/media/roms" = {
-    device = "/dev/disk/by-uuid/bc366fb1-061c-4222-a6a3-05b35b85760b";
-    fsType = "ext4";
-    options = [
-      "nofail"
-    ];
-  };
+  # fileSystems."/media/roms" = {
+  #   device = "/dev/disk/by-uuid/bc366fb1-061c-4222-a6a3-05b35b85760b";
+  #   fsType = "ext4";
+  #   options = [
+  #     "nofail"
+  #   ];
+  # };
   fileSystems."/media/games" = {
     device = "/dev/disk/by-uuid/0BB20EC37670AE62";
     fsType = "ntfs";
