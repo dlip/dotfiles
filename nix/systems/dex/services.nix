@@ -14,4 +14,5 @@
   yaruki = 8095;
   photoprism = 2342;
   kavita = 6000;
+  sunshine = 47990;
 }

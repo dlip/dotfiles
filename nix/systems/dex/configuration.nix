@@ -24,6 +24,7 @@ rec {
     # ../common/desktop/kde.nix
     # ../common/desktop/hyprland.nix
     ../common/services/notify-problems.nix
+    ../common/desktop/xfce.nix
   ];
 
   # Open ports in the firewall.
@@ -79,11 +80,11 @@ rec {
     package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
   hardware.nvidia.prime = {
-    # sync.enable = true;
-    offload = {
-      enable = true;
-      enableOffloadCmd = true;
-    };
+    sync.enable = true;
+    # offload = {
+    #   enable = true;
+    #   enableOffloadCmd = true;
+    # };
     intelBusId = "PCI:0:2:0";
     nvidiaBusId = "PCI:1:0:0";
   };
@@ -126,9 +127,10 @@ rec {
       '';
   };
 
+  hardware.uinput.enable = true;
   users.users.tv = {
     isNormalUser = true;
-    extraGroups = [ ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "uinput"]; # Enable ‘sudo’ for the user.
     shell = "/etc/profiles/per-user/tv/bin/zsh";
   };
 
@@ -155,8 +157,17 @@ rec {
 
   environment.systemPackages = with pkgs; [
     google-chrome
+    warehouse
   ];
 
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
+
+  services.flatpak.enable = true;
   # systemd.services.xboxdrv = {
   #   wantedBy = [ "multi-user.target" ];
   #   after = [ "network.target" ];

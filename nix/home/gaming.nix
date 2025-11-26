@@ -3,14 +3,21 @@ let
   ra = (
     pkgs.retroarch.withCores (
       cores: with cores; [
-        genesis-plus-gx
-        snes9x
+        beetle-psx
         beetle-psx-hw
-        mesen
-        nestopia
-        fceumm
-        mame
         fbneo
+        freeintv
+        gambatte
+        genesis-plus-gx
+        mame
+        melonds
+        mesen
+        mgba
+        mupen64plus
+        picodrive
+        ppsspp
+        snes9x
+        stella
       ]
     )
   );
@@ -22,6 +29,7 @@ in
     # minecraft
     bottles
     heroic
+    igir
     lutris
     mangohud
     moonlight-qt
@@ -29,9 +37,10 @@ in
     # gamescope
     protontricks
     protonup
-    sidequest
+    # sidequest
     ra
     (stable.emulationstation-de { retroarch = ra; })
+    retool
     vulkan-tools
     wine
     # wine64
