@@ -28,10 +28,14 @@ in
     # chiaki-ng
     # minecraft
     bottles
+    cdecrypt
+    cemu
     heroic
     igir
     lutris
+    mame-tools
     mangohud
+    maxcso
     moonlight-qt
     gamemode
     # gamescope
@@ -39,11 +43,13 @@ in
     protonup
     # sidequest
     ra
+    skyscraper
     (stable.emulationstation-de { retroarch = ra; })
     retool
     vulkan-tools
     wine
     # wine64
     winetricks
+    xemu
   ];
 }
