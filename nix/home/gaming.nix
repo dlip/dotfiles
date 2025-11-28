@@ -40,7 +40,7 @@ in
     gamemode
     # gamescope
     protontricks
-    protonup
+    protonup-ng
     # sidequest
     ra
     skyscraper

@@ -49,13 +49,13 @@
     # orca-slicer
     # super-slicer-latest
     prusa-slicer
-    tdesktop
+    telegram-desktop
     via
     vial
     vlc
     warpd
-    whatsapp-for-linux
-    xdragon
+    wasistlos # whatsapp-for-linux
+    dragon-drop
     yacreader
   ];
 }

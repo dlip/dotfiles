@@ -28,7 +28,7 @@
     mkvtoolnix-cli
     # nix-du
     ns-usbloader
-    pinentry
+    pinentry-curses
     # python311Packages.adafruit-nrfutil
     qmk
     strace

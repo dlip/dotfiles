@@ -84,7 +84,7 @@ in
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
-    noto-fonts-emoji
+    noto-fonts-color-emoji
   ];
 
   console = {
@@ -236,7 +236,7 @@ in
     firefox
     google-chrome
     git
-    glxinfo
+    mesa-demos
     pciutils
     pavucontrol
     restic
