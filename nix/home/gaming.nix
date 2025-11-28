@@ -43,6 +43,7 @@ in
     protonup-ng
     # sidequest
     ra
+    ryubing
     skyscraper
     (stable.emulationstation-de { retroarch = ra; })
     retool
@@ -51,5 +52,6 @@ in
     # wine64
     winetricks
     xemu
+    xenia-canary
   ];
 }

@@ -55,7 +55,7 @@ inputs@{
 
     myNodePackages = final.callPackage ./nodePackages { };
     # myPythonPackages = final.callPackage ./pythonPackages { };
-    # skyscraper = final.callPackage ./skyscraper { };
+    skyscraper = final.callPackage ./skyscraper { };
     # solang = final.callPackage ./solang { };
     # juliusSpeech = final.callPackage ./juliusSpeech { };
     talon = final.callPackage ./talon { };
