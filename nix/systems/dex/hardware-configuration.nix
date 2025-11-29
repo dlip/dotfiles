@@ -25,21 +25,22 @@
     "rtsx_pci_sdmmc"
   ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" "uinput" ];
+  boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/dc9c2954-7c2f-4c7a-85c7-feda0111f655";
-    fsType = "ext4";
-  };
+    fileSystems."/" =
+    { device = "/dev/disk/by-uuid/6532b27d-047a-45c8-8da6-7f6259fda267";
+      fsType = "ext4";
+    };
 
-  boot.initrd.luks.devices."luks-ebfbfe12-c14d-4f80-a45f-1b1cbb197bd5".device =
-    "/dev/disk/by-uuid/ebfbfe12-c14d-4f80-a45f-1b1cbb197bd5";
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/43c46b00-1e99-48a7-8758-d73b3b6bbfe8";
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/820A-C888";
-    fsType = "vfat";
-  };
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/255E-D838";
+      fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
+    };
+
 
   boot.initrd.secrets = {
     "lukskey" = "/root/lukskey";
@@ -93,13 +94,6 @@
   #   };
   # };
 
-  # fileSystems."/media/roms" = {
-  #   device = "/dev/disk/by-uuid/bc366fb1-061c-4222-a6a3-05b35b85760b";
-  #   fsType = "ext4";
-  #   options = [
-  #     "nofail"
-  #   ];
-  # };
   fileSystems."/media/games" = {
     device = "/dev/disk/by-uuid/0BB20EC37670AE62";
     fsType = "ntfs";
