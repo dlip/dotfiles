@@ -79,20 +79,19 @@
       keyFile = "/lukskey";
     };
   };
-  # Why does this not work???
-  # fileSystems."/media/backup" = {
-  #   device =
-  #     "/dev/disk/by-uuid/52c6c483-1036-4bc8-b019-1064e6bc5593"; # UUID for /dev/mapper/media2
-  #   fsType = "ext4";
-  #   options = [ "nofail" "x-systemd.device-timeout=10" ];
-  #   encrypted = {
-  #     enable = true;
-  #     label = "backup";
-  #     blkDev =
-  #       "/dev/disk/by-uuid/8c4746b9-7ccb-4a94-8e72-502ea6ff4a49"; # UUID for /dev/sda1
-  #     keyFile = "/lukskey";
-  #   };
-  # };
+  fileSystems."/media/backup" = {
+    device =
+      "/dev/disk/by-uuid/b5b0d158-0722-4c05-a1e2-76bea8f921db"; # UUID for partition
+    fsType = "ext4";
+    options = [ "nofail" "x-systemd.device-timeout=10" ];
+    encrypted = {
+      enable = true;
+      label = "backup";
+      blkDev =
+        "/dev/disk/by-uuid/05d74c77-c9f2-4101-af0b-b1c7141a4fd0"; # UUID for device
+      keyFile = "/lukskey";
+    };
+  };
 
   fileSystems."/media/games" = {
     device = "/dev/disk/by-uuid/0BB20EC37670AE62";
@@ -124,7 +123,7 @@
     options = [ "bind" ];
   };
 
-  # swapDevices = [{device = "/.swapfile";}];
+  swapDevices = [{device = "/.swapfile";}];
 
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;

@@ -46,6 +46,11 @@ rec {
     138
   ];
 
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = "tv";
+  };
+
   # services.xserver.videoDrivers = ["nvidia"];
 
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -74,58 +79,50 @@ rec {
 
     # Enable the Nvidia settings menu,
     # accessible via `nvidia-settings`.
-    # nvidiaSettings = true;
+    nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
-  hardware.nvidia.prime = {
-    sync.enable = true;
-    # offload = {
-    #   enable = true;
-    #   enableOffloadCmd = true;
-    # };
-    intelBusId = "PCI:0:2:0";
-    nvidiaBusId = "PCI:1:0:0";
-  };
+  
   hardware.enableAllFirmware = true;
 
-  systemd.services.mount-backup = {
-    enable = true;
-    description = "Mount backup";
-
-    after = [ "network.target" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      User = "root";
-      Group = "root";
-    };
-
-    script =
-      # bash
-      ''
-        UUID=""
-        for ID in 8c4746b9-7ccb-4a94-8e72-502ea6ff4a49 05d74c77-c9f2-4101-af0b-b1c7141a4fd0; do
-          if [ -e "/dev/disk/by-uuid/$ID" ]; then
-            echo "found disk $ID"
-            UUID=$ID
-            break
-          fi
-        done
-
-        if [ "$UUID" == "" ]; then
-          echo "backup device not found"
-          exit 1
-        fi
-
-
-        if ! /run/wrappers/bin/mount | grep -q -wi "/media/backup"; then
-           ${pkgs.cryptsetup}/bin/cryptsetup --key-file /root/lukskey luksOpen /dev/disk/by-uuid/$UUID backup
-           /run/wrappers/bin/mount /dev/mapper/backup /media/backup
-        fi
-      '';
-  };
+  # systemd.services.mount-backup = {
+  #   enable = true;
+  #   description = "Mount backup";
+  #
+  #   after = [ "network.target" ];
+  #   wantedBy = [ "multi-user.target" ];
+  #   serviceConfig = {
+  #     Type = "oneshot";
+  #     User = "root";
+  #     Group = "root";
+  #   };
+  #
+  #   script =
+  #     # bash
+  #     ''
+  #       UUID=""
+  #       for ID in 8c4746b9-7ccb-4a94-8e72-502ea6ff4a49 05d74c77-c9f2-4101-af0b-b1c7141a4fd0; do
+  #         if [ -e "/dev/disk/by-uuid/$ID" ]; then
+  #           echo "found disk $ID"
+  #           UUID=$ID
+  #           break
+  #         fi
+  #       done
+  #
+  #       if [ "$UUID" == "" ]; then
+  #         echo "backup device not found"
+  #         exit 1
+  #       fi
+  #
+  #
+  #       if ! /run/wrappers/bin/mount | grep -q -wi "/media/backup"; then
+  #          ${pkgs.cryptsetup}/bin/cryptsetup --key-file /root/lukskey luksOpen /dev/disk/by-uuid/$UUID backup
+  #          /run/wrappers/bin/mount /dev/mapper/backup /media/backup
+  #       fi
+  #     '';
+  # };
 
   hardware.uinput.enable = true;
   users.users.tv = {
