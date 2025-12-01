@@ -171,11 +171,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1764553619,
-        "narHash": "sha256-4MUw/lSsTJ1QSH8sCFHidSbnk7O/IvtHa2NyQnELQxQ=",
+        "lastModified": 1764567269,
+        "narHash": "sha256-cX225x90fhQxWwTtkXZa/aDJ8WqK4nzEVrho4sMGs9I=",
         "owner": "dlip",
         "repo": "mokuro-reader",
-        "rev": "9895c02a2bf37123914370493acf01b6fe559340",
+        "rev": "7e024649ae7521fb7e81b4ff51effa1421a3e4af",
         "type": "github"
       },
       "original": {

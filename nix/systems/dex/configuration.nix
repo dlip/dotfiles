@@ -177,6 +177,7 @@ rec {
   };
 
   environment.systemPackages = with pkgs; [
+    docker-compose
     google-chrome
     warehouse
   ];
@@ -187,6 +188,24 @@ rec {
     capSysAdmin = true;
     openFirewall = true;
   };
+
+  services.webdav = {
+    enable = true;
+    settings = {
+        address = "0.0.0.0";
+        port = 6060;
+        directory = "/media/media/webdav";
+        permissions = "CRUD";
+        users = [
+          {
+            username = "admin";
+            password = "admin";
+            permissions = "CRUD";
+          }
+        ];
+    };
+  };
+
 
   services.flatpak.enable = true;
   # systemd.services.xboxdrv = {
@@ -438,6 +457,12 @@ rec {
     };
     dynamicConfigOptions = {
       http = {
+        middlewares.cors.headers = {
+          accessControlAllowOriginList = [ "*" ];
+          accessControlAllowMethods = [ "*" ];
+          accessControlAllowHeaders = [ "*" ];
+          accessControlAllowCredentials = true;
+        };
         routers = {
           traefik = {
             rule = "Host(`traefik.${domain}`)";
@@ -457,6 +482,7 @@ rec {
           pkgs.lib.attrsets.nameValuePair "${name}" {
             rule = "Host(`${name}.${domain}`)";
             service = "${name}";
+            middlewares = [ "cors" ];
             tls = {
               domains = [
                 {
