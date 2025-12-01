@@ -13,6 +13,7 @@ inputs@{
   # hyprcursor-catppuccin,
   niri-flake,
   nixgl,
+  mokuro-reader,
   ...
 }:
 [
@@ -28,6 +29,8 @@ inputs@{
     #   nodejs = final.nodejs-16_x;
     # };
     # vscodeNodeDebug2 = final.callPackage ./vscodeNodeDebug2 {src = vscodeNodeDebug2;};
+   
+    mokuro-reader = mokuro-reader.packages.${final.system}.default;
     emoji-menu = final.writeShellScriptBin "emoji-menu" (
       builtins.readFile "${emoji-menu}/bin/emoji-menu"
     );

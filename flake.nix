@@ -37,6 +37,9 @@
     niri-flake = {
       url = "github:sodiboo/niri-flake";
     };
+    mokuro-reader = {
+      url = "github:dlip/mokuro-reader";
+    };
     power-menu = {
       url = "github:jluttine/rofi-power-menu";
       flake = false;

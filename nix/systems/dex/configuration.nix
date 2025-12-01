@@ -124,6 +124,30 @@ rec {
   #     '';
   # };
 
+  systemd.services.mokuro-reader = {
+    description = "Mokuro reader";
+
+    wantedBy = [ "multi-user.target" ];
+
+    serviceConfig = {
+      Type = "simple";
+      WorkingDirectory = pkgs.mokuro-reader;
+      ExecStart = "${pkgs.nodejs}/bin/node build";
+
+      Restart = "always";
+      RestartSec = 2;
+
+      # Improve reliability
+      DynamicUser = true;
+      ProtectSystem = "strict";
+      ProtectHome = true;
+      PrivateTmp = true;
+    };
+
+    # Let it bind only localhost
+    after = [ "network.target" ];
+  };
+
   hardware.uinput.enable = true;
   users.users.tv = {
     isNormalUser = true;
