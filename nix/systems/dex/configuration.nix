@@ -298,7 +298,7 @@ rec {
     "wg0"
     "ve-+"
   ];
-  networking.nat.externalInterface = "enp8s0";
+  networking.nat.externalInterface = "enp0s31f6";
 
   networking.wireguard.interfaces = {
     # "wg0" is the network interface name. You can name the interface arbitrarily.

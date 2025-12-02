@@ -212,12 +212,15 @@
                   dane = {
                     imports = [
                       ./nix/home
+                      ./nix/home/linux-desktop.nix
+                      ./nix/home/linux-graphical.nix
                       ./nix/home/gaming.nix
                     ];
                   };
 
                   tv = {
                     imports = [
+                      ./nix/home
                       ./nix/home/linux-desktop.nix
                       ./nix/home/linux-graphical.nix
                       ./nix/home/gaming.nix

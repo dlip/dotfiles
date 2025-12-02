@@ -17,6 +17,7 @@
     # mimic
     btop
     evtest
+    hdparm
     # fusee-launcher
     iotop
     iputils
