@@ -28,19 +28,22 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-    fileSystems."/" =
-    { device = "/dev/disk/by-uuid/6532b27d-047a-45c8-8da6-7f6259fda267";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/6532b27d-047a-45c8-8da6-7f6259fda267";
+    fsType = "ext4";
+  };
 
-  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/43c46b00-1e99-48a7-8758-d73b3b6bbfe8";
+  boot.initrd.luks.devices."cryptroot".device =
+    "/dev/disk/by-uuid/43c46b00-1e99-48a7-8758-d73b3b6bbfe8";
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/255E-D838";
-      fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
-    };
-
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/255E-D838";
+    fsType = "vfat";
+    options = [
+      "fmask=0022"
+      "dmask=0022"
+    ];
+  };
 
   boot.initrd.secrets = {
     "lukskey" = "/root/lukskey";
@@ -80,15 +83,16 @@
     };
   };
   fileSystems."/media/backup" = {
-    device =
-      "/dev/disk/by-uuid/b5b0d158-0722-4c05-a1e2-76bea8f921db"; # UUID for partition
+    device = "/dev/disk/by-uuid/b5b0d158-0722-4c05-a1e2-76bea8f921db"; # UUID for partition
     fsType = "ext4";
-    options = [ "nofail" "x-systemd.device-timeout=10" ];
+    options = [
+      "nofail"
+      "x-systemd.device-timeout=10"
+    ];
     encrypted = {
       enable = true;
       label = "backup";
-      blkDev =
-        "/dev/disk/by-uuid/05d74c77-c9f2-4101-af0b-b1c7141a4fd0"; # UUID for device
+      blkDev = "/dev/disk/by-uuid/05d74c77-c9f2-4101-af0b-b1c7141a4fd0"; # UUID for device
       keyFile = "/lukskey";
     };
   };
@@ -123,7 +127,7 @@
     options = [ "bind" ];
   };
 
-  swapDevices = [{device = "/.swapfile";}];
+  swapDevices = [ { device = "/.swapfile"; } ];
 
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
