@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+DELETE_AFTER=false
+
+# Parse -d flag
+if [[ "${1:-}" == "-d" ]]; then
+  DELETE_AFTER=true
+  shift
+fi
+
+# If no args, default to current directory
+if [[ $# -eq 0 ]]; then
+  set -- "."
+fi
+
+inputs=()
+
+# Expand directories or add files
+for arg in "$@"; do
+  if [[ -d "$arg" ]]; then
+    while IFS= read -r -d '' file; do
+      inputs+=("$file")
+    done < <(find "$arg" -maxdepth 1 -type f -print0)
+  else
+    inputs+=("$arg")
+  fi
+done
+
+extract_file() {
+  local file="$1"
+  local name="$(basename "$file")"
+  local base="${name%.*}"
+
+  echo "==> Processing: $file"
+
+  # List entries in archive
+  mapfile -t entries < <(7z l -ba "$file" | awk '{print $NF}')
+
+  # Identify top-level directories
+  mapfile -t toplevel < <(
+    for e in "${entries[@]}"; do
+      [[ "$e" == */* ]] && echo "${e%%/*}"
+    done | sort -u
+  )
+
+  if ((${#toplevel[@]} == 1)); then
+    echo " -> Archive has one top-level directory, extracting normally"
+    7z x -y "$file"
+  else
+    echo " -> Multiple top-level items, extracting to $base/"
+    mkdir -p "$base"
+    7z x -y "$file" -o"$base"
+  fi
+
+  if $DELETE_AFTER; then
+    echo " -> Deleting $file"
+    rm -f "$file"
+  fi
+}
+
+# Run extraction on each file
+for f in "${inputs[@]}"; do
+  extract_file "$f"
+done
