@@ -84,7 +84,7 @@ rec {
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
-  
+
   hardware.enableAllFirmware = true;
 
   # systemd.services.mount-backup = {
@@ -151,7 +151,7 @@ rec {
   hardware.uinput.enable = true;
   users.users.tv = {
     isNormalUser = true;
-    extraGroups = [ "uinput"]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "uinput" ]; # Enable ‘sudo’ for the user.
     shell = "/etc/profiles/per-user/tv/bin/zsh";
   };
 
@@ -194,21 +194,15 @@ rec {
 
   services.webdav = {
     enable = true;
+    user = "dane";
+    group = "users";
     settings = {
-        address = "0.0.0.0";
-        port = 6060;
-        directory = "/media/media/webdav";
-        permissions = "CRUD";
-        users = [
-          {
-            username = "admin";
-            password = "admin";
-            permissions = "CRUD";
-          }
-        ];
+      address = "0.0.0.0";
+      port = 6060;
+      directory = "/media/media/home/dane/webdav";
+      permissions = "CRUD";
     };
   };
-
 
   services.flatpak.enable = true;
   # systemd.services.xboxdrv = {
