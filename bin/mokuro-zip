@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+for parent in */; do
+  parent="${parent%/}"
+
+  echo "Processing parent directory: $parent"
+  cd "$parent"
+  rm -rf _ocr
+
+  for dir in */; do
+    # Remove trailing slash
+    name="${dir%/}"
+    mokuro="${name}.mokuro"
+    if [ ! -f "${mokuro}" ]; then
+      echo "No mokuro file ${mokuro}!"
+      exit 1
+    fi
+
+    echo "Processing child directory: $name"
+    echo "$mokuro"
+    # Create zip archive
+    zip -r "${name}.cbz" "$name" "$mokuro" -i '*.mokuro' '*.png' '*.jpg' '*.jpeg' '*.webp' '*.gif'
+    rm -rf "$name" "$mokuro"
+  done
+  find . -type f ! -name '*.cbz' -delete
+  cd ..
+done
