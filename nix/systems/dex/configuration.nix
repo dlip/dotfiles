@@ -199,8 +199,14 @@ rec {
     settings = {
       address = "0.0.0.0";
       port = 6060;
-      directory = "/media/media/home/dane/webdav";
       permissions = "CRUD";
+      users = [
+        {
+          username = "dane";
+          password = "dane";
+          directory = "/media/media/home/dane/webdav";
+        }
+      ];
     };
   };
 
