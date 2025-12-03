@@ -59,7 +59,6 @@
     massren
     mdbook
     mdl
-    mokuro
     mysql80
     # musikcube
     # myPythonPackages.shirah-reader

@@ -27,6 +27,7 @@ find . -type d | while read -r dir; do
   out="$parent/$base.cbz"
 
   echo "Zipping: $dir -> $out"
+  rm -f "$out"
 
   # Create the CBZ
   # -j strips paths so all images are at the ZIP root

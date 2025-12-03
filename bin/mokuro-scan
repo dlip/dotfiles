@@ -22,4 +22,4 @@ fi
 
 # Run mokuro once with all missing files
 echo "Running mokuro on ${#cbz_files[@]} files..."
-mokuro --legacy_html=False "${cbz_files[@]}"
+python ./mokuro --legacy_html=False "${cbz_files[@]}"
