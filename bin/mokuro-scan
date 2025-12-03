@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# Base directory from argument, default to current directory
+BASE_DIR="${1:-.}"
+
+# Collect all .cbz files that do NOT have a corresponding .mokuro file
+mapfile -t cbz_files < <(
+  find "$BASE_DIR" -type f -name "*.cbz" | while IFS= read -r cbz; do
+    dir="$(dirname "$cbz")"
+    name="$(basename "$cbz" .cbz)"
+    mokuro_file="$dir/$name.mokuro"
+
+    [[ ! -f "$mokuro_file" ]] && printf '%s\n' "$cbz"
+  done
+)
+
+# If none missing, exit
+if [[ ${#cbz_files[@]} -eq 0 ]]; then
+  echo "Nothing to process — all .cbz files already have .mokuro files."
+  exit 0
+fi
+
+# Run mokuro once with all missing files
+echo "Running mokuro on ${#cbz_files[@]} files..."
+mokuro --legacy_html=False "${cbz_files[@]}"
