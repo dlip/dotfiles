@@ -151,12 +151,22 @@ extract_file() {
   # Case 2: Exactly one file → put it next to archive
   #
   if ((${#children[@]} == 1)) && [[ -f "${children[0]}" ]]; then
-    mv "${children[0]}" "$dir"/
+    local extracted_file="$dir/$(basename "${children[0]}")"
+    
+    # Skip if the file already exists
+    if [[ -f "$extracted_file" ]]; then
+      echo "Skipping $file (file '$extracted_file' already exists)"
+      rm -rf "$tmp_dir"
+      CURRENT_TMP_DIR=""
+      return
+    fi
+    
+    mv "${children[0]}" "$dir/"
     rm -rf "$tmp_dir"
     CURRENT_TMP_DIR=""
 
     [[ "$DELETE_AFTER" == "1" ]] && rm -f "$file"
-    echo "Extracted file: $dir/$(basename "${children[0]}")"
+    echo "Extracted file: $extracted_file"
     return
   fi
 
