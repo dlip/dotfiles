@@ -44,6 +44,15 @@
 set -euo pipefail
 shopt -s nullglob
 
+# Function to handle errors
+error_handler() {
+  local parent_lineno="$1"
+  echo "Error on or near line ${parent_lineno}"
+}
+
+# Set a trap to call the error_handler function on ERR signal
+trap 'error_handler ${LINENO}' ERR
+
 ########################################
 # Detect 7z binary (7z or 7zz)
 ########################################
@@ -140,7 +149,7 @@ extract_file() {
   # Skip unsupported extension
   if ! can_extract "$file"; then
     [[ "$VERBOSE" == "1" ]] && echo "  Skipping (unsupported file format)"
-    return
+    return 0  # Explicitly return success status
   fi
 
   local dir="$(dirname "$file")"
