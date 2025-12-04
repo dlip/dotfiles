@@ -1,0 +1,209 @@
+#!/usr/bin/env bash
+#
+# =====================================================================
+#  Universal Archive Extractor using 7z / 7zz
+# =====================================================================
+#
+#  This script extracts archives using the 7-Zip command-line tool.
+#
+#  Features:
+#   • Supports multiple archive formats based on extension.
+#   • Automatically finds the correct binary: "7z" or "7zz".
+#   • Default behaviour: extract all archives in the current directory.
+#   • Accepts an optional directory or list of files.
+#   • Optional -d / --delete flag removes files after successful extract.
+#   • If extraction results in:
+#         - one directory  → directory is placed as-is
+#         - one file       → file is placed next to the archive
+#         - multiple items → placed inside a folder named after archive
+#   • Skips extraction if the destination folder already exists.
+#   • Temporary extraction directory is created next to archive:
+#         .<name>.extracting_tmp
+#   • Handles filenames with spaces, unicode, punctuation.
+#   • Cleans up temp directory on Ctrl-C interrupt.
+#
+#  Usage:
+#       ./extract.sh                # extract everything in current dir
+#       ./extract.sh dir            # extract all archives in dir
+#       ./extract.sh file.zip       # extract a single file
+#       ./extract.sh -d dir         # extract & delete archives
+#
+# =====================================================================
+
+set -euo pipefail
+shopt -s nullglob
+
+########################################
+# Detect 7z binary (7z or 7zz)
+########################################
+
+if command -v 7z >/dev/null 2>&1; then
+  SEVENZIP="7z"
+elif command -v 7zz >/dev/null 2>&1; then
+  SEVENZIP="7zz"
+else
+  echo "Error: Neither '7z' nor '7zz' found in PATH." >&2
+  exit 1
+fi
+
+########################################
+# Supported extensions
+########################################
+
+SUPPORTED_EXTS=(
+  zip rar 7z tar gz tgz bz2 tbz tbz2 xz lzma iso cab wim arj z
+)
+
+########################################
+# State (for Ctrl-C cleanup)
+########################################
+
+CURRENT_TMP_DIR=""
+
+########################################
+# Helpers
+########################################
+
+can_extract() {
+  local f="$1"
+  local ext="${f##*.}"
+  ext="${ext,,}"
+  for e in "${SUPPORTED_EXTS[@]}"; do
+    [[ "$e" == "$ext" ]] && return 0
+  done
+  return 1
+}
+
+on_interrupt() {
+  echo "CTRL-C pressed, aborting…" >&2
+
+  if [[ -n "$CURRENT_TMP_DIR" && -d "$CURRENT_TMP_DIR" ]]; then
+    echo "Cleaning temporary directory: $CURRENT_TMP_DIR" >&2
+    rm -rf "$CURRENT_TMP_DIR" || true
+  fi
+
+  exit 1
+}
+
+########################################
+# Extraction Logic
+########################################
+
+extract_file() {
+  local file="$1"
+
+  # Skip unsupported extension
+  if ! can_extract "$file"; then
+    echo "Skipping unsupported file: $file"
+    return
+  fi
+
+  local dir="$(dirname "$file")"
+  local filename="$(basename "$file")"
+  local base="${filename%.*}"
+  local final_dir="$dir/$base"
+
+  # Skip if already extracted
+  if [[ -d "$final_dir" ]]; then
+    echo "Skipping $file (directory '$final_dir' already exists)"
+    return
+  fi
+
+  echo "Processing: $file"
+
+  # Prepare per-file temp dir
+  local tmp_dir="$dir/.${base}.extracting_tmp"
+  CURRENT_TMP_DIR="$tmp_dir"
+
+  rm -rf "$tmp_dir"
+  mkdir -p "$tmp_dir"
+
+  # Extract with interrupt trap
+  trap on_interrupt INT
+
+  if ! "$SEVENZIP" x -y "$file" -o"$tmp_dir" >/dev/null; then
+    trap - INT
+    echo "Extraction FAILED for: $file"
+    rm -rf "$tmp_dir"
+    CURRENT_TMP_DIR=""
+    return
+  fi
+
+  trap - INT
+
+  # List extracted items
+  children=("$tmp_dir"/*)
+
+  #
+  # Case 1: Exactly one directory → unwrap directory
+  #
+  if ((${#children[@]} == 1)) && [[ -d "${children[0]}" ]]; then
+    mv "${children[0]}" "$final_dir"
+    rm -rf "$tmp_dir"
+    CURRENT_TMP_DIR=""
+
+    [[ "$DELETE_AFTER" == "1" ]] && rm -f "$file"
+    echo "Extracted directory: $final_dir/"
+    return
+  fi
+
+  #
+  # Case 2: Exactly one file → put it next to archive
+  #
+  if ((${#children[@]} == 1)) && [[ -f "${children[0]}" ]]; then
+    mv "${children[0]}" "$dir"/
+    rm -rf "$tmp_dir"
+    CURRENT_TMP_DIR=""
+
+    [[ "$DELETE_AFTER" == "1" ]] && rm -f "$file"
+    echo "Extracted file: $dir/$(basename "${children[0]}")"
+    return
+  fi
+
+  #
+  # Case 3: Multiple items → wrap in final_dir
+  #
+  mkdir -p "$final_dir"
+  mv "$tmp_dir"/* "$final_dir"/
+  rm -rf "$tmp_dir"
+  CURRENT_TMP_DIR=""
+
+  [[ "$DELETE_AFTER" == "1" ]] && rm -f "$file"
+  echo "Extracted: $file → $final_dir/"
+}
+
+########################################
+# Argument Handling
+########################################
+
+DELETE_AFTER=0
+input_path=""
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+  -d | --delete)
+    DELETE_AFTER=1
+    shift
+    ;;
+  *)
+    input_path="$1"
+    shift
+    ;;
+  esac
+done
+
+[[ -z "$input_path" ]] && input_path="."
+
+########################################
+# Main
+########################################
+
+if [[ -d "$input_path" ]]; then
+  while IFS= read -r -d '' file; do
+    extract_file "$file"
+  done < <(find "$input_path" -maxdepth 1 -type f -print0)
+else
+  for file in $input_path; do
+    extract_file "$file"
+  done
+fi
