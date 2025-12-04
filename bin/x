@@ -1,33 +1,44 @@
 #!/usr/bin/env bash
 #
 # =====================================================================
-#  Universal Archive Extractor using 7z / 7zz
+#  Universal Archive Extractor (x)
 # =====================================================================
 #
-#  This script extracts archives using the 7-Zip command-line tool.
+#  A powerful, intelligent archive extraction utility that uses 7-Zip
+#  to handle multiple archive formats with smart extraction logic.
 #
 #  Features:
-#   • Supports multiple archive formats based on extension.
-#   • Automatically finds the correct binary: "7z" or "7zz".
-#   • Default behaviour: extract all archives in the current directory.
-#   • Accepts an optional directory or list of files.
-#   • Optional -d / --delete flag removes files after successful extract.
-#   • If extraction results in:
-#         - one directory  → directory is placed as-is
-#         - one file       → file is placed next to the archive
-#         - multiple items → placed inside a folder named after archive
-#   • Skips extraction if the destination folder already exists.
-#   • Temporary extraction directory is created next to archive:
-#         .<name>.extracting_tmp
-#   • Handles filenames with spaces, unicode, punctuation.
-#   • Cleans up temp directory on Ctrl-C interrupt.
+#   • Multi-format support: Automatically handles zip, rar, 7z, tar, gz, tgz,
+#     bz2, tbz, tbz2, xz, lzma, iso, cab, wim, arj, z and more.
+#   • Auto-detects and uses available 7-Zip binary (7z or 7zz).
+#   • Smart extraction logic:
+#     - Single directory → extracted as-is
+#     - Single file → placed directly in the target directory
+#     - Multiple items → organized into an archive-named folder
+#   • Pre-extraction file checking:
+#     - Skips extraction if destination folder already exists
+#     - Detects single-file archives and skips if the file already exists
+#   • Optional -d / --delete flag to remove archives after successful extraction
+#   • Safe operation with temporary extraction directories:
+#     - Creates .<name>.extracting_tmp for safe extraction
+#     - Automatically cleans up temp files on completion or interrupt
+#   • Robust handling of special filenames (spaces, unicode, punctuation)
+#   • Graceful interruption handling (Ctrl-C cleans up temporary files)
 #
 #  Usage:
-#       x                # extract everything in current dir
-#       x dir            # extract all archives in dir
-#       x file.zip       # extract a single file
-#       x -d dir         # extract & delete archives
+#       x                # Extract all archives in current directory
+#       x dir            # Extract all archives in specified directory
+#       x file.zip       # Extract a single archive file
+#       x file1.zip file2.rar   # Extract multiple specified files
+#       x -d             # Extract all archives in current dir and delete them
+#       x -d dir         # Extract and delete archives in specified directory
+#       x -d file.zip    # Extract and delete a single archive
 #
+#  Requirements:
+#   • 7-Zip command-line tool (7z or 7zz) must be installed and in PATH
+#   • Bash shell environment
+#
+#  License: MIT
 # =====================================================================
 
 set -euo pipefail
