@@ -23,10 +23,10 @@
 #   • Cleans up temp directory on Ctrl-C interrupt.
 #
 #  Usage:
-#       ./extract.sh                # extract everything in current dir
-#       ./extract.sh dir            # extract all archives in dir
-#       ./extract.sh file.zip       # extract a single file
-#       ./extract.sh -d dir         # extract & delete archives
+#       x                # extract everything in current dir
+#       x dir            # extract all archives in dir
+#       x file.zip       # extract a single file
+#       x -d dir         # extract & delete archives
 #
 # =====================================================================
 
