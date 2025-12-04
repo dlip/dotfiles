@@ -173,7 +173,14 @@ extract_file() {
   # Extract with interrupt trap
   trap on_interrupt INT
 
-  if ! "$SEVENZIP" x -y "$file" -o"$tmp_dir" >/dev/null; then
+  # Set redirection based on verbose mode
+  local redirection=""  # Default to no redirection (stdout)
+  if [[ "$VERBOSE" != "1" ]]; then
+    redirection=" >/dev/null"
+  fi
+
+  # Execute 7z with appropriate redirection
+  if ! eval "\"$SEVENZIP\" x -y \"$file\" -o\"$tmp_dir\"$redirection"; then
     trap - INT
     echo "Extraction FAILED for: $file"
     cleanup_tmp_dir
