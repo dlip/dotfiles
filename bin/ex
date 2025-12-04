@@ -1,93 +1,153 @@
 #!/usr/bin/env bash
 set -euo pipefail
+shopt -s nullglob
 
-DELETE_AFTER=false
+########################################
+# SUPPORTED EXTENSIONS
+########################################
 
-# Parse -d flag
-if [[ "${1:-}" == "-d" ]]; then
-  DELETE_AFTER=true
-  shift
-fi
+SUPPORTED_EXTS=(
+  zip rar 7z tar gz tgz bz2 tbz tbz2 xz lzma iso cab wim arj z
+)
 
-# Default to current directory
-if [[ $# -eq 0 ]]; then
-  set -- "."
-fi
+########################################
+# STATE
+########################################
 
-inputs=()
+CURRENT_TMP_DIR=""
 
-# Expand directories or add files
-for arg in "$@"; do
-  if [[ -d "$arg" ]]; then
-    while IFS= read -r -d '' file; do
-      inputs+=("$file")
-    done < <(find "$arg" -maxdepth 1 -type f -print0)
-  else
-    inputs+=("$arg")
-  fi
-done
+########################################
+# FUNCTIONS
+########################################
 
-# Function to check if 7z can extract the file
 can_extract() {
-  7z t "$1" &>/dev/null
+  local f="$1"
+  local ext="${f##*.}"
+  ext="${ext,,}" # lowercase
+  for e in "${SUPPORTED_EXTS[@]}"; do
+    [[ "$e" == "$ext" ]] && return 0
+  done
+  return 1
+}
+
+on_interrupt() {
+  echo "CTRL-C pressed, aborting…" >&2
+
+  # Cleanup temp dir if it exists
+  if [[ -n "${CURRENT_TMP_DIR}" && -d "${CURRENT_TMP_DIR}" ]]; then
+    echo "Cleaning temporary directory: ${CURRENT_TMP_DIR}" >&2
+    rm -rf "${CURRENT_TMP_DIR}" || true
+  fi
+
+  exit 1
 }
 
 extract_file() {
   local file="$1"
-  local name="$(basename "$file")"
-  local base="${name%.*}"
 
+  # Skip unsupported extension
   if ! can_extract "$file"; then
     echo "Skipping unsupported file: $file"
     return
   fi
 
-  echo "==> Processing: $file"
+  local dir="$(dirname "$file")"
+  local filename="$(basename "$file")"
+  local base="${filename%.*}"
+  local final_dir="$dir/$base"
 
-  # List entries
-  mapfile -t entries < <(7z l -ba "$file" | awk '{print $NF}')
-
-  # Get top-level directories
-  mapfile -t toplevel < <(
-    for e in "${entries[@]}"; do
-      [[ "$e" == */* ]] && echo "${e%%/*}"
-    done | sort -u
-  )
-
-  local outdir=""
-
-  if ((${#toplevel[@]} == 1)); then
-    outdir="${toplevel[0]}"
-
-    if [[ -d "$outdir" ]]; then
-      echo " -> Directory '$outdir' already exists, skipping."
-      return
-    fi
-
-    echo " -> Single top-level directory: extracting normally"
-    7z x -y "$file"
-  else
-    outdir="$base"
-
-    if [[ -d "$outdir" ]]; then
-      echo " -> Directory '$outdir' already exists, skipping."
-      return
-    fi
-
-    echo " -> Multiple items, extracting to '$outdir/'"
-    mkdir -p "$outdir"
-    7z x -y "$file" -o"$outdir"
+  # Skip if already extracted
+  if [[ -d "$final_dir" ]]; then
+    echo "Skipping $file (directory '$final_dir' already exists)"
+    return
   fi
 
-  if $DELETE_AFTER; then
-    echo " -> Deleting $file"
+  # Only now print processing
+  echo "Processing: $file"
+
+  # Hidden temp extraction folder on same filesystem
+  local tmp_dir="$dir/.${base}.extracting_tmp"
+  CURRENT_TMP_DIR="$tmp_dir"
+
+  rm -rf "$tmp_dir"
+  mkdir -p "$tmp_dir"
+
+  # Trap Ctrl-C only during extraction
+  trap on_interrupt INT
+
+  # Extract quietly
+  if ! 7z x -y "$file" -o"$tmp_dir" >/dev/null; then
+    trap - INT
+    echo "Extraction FAILED for: $file"
+    rm -rf "$tmp_dir"
+    CURRENT_TMP_DIR=""
+    return
+  fi
+
+  # Disable Ctrl-C trap after extraction complete
+  trap - INT
+
+  # Count children
+  children=("$tmp_dir"/*)
+
+  # One directory only → unwrap it
+  if ((${#children[@]} == 1)) && [[ -d "${children[0]}" ]]; then
+    mv "${children[0]}" "$final_dir"
+    rm -rf "$tmp_dir"
+
+  else
+    # Multiple items → wrap them
+    mkdir -p "$final_dir"
+    mv "$tmp_dir"/* "$final_dir"/
+    rm -rf "$tmp_dir"
+  fi
+
+  CURRENT_TMP_DIR=""
+
+  # Delete the archive if -d flag given
+  if [[ "$DELETE_AFTER" == "1" ]]; then
     rm -f "$file"
   fi
+
+  echo "Extracted: $file → $final_dir/"
 }
 
-# Process each file
-for f in "${inputs[@]}"; do
-  extract_file "$f"
+########################################
+# ARGUMENT HANDLING
+########################################
+
+DELETE_AFTER=0
+input_path=""
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+  -d | --delete)
+    DELETE_AFTER=1
+    shift
+    ;;
+  *)
+    input_path="$1"
+    shift
+    ;;
+  esac
 done
 
-echo "Done."
+# Default to current directory
+[[ -z "$input_path" ]] && input_path="."
+
+########################################
+# MAIN
+########################################
+
+if [[ -d "$input_path" ]]; then
+  # Extract all files directly inside directory
+  while IFS= read -r -d '' file; do
+    extract_file "$file"
+  done < <(find "$input_path" -maxdepth 1 -type f -print0)
+
+else
+  # Treat argument as file list
+  for file in $input_path; do
+    extract_file "$file"
+  done
+fi
