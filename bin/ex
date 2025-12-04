@@ -9,7 +9,7 @@ if [[ "${1:-}" == "-d" ]]; then
   shift
 fi
 
-# If no args, default to current directory
+# Default to current directory
 if [[ $# -eq 0 ]]; then
   set -- "."
 fi
@@ -27,30 +27,56 @@ for arg in "$@"; do
   fi
 done
 
+# Function to check if 7z can extract the file
+can_extract() {
+  7z t "$1" &>/dev/null
+}
+
 extract_file() {
   local file="$1"
   local name="$(basename "$file")"
   local base="${name%.*}"
 
+  if ! can_extract "$file"; then
+    echo "Skipping unsupported file: $file"
+    return
+  fi
+
   echo "==> Processing: $file"
 
-  # List entries in archive
+  # List entries
   mapfile -t entries < <(7z l -ba "$file" | awk '{print $NF}')
 
-  # Identify top-level directories
+  # Get top-level directories
   mapfile -t toplevel < <(
     for e in "${entries[@]}"; do
       [[ "$e" == */* ]] && echo "${e%%/*}"
     done | sort -u
   )
 
+  local outdir=""
+
   if ((${#toplevel[@]} == 1)); then
-    echo " -> Archive has one top-level directory, extracting normally"
+    outdir="${toplevel[0]}"
+
+    if [[ -d "$outdir" ]]; then
+      echo " -> Directory '$outdir' already exists, skipping."
+      return
+    fi
+
+    echo " -> Single top-level directory: extracting normally"
     7z x -y "$file"
   else
-    echo " -> Multiple top-level items, extracting to $base/"
-    mkdir -p "$base"
-    7z x -y "$file" -o"$base"
+    outdir="$base"
+
+    if [[ -d "$outdir" ]]; then
+      echo " -> Directory '$outdir' already exists, skipping."
+      return
+    fi
+
+    echo " -> Multiple items, extracting to '$outdir/'"
+    mkdir -p "$outdir"
+    7z x -y "$file" -o"$outdir"
   fi
 
   if $DELETE_AFTER; then
@@ -59,7 +85,9 @@ extract_file() {
   fi
 }
 
-# Run extraction on each file
+# Process each file
 for f in "${inputs[@]}"; do
   extract_file "$f"
 done
+
+echo "Done."
