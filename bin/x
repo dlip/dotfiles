@@ -74,6 +74,37 @@ can_extract() {
   return 1
 }
 
+# Check if archive contains a single file and if it already exists
+check_single_file() {
+  local file="$1"
+  local dir="$(dirname "$file")"
+  
+  # Get list of files in archive (just the filenames)
+  # Use -slt for detailed listing to get proper path information
+  local file_list="$($SEVENZIP l -slt "$file" 2>/dev/null)"
+  if [[ $? -ne 0 ]]; then
+    return 1  # Not a valid archive or can't list contents
+  fi
+  
+  # Count number of files (lines with "Path = " but not ending with / and not the archive itself)
+  local archive_name="$(basename "$file")"
+  local file_count=$(echo "$file_list" | grep "^Path = " | grep -v "/$" | grep -v "^Path = $archive_name$" | wc -l)
+  
+  # If exactly one file
+  if [[ "$file_count" -eq 1 ]]; then
+    # Extract the filename - make sure to exclude the archive itself here too
+    local filename=$(echo "$file_list" | grep "^Path = " | grep -v "/$" | grep -v "^Path = $archive_name$" | cut -d'=' -f2- | xargs)
+    
+    # Check if the file already exists in the destination directory
+    if [[ -f "$dir/$filename" ]]; then
+      echo "$dir/$filename"  # Return the existing file path
+      return 0
+    fi
+  fi
+  
+  return 1  # Not a single file or file doesn't exist
+}
+
 on_interrupt() {
   echo "CTRL-C pressed, aborting…" >&2
 
@@ -103,9 +134,16 @@ extract_file() {
   local base="${filename%.*}"
   local final_dir="$dir/$base"
 
-  # Skip if already extracted
+  # Skip if already extracted to directory
   if [[ -d "$final_dir" ]]; then
     echo "Skipping $file (directory '$final_dir' already exists)"
+    return
+  fi
+  
+  # Check if this is a single file archive and if that file already exists
+  local existing_file=$(check_single_file "$file")
+  if [[ -n "$existing_file" ]]; then
+    echo "Skipping $file (file '$existing_file' already exists)"
     return
   fi
 
@@ -151,22 +189,12 @@ extract_file() {
   # Case 2: Exactly one file → put it next to archive
   #
   if ((${#children[@]} == 1)) && [[ -f "${children[0]}" ]]; then
-    local extracted_file="$dir/$(basename "${children[0]}")"
-    
-    # Skip if the file already exists
-    if [[ -f "$extracted_file" ]]; then
-      echo "Skipping $file (file '$extracted_file' already exists)"
-      rm -rf "$tmp_dir"
-      CURRENT_TMP_DIR=""
-      return
-    fi
-    
     mv "${children[0]}" "$dir/"
     rm -rf "$tmp_dir"
     CURRENT_TMP_DIR=""
 
     [[ "$DELETE_AFTER" == "1" ]] && rm -f "$file"
-    echo "Extracted file: $extracted_file"
+    echo "Extracted file: $dir/$(basename "${children[0]}")"
     return
   fi
 
