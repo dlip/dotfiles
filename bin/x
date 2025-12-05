@@ -220,12 +220,103 @@ extract_file() {
 
   #
   # Case 2: Exactly one file → put it next to archive
+  # Special handling for tar.gz files - if we extracted a .tar file from a .gz, extract it too
   #
   if ((${#children[@]} == 1)) && [[ -f "${children[0]}" ]]; then
     local extracted_file="${children[0]}"
     local extracted_file_name="$(basename "$extracted_file")"
     local destination_file="$dir/$extracted_file_name"
     
+    # Special handling for tar.gz files
+    if [[ "${file,,}" == *.tar.gz ]] && [[ "$extracted_file_name" == *.tar ]]; then
+      # Get the base name without .tar.gz extension
+      local base_name="$(basename "$file" .tar.gz)"
+      
+      # First, extract the tar file into a temporary directory
+      local tar_tmp_dir="$tmp_dir/tar_extract"
+      mkdir -p "$tar_tmp_dir"
+      
+      if ! eval "$SEVENZIP x -y '$extracted_file' -o'$tar_tmp_dir'$redirection"; then
+        echo "Extraction of tar file FAILED: $extracted_file"
+        cleanup_tmp_dir
+        return
+      fi
+      
+      # Get the list of extracted items
+      local tar_items=($tar_tmp_dir/*)
+      local num_items=${#tar_items[@]}
+      
+      # Determine if we need to create a directory
+      local use_directory=true
+      if ((num_items == 1)) && [[ -f "${tar_items[0]}" ]]; then
+        # Only a single file - extract directly to current directory
+        use_directory=false
+      fi
+      
+      # Determine destination path
+      local final_destination="$dir"
+      if $use_directory; then
+        final_destination="$dir/$base_name"
+        
+        # Check if the destination directory already exists
+        if [[ -e "$final_destination" ]]; then
+          echo "Skipping $file (directory '$final_destination' already exists)"
+          cleanup_tmp_dir
+          return
+        fi
+      else
+        # For single item extraction, check if that item exists
+        if ((num_items == 1)) && [[ -e "${tar_items[0]}" ]]; then
+          local single_item_name="$(basename "${tar_items[0]}")"
+          if [[ -e "$dir/$single_item_name" ]]; then
+            echo "Skipping $file (file '$dir/$single_item_name' already exists)"
+            cleanup_tmp_dir
+            return
+          fi
+        fi
+      fi
+      
+      # Create destination directory if needed
+      if $use_directory; then
+        mkdir -p "$final_destination"
+      fi
+      
+      # Move items to the appropriate destination
+      if $use_directory; then
+        # Move all items to the new directory
+        for item in "${tar_items[@]}"; do
+          if [[ -e "$item" ]]; then
+            local item_name="$(basename "$item")"
+            mv "$item" "$final_destination/$item_name"
+          fi
+        done
+      else
+        # Move items directly to the destination directory
+        for item in "${tar_items[@]}"; do
+          if [[ -e "$item" ]]; then
+            local item_name="$(basename "$item")"
+            mv "$item" "$dir/$item_name"
+          fi
+        done
+      fi
+      
+      # Clean up the temporary directory
+      cleanup_tmp_dir
+      
+      # Delete the original archive if delete flag is set
+      [[ "$DELETE_AFTER" == "1" ]] && rm -f "$file"
+      
+      # Display appropriate message
+      if $use_directory; then
+        echo "Extracted: $file → $final_destination/"
+      else
+        echo "Extracted: $file → $dir/"
+      fi
+      
+      return
+    fi
+    
+    # Regular single file extraction for non-tar.gz cases
     # Check if the destination file already exists
     if [[ -f "$destination_file" ]]; then
       echo "Skipping $file (file '$destination_file' already exists)"
