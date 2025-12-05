@@ -246,59 +246,26 @@ extract_file() {
       local tar_items=($tar_tmp_dir/*)
       local num_items=${#tar_items[@]}
       
-      # Determine if we need to create a directory
-      local use_directory=true
-      if ((num_items == 1)) && [[ -f "${tar_items[0]}" ]]; then
-        # Only a single file - extract directly to current directory
-        use_directory=false
+      # Case 1: Multiple items - always create directory named after archive
+      local final_destination="$dir/$base_name"
+      
+      # Check if the destination directory already exists
+      if [[ -e "$final_destination" ]]; then
+        echo "Skipping $file (directory '$final_destination' already exists)"
+        cleanup_tmp_dir
+        return
       fi
       
-      # Determine destination path
-      local final_destination="$dir"
-      if $use_directory; then
-        final_destination="$dir/$base_name"
-        
-        # Check if the destination directory already exists
-        if [[ -e "$final_destination" ]]; then
-          echo "Skipping $file (directory '$final_destination' already exists)"
-          cleanup_tmp_dir
-          return
+      # Create destination directory
+      mkdir -p "$final_destination"
+      
+      # Move all items to the new directory
+      for item in "${tar_items[@]}"; do
+        if [[ -e "$item" ]]; then
+          local item_name="$(basename "$item")"
+          mv "$item" "$final_destination/$item_name"
         fi
-      else
-        # For single item extraction, check if that item exists
-        if ((num_items == 1)) && [[ -e "${tar_items[0]}" ]]; then
-          local single_item_name="$(basename "${tar_items[0]}")"
-          if [[ -e "$dir/$single_item_name" ]]; then
-            echo "Skipping $file (file '$dir/$single_item_name' already exists)"
-            cleanup_tmp_dir
-            return
-          fi
-        fi
-      fi
-      
-      # Create destination directory if needed
-      if $use_directory; then
-        mkdir -p "$final_destination"
-      fi
-      
-      # Move items to the appropriate destination
-      if $use_directory; then
-        # Move all items to the new directory
-        for item in "${tar_items[@]}"; do
-          if [[ -e "$item" ]]; then
-            local item_name="$(basename "$item")"
-            mv "$item" "$final_destination/$item_name"
-          fi
-        done
-      else
-        # Move items directly to the destination directory
-        for item in "${tar_items[@]}"; do
-          if [[ -e "$item" ]]; then
-            local item_name="$(basename "$item")"
-            mv "$item" "$dir/$item_name"
-          fi
-        done
-      fi
+      done
       
       # Clean up the temporary directory
       cleanup_tmp_dir
@@ -306,12 +273,8 @@ extract_file() {
       # Delete the original archive if delete flag is set
       [[ "$DELETE_AFTER" == "1" ]] && rm -f "$file"
       
-      # Display appropriate message
-      if $use_directory; then
-        echo "Extracted: $file → $final_destination/"
-      else
-        echo "Extracted: $file → $dir/"
-      fi
+      # Display message
+      echo "Extracted: $file → $final_destination/"
       
       return
     fi
