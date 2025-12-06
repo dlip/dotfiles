@@ -24,6 +24,7 @@ rec {
     # ../common/desktop/kde.nix
     # ../common/desktop/hyprland.nix
     ../common/services/notify-problems.nix
+    ../common/services/komf.nix
     ../common/desktop/xfce.nix
   ];
 
@@ -207,6 +208,18 @@ rec {
           directory = "/media/media/home/dane/webdav";
         }
       ];
+    };
+  };
+
+  services.komf = {
+    enable = true;
+    settings = {
+      server = {
+        port = 8085;
+      };
+      database = {
+        file = "/var/lib/komf/database.sqlite";
+      };
     };
   };
 

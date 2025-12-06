@@ -13,6 +13,7 @@
   yaruki = 8095;
   photoprism = 2342;
   kavita = 6000;
+  komf = 8085;
   webdav = 6060;
   sunshine = 47990;
 }
