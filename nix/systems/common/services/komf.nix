@@ -76,7 +76,7 @@ in
           ${pkgs.openjdk}/bin/java \
             ${cfg.extraJavaOpts} \
             -jar ${komfPackage}/lib/${jarName} \
-            ${applicationYml}/application.yml
+            /var/lib/komf/application.yml
         '';
         Restart = "on-failure";
         RestartSec = 5;

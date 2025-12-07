@@ -61,23 +61,23 @@
     };
   };
   fileSystems."/media/media2" = {
-    device = "/dev/disk/by-uuid/bd148b15-4950-4da8-9fd1-17d8a32390d5"; # UUID for /dev/mapper/media2
-    fsType = "btrfs";
+    device = "/dev/disk/by-uuid/a20757c3-7ae5-47f8-b6c8-fe56a89898c3"; # UUID of mapper device
+    fsType = "ext4";
     options = [ "nofail" ];
     encrypted = {
       enable = true;
       label = "media2";
-      blkDev = "/dev/disk/by-uuid/d5f1a797-6655-4ae4-995a-f42dc02f832a"; # UUID for /dev/sdb
+      blkDev = "/dev/disk/by-uuid/df4e8ff2-7538-44a1-ac79-3da87d456415"; # UUID of partition
       keyFile = "/lukskey";
     };
   };
-
-  fileSystems."/media/media3" = {
-    device = "/dev/disk/by-uuid/a7e87ab8-6f99-432d-a3e1-90c0418a3227"; # UUID for /dev/mapper/media3
+  fileSystems."/media/personal" = {
+    device = "/dev/disk/by-uuid/a7e87ab8-6f99-432d-a3e1-90c0418a3227"; # UUID for /dev/mapper/personal
     fsType = "ext4";
+    options = [ "nofail" ];
     encrypted = {
       enable = true;
-      label = "media3";
+      label = "personal";
       blkDev = "/dev/disk/by-uuid/dfd9f448-cd9d-4f9f-a1b9-9adcea897582"; # UUID for /dev/sde1
       keyFile = "/lukskey";
     };

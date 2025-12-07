@@ -213,14 +213,6 @@ rec {
 
   services.komf = {
     enable = true;
-    settings = {
-      server = {
-        port = 8085;
-      };
-      database = {
-        file = "/var/lib/komf/database.sqlite";
-      };
-    };
   };
 
   services.flatpak.enable = true;
@@ -398,8 +390,8 @@ rec {
         hostPath = "/media/media2";
         isReadOnly = false;
       };
-      "/media/media3" = {
-        hostPath = "/media/media3";
+      "/media/personal" = {
+        hostPath = "/media/personal";
         isReadOnly = false;
       };
       # "/media/roms" = {
@@ -737,8 +729,8 @@ rec {
         "create mask" = "0644";
         "directory mask" = "0755";
       };
-      media3 = {
-        path = "/media/media3";
+      personal = {
+        path = "/media/personal";
         browsable = "yes";
         "read only" = "no";
         "guest ok" = "no";
