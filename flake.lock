@@ -171,11 +171,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1764567269,
-        "narHash": "sha256-cX225x90fhQxWwTtkXZa/aDJ8WqK4nzEVrho4sMGs9I=",
+        "lastModified": 1765076555,
+        "narHash": "sha256-bDZl7QOHBEsDUzWroFM3hZea4dl489t5ncwaJzNqtw4=",
         "owner": "dlip",
         "repo": "mokuro-reader",
-        "rev": "7e024649ae7521fb7e81b4ff51effa1421a3e4af",
+        "rev": "ced328e9a489973202d46fac30ec5e3251559bb2",
         "type": "github"
       },
       "original": {
@@ -450,11 +450,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1764506988,
-        "narHash": "sha256-clj4TsIVqiFfvyu+mfm3s94Y7iOP+eRa62wxzLUV49M=",
+        "lastModified": 1764947035,
+        "narHash": "sha256-EYHSjVM4Ox4lvCXUMiKKs2vETUSL5mx+J2FfutM7T9w=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "4c7d90a136071eb8154d6b3fe63b0046de9d4712",
+        "rev": "a672be65651c80d3f592a89b3945466584a22069",
         "type": "github"
       },
       "original": {
