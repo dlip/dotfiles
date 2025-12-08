@@ -201,33 +201,10 @@
           pkgs = pkgsForSystem { system = "x86_64-linux"; };
           modules = [
             ./nix/systems/dex/configuration.nix
-            home-manager.nixosModules.home-manager
+            ./nix/modules/linux-desktop.nix
+            ./nix/modules/linux-graphical.nix
+            ./nix/modules/gaming.nix
             sops-nix.nixosModules.default
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users = {
-                  dane = {
-                    imports = [
-                      ./nix/home
-                      ./nix/home/linux-desktop.nix
-                      ./nix/home/linux-graphical.nix
-                      ./nix/home/gaming.nix
-                    ];
-                  };
-
-                  tv = {
-                    imports = [
-                      ./nix/home
-                      ./nix/home/linux-desktop.nix
-                      ./nix/home/linux-graphical.nix
-                      ./nix/home/gaming.nix
-                    ];
-                  };
-                };
-              };
-            }
           ];
         };
         x = nixpkgs.lib.nixosSystem {

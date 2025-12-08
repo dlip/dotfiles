@@ -80,10 +80,10 @@ rec {
 
     # Enable the Nvidia settings menu,
     # accessible via `nvidia-settings`.
-    nvidiaSettings = true;
+    nvidiaSettings = false;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
   hardware.enableAllFirmware = true;
@@ -152,15 +152,14 @@ rec {
   hardware.uinput.enable = true;
   users.users.tv = {
     isNormalUser = true;
-    extraGroups = [ "uinput" ]; # Enable ‘sudo’ for the user.
-    shell = "/etc/profiles/per-user/tv/bin/zsh";
+    extraGroups = [ "uinput" ];
   };
 
   users.users.ryoko = {
     isNormalUser = true;
     home = "/media/media/home/ryoko";
     createHome = true;
-    extraGroups = [ ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ ];
   };
 
   users.users.dane = {
@@ -173,8 +172,7 @@ rec {
       "networkmanager"
       "dialout"
       "adbusers"
-    ]; # Enable ‘sudo’ for the user.
-    shell = "/etc/profiles/per-user/dane/bin/zsh";
+    ];
   };
 
   environment.systemPackages = with pkgs; [
