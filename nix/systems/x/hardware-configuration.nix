@@ -55,6 +55,13 @@
       "uid=1000,gid=100,x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,credentials=/etc/nixos/smb-secrets"
     ];
   };
+  fileSystems."/media/personal" = {
+    device = "//10.10.0.123/personal";
+    fsType = "cifs";
+    options = [
+      "uid=1000,gid=100,x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,credentials=/etc/nixos/smb-secrets"
+    ];
+  };
   fileSystems."/media/games" = {
     device = "//10.10.0.123/games";
     fsType = "cifs";
