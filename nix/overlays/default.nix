@@ -29,7 +29,7 @@ inputs@{
     #   nodejs = final.nodejs-16_x;
     # };
     # vscodeNodeDebug2 = final.callPackage ./vscodeNodeDebug2 {src = vscodeNodeDebug2;};
-   
+
     mokuro-reader = mokuro-reader.packages.${final.system}.default;
     emoji-menu = final.writeShellScriptBin "emoji-menu" (
       builtins.readFile "${emoji-menu}/bin/emoji-menu"
@@ -61,7 +61,7 @@ inputs@{
     skyscraper = final.callPackage ./skyscraper { };
     # solang = final.callPackage ./solang { };
     # juliusSpeech = final.callPackage ./juliusSpeech { };
-    talon = final.callPackage ./talon { };
+    # talon = final.callPackage ./talon { };
     # inherit (final.callPackages "${openvpn-aws}/derivations/openvpn.nix" { }) openvpn_aws;
     # freecad fix https://github.com/NixOS/nixpkgs/issues/429237
     # coin3d = prev.coin3d.overrideAttrs {

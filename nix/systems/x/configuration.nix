@@ -31,7 +31,6 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.supportedFilesystems = [ "ntfs" ];
-
   users.users.dane = {
     isNormalUser = true;
     extraGroups = [
@@ -42,7 +41,13 @@ in
       "adbusers"
       "cdrom"
     ]; # Enable ‘sudo’ for the user.
-    shell = "/etc/profiles/per-user/dane/bin/zsh";
+  };
+
+  services.syncthing = {
+    enable = true;
+    openDefaultPorts = true;
+    user = "dane";
+    group = "users";
   };
 
   programs.virt-manager.enable = true;

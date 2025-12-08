@@ -112,6 +112,9 @@ in
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
 
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+
   # services = {
   #   gnome.gnome-keyring.enable = true;
   #   upower.enable = true;

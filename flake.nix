@@ -83,9 +83,9 @@
     #
     #   # inputs.nixpkgs.follows = "nixpkgs";
     # };
-    talon = {
-      url = "github:nix-community/talon-nix";
-    };
+    # talon = {
+    #   url = "github:nix-community/talon-nix";
+    # };
     nixgl.url = "github:nix-community/nixGL";
   };
 
@@ -99,7 +99,6 @@
       nix-on-droid,
       sops-nix,
       nix-darwin,
-      talon,
       ...
     }:
     let
@@ -236,26 +235,9 @@
           pkgs = pkgsForSystem { system = "x86_64-linux"; };
           modules = [
             ./nix/systems/x/configuration.nix
+            ./nix/modules/linux-desktop.nix
+            ./nix/modules/linux-graphical.nix
             sops-nix.nixosModules.default
-            home-manager.nixosModules.home-manager
-            talon.nixosModules.talon
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                backupFileExtension = "backup";
-                users = {
-                  dane = {
-                    imports = [
-                      ./nix/home/linux-desktop.nix
-                      ./nix/home/linux-graphical.nix
-                      ./nix/home/gamedev.nix
-                      ./nix/home/gaming.nix
-                    ];
-                  };
-                };
-              };
-            }
           ];
         };
         ptv = nixpkgs.lib.nixosSystem {
