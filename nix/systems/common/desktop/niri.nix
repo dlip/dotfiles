@@ -24,6 +24,23 @@
     swaylock
     file-roller
     adwaita-icon-theme # default gnome cursors
+    waybar
+    xwayland-satellite
+    brightnessctl
+    cliphist
+    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+    fuzzel
+    grimblast
+    libnotify
+    playerctl
+    sway-contrib.grimshot
+    swayidle
+    udiskie
+    networkmanagerapplet
+    rofi
+    rofimoji
+    swaynotificationcenter
+    hypridle
   ];
   programs.thunar.enable = true;
   programs.thunar.plugins = with pkgs.xfce; [

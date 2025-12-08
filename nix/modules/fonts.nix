@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    emacs-all-the-icons-fonts
     font-awesome
     fontconfig
     hachimarupop
