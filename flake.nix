@@ -237,6 +237,7 @@
             ./nix/systems/x/configuration.nix
             ./nix/modules/linux-desktop.nix
             ./nix/modules/linux-graphical.nix
+            ./nix/modules/gaming.nix
             sops-nix.nixosModules.default
           ];
         };
