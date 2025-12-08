@@ -205,7 +205,7 @@ rec {
         {
           username = "dane";
           password = "dane";
-          directory = "/media/media/home/dane/webdav";
+          directory = "/media/media/personal/dane/webdav";
         }
       ];
     };
@@ -622,17 +622,18 @@ rec {
   services.paperless = {
     enable = true;
     dataDir = "/var/lib/paperless";
-    mediaDir = "/media/media/paperless/media";
-    consumptionDir = "/media/media/paperless/consume";
+    mediaDir = "/media/personal/paperless/media";
+    consumptionDir = "/media/personal/paperless/consume";
     passwordFile = config.sops.secrets.paperless-adminpass.path;
+    settings.PAPERLESS_URL = "https://paperless.dex-lips.duckdns.org";
   };
 
   sops.secrets.photoprism-adminpass = { };
 
   services.photoprism = {
     enable = true;
-    originalsPath = "/media/media/photos";
-    importPath = "/media/media/photos/import";
+    originalsPath = "/media/personal/photos";
+    importPath = "/media/personal/photos/import";
     passwordFile = config.sops.secrets.photoprism-adminpass.path;
   };
 
@@ -670,13 +671,10 @@ rec {
       paths = [
         "/home"
         "/root"
-        "/media/media/home"
         "/mnt/services"
         "/mnt/downloader"
         "/var/lib"
-        "/media/media/nextcloud"
-        "/media/media/paperless"
-        "/media/media/photos"
+        "/media/media/personal"
       ];
       repository = "/media/backup/restic";
       passwordFile = config.sops.secrets.restic-encryption.path;

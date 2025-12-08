@@ -50,40 +50,40 @@
   };
 
   fileSystems."/media/media" = {
-    device = "/dev/disk/by-uuid/ffea1765-0616-4311-ac3b-fde6e83ef011"; # UUID for /dev/mapper/media
-    fsType = "btrfs";
+    device = "/dev/mapper/media";
+    fsType = "ext4";
     options = [ "nofail" ];
     encrypted = {
       enable = true;
       label = "media";
-      blkDev = "/dev/disk/by-uuid/7c1152e4-b2a0-421a-815a-ea10ee700667"; # UUID for /dev/sda
+      blkDev = "/dev/disk/by-uuid/109d4558-b541-4192-a9db-2fd2864c8b3d";
       keyFile = "/lukskey";
     };
   };
   fileSystems."/media/media2" = {
-    device = "/dev/disk/by-uuid/a20757c3-7ae5-47f8-b6c8-fe56a89898c3"; # UUID of mapper device
+    device = "/dev/mapper/media2";
     fsType = "ext4";
     options = [ "nofail" ];
     encrypted = {
       enable = true;
       label = "media2";
-      blkDev = "/dev/disk/by-uuid/df4e8ff2-7538-44a1-ac79-3da87d456415"; # UUID of partition
+      blkDev = "/dev/disk/by-uuid/df4e8ff2-7538-44a1-ac79-3da87d456415";
       keyFile = "/lukskey";
     };
   };
   fileSystems."/media/personal" = {
-    device = "/dev/disk/by-uuid/a7e87ab8-6f99-432d-a3e1-90c0418a3227"; # UUID for /dev/mapper/personal
+    device = "/dev/mapper/personal";
     fsType = "ext4";
     options = [ "nofail" ];
     encrypted = {
       enable = true;
       label = "personal";
-      blkDev = "/dev/disk/by-uuid/dfd9f448-cd9d-4f9f-a1b9-9adcea897582"; # UUID for /dev/sde1
+      blkDev = "/dev/disk/by-uuid/dfd9f448-cd9d-4f9f-a1b9-9adcea897582";
       keyFile = "/lukskey";
     };
   };
   fileSystems."/media/backup" = {
-    device = "/dev/disk/by-uuid/b5b0d158-0722-4c05-a1e2-76bea8f921db"; # UUID for partition
+    device = "/dev/mapper/backup";
     fsType = "ext4";
     options = [
       "nofail"
@@ -92,7 +92,7 @@
     encrypted = {
       enable = true;
       label = "backup";
-      blkDev = "/dev/disk/by-uuid/05d74c77-c9f2-4101-af0b-b1c7141a4fd0"; # UUID for device
+      blkDev = "/dev/disk/by-uuid/05d74c77-c9f2-4101-af0b-b1c7141a4fd0";
       keyFile = "/lukskey";
     };
   };
