@@ -55,9 +55,7 @@ in
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    plex-mpv-shim
-  ];
+  environment.systemPackages = pkgs.groups.gui ++ pkgs.groups.gaming;
 
   hardware.graphics = {
     enable = true;

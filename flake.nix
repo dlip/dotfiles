@@ -106,7 +106,7 @@
         {
           system,
           pkgs ? nixpkgs,
-          overlays ? (import ./nix/overlays inputs),
+          overlays ? (import ./nix/pkgs inputs),
         }:
         import pkgs {
           inherit system;
@@ -125,7 +125,7 @@
               stable = pkgsForSystem {
                 inherit system;
                 pkgs = nixpkgs-stable;
-                overlays = (import ./nix/overlays/stable.nix inputs);
+                overlays = (import ./nix/pkgs/stable.nix inputs);
               };
             })
           ];
@@ -201,9 +201,6 @@
           pkgs = pkgsForSystem { system = "x86_64-linux"; };
           modules = [
             ./nix/systems/dex/configuration.nix
-            ./nix/modules/linux-desktop.nix
-            ./nix/modules/linux-graphical.nix
-            ./nix/modules/gaming.nix
             sops-nix.nixosModules.default
           ];
         };
@@ -212,9 +209,6 @@
           pkgs = pkgsForSystem { system = "x86_64-linux"; };
           modules = [
             ./nix/systems/x/configuration.nix
-            ./nix/modules/linux-desktop.nix
-            ./nix/modules/linux-graphical.nix
-            ./nix/modules/gaming.nix
             sops-nix.nixosModules.default
           ];
         };

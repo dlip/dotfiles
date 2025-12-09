@@ -34,6 +34,8 @@ inputs@{
     emoji-menu = final.writeShellScriptBin "emoji-menu" (
       builtins.readFile "${emoji-menu}/bin/emoji-menu"
     );
+
+    groups = final.callPackage ./groups.nix { };
     # myEspanso = final.callPackage ./espanso {};
     # hyprland = hyprland.packages.${final.system}.hyprland;
     # hyprcursor-catppuccin = hyprcursor-catppuccin.packages.${final.system}.hyprcursor-catppuccin;
@@ -51,6 +53,27 @@ inputs@{
     #   };
     # };
 
+    retroarchWithCores = (
+      final.retroarch.withCores (
+        cores: with cores; [
+          beetle-psx
+          beetle-psx-hw
+          fbneo
+          freeintv
+          gambatte
+          genesis-plus-gx
+          mame
+          melonds
+          mesen
+          mgba
+          mupen64plus
+          picodrive
+          ppsspp
+          snes9x
+          stella
+        ]
+      )
+    );
     rofimoji = prev.rofimoji.overrideAttrs (oldAttrs: {
       rofi = final.rofi;
     });
