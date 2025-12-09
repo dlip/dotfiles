@@ -12,7 +12,6 @@ let
     entr
     fd
     findutils
-    font-awesome
     fontconfig
     fzf
     gcc
@@ -24,8 +23,6 @@ let
     gnused
     gopls
     gotop
-    hachimarupop
-    hanazono
     htop
     iconv
     jq
@@ -39,16 +36,10 @@ let
     ncurses
     neofetch
     neovim
-    nerd-fonts.droid-sans-mono
-    nerd-fonts.fira-code
-    nerd-fonts.roboto-mono
-    nerd-fonts.sauce-code-pro
     nettools
     nil
     nixfmt-rfc-style
     nmap
-    noto-fonts
-    noto-fonts-cjk-sans
     openssh
     p7zip
     prettier
@@ -172,6 +163,7 @@ let
     mkvtoolnix-cli
     mysql80
     niv
+    nix-du
     nix-index
     nix-init
     nodePackages.node2nix
