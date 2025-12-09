@@ -392,10 +392,6 @@ rec {
         hostPath = "/media/personal";
         isReadOnly = false;
       };
-      # "/media/roms" = {
-      #   hostPath = "/media/roms";
-      #   isReadOnly = false;
-      # };
       "/media/games" = {
         hostPath = "/media/games";
         isReadOnly = false;

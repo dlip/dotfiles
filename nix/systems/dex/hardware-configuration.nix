@@ -82,6 +82,17 @@
       keyFile = "/lukskey";
     };
   };
+  fileSystems."/media/games" = {
+    device = "/dev/mapper/games";
+    fsType = "ext4";
+    options = [ "nofail" ];
+    encrypted = {
+      enable = true;
+      label = "games";
+      blkDev = "/dev/disk/by-uuid/a9ea9400-5160-4c8b-affd-a5d6937badd6";
+      keyFile = "/lukskey";
+    };
+  };
   fileSystems."/media/backup" = {
     device = "/dev/mapper/backup";
     fsType = "ext4";
@@ -96,17 +107,6 @@
       keyFile = "/lukskey";
     };
   };
-
-  fileSystems."/media/games" = {
-    device = "/dev/disk/by-uuid/0BB20EC37670AE62";
-    fsType = "ntfs";
-    options = [
-      "rw"
-      "uid=1000"
-      "nofail"
-    ];
-  };
-
   fileSystems."/d" = {
     device = "/media/media";
     options = [ "bind" ];
