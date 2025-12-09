@@ -106,6 +106,7 @@
         {
           system,
           pkgs ? nixpkgs,
+          overlays ? (import ./nix/overlays inputs),
         }:
         import pkgs {
           inherit system;
@@ -119,14 +120,13 @@
             "freeimage-3.18.0-unstable-2024-04-18"
             "ventoy-1.1.07"
           ];
-          overlays = (import ./nix/overlays inputs) ++ [
+          overlays = overlays ++ [
             (final: prev: {
               stable = pkgsForSystem {
                 inherit system;
                 pkgs = nixpkgs-stable;
+                overlays = (import ./nix/overlays/stable.nix inputs);
               };
-
-              emulationstation-de = final.callPackage ./nix/overlays/emulationstation-de { };
             })
           ];
         };
