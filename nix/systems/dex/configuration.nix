@@ -175,11 +175,7 @@ rec {
     ];
   };
 
-  environment.systemPackages = with pkgs; [
-    docker-compose
-    google-chrome
-    warehouse
-  ];
+  environment.systemPackages = pkgs.groups.gui ++ pkgs.groups.gaming;
 
   services.sunshine = {
     enable = true;

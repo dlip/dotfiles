@@ -106,6 +106,7 @@
         {
           system,
           pkgs ? nixpkgs,
+          overlays ? (import ./nix/pkgs inputs),
         }:
         import pkgs {
           inherit system;
@@ -119,14 +120,13 @@
             "freeimage-3.18.0-unstable-2024-04-18"
             "ventoy-1.1.07"
           ];
-          overlays = (import ./nix/overlays inputs) ++ [
+          overlays = overlays ++ [
             (final: prev: {
               stable = pkgsForSystem {
                 inherit system;
                 pkgs = nixpkgs-stable;
+                overlays = (import ./nix/pkgs/stable.nix inputs);
               };
-
-              emulationstation-de = final.callPackage ./nix/overlays/emulationstation-de { };
             })
           ];
         };
@@ -201,9 +201,6 @@
           pkgs = pkgsForSystem { system = "x86_64-linux"; };
           modules = [
             ./nix/systems/dex/configuration.nix
-            ./nix/modules/linux-desktop.nix
-            ./nix/modules/linux-graphical.nix
-            ./nix/modules/gaming.nix
             sops-nix.nixosModules.default
           ];
         };
@@ -212,9 +209,6 @@
           pkgs = pkgsForSystem { system = "x86_64-linux"; };
           modules = [
             ./nix/systems/x/configuration.nix
-            ./nix/modules/linux-desktop.nix
-            ./nix/modules/linux-graphical.nix
-            ./nix/modules/gaming.nix
             sops-nix.nixosModules.default
           ];
         };
