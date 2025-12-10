@@ -4,7 +4,6 @@ let
   default = [
     bat
     bc
-    cargo
     curl
     delta
     dig

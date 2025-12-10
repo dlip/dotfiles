@@ -156,10 +156,10 @@
           ];
         };
       };
-
-    nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration {
-      pkgs = import nixpkgs { system = "aarch64-linux"; };
-      modules = [ ./nix/systems/nix-on-droid/configuration.nix ];
-    };
+      # nix-on-droid switch --flake .#default
+      nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration {
+        pkgs = pkgsForSystem { system = "aarch64-linux"; };
+        modules = [ ./nix/systems/nix-on-droid/configuration.nix ];
+      };
     };
 }
