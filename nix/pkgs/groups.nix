@@ -42,6 +42,7 @@ let
     nmap
     openssh
     p7zip
+    pciutils
     prettier
     pyright
     ripgrep
@@ -61,6 +62,7 @@ let
     tree-sitter
     unzip
     util-linux
+    vim
     wget
     wireguard-tools
     yazi
@@ -133,6 +135,7 @@ let
     gnuplot
     go
     gotypist
+    gptfdisk
     graphviz
     hdparm
     hexdino
@@ -180,9 +183,11 @@ let
     openvpn
     pandoc
     patchelf
+    pavucontrol
     php
     pinentry-curses
     postgresql
+    pulseaudio
     pwgen
     qmk
     rclone
@@ -308,6 +313,7 @@ let
     mame-tools
     mangohud
     maxcso
+    mesa-demos
     moonlight-qt
     protontricks
     protonup-ng

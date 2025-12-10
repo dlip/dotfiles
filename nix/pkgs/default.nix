@@ -30,6 +30,7 @@ inputs@{
     # vscodeNodeDebug2 = final.callPackage ./vscodeNodeDebug2 {src = vscodeNodeDebug2;};
 
     mokuro-reader = mokuro-reader.packages.${final.stdenv.hostPlatform.system}.default;
+    bottles = (prev.bottles.override { removeWarningPopup = true; });
     emoji-menu = final.writeShellScriptBin "emoji-menu" (
       builtins.readFile "${emoji-menu}/bin/emoji-menu"
     );
