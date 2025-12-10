@@ -129,7 +129,7 @@
           ];
         };
     in
-    flake-utils.lib.eachDefaultSystem (system: {
+    {
       nixosConfigurations = {
         dex = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -156,5 +156,5 @@
           ];
         };
       };
-    });
+    };
 }
