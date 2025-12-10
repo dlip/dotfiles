@@ -2,6 +2,7 @@
   path = local
 [user]
   name = Dane Lipscombe
+	email = danelipscombe@gmail.com
 [advice]
 	detachedHead = false
 [push]
