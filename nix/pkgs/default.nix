@@ -6,7 +6,6 @@ inputs@{
   # helix,
   sops-nix,
   nix-on-droid,
-  mac-app-util,
   # vscodeNodeDebug2,
   # nixvim,
   # hyprland,
@@ -23,22 +22,22 @@ inputs@{
   # poetry2nix.overlay
   # packages
   (final: prev: {
-    inherit sops-nix mac-app-util niri-flake;
+    inherit sops-nix niri-flake;
     # actualServer = final.callPackage ./actualServer {
     #   src = actual-server;
     #   nodejs = final.nodejs-16_x;
     # };
     # vscodeNodeDebug2 = final.callPackage ./vscodeNodeDebug2 {src = vscodeNodeDebug2;};
 
-    mokuro-reader = mokuro-reader.packages.${final.system}.default;
+    mokuro-reader = mokuro-reader.packages.${final.stdenv.hostPlatform.system}.default;
     emoji-menu = final.writeShellScriptBin "emoji-menu" (
       builtins.readFile "${emoji-menu}/bin/emoji-menu"
     );
 
     groups = final.callPackage ./groups.nix { };
     # myEspanso = final.callPackage ./espanso {};
-    # hyprland = hyprland.packages.${final.system}.hyprland;
-    # hyprcursor-catppuccin = hyprcursor-catppuccin.packages.${final.system}.hyprcursor-catppuccin;
+    # hyprland = hyprland.packages.${final.stdenv.hostPlatform.system}.hyprland;
+    # hyprcursor-catppuccin = hyprcursor-catppuccin.packages.${final.stdenv.hostPlatform.system}.hyprcursor-catppuccin;
     power-menu = final.writeShellScriptBin "power-menu" (
       builtins.readFile "${power-menu}/rofi-power-menu"
     );
@@ -46,7 +45,7 @@ inputs@{
       makeFlags = oldAttrs.makeFlags ++ [ "O_NERD=1" ];
     });
 
-    # nixvim = nixvim.legacyPackages.${final.system}.makeNixvimWithModule {
+    # nixvim = nixvim.legacyPackages.${final.stdenv.hostPlatform.system}.makeNixvimWithModule {
     #   module = import ./nixvim;
     #   extraSpecialArgs = {
     #     extraPluginsSrc = final.lib.filterAttrs (n: v: final.lib.hasPrefix "vimplugin-" n) inputs;
@@ -77,7 +76,7 @@ inputs@{
     rofimoji = prev.rofimoji.overrideAttrs (oldAttrs: {
       rofi = final.rofi;
     });
-    # helix = helix.packages.${final.system}.default;
+    # helix = helix.packages.${final.stdenv.hostPlatform.system}.default;
 
     myNodePackages = final.callPackage ./nodePackages { };
     # myPythonPackages = final.callPackage ./pythonPackages { };

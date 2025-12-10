@@ -7,11 +7,13 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   ptv-services = import ./services.nix;
   downloader-services = import ../downloader/services.nix;
   domain = "ptv-lips.duckdns.org";
-in rec {
+in
+rec {
   imports = [
     # Include the results of the hardware scan.
     ../common/services/qbittorrent.nix
@@ -78,7 +80,11 @@ in rec {
 
   services.xrdp.enable = true;
   services.xrdp.defaultWindowManager = "xfce4-session";
-  networking.firewall.allowedTCPPorts = [80 443 3389];
+  networking.firewall.allowedTCPPorts = [
+    80
+    443
+    3389
+  ];
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -113,14 +119,21 @@ in rec {
   users.users.tv = {
     isNormalUser = true;
     description = "tv";
-    extraGroups = ["networkmanager" "wheel"];
-    shell = "/etc/profiles/per-user/tv/bin/zsh";
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
   };
 
   users.users.dane = {
     isNormalUser = true;
-    extraGroups = ["wheel" "docker" "networkmanager" "dialout" "adbusers"]; # Enable ‘sudo’ for the user.
-    shell = "/etc/profiles/per-user/dane/bin/zsh";
+    extraGroups = [
+      "wheel"
+      "docker"
+      "networkmanager"
+      "dialout"
+      "adbusers"
+    ]; # Enable ‘sudo’ for the user.
   };
 
   hardware.bluetooth.enable = true;
@@ -131,31 +144,35 @@ in rec {
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
-    pavucontrol
-    xfce.xfce4-pulseaudio-plugin
-    xfce.xfce4-volumed-pulse
-    google-chrome
-    kodi
-    # (pkgs.kodi.passthru.withPackages (kodiPkgs:
-    #   with kodiPkgs; [
-    #     jellyfin
-    #   ]))
-    # zoom-us
-  ];
+  environment.systemPackages = pkgs.groups.gui;
+  # environment.systemPackages = with pkgs; [
+  #   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+  #   #  wget
+  #   pavucontrol
+  #   xfce.xfce4-pulseaudio-plugin
+  #   xfce.xfce4-volumed-pulse
+  #   google-chrome
+  #   kodi
+  #   # (pkgs.kodi.passthru.withPackages (kodiPkgs:
+  #   #   with kodiPkgs; [
+  #   #     jellyfin
+  #   #   ]))
+  #   # zoom-us
+  # ];
 
   sops.defaultSopsFile = ./secrets/secrets.yaml;
   # This will automatically import SSH keys as age keys
-  sops.age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
   # This is using an age key that is expected to already be in the filesystem
   sops.age.keyFile = "/var/lib/sops-nix/key.txt";
   # This will generate a new key if the key specified above does not exist
   sops.age.generateKey = true;
 
   networking.nat.enable = true;
-  networking.nat.internalInterfaces = ["wg0" "ve-+"];
+  networking.nat.internalInterfaces = [
+    "wg0"
+    "ve-+"
+  ];
   networking.nat.externalInterface = "wlp1s0";
 
   containers.downloader = {
@@ -202,7 +219,7 @@ in rec {
     ''*/10 * * * * root eval "export `cat /var/run/secrets/traefik-env`" && ${pkgs.curl}/bin/curl http://www.duckdns.org/update/plips-home/$DUCKDNS_TOKEN''
   ];
 
-  systemd.services.traefik.serviceConfig.EnvironmentFile = ["/var/run/secrets/traefik-env"];
+  systemd.services.traefik.serviceConfig.EnvironmentFile = [ "/var/run/secrets/traefik-env" ];
   services.traefik = {
     enable = true;
     staticConfigOptions = {
@@ -241,53 +258,51 @@ in rec {
     };
     dynamicConfigOptions = {
       http = {
-        routers =
-          {
-            traefik = {
-              rule = "Host(`traefik.${domain}`)";
-              service = "api@internal";
-              tls = {
-                domains = [
-                  {
-                    main = "*.${domain}";
-                  }
-                ];
-                certResolver = "letsencrypt";
-              };
+        routers = {
+          traefik = {
+            rule = "Host(`traefik.${domain}`)";
+            service = "api@internal";
+            tls = {
+              domains = [
+                {
+                  main = "*.${domain}";
+                }
+              ];
+              certResolver = "letsencrypt";
+            };
+          };
+        }
+        // pkgs.lib.attrsets.mapAttrs' (
+          name: port:
+          pkgs.lib.attrsets.nameValuePair "${name}" {
+            rule = "Host(`${name}.${domain}`)";
+            service = "${name}";
+            tls = {
+              domains = [
+                {
+                  main = "*.${domain}";
+                }
+              ];
+              certResolver = "letsencrypt";
             };
           }
-          // pkgs.lib.attrsets.mapAttrs'
-          (name: port:
-            pkgs.lib.attrsets.nameValuePair "${name}"
-            {
-              rule = "Host(`${name}.${domain}`)";
-              service = "${name}";
-              tls = {
-                domains = [
-                  {
-                    main = "*.${domain}";
-                  }
-                ];
-                certResolver = "letsencrypt";
-              };
-            })
-          (ptv-services // downloader-services);
+        ) (ptv-services // downloader-services);
 
         services =
-          (pkgs.lib.attrsets.mapAttrs'
-            (name: port:
-              pkgs.lib.attrsets.nameValuePair "${name}"
-              {
-                loadBalancer.servers = [{url = "http://127.0.0.1:${toString port}/";}];
-              })
-            ptv-services)
-          // (pkgs.lib.attrsets.mapAttrs'
-            (name: port:
-              pkgs.lib.attrsets.nameValuePair "${name}"
-              {
-                loadBalancer.servers = [{url = "http://${containers.downloader.localAddress}:${toString port}/";}];
-              })
-            downloader-services);
+          (pkgs.lib.attrsets.mapAttrs' (
+            name: port:
+            pkgs.lib.attrsets.nameValuePair "${name}" {
+              loadBalancer.servers = [ { url = "http://127.0.0.1:${toString port}/"; } ];
+            }
+          ) ptv-services)
+          // (pkgs.lib.attrsets.mapAttrs' (
+            name: port:
+            pkgs.lib.attrsets.nameValuePair "${name}" {
+              loadBalancer.servers = [
+                { url = "http://${containers.downloader.localAddress}:${toString port}/"; }
+              ];
+            }
+          ) downloader-services);
       };
     };
   };
