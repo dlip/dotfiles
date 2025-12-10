@@ -11,8 +11,6 @@
   environment.packages =
     pkgs.groups.default
     ++ (with pkgs; [
-      # User-facing stuff that you really really want to have
-      vim # or some other editor, e.g. nano or neovim
       i3
       i3status
       nixgl.auto.nixGLDefault
