@@ -77,7 +77,6 @@ let
     # myPythonPackages.adafruit-nrfutil
     # myPythonPackages.shirah-reader
     # ngrok
-    # nix-du
     # openvpn_aws
     # poetry
     # python311Packages.adafruit-nrfutil
