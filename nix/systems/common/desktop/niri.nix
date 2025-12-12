@@ -7,6 +7,9 @@
   programs.niri = {
     enable = true;
   };
+  programs.dankMaterialShell = {
+    enable = true;
+  };
 
   services.greetd = {
     enable = true;

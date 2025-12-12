@@ -36,6 +36,16 @@
     };
     niri-flake = {
       url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dgop = {
+      url = "github:AvengeMedia/dgop";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dankMaterialShell = {
+      url = "github:AvengeMedia/DankMaterialShell";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.dgop.follows = "dgop";
     };
     mokuro-reader = {
       url = "github:dlip/mokuro-reader";
@@ -97,6 +107,7 @@
       nix-on-droid,
       sops-nix,
       nix-darwin,
+      dankMaterialShell,
       ...
     }:
     let
@@ -145,6 +156,7 @@
           modules = [
             ./nix/systems/x/configuration.nix
             sops-nix.nixosModules.default
+            dankMaterialShell.nixosModules.dankMaterialShell
           ];
         };
         ptv = nixpkgs.lib.nixosSystem {
