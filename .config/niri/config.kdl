@@ -263,7 +263,7 @@ layout {
 // See the binds section below for more spawn examples.
 
 // spawn-at-startup "waybar"
-spawn-at-startup "dms run"
+// spawn-at-startup "dms run --session"
 spawn-at-startup "niri" "msg" "action" "focus-workspace" "terminal"
 spawn-at-startup "kitty" "-e" "t" "dotfiles"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
