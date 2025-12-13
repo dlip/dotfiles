@@ -157,6 +157,7 @@
             ./nix/systems/x/configuration.nix
             sops-nix.nixosModules.default
             dankMaterialShell.nixosModules.dankMaterialShell
+            dankMaterialShell.nixosModules.greeter
           ];
         };
         ptv = nixpkgs.lib.nixosSystem {

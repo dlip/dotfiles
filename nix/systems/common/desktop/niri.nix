@@ -12,15 +12,20 @@
     systemd.enable = true;
   };
 
-  services.greetd = {
+  programs.dankMaterialShell.greeter = {
     enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet /usr/bin/env --xsessions ${config.services.displayManager.sessionData.desktops}/share/xsessions --sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions --remember --remember-user-session";
-        user = "greeter";
-      };
-    };
+    compositor.name = "niri"; # Or "hyprland" or "sway"
+    configHome = "/home/dane";
   };
+  # services.greetd = {
+  #   enable = true;
+  #   settings = {
+  #     default_session = {
+  #       command = "${pkgs.tuigreet}/bin/tuigreet /usr/bin/env --xsessions ${config.services.displayManager.sessionData.desktops}/share/xsessions --sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions --remember --remember-user-session";
+  #       user = "greeter";
+  #     };
+  #   };
+  # };
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
   environment.systemPackages = with pkgs; [
     xorg.xinit
@@ -45,6 +50,7 @@
     rofimoji
     swaynotificationcenter
     hypridle
+    libappindicator-gtk3
   ];
   programs.thunar.enable = true;
   programs.thunar.plugins = with pkgs.xfce; [
