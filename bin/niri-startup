@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+if [[ $(whoami) == 'dane' ]]; then
+  niri msg action focus-workspace terminal &
+  kitty -e t dotfiles &
+  wl-paste --watch cliphist store &
+  thunar &
+  Telegram &
+  hypridle &
+  waytron google-chrome-stable &
+  waytron obsidian &
+  waytron discord &
+fi
+
+udiskie --tray &
+fcitx5 -d -r &
+fcitx5-remote -r &
+xwayland-satellite &
