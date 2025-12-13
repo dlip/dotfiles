@@ -58,6 +58,7 @@ inputs@{
         cores: with cores; [
           beetle-psx
           beetle-psx-hw
+          dosbox-pure
           fbneo
           freeintv
           gambatte

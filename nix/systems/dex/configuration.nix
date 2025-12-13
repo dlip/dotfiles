@@ -207,7 +207,7 @@ rec {
         {
           username = "dane";
           password = "dane";
-          directory = "/media/media/personal/dane/webdav";
+          directory = "/media/personal/dane/webdav";
         }
       ];
     };
