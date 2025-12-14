@@ -25,7 +25,8 @@ rec {
     # ../common/desktop/hyprland.nix
     ../common/services/notify-problems.nix
     ../common/services/komf.nix
-    ../common/desktop/xfce.nix
+    # ../common/desktop/xfce.nix
+    ../common/desktop/niri.nix
   ];
 
   # Open ports in the firewall.

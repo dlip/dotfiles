@@ -148,6 +148,8 @@
           modules = [
             ./nix/systems/dex/configuration.nix
             sops-nix.nixosModules.default
+            dankMaterialShell.nixosModules.dankMaterialShell
+            dankMaterialShell.nixosModules.greeter
           ];
         };
         x = nixpkgs.lib.nixosSystem {
