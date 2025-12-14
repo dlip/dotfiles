@@ -70,7 +70,6 @@ let
     zsh
   ];
   extra = default ++ [
-    # fusee-launcher
     # kdePackages.k3b # export QTWEBENGINE_DISABLE_SANDBOX=1; sudo -EH k3b
     # mimic
     # musikcube
@@ -127,6 +126,7 @@ let
     ffmpeg
     file
     fluxcd
+    stable.fusee-launcher
     ghc
     glow
     gnupg
