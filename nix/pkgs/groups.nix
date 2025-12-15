@@ -199,7 +199,7 @@ let
     stern
     strace
     tagainijisho
-    tesseract4
+    tesseract
     texlive.combined.scheme-medium
     tio
     tiramisu

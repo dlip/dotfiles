@@ -28,29 +28,30 @@
   # };
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
   environment.systemPackages = with pkgs; [
-    xorg.xinit
-    tuigreet
-    swaylock
-    file-roller
     adwaita-icon-theme # default gnome cursors
-    waybar
-    xwayland-satellite
     brightnessctl
     cliphist
-    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+    file-roller
     fuzzel
-    grimblast
-    libnotify
-    playerctl
-    sway-contrib.grimshot
-    swayidle
-    udiskie
-    networkmanagerapplet
-    rofi
-    rofimoji
-    swaynotificationcenter
+    grim
     hypridle
     libappindicator-gtk3
+    libnotify
+    networkmanagerapplet
+    playerctl
+    rofi
+    rofimoji
+    slurp
+    sway-contrib.grimshot
+    swayidle
+    swaylock
+    swaynotificationcenter
+    # tuigreet
+    udiskie
+    waybar
+    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+    xorg.xinit
+    xwayland-satellite
   ];
   programs.thunar.enable = true;
   programs.thunar.plugins = with pkgs.xfce; [
