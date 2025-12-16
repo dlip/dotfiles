@@ -108,6 +108,7 @@
       sops-nix,
       nix-darwin,
       dankMaterialShell,
+      home-manager,
       ...
     }:
     let
@@ -169,6 +170,17 @@
             ./nix/systems/ptv/configuration.nix
             sops-nix.nixosModules.default
           ];
+        };
+      };
+      # nix run home-manager/master -- switch --flake .#docker
+      homeConfigurations= { 
+        docker = home-manager.lib.homeManagerConfiguration {
+          pkgs = pkgsForSystem { system = "x86_64-linux"; };
+          modules = [ ./nix/home/docker.nix ];
+        };
+        docker-arm = home-manager.lib.homeManagerConfiguration {
+          pkgs = pkgsForSystem { system = "aarch64-linux"; };
+          modules = [ ./nix/home/docker.nix ];
         };
       };
       # nix-on-droid switch --flake .#default

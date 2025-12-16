@@ -1,8 +1,9 @@
-export PATH=~/bin:~/.local/bin:~/go/bin:~/.docker/bin:~/.docker/cli-plugins:/Applications/Docker.app/Contents/Resources/bin:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:/Applications/Ollama.app/Contents/Resources:$PATH
+export PATH=~/bin:~/.local/bin:~/.nix-profile/bin:~/go/bin:~/.docker/bin:~/.docker/cli-plugins:/Applications/Docker.app/Contents/Resources/bin:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:/Applications/Ollama.app/Contents/Resources:$PATH
 export EDITOR=nvim
 export XDG_DATA_DIRS=~/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:$XDG_DATA_DIRS
 
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
+if [ -e ~/.nix-profile/etc/profile.d/hm-session-vars.sh ]; then . ~/.nix-profile/etc/profile.d/hm-session-vars.sh; fi
 
 if [ -e "$HOME/.brew/bin/brew" ]; then
   eval "$($HOME/.brew/bin/brew shellenv)"
