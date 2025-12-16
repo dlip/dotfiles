@@ -141,6 +141,16 @@
           ];
         };
     in
+    (flake-utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = pkgsForSystem { inherit system; };
+      in
+      {
+        devShells.default = pkgs.mkShell {
+          packages = pkgs.groups.default;
+        };
+      }
+    )) //
     {
       nixosConfigurations = {
         dex = nixpkgs.lib.nixosSystem {
