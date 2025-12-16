@@ -2,6 +2,7 @@
 with pkgs;
 let
   default = [
+    bash
     bat
     bc
     curl
