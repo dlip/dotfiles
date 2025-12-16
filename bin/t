@@ -6,6 +6,9 @@ set -euo pipefail
 PROJECTS="$HOME/code"
 # Ensure each project is in zoxide
 for path in $(find "$PROJECTS" -maxdepth 1 -mindepth 1 -type d -o -type l); do
+  if [[ -L "$path" ]] && [[ ! -e "$path" ]]; then
+    continue
+  fi
   if [[ $(zoxide query -l -s "$path" | wc -c) -eq 0 ]]; then
     zoxide add "$path"
   fi
