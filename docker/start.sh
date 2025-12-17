@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-docker run -d --restart=always -p 8080:8080 --name nix nix sleep infinity
+docker run -t -d --restart=always -p 8080:8080 -v $HOME/code:/root/code --name nix nix
