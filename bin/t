@@ -30,6 +30,22 @@ if [ -n "$repo_path" ]; then
       tmux attach-session -t "$session"
     fi
   else
+    if [[ -f ".envrc" && $(direnv status --json | jq '.state.foundRC.allowed') == "1" ]]; then
+      while true; do
+        read -p ".envrc found, do you wish to allow it? " yn
+        case $yn in
+        [Yy]*)
+          direnv allow
+          break
+          ;;
+        [Nn]*)
+          direnv deny
+          break
+          ;;
+        *) echo "Please answer yes or no." ;;
+        esac
+      done
+    fi
     tmux new-session -d -s $session -n editor direnv exec . $EDITOR
     window=2
     tmux new-window -t $session:$window -n 'shell'
