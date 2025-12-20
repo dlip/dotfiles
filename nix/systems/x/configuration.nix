@@ -55,7 +55,7 @@ in
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
 
-  environment.systemPackages = pkgs.groups.gui ++ pkgs.groups.gaming;
+  environment.systemPackages = with pkgs; groups.gui ++ groups.gaming;
 
   hardware.graphics = {
     enable = true;

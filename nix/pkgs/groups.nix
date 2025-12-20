@@ -145,6 +145,7 @@ let
     jc
     jdk11
     joshuto
+    jreadability
     k9s
     kaf
     kanata

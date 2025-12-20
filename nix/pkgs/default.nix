@@ -84,6 +84,7 @@ inputs@{
     # myPythonPackages = final.callPackage ./pythonPackages { };
     skyscraper = final.callPackage ./skyscraper { };
     # solang = final.callPackage ./solang { };
+    jreadability = final.callPackage ./jreadability/package.nix { };
     # juliusSpeech = final.callPackage ./juliusSpeech { };
     # talon = final.callPackage ./talon { };
     # inherit (final.callPackages "${openvpn-aws}/derivations/openvpn.nix" { }) openvpn_aws;

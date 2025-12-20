@@ -115,33 +115,45 @@
       pkgsForSystem =
         {
           system,
-          pkgs ? nixpkgs,
-          overlays ? (import ./nix/pkgs inputs),
         }:
-        import pkgs {
+        import nixpkgs {
           inherit system;
-          config.allowUnfree = true;
-          config.permittedInsecurePackages = [
-            # opentabletdriver
-            "dotnet-runtime-6.0.36"
-            "dotnet-sdk-wrapped-6.0.428"
-            "dotnet-sdk-6.0.428"
-            "libsoup-2.74.3"
-            "freeimage-3.18.0-unstable-2024-04-18"
-            "ventoy-1.1.07"
-          ];
-          overlays = overlays ++ [
+          config = {
+            allowUnfree = true;
+            permittedInsecurePackages = [
+              # opentabletdriver
+              "dotnet-runtime-6.0.36"
+              "dotnet-sdk-wrapped-6.0.428"
+              "dotnet-sdk-6.0.428"
+              "libsoup-2.74.3"
+              "ventoy-1.1.07"
+            ];
+          };
+          overlays = (import ./nix/pkgs inputs) ++ [
             (final: prev: {
-              stable = pkgsForSystem {
+              stable = import nixpkgs-stable {
                 inherit system;
-                pkgs = nixpkgs-stable;
+                config = {
+                  allowUnfree = true;
+                  permittedInsecurePackages = [
+                    "freeimage-3.18.0-unstable-2024-04-18"
+                  ];
+                };
                 overlays = (import ./nix/pkgs/stable.nix inputs);
+              };
+              cudaPkgs = import nixpkgs {
+                inherit system;
+                config = {
+                  allowUnfree = true;
+                  cudaSupport = true;
+                };
               };
             })
           ];
         };
     in
-    (flake-utils.lib.eachDefaultSystem (system:
+    (flake-utils.lib.eachDefaultSystem (
+      system:
       let
         pkgs = pkgsForSystem { inherit system; };
       in
@@ -150,8 +162,8 @@
           packages = pkgs.groups.default;
         };
       }
-    )) //
-    {
+    ))
+    // {
       nixosConfigurations = {
         dex = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -159,7 +171,7 @@
           modules = [
             ./nix/systems/dex/configuration.nix
             sops-nix.nixosModules.default
-            dankMaterialShell.nixosModules.dankMaterialShell
+            dankMaterialShell.nixosModules.dank-material-shell
             dankMaterialShell.nixosModules.greeter
           ];
         };
@@ -169,7 +181,7 @@
           modules = [
             ./nix/systems/x/configuration.nix
             sops-nix.nixosModules.default
-            dankMaterialShell.nixosModules.dankMaterialShell
+            dankMaterialShell.nixosModules.dank-material-shell
             dankMaterialShell.nixosModules.greeter
           ];
         };
@@ -183,7 +195,7 @@
         };
       };
       # nix run home-manager/master -- switch --flake .#docker
-      homeConfigurations= { 
+      homeConfigurations = {
         docker = home-manager.lib.homeManagerConfiguration {
           pkgs = pkgsForSystem { system = "x86_64-linux"; };
           modules = [ ./nix/home/docker.nix ];

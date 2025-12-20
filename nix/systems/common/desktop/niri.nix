@@ -7,12 +7,12 @@
   programs.niri = {
     enable = true;
   };
-  programs.dankMaterialShell = {
+  programs.dank-material-shell = {
     enable = true;
     systemd.enable = true;
   };
 
-  programs.dankMaterialShell.greeter = {
+  programs.dank-material-shell.greeter = {
     enable = true;
     compositor.name = "niri"; # Or "hyprland" or "sway"
     configHome = "/home/dane";

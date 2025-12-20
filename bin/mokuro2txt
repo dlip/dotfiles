@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ $# -ne 1 ]]; then
+  echo "Usage: $0 <file.mokuro>" >&2
+  exit 1
+fi
+
+jq -r '
+  .pages[]
+  | .blocks[]
+  | .lines[]
+  | .text
+' "$1"
