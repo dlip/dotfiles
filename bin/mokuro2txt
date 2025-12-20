@@ -10,5 +10,11 @@ jq -r '
   .pages[]
   | .blocks[]
   | .lines[]
-  | .text
+  | if type == "string" then
+      .
+    elif type == "object" and has("text") then
+      .text
+    else
+      empty
+    end
 ' "$1"
