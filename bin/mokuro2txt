@@ -9,12 +9,6 @@ fi
 jq -r '
   .pages[]
   | .blocks[]
-  | .lines[]
-  | if type == "string" then
-      .
-    elif type == "object" and has("text") then
-      .text
-    else
-      empty
-    end
+  | .lines
+  | join("")
 ' "$1"
