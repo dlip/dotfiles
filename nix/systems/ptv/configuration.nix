@@ -16,7 +16,7 @@ in
 rec {
   imports = [
     # Include the results of the hardware scan.
-    ../common/services/qbittorrent.nix
+    # ../common/services/qbittorrent.nix
     ./hardware-configuration.nix
   ];
 
@@ -24,7 +24,7 @@ rec {
   boot.loader.systemd-boot.enable = true;
   #boot.loader.systemd-boot.configurationLimit = 1;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   nix = {
     settings.auto-optimise-store = true;
@@ -89,8 +89,8 @@ rec {
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  # sound.enable = true;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
