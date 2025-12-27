@@ -82,6 +82,9 @@ rec {
   services.xrdp.defaultWindowManager = "xfce4-session";
   networking.firewall.allowedTCPPorts = [
     80
+    8080
+    9090
+    9777
     443
     3389
   ];
@@ -157,6 +160,7 @@ rec {
       (pkgs.kodi.withPackages (
         kodiPkgs: with kodiPkgs; [
           jellyfin
+          a4ksubtitles
         ]
       ))
     ];
