@@ -1,4 +1,5 @@
 {
+  kodi = 8080;
   jellyfin = 8096;
   homepage = 8082;
   traefik = 9000;
