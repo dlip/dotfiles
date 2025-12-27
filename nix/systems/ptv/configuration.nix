@@ -136,6 +136,8 @@ rec {
     ]; # Enable ‘sudo’ for the user.
   };
 
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
@@ -144,21 +146,20 @@ rec {
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = pkgs.groups.gui;
-  # environment.systemPackages = with pkgs; [
-  #   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #   #  wget
-  #   pavucontrol
-  #   xfce.xfce4-pulseaudio-plugin
-  #   xfce.xfce4-volumed-pulse
-  #   google-chrome
-  #   kodi
-  #   # (pkgs.kodi.passthru.withPackages (kodiPkgs:
-  #   #   with kodiPkgs; [
-  #   #     jellyfin
-  #   #   ]))
-  #   # zoom-us
-  # ];
+  environment.systemPackages =
+    with pkgs;
+    groups.gui
+    ++ [
+      jellyfin-desktop
+      pavucontrol
+      xfce.xfce4-pulseaudio-plugin
+      xfce.xfce4-volumed-pulse
+      (pkgs.kodi.withPackages (
+        kodiPkgs: with kodiPkgs; [
+          jellyfin
+        ]
+      ))
+    ];
 
   sops.defaultSopsFile = ./secrets/secrets.yaml;
   # This will automatically import SSH keys as age keys
