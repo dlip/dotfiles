@@ -282,6 +282,10 @@ environment {
     DISPLAY ":0"
 }
 
+switch-events {
+    lid-close { spawn "bash" "-c" "[ $(niri msg --json outputs | jq 'length') -eq 1 ] && dms ipc call lock lock"; }
+}
+
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
 // Additionally, clients will be informed that they are tiled, removing some client-side rounded corners.
