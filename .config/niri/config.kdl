@@ -427,7 +427,7 @@ binds {
 
     Control+Space hotkey-overlay-title="Toggle language" { spawn "fcitx5-remote" "-t"; }
 
-    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "sway-lock-screen"; }
+    // Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "sway-lock-screen"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.

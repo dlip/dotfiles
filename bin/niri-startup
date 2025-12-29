@@ -6,11 +6,11 @@ if [[ $(whoami) == 'dane' ]]; then
   wl-paste --watch cliphist store &
   thunar &
   Telegram &
-  hypridle &
   waytron google-chrome-stable &
   waytron obsidian &
   waytron discord &
 fi
+# hypridle &
 
 udiskie --tray &
 fcitx5 -d -r &
