@@ -14,6 +14,7 @@ binds {
     Mod+V hotkey-overlay-title="Clipboard Manager" { spawn "dms" "ipc" "call" "clipboard" "toggle"; }
     Mod+Y hotkey-overlay-title="Browse Wallpapers" { spawn "dms" "ipc" "call" "dankdash" "wallpaper"; }
     Super+I hotkey-overlay-title="Idle Inhibit: Toggle" { spawn "dms" "ipc" "call" "inhibit" "toggle"; }
+    Super+P hotkey-overlay-title="Power Menu: Toggle" { spawn "dms" "ipc" "call" "powermenu" "toggle"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "decrement" "3"; }
     XF86AudioMicMute allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "micmute"; }
     XF86AudioMute allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "mute"; }

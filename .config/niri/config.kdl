@@ -426,7 +426,8 @@ binds {
 
     Mod+Shift+C hotkey-overlay-title="Clipboard" { spawn "rofi" "-modi" "clipboard:cliphist-rofi-img" "-show" "clipboard" "-show-icons"; }
     Mod+T hotkey-overlay-title="Open a Terminal" { spawn "kitty"; }
-    Mod+P hotkey-overlay-title="Power menu" { spawn "rofi" "-show" "power-menu" "-modi" "power-menu:power-menu"; }
+    Mod+E hotkey-overlay-title="Emoji Menu" { spawn "emoji-menu"; }
+    // Mod+P hotkey-overlay-title="Power menu" { spawn "rofi" "-show" "power-menu" "-modi" "power-menu:power-menu"; }
     Mod+Space hotkey-overlay-title="Run an Application" { spawn "rofi" "-show-icons" "-show" "combi" "-combi-modi" "drun,run" "-modi" "combi"; }
 
     Control+Space hotkey-overlay-title="Toggle language" { spawn "fcitx5-remote" "-t"; }

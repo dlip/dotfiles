@@ -95,6 +95,16 @@
       "id": "darkMode",
       "enabled": true,
       "width": 50
+    },
+    {
+      "id": "idleInhibitor",
+      "enabled": true,
+      "width": 50
+    },
+    {
+      "id": "battery",
+      "enabled": true,
+      "width": 50
     }
   ],
   "showWorkspaceIndex": false,
@@ -127,8 +137,6 @@
   "appLauncherGridColumns": 4,
   "spotlightCloseNiriOverview": true,
   "niriOverviewOverlayEnabled": true,
-  "weatherLocation": "Sydney, New South Wales",
-  "weatherCoordinates": "-33.8698439,151.2082848",
   "useAutoLocation": false,
   "weatherEnabled": true,
   "networkPreference": "auto",
@@ -391,5 +399,5 @@
   "desktopWidgetPositions": {},
   "desktopWidgetGridSettings": {},
   "desktopWidgetInstances": [],
-  "configVersion": 4
+  "configVersion": 5
 }

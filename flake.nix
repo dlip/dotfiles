@@ -9,10 +9,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-darwin = {
-      url = "github:LnL7/nix-darwin/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nix-darwin = {
+    #   url = "github:LnL7/nix-darwin/master";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     # hyprland = {
     #   url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -42,10 +42,9 @@
       url = "github:AvengeMedia/dgop";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    dankMaterialShell = {
+    dms = {
       url = "github:AvengeMedia/DankMaterialShell";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.dgop.follows = "dgop";
     };
     mokuro-reader = {
       url = "github:dlip/mokuro-reader";
@@ -61,30 +60,30 @@
     # helix = {
     #   url = "github:mattwparas/helix/steel-event-system";
     # };
-    vimplugin-telescope-gitsigns = {
-      url = "github:radyz/telescope-gitsigns";
-      flake = false;
-    };
-    vimplugin-one-small-step-for-vimkind = {
-      url = "github:jbyuki/one-small-step-for-vimkind";
-      flake = false;
-    };
-    vimplugin-nu = {
-      url = "github:LhKipp/nvim-nu";
-      flake = false;
-    };
-    repo-nnn = {
-      url = "github:jarun/nnn";
-      flake = false;
-    };
-    repo-tmux-catppuccin = {
-      url = "github:catppuccin/tmux";
-      flake = false;
-    };
-    repo-catppuccin-zsh-syntax-highlighting = {
-      url = "github:catppuccin/zsh-syntax-highlighting";
-      flake = false;
-    };
+    # vimplugin-telescope-gitsigns = {
+    #   url = "github:radyz/telescope-gitsigns";
+    #   flake = false;
+    # };
+    # vimplugin-one-small-step-for-vimkind = {
+    #   url = "github:jbyuki/one-small-step-for-vimkind";
+    #   flake = false;
+    # };
+    # vimplugin-nu = {
+    #   url = "github:LhKipp/nvim-nu";
+    #   flake = false;
+    # };
+    # repo-nnn = {
+    #   url = "github:jarun/nnn";
+    #   flake = false;
+    # };
+    # repo-tmux-catppuccin = {
+    #   url = "github:catppuccin/tmux";
+    #   flake = false;
+    # };
+    # repo-catppuccin-zsh-syntax-highlighting = {
+    #   url = "github:catppuccin/zsh-syntax-highlighting";
+    #   flake = false;
+    # };
     # nixvim = {
     #   url = "github:nix-community/nixvim";
     #   # If you are not running an unstable channel of nixpkgs, select the corresponding branch of nixvim.
@@ -107,7 +106,7 @@
       nix-on-droid,
       sops-nix,
       nix-darwin,
-      dankMaterialShell,
+      dms,
       home-manager,
       ...
     }:
@@ -171,8 +170,8 @@
           modules = [
             ./nix/systems/dex/configuration.nix
             sops-nix.nixosModules.default
-            dankMaterialShell.nixosModules.dank-material-shell
-            dankMaterialShell.nixosModules.greeter
+            dms.nixosModules.dank-material-shell
+            dms.nixosModules.greeter
           ];
         };
         x = nixpkgs.lib.nixosSystem {
@@ -181,8 +180,8 @@
           modules = [
             ./nix/systems/x/configuration.nix
             sops-nix.nixosModules.default
-            dankMaterialShell.nixosModules.dank-material-shell
-            dankMaterialShell.nixosModules.greeter
+            dms.nixosModules.dank-material-shell
+            dms.nixosModules.greeter
           ];
         };
         ptv = nixpkgs.lib.nixosSystem {
