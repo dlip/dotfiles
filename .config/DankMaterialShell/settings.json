@@ -140,7 +140,7 @@
   "useAutoLocation": false,
   "weatherEnabled": true,
   "networkPreference": "auto",
-  "vpnLastConnected": "6db63d12-fa5e-406e-a815-fe4ec2593ee0",
+  "vpnLastConnected": "e93b849b-2fc7-48ce-92c3-d714a83ededa",
   "iconTheme": "Adwaita",
   "launcherLogoMode": "apps",
   "launcherLogoCustomPath": "",
@@ -250,7 +250,7 @@
   "osdCapsLockEnabled": true,
   "osdPowerProfileEnabled": true,
   "osdAudioOutputEnabled": true,
-  "powerActionConfirm": true,
+  "powerActionConfirm": false,
   "powerActionHoldDuration": 0.5,
   "powerMenuActions": [
     "reboot",
