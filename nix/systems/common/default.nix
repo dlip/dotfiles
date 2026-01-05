@@ -45,6 +45,10 @@ in
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
+    daemonCPUSchedPolicy = "idle";
+    daemonIOSchedClass = "idle";
+    # Optional: set an explicit I/O priority (0-7, 7 is lowest)
+    daemonIOSchedPriority = 7;
   };
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.

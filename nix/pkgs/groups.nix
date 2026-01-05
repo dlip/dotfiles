@@ -192,7 +192,7 @@ let
     qmk
     rclone
     redis
-    renameutils
+    # renameutils
     sd
     skopeo
     speedread
@@ -253,7 +253,7 @@ let
     f3d
     feh
     firefox
-    freecad-wayland
+    freecad
     fstl
     ghostty
     gimp
