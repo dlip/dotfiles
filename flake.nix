@@ -46,6 +46,10 @@
       url = "github:AvengeMedia/DankMaterialShell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     mokuro-reader = {
       url = "github:dlip/mokuro-reader";
     };
@@ -177,6 +181,7 @@
         x = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           pkgs = pkgsForSystem { system = "x86_64-linux"; };
+          specialArgs = { inherit inputs; };
           modules = [
             ./nix/systems/x/configuration.nix
             sops-nix.nixosModules.default

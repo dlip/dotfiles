@@ -1,17 +1,22 @@
 {
   pkgs,
   config,
+  inputs,
   ...
 }:
 {
+  imports = [
+    inputs.noctalia.nixosModules.default
+  ];
   programs.niri = {
     enable = true;
   };
-  programs.dank-material-shell = {
-    enable = true;
-    systemd.enable = true;
-  };
-
+  services.noctalia-shell.enable = true;
+  # programs.dank-material-shell = {
+  #   enable = true;
+  #   systemd.enable = true;
+  # };
+  #
   programs.dank-material-shell.greeter = {
     enable = true;
     compositor.name = "niri"; # Or "hyprland" or "sway"
@@ -28,6 +33,8 @@
   # };
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
   environment.systemPackages = with pkgs; [
+
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     adwaita-icon-theme # default gnome cursors
     brightnessctl
     cliphist

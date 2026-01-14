@@ -272,7 +272,7 @@
   ],
   "powerMenuDefaultAction": "logout",
   "powerMenuGridLayout": false,
-  "customPowerActionLock": "",
+  "customPowerActionLock": "sway-lock-screen",
   "customPowerActionLogout": "",
   "customPowerActionSuspend": "",
   "customPowerActionHibernate": "",
