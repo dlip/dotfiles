@@ -3,6 +3,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }:
 let
@@ -18,6 +19,7 @@ in
     ./cachix.nix
     ./services/notify-problems.nix
     ./services/ssmtp.nix
+    inputs.sops-nix.nixosModules.default
   ];
 
   # Use the systemd-boot EFI boot loader.

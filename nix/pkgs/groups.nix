@@ -101,6 +101,7 @@ let
     acpi
     age
     air
+    android-tools
     ansifilter
     appimage-run
     archivemount

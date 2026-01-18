@@ -173,9 +173,6 @@
           pkgs = pkgsForSystem { system = "x86_64-linux"; };
           modules = [
             ./nix/systems/dex/configuration.nix
-            sops-nix.nixosModules.default
-            dms.nixosModules.dank-material-shell
-            dms.nixosModules.greeter
           ];
         };
         x = nixpkgs.lib.nixosSystem {
@@ -184,9 +181,6 @@
           specialArgs = { inherit inputs; };
           modules = [
             ./nix/systems/x/configuration.nix
-            sops-nix.nixosModules.default
-            dms.nixosModules.dank-material-shell
-            dms.nixosModules.greeter
           ];
         };
         ptv = nixpkgs.lib.nixosSystem {
@@ -194,7 +188,6 @@
           pkgs = pkgsForSystem { system = "x86_64-linux"; };
           modules = [
             ./nix/systems/ptv/configuration.nix
-            sops-nix.nixosModules.default
           ];
         };
       };

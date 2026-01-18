@@ -32,6 +32,7 @@ application/x-shellscript=neovide.desktop;
 application/x-7z-compressed=org.gnome.FileRoller.desktop;
 application/xml=neovide.desktop;
 application/vnd.comicbook+zip=org.gnome.FileRoller.desktop;
+image/vnd.dxf=org.inkscape.Inkscape.desktop;
 
 [Default Applications]
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
@@ -59,5 +60,6 @@ x-scheme-handler/tonsite=org.telegram.desktop.desktop
 application/octet-stream=neovide.desktop
 application/vnd.rar=org.gnome.FileRoller.desktop
 x-scheme-handler/discord-712465656758665259=discord-712465656758665259.desktop
+image/vnd.dxf=org.inkscape.Inkscape.desktop
 
 [Removed Associations]

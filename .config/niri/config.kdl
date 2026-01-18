@@ -283,7 +283,7 @@ environment {
 }
 
 switch-events {
-    lid-close { spawn "bash" "-c" "[ $(niri msg --json outputs | jq 'length') -eq 1 ] && dms ipc call lock lock"; }
+    lid-close { spawn "bash" "-c" "[ $(niri msg --json outputs | jq 'length') -eq 1 ] && sway-lock-screen"; }
 }
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -681,6 +681,6 @@ hotkey-overlay {
     skip-at-startup
 }
 
-// include "dms/binds.kdl"
-include "./noctalia.kdl"
-include "./noctalia-binds.kdl"
+include "dms/binds.kdl"
+// include "./noctalia.kdl"
+// include "./noctalia-binds.kdl"
