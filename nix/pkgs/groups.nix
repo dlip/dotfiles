@@ -38,7 +38,7 @@ let
     neovim
     nettools
     nil
-    nixfmt-rfc-style
+    nixfmt
     nmap
     openssh
     p7zip
@@ -209,7 +209,6 @@ let
     tldr
     traceroute
     ttyper
-    typespeed
     typioca
     unrar
     usbimager

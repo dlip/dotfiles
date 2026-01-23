@@ -1,6 +1,5 @@
 {
   pkgs,
-  config,
   inputs,
   ...
 }:
@@ -18,6 +17,10 @@
     enable = true;
     systemd.enable = true;
   };
+
+  # environment.sessionVariables = {
+  #   DMS_MODAL_LAYER = "overlay";
+  # };
 
   programs.dank-material-shell.greeter = {
     enable = true;

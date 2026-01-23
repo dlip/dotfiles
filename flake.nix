@@ -129,7 +129,7 @@
               "dotnet-sdk-wrapped-6.0.428"
               "dotnet-sdk-6.0.428"
               "libsoup-2.74.3"
-              "ventoy-1.1.07"
+              "ventoy-1.1.10"
             ];
           };
           overlays = (import ./nix/pkgs inputs) ++ [

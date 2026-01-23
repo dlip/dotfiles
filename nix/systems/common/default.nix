@@ -199,8 +199,6 @@ in
   hardware.graphics.enable32Bit = true;
   hardware.enableAllFirmware = true;
 
-  programs.adb.enable = true;
-
   # Enable sound.
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
