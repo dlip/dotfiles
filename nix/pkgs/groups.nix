@@ -263,7 +263,7 @@ let
     hakuneko
     helvum
     inkscape
-    kdePackages.kdenlive
+    # kdePackages.kdenlive
     keyd
     kitty
     kooha
