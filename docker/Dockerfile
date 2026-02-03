@@ -5,7 +5,11 @@ FROM alpine:latest
 # 'gcompat': The glibc compatibility layer so Nix binaries can run
 # 'git': Required if you plan to use Nix Flakes
 # 'bash': Many Nix build scripts expect bash
-RUN apk add --no-cache nix gcompat git
+RUN apk add --no-cache nix gcompat git openssh
+
+RUN mkdir -p /var/run/sshd && \
+  echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config && \
+  echo 'root:password' | chpasswd
 
 RUN mkdir -p /etc/nix && \
   echo "experimental-features = nix-command flakes" >> /etc/nix/nix.conf && \
@@ -27,4 +31,5 @@ RUN git clone https://github.com/dlip/dotfiles.git && \
   git submodule update --init
 
 SHELL ["/root/.nix-profile/bin/zsh", "-c"]
-CMD ["sleep", "infinity"]
+COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]

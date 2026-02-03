@@ -38,6 +38,7 @@ bindkey '^[e' edit-command-line
 
 set -o emacs
 alias e="$EDITOR"
+alias copy='printf "\033]52;c;$(base64 | tr -d "\n")\a"'
 
 if [ -e ~/.zshrc.local ]; then . ~/.zshrc.local; fi
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
