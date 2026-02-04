@@ -5,6 +5,8 @@
     flake-utils = {
       url = "github:numtide/flake-utils";
     };
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -102,110 +104,5 @@
   };
 
   outputs =
-    inputs@{
-      self,
-      nixpkgs,
-      nixpkgs-stable,
-      flake-utils,
-      nix-on-droid,
-      sops-nix,
-      nix-darwin,
-      dms,
-      home-manager,
-      ...
-    }:
-    let
-      pkgsForSystem =
-        {
-          system,
-        }:
-        import nixpkgs {
-          inherit system;
-          config = {
-            allowUnfree = true;
-            permittedInsecurePackages = [
-              # opentabletdriver
-              "dotnet-runtime-6.0.36"
-              "dotnet-sdk-wrapped-6.0.428"
-              "dotnet-sdk-6.0.428"
-              "libsoup-2.74.3"
-              "ventoy-1.1.10"
-            ];
-          };
-          overlays = (import ./nix/pkgs inputs) ++ [
-            (final: prev: {
-              stable = import nixpkgs-stable {
-                inherit system;
-                config = {
-                  allowUnfree = true;
-                  permittedInsecurePackages = [
-                    "freeimage-3.18.0-unstable-2024-04-18"
-                  ];
-                };
-                overlays = (import ./nix/pkgs/stable.nix inputs);
-              };
-              cudaPkgs = import nixpkgs {
-                inherit system;
-                config = {
-                  allowUnfree = true;
-                  cudaSupport = true;
-                };
-              };
-            })
-          ];
-        };
-    in
-    (flake-utils.lib.eachDefaultSystem (
-      system:
-      let
-        pkgs = pkgsForSystem { inherit system; };
-      in
-      {
-        devShells.default = pkgs.mkShell {
-          packages = pkgs.groups.default;
-        };
-      }
-    ))
-    // {
-      nixosConfigurations = {
-        dex = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          pkgs = pkgsForSystem { system = "x86_64-linux"; };
-          modules = [
-            ./nix/systems/dex/configuration.nix
-          ];
-        };
-        x = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          pkgs = pkgsForSystem { system = "x86_64-linux"; };
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./nix/systems/x/configuration.nix
-          ];
-        };
-        ptv = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          pkgs = pkgsForSystem { system = "x86_64-linux"; };
-          modules = [
-            ./nix/systems/ptv/configuration.nix
-          ];
-        };
-      };
-      # nix run home-manager/master -- switch --flake .#docker
-      homeConfigurations = {
-        docker = home-manager.lib.homeManagerConfiguration {
-          pkgs = pkgsForSystem { system = "x86_64-linux"; };
-          modules = [ ./nix/home/docker.nix ];
-        };
-        docker-arm = home-manager.lib.homeManagerConfiguration {
-          pkgs = pkgsForSystem { system = "aarch64-linux"; };
-          modules = [ ./nix/home/docker.nix ];
-        };
-      };
-      # nix-on-droid switch --flake .#default
-      nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration {
-        pkgs = pkgsForSystem { system = "aarch64-linux"; };
-        modules = [ ./nix/systems/nix-on-droid/configuration.nix ];
-      };
-    };
+    inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./nix/modules);
 }
