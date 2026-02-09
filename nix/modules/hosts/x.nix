@@ -1,4 +1,5 @@
-parts: {
+{ self, ... }:
+{
   flake.modules.nixos.hosts_x =
     {
       config,
@@ -16,7 +17,7 @@ parts: {
         # Include the results of the hardware scan.
         (import ../../systems/common params)
 
-        parts.config.flake.modules.nixos.niri
+        self.modules.nixos.niri
         # ../common/desktop/sway.nix
         # ../common/desktop/hyprland.nix
         # ../common/desktop/niri.nix
@@ -187,7 +188,7 @@ parts: {
       services.flatpak.enable = true;
 
       sops.secrets.nordvpnLogin = {
-        sopsFile = ../common/secrets/secrets.yaml;
+        sopsFile = ../../systems/common/secrets/secrets.yaml;
       };
 
       # systemd.services.keyd = {
@@ -246,7 +247,7 @@ parts: {
           listenPort = 51820;
 
           peers = [
-            (import ../common/wireguard/dex-peer.nix)
+            (import ../../systems/common/wireguard/dex-peer.nix)
           ];
         };
       };
