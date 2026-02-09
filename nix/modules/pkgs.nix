@@ -42,9 +42,5 @@
           })
         ];
       };
-
-      # Now use this configured pkgs in your packages, devShells, etc.
-      # packages.my-package = pkgs.hello;
     };
-
 }
