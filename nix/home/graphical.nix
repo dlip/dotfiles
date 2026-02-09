@@ -21,7 +21,7 @@
     qalculate-gtk
     slack
     xclip
-    xorg.xmodmap
+    xmodmap
     zathura
     zoom-us
   ];

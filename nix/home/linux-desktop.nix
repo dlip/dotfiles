@@ -40,6 +40,6 @@
     usbimager
     ventoy
     xdotool
-    xorg.xhost # add root to xsession: xhost si:localuser:root
+    xhost # add root to xsession: xhost si:localuser:root
   ];
 }

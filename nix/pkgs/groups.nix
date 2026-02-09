@@ -218,7 +218,7 @@ let
     wasmtime
     wireshark-cli
     xdotool
-    xorg.xhost # add root to xsession: xhost si:localuser:root
+    xhost # add root to xsession: xhost si:localuser:root
     yarn
     yarn2nix
     yq
@@ -290,7 +290,7 @@ let
     warpd
     wasistlos # whatsapp-for-linux
     xclip
-    xorg.xmodmap
+    xmodmap
     yacreader
     zathura
     zoom-us

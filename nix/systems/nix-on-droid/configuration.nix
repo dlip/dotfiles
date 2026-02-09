@@ -15,7 +15,7 @@
       i3status
       nixgl.auto.nixGLDefault
       xfce.xfce4-session
-      xorg.xinit
+      xinit
       xfce.xfce4-panel
       xfce.xfdesktop
       kitty

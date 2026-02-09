@@ -18,7 +18,7 @@ in
     (import ../common params)
     # ../common/desktop/sway.nix
     # ../common/desktop/hyprland.nix
-    ../common/desktop/niri.nix
+    # ../common/desktop/niri.nix
     # ../common/desktop/xfce.nix
     # ../common/desktop/leftwm.nix
     # ../common/desktop/kde.nix

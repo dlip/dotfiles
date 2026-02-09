@@ -61,7 +61,7 @@
     udiskie
     waybar
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-    xorg.xinit
+    xinit
     xwayland-satellite
   ];
   programs.thunar.enable = true;

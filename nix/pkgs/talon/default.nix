@@ -13,56 +13,58 @@
   libxkbcommon,
   sqlite,
   udev,
-  xorg,
   xz,
   zlib,
   libpulseaudio,
   alacritty,
-}: let
+}:
+let
   # See README.md
-  srcs =
-    if builtins.pathExists ./beta-src.nix
-    then import ./beta-src.nix
-    else import ./src.nix;
+  srcs = if builtins.pathExists ./beta-src.nix then import ./beta-src.nix else import ./src.nix;
 in
-  stdenv.mkDerivation rec {
-    pname = "talon";
-    inherit (srcs) version;
-    src = fetchurl {
-      inherit (srcs) url sha256;
-    };
-    preferLocalBuild = true;
-    nativeBuildInputs = [makeWrapper];
-    buildInputs = [
-      # qt5.wrapQtAppsHook
-      stdenv.cc.cc
-      stdenv.cc.libc
-      bzip2
-      dbus
-      fontconfig
-      freetype
-      glib
-      libGL
-      libxkbcommon
-      sqlite
-      udev
-      xorg.libX11
-      xorg.libSM
-      xorg.libICE
-      xorg.libXrender
-      xorg.libxcb
-      xorg.libXcursor
-      xorg.libXrandr
-      xorg.libXi
-      xz
-      zlib
-      libpulseaudio
-    ];
-    phases = ["unpackPhase" "installPhase"];
-    installPhase = let
+stdenv.mkDerivation rec {
+  pname = "talon";
+  inherit (srcs) version;
+  src = fetchurl {
+    inherit (srcs) url sha256;
+  };
+  preferLocalBuild = true;
+  nativeBuildInputs = [ makeWrapper ];
+  buildInputs = [
+    # qt5.wrapQtAppsHook
+    stdenv.cc.cc
+    stdenv.cc.libc
+    bzip2
+    dbus
+    fontconfig
+    freetype
+    glib
+    libGL
+    libxkbcommon
+    sqlite
+    udev
+    libX11
+    libSM
+    libICE
+    libXrender
+    libxcb
+    libXcursor
+    libXrandr
+    libXi
+    xz
+    zlib
+    libpulseaudio
+  ];
+  phases = [
+    "unpackPhase"
+    "installPhase"
+  ];
+  installPhase =
+    let
       libPath = lib.makeLibraryPath buildInputs;
-      binPath = lib.makeBinPath [alacritty];
-    in ''
+      binPath = lib.makeBinPath [ alacritty ];
+    in
+    ''
       runHook preInstall
       # Copy Talon to the Nix store
       mkdir -p "$out"
@@ -98,4 +100,4 @@ in
 
       runHook postInstall
     '';
-  }
+}
