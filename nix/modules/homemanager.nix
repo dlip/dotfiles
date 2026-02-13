@@ -10,5 +10,9 @@
       pkgs = withSystem "aarch64-linux" ({ pkgs, ... }: pkgs);
       modules = [ ../home/docker.nix ];
     };
+    coder = inputs.home-manager.lib.homeManagerConfiguration {
+      pkgs = withSystem "x86_64-linux" ({ pkgs, ... }: pkgs);
+      modules = [ ../home/coder.nix ];
+    };
   };
 }

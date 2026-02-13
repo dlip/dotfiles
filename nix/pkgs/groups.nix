@@ -40,7 +40,7 @@ let
     nil
     nixfmt
     nmap
-    openssh
+    openssh_gssapi
     p7zip
     pciutils
     prettier
@@ -192,7 +192,6 @@ let
     pwgen
     qmk
     rclone
-    redis
     # renameutils
     sd
     skopeo
@@ -213,6 +212,7 @@ let
     unrar
     usbimager
     usbutils
+    valkey
     vegeta
     ventoy
     wasmtime
