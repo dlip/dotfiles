@@ -1,0 +1,10 @@
+abbreviation_file: ~/.config/abbrgen/abbreviations.csv
+keyboard:
+  allow_same_column_combo: true
+  layout: engram
+  scissor_penalty: 3
+  stagger: column
+  type: standard
+min_word_length: 3
+overwrite_abbreviations: true
+overwrite_alts: false
