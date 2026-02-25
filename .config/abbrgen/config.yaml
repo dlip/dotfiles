@@ -1,7 +1,7 @@
 abbreviation_file: ~/.config/abbrgen/abbreviations.csv
 keyboard:
-  allow_same_column_combo: true
   layout: engram
+  same_column_combo_penalty: 2
   scissor_penalty: 3
   stagger: column
   type: standard
