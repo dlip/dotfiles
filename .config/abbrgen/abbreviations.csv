@@ -1,4 +1,4 @@
-word,abbreviation,type,alt1,alt2,alt3
+word,combo,type,alt1,alt2,alt3
 the,t,DET,,,
 be,,AUX,,,
 and,a,CCONJ,,,
@@ -331,7 +331,7 @@ appear,ape,VERB,appears,appeared,appearing
 close,cle,ADJ,,,
 walk,wak,VERB,walks,walked,walking
 easy,eay,ADJ,,,
-cell,cel,NOUN,cells,,
+cell,,NOUN,cells,,
 candidate,cit,NOUN,candidates,,
 paper,par,NOUN,papers,,
 control,cnt,NOUN,controls,,
@@ -1045,12 +1045,12 @@ advantage,avn,NOUN,advantages,,
 responsible,rsni,ADJ,,,
 heavy,hav,ADJ,,,
 generate,get,VERB,generates,generated,generating
-demand,dean,NOUN,demands,,
+demand,,NOUN,demands,,
 though,,ADV,,,
 herself,hers,PRON,,,
 weight,weht,NOUN,weights,,
 worker,woe,NOUN,workers,,
-bed,bed,NOUN,beds,,
+bed,,NOUN,beds,,
 concept,cept,NOUN,concepts,,
 phone,phn,NOUN,phones,,
 completely,cty,ADV,,,
@@ -1105,7 +1105,7 @@ engage,enga,VERB,engages,engaged,engaging
 background,brn,NOUN,backgrounds,,
 movie,moi,NOUN,movies,,
 downtown,dnt,NOUN,downtowns,,
-ahead,ahed,ADV,,,
+ahead,,ADV,,,
 hospital,hoi,NOUN,hospitals,,
 interaction,intr,NOUN,interactions,,
 victim,vct,NOUN,victims,,
@@ -1461,13 +1461,13 @@ address,,NOUN,addresses,,
 football,fb,NOUN,footballs,,
 Italian,italn,ADJ,,,
 category,cag,NOUN,categories,,
-preserve,pve,VERB,preserves,preserved,preserving
+preserve,,VERB,preserves,preserved,preserving
 assessment,asent,NOUN,assessments,,
 clean,,VERB,cleans,cleaned,cleaning
 depart,dar,VERB,departs,departed,departing
 assess,,VERB,assesses,assessed,assessing
 reporter,rote,NOUN,reporters,,
-acid,acid,NOUN,acids,,
+acid,,NOUN,acids,,
 commercial,cora,ADJ,,,
 enhance,enha,VERB,enhances,enhanced,enhancing
 potential,,NOUN,potentials,,
@@ -1720,7 +1720,7 @@ along,alng,ADV,,,
 predict,prct,VERB,predicts,predicted,predicting
 magazine,main,NOUN,magazines,,
 evaluation,evan,NOUN,evaluations,,
-guy,gy,NOUN,guys,,
+guy,,NOUN,guys,,
 expose,exp,VERB,exposes,exposed,exposing
 attitude,aud,NOUN,attitudes,,
 block,boc,NOUN,blocks,,
@@ -1749,7 +1749,7 @@ adjust,ajt,VERB,adjusts,adjusted,adjusting
 shopping,shin,NOUN,shoppings,,
 fear,,NOUN,fears,,
 comic,comi,NOUN,comics,,
-cave,cave,NOUN,caves,,
+cave,,NOUN,caves,,
 subsequently,suet,ADV,,,
 present,,NOUN,presents,,
 bright,biht,ADJ,,,
@@ -1817,7 +1817,7 @@ peak,peak,NOUN,peaks,,
 output,outp,NOUN,outputs,,
 regard,,NOUN,regards,,
 duty,duy,NOUN,duties,,
-sand,sand,NOUN,sand,,
+sand,,NOUN,sand,,
 local,,NOUN,locals,,
 websites,wesi,NOUN,websitess,,
 colony,coln,NOUN,colonies,,
