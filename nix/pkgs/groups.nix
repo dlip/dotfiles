@@ -170,7 +170,7 @@ let
     nix-du
     nix-index
     nix-init
-    nodePackages.node2nix
+    # nodePackages.node2nix
     nodePackages.pnpm
     nodePackages.quicktype
     nodePackages.reveal-md
@@ -268,7 +268,7 @@ let
     kitty
     kooha
     krita
-    libreoffice
+    libreoffice-fresh
     mlt
     mpv
     neovide
