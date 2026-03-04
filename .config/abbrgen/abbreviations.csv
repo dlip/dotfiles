@@ -63,7 +63,7 @@ come,ce,,VERB,comes,came,coming
 what,wa,,PRON,,,
 may,ma,,AUX,,,
 find,f,,VERB,finds,found,finding
-these,ts,,DET,,,
+these,ths,,DET,,,
 how,ho,,SCONJ,,,
 no,,,DET,,,
 could,co,,AUX,,,
@@ -253,7 +253,7 @@ both,bh,,DET,,,
 choose,che,,VERB,chooses,chose,choosing
 begin,bei,,VERB,begins,began,beginning
 region,rei,,NOUN,regions,,
-set,,,VERB,sets,set,setting
+set,st,st,VERB,sets,set,setting
 seem,sem,,VERB,seems,seemed,seeming
 friend,fi,,NOUN,friends,,
 again,ain,,ADV,,,
@@ -271,7 +271,7 @@ research,rah,,NOUN,research,,
 eye,,,NOUN,eyes,,
 change,cha,,NOUN,changes,,
 school,sch,,NOUN,schools,,
-those,ths,,PRON,,,
+those,tho,,PRON,,,
 turn,tu,,VERB,turns,turned,turning
 although,ath,,SCONJ,,,
 value,va,,NOUN,values,,
@@ -348,7 +348,7 @@ ever,evr,,ADV,,,
 idea,ida,,NOUN,ideas,,
 support,srt,,VERB,supports,supported,supporting
 interest,int,,NOUN,interests,,
-together,toh,,ADV,,,
+together,tehr,,ADV,,,
 law,law,,NOUN,laws,,
 describe,des,,VERB,describes,described,describing
 whether,wht,,SCONJ,,,
@@ -774,7 +774,7 @@ define,dein,,VERB,defines,defined,defining
 traffic,trac,,NOUN,traffics,,
 device,deic,,NOUN,devices,,
 operation,orn,,NOUN,operations,,
-heart,hert,,NOUN,hearts,,
+heart,heart,,NOUN,hearts,,
 wide,wde,,ADJ,,,
 management,maet,,NOUN,managements,,
 character,chat,,NOUN,characters,,
@@ -964,7 +964,7 @@ encourage,ecg,,VERB,encourages,encouraged,encouraging
 meeting,metn,,NOUN,meetings,,
 staff,staf,,NOUN,staffs,,
 feature,,,VERB,features,featured,featuring
-threat,threa,,NOUN,threats,,
+threat,,,NOUN,threats,,
 length,leh,,NOUN,lengths,,
 peace,,,NOUN,peaces,,
 track,trk,,NOUN,tracks,,
