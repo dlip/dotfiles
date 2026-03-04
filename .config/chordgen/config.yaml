@@ -1,4 +1,4 @@
-abbreviation_file: ~/.config/chordgen/abbreviations.csv
+chords_file: ~/.config/chordgen/chords.csv
 keyboard: standard
 keyboard_options:
   standard:
