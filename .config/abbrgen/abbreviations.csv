@@ -97,7 +97,7 @@ There,,,PRON,,,
 now,nw,,ADV,,,
 new,ne,,ADJ,,,
 man,man,,NOUN,men,,
-life,le,,NOUN,lives,,
+life,li,,NOUN,lives,,
 while,wi,,SCONJ,,,
 because,ba,,SCONJ,,,
 thing,thi,,NOUN,things,,
@@ -201,7 +201,7 @@ never,nv,,ADV,,,
 must,mst,,AUX,,,
 allow,alo,,VERB,allows,allowed,allowing
 increase,iae,,VERB,increases,increased,increasing
-live,li,,VERB,lives,lived,living
+live,lie,,VERB,lives,lived,living
 model,moe,,NOUN,models,,
 far,far,,ADV,,,
 why,why,,SCONJ,,,
@@ -240,7 +240,7 @@ example,ex,,NOUN,examples,,
 big,bi,bi,ADJ,,,
 other,,,NOUN,others,,
 power,per,,NOUN,powers,,
-let,,,VERB,lets,let,letting
+let,le,le,VERB,lets,let,letting
 long,lg,,ADJ,,,
 continue,cte,,VERB,continues,continued,continuing
 site,site,,NOUN,sites,,
@@ -581,7 +581,7 @@ previous,pis,,ADJ,,,
 actually,aty,,ADV,,,
 wall,,,NOUN,walls,,
 pet,,,NOUN,pets,,
-lie,lie,,VERB,lies,lied,lying
+lie,,,VERB,lies,lied,lying
 ground,gn,,NOUN,grounds,,
 production,pin,,NOUN,productions,,
 film,fim,,NOUN,films,,
