@@ -1,0 +1,38 @@
+chords_file: ~/.config/chordgen/chords.csv
+keyboard: standard
+keyboard_options:
+  standard:
+    layout: engram
+    same_column_combo_penalty: 2
+    same_row_combo_penalty: 2
+    scissor_penalty: 3
+    stagger: column
+min_word_length: 3
+output_options:
+  qmk:
+    alt1_keys:
+    - KC_COMBO_ALT1
+    alt2_keys:
+    - KC_COMBO_ALT2
+    alt3_keys:
+    - KC_COMBO_ALT1
+    - KC_COMBO_ALT2
+    combo_keys:
+    - KC_COMBO
+    file: ~/code/abbrgen/abbr.def
+    key_codes:
+      A: KC_CTL_A
+      C: KC_SFT_C
+      E: KC_GUI_E
+      H: KC_CTL_H
+      I: KC_ALT_I
+      J: KC_CAG_J
+      M: KC_CAG_M
+      N: KC_SFT_N
+      S: KC_ALT_S
+      T: KC_GUI_T
+    shift_keys:
+    - KC_COMBO_SFT
+outputs:
+- qmk
+overwrite_alts: false
