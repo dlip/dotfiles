@@ -2,13 +2,54 @@ chords_file: ~/.config/chordgen/chords.csv
 keyboard: standard
 keyboard_options:
   standard:
-    layout: engram
+    layout: engram_2021
     same_column_combo_penalty: 2
     same_row_combo_penalty: 2
     scissor_penalty: 3
     stagger: column
 min_word_length: 3
 output_options:
+  kanata:
+    alt1_keys:
+    - lalt
+    alt2_keys:
+    - spc
+    alt3_keys:
+    - lalt
+    - spc
+    combo_keys:
+    - prtsc
+    combo_timeout: 100
+    file: ~/.config/chordgen/kanata_chords.kbd
+    key_mapping:
+      ' ': spc
+      a: d
+      b: tab
+      c: caps
+      d: o
+      e: s
+      f: /
+      g: lsft
+      h: k
+      i: a
+      j: x
+      k: c
+      l: i
+      m: .
+      n: ''''
+      o: w
+      p: rsft
+      r: ','
+      s: ;
+      t: l
+      u: e
+      v: '['
+      w: p
+      x: z
+      y: q
+    limit: 0
+    shift_keys:
+    - ralt
   qmk:
     alt1_keys:
     - KC_COMBO_ALT1
@@ -19,7 +60,7 @@ output_options:
     - KC_COMBO_ALT2
     combo_keys:
     - KC_COMBO
-    file: ~/code/abbrgen/abbr.def
+    file: ~/.config/chordgen/qmk_chords.def
     key_codes:
       A: KC_CTL_A
       C: KC_SFT_C
@@ -33,6 +74,70 @@ output_options:
       T: KC_GUI_T
     shift_keys:
     - KC_COMBO_SFT
+  training:
+    file: ~/.config/chordgen/training.txt
+  zmk:
+    alt1_keys:
+    - COMBO_ALT1
+    alt2_keys:
+    - COMBO_ALT2
+    alt3_keys:
+    - COMBO_ALT1
+    - COMBO_ALT2
+    chords_file: ~/.config/chordgen/zmk_chords.dtsi
+    combo_keys:
+    - COMBO
+    combo_timeout: 100
+    key_positions:
+    - - ''
+      - Q
+      - W
+      - E
+      - R
+      - T
+      - Y
+      - U
+      - I
+      - O
+      - P
+      - ''
+    - - ''
+      - A
+      - S
+      - D
+      - F
+      - G
+      - H
+      - J
+      - K
+      - L
+      - ;
+      - ''
+    - - ''
+      - Z
+      - X
+      - C
+      - V
+      - B
+      - N
+      - M
+      - ','
+      - .
+      - /
+      - ''
+    - - ''
+      - COMBO_ALT1
+      - COMBO_ALT2
+      - COMBO_SFT
+      - COMBO
+      - ''
+    limit: 0
+    macros_file: ~/.config/chordgen/zmk_macros.dtsi
+    shift_keys:
+    - COMBO_SFT
 outputs:
 - qmk
+- zmk
+- kanata
+- training
 overwrite_alts: false
