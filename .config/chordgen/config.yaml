@@ -22,10 +22,11 @@ keyboard_options:
     - _gxjk-?rmfp_
     - ____
     layout: custom
-    same_column_combo_penalty: 2
-    same_row_combo_penalty: 2
+    same_column_chord_penalty: 2
+    same_row_chord_penalty: 2
     scissor_penalty: 3
     stagger: column
+min_chord_length: 0
 min_word_length: 3
 output_options:
   kanata:
@@ -36,9 +37,9 @@ output_options:
     alt3_keys:
     - lalt
     - spc
-    combo_keys:
+    chord_keys:
     - prtsc
-    combo_timeout: 100
+    chord_timeout: 100
     file: ~/.config/chordgen/kanata_chords.kbd
     key_mapping:
       ' ': spc
@@ -77,7 +78,7 @@ output_options:
     alt3_keys:
     - KC_COMBO_ALT1
     - KC_COMBO_ALT2
-    combo_keys:
+    chord_keys:
     - KC_COMBO
     file: ~/.config/chordgen/qmk_chords.def
     key_codes:
@@ -103,10 +104,10 @@ output_options:
     alt3_keys:
     - COMBO_ALT1
     - COMBO_ALT2
-    chords_file: ~/.config/chordgen/zmk_chords.dtsi
-    combo_keys:
+    chord_keys:
     - COMBO
-    combo_timeout: 100
+    chord_timeout: 100
+    chords_file: ~/.config/chordgen/zmk_chords.dtsi
     key_positions:
     - - ''
       - Q
