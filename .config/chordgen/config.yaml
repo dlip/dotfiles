@@ -1,6 +1,20 @@
 chords_file: ~/.config/chordgen/chords.csv
 keyboard: standard
 keyboard_options:
+  directional:
+    custom_layout:
+    - _X__X__X__X__X__X__X__X_
+    - X_XX_XX_XX_XX_XX_XX_XX_X
+    - _X__X__X__X__X__X__X__X_
+    - _X__X_
+    - X_XX_X
+    - _X__X_
+    - _X__X_
+    - X_XX_X
+    - _X__X_
+    directional_change_penalty: 2
+    layout: charachorder
+    style: five_way_switch
   standard:
     custom_layout:
     - _byou'"ldvw_
