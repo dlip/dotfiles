@@ -2,7 +2,12 @@ chords_file: ~/.config/chordgen/chords.csv
 keyboard: standard
 keyboard_options:
   standard:
-    layout: engram_2021
+    custom_layout:
+    - _byou'"ldvw_
+    - _ciea,.htsn_
+    - _gxjk-?rmfp_
+    - ____
+    layout: custom
     same_column_combo_penalty: 2
     same_row_combo_penalty: 2
     scissor_penalty: 3

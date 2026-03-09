@@ -443,7 +443,7 @@ product,pct,,NOUN,products,,
 leader,led,,NOUN,leaders,,
 art,,,NOUN,arts,,
 support,,,NOUN,supports,,
-quality,q,,NOUN,qualities,,
+quality,cau,cau,NOUN,qualities,,
 father,fh,,NOUN,fathers,,
 media,meia,,NOUN,medias,,
 visit,vt,,VERB,visits,visited,visiting
@@ -525,7 +525,7 @@ soon,,,ADV,,,
 fall,fl,,VERB,falls,fell,falling
 someone,smn,,NOUN,someones,,
 mind,min,,NOUN,minds,,
-quite,qt,,ADV,,,
+quite,,,ADV,,,
 real,,,ADJ,,,
 top,top,,NOUN,tops,,
 connect,cont,,VERB,connects,connected,connecting
@@ -589,7 +589,7 @@ organization,ori,,NOUN,organizations,,
 decide,dci,,VERB,decides,decided,deciding
 plan,,,VERB,plans,planned,planning
 structure,stce,,NOUN,structures,,
-size,sz,,NOUN,sizes,,
+size,,,NOUN,sizes,,
 arrive,aive,,VERB,arrives,arrived,arriving
 technology,tch,,NOUN,technologies,,
 join,ji,,VERB,joins,joined,joining
@@ -943,7 +943,7 @@ cold,cod,,ADJ,,,
 daily,day,,ADV,,,
 what,,,DET,,,
 red,,,ADJ,,,
-quickly,qi,,ADV,,,
+quickly,,,ADV,,,
 officer,ofi,,NOUN,officers,,
 measure,,,NOUN,measures,,
 catch,,,VERB,catches,caught,catching
@@ -984,7 +984,7 @@ path,path,,NOUN,paths,,
 wish,wis,,VERB,wishes,wished,wishing
 rock,rck,,NOUN,rocks,,
 skill,ski,,NOUN,skills,,
-unique,uq,,ADJ,,,
+unique,unie,,ADJ,,,
 gain,gai,,VERB,gains,gained,gaining
 trail,tail,,NOUN,trails,,
 previously,peis,,ADV,,,
@@ -1139,7 +1139,7 @@ pick,pik,,VERB,picks,picked,picking
 replace,rpac,,VERB,replaces,replaced,replacing
 success,suce,,NOUN,successes,,
 south,suh,,NOUN,souths,,
-analyze,az,,VERB,analyzes,analyzed,analyzing
+analyze,anye,,VERB,analyzes,analyzed,analyzing
 mark,mak,,VERB,marks,marked,marking
 lead,,,NOUN,leads,,
 passenger,pasn,,NOUN,passengers,,
@@ -1174,14 +1174,14 @@ immediately,iy,,ADV,,,
 capture,ctue,,VERB,captures,captured,capturing
 topic,tpic,,NOUN,topics,,
 crisis,cris,,NOUN,crises,,
-requirement,rq,,NOUN,requirements,,
+requirement,remt,,NOUN,requirements,,
 shape,shap,,NOUN,shapes,,
 approximately,ax,,ADV,,,
 southern,sthr,,ADJ,,,
 glass,gls,,NOUN,glasses,,
 unit,unit,,NOUN,units,,
 deal,,,VERB,deals,dealt,dealing
-realize,rz,,VERB,realizes,realized,realizing
+realize,,,VERB,realizes,realized,realizing
 negative,ntv,,ADJ,,,
 generation,gti,,NOUN,generations,,
 aim,,,VERB,aims,aimed,aiming
@@ -1296,7 +1296,7 @@ survive,suri,,VERB,survives,survived,surviving
 own,,,VERB,owns,owned,owning
 feeling,fg,,NOUN,feelings,,
 literature,ltu,,NOUN,literatures,,
-calculate,cau,,VERB,calculates,calculated,calculating
+calculate,calte,,VERB,calculates,calculated,calculating
 comfortable,cmta,,ADJ,,,
 robot,rbt,,NOUN,robots,,
 What,,,DET,,,
@@ -1320,7 +1320,7 @@ county,cny,,NOUN,counties,,
 French,fnh,,ADJ,,,
 efficiency,efic,,NOUN,efficiencies,,
 expensive,exv,,ADJ,,,
-request,rqe,,NOUN,requests,,
+request,rust,,NOUN,requests,,
 sale,,,NOUN,sales,,
 sight,siht,,NOUN,sights,,
 television,tlv,,NOUN,televisions,,
@@ -1356,11 +1356,11 @@ thousand,thsa,,NOUN,thousands,,
 doctor,dot,,NOUN,doctors,,
 religion,rig,,NOUN,religions,,
 host,,,VERB,hosts,hosted,hosting
-square,sq,,NOUN,squares,,
+square,sua,,NOUN,squares,,
 variable,vb,,NOUN,variables,,
 strength,stnh,,NOUN,strengths,,
 selection,scto,,NOUN,selections,,
-status,sau,,NOUN,status ,,
+status,stau,,NOUN,status ,,
 wrong,wro,,ADJ,,,
 dollar,dol,,NOUN,dollars,,
 play,,,NOUN,plays,,
@@ -1438,7 +1438,7 @@ difficulty,dcy,,NOUN,difficulties,,
 crowd,cow,,NOUN,crowds,,
 certainly,ceay,,ADV,,,
 intervention,intv,,NOUN,interventions,,
-equipment,eq,,NOUN,equipment,,
+equipment,eunt,,NOUN,equipment,,
 escape,escap,,VERB,escapes,scaped,scaping
 bomb,bom,,NOUN,bombs,,
 stick,sck,,VERB,sticks,stuck,sticking
@@ -1491,7 +1491,7 @@ pain,,,NOUN,pains,,
 standard,sand,,NOUN,standards,,
 challenge,,,VERB,challenges,challenged,challenging
 brain,brai,,NOUN,brains,,
-agency,aeny,,NOUN,agencies,,
+agency,ancy,,NOUN,agencies,,
 possibility,psy,,NOUN,possibilities,,
 launch,lah,,VERB,launches,launched,launching
 gift,gft,,NOUN,gifts,,
@@ -1515,9 +1515,9 @@ whatever,what,,PRON,,,
 attach,,,VERB,attaches,attached,attaching
 ride,,,VERB,rides,rode,riding
 battle,btl,,NOUN,battles,,
-quarter,qa,,NOUN,quarters,,
+quarter,,,NOUN,quarters,,
 ancient,aniet,,ADJ,,,
-zone,z,,NOUN,zones,,
+zone,,,NOUN,zones,,
 writer,wite,,NOUN,writers,,
 surgery,sge,,NOUN,surgeries,,
 shot,,,NOUN,shots,,
@@ -1553,7 +1553,7 @@ crew,cew,,NOUN,crews,,
 variation,vati,,NOUN,variations,,
 talk,,,NOUN,talks,,
 annual,anu,,ADJ,,,
-frequently,fq,,ADV,,,
+frequently,fty,,ADV,,,
 mouth,moh,,NOUN,mouths,,
 volume,vue,,NOUN,volumes,,
 strange,stg,,ADJ,,,
@@ -1602,7 +1602,7 @@ tourism,tuis,,NOUN,tourisms,,
 biological,bioa,,ADJ,,,
 industrial,iul,,ADJ,,,
 threaten,then,,VERB,threatens,threatened,threatening
-quick,qc,,ADJ,,,
+quick,,,ADJ,,,
 western,west,,ADJ,,,
 dry,,,VERB,dries,dried,drying
 sustainable,stb,,ADJ,,,
@@ -1650,7 +1650,7 @@ intelligence,igc,,NOUN,intelligences,,
 civil,cvl,,ADJ,,,
 metal,meal,,NOUN,metals,,
 profile,pfi,,NOUN,profiles,,
-master,mter,,NOUN,masters,,
+master,mstr,,NOUN,masters,,
 drive,,,NOUN,drives,,
 port,,,NOUN,ports,,
 exposure,exsr,,NOUN,exposures,,
@@ -1682,13 +1682,13 @@ package,pke,,NOUN,packages,,
 copy,coy,,NOUN,copies,,
 observation,osra,,NOUN,observations,,
 fix,fx,,VERB,fixes,fixed,fixing
-acquire,aqe,,VERB,acquires,acquired,acquiring
+acquire,acire,,VERB,acquires,acquired,acquiring
 library,liba,,NOUN,libraries,,
 arrange,arng,,VERB,arranges,arranged,arranging
 youth,yoh,,NOUN,youths,,
 schedule,,,NOUN,schedules,,
 camera,camr,,NOUN,cameras,,
-consequence,cqe,,NOUN,consequences,,
+consequence,cons,,NOUN,consequences,,
 farm,farm,,NOUN,farms,,
 largely,lage,,ADV,,,
 identity,iey,,NOUN,identities,,
@@ -1713,13 +1713,13 @@ arrival,aivl,,NOUN,arrivals,,
 historic,hisr,,ADJ,,,
 origin,oig,,NOUN,origins,,
 hope,,,NOUN,hopes,,
-quiet,qet,,ADJ,,,
+quiet,,,ADJ,,,
 truth,truh,,NOUN,truths,,
 web,web,,NOUN,webs,,
 along,alng,,ADV,,,
 predict,prct,,VERB,predicts,predicted,predicting
 magazine,main,,NOUN,magazines,,
-evaluation,eutn,,NOUN,evaluations,,
+evaluation,evan,,NOUN,evaluations,,
 guy,,,NOUN,guys,,
 expose,exp,,VERB,exposes,exposed,exposing
 attitude,aud,,NOUN,attitudes,,
@@ -1738,7 +1738,7 @@ captain,catin,,NOUN,captains,,
 prison,pris,,NOUN,prisons,,
 properly,poy,,ADV,,,
 vision,vis,,NOUN,visions,,
-consumer,cons,,NOUN,consumers,,
+consumer,cnue,,NOUN,consumers,,
 housing,hui,,NOUN,housings,,
 voltage,vota,,NOUN,voltages,,
 defend,def,,VERB,defends,defended,defending
@@ -1841,11 +1841,11 @@ hundred,hun,,NOUN,hundreds,,
 biography,boh,,NOUN,biographies,,
 maximum,miu,,ADJ,,,
 recipe,rcip,,NOUN,recipes,,
-celebrate,celat,,VERB,celebrates,celebrated,celebrating
+celebrate,cbt,,VERB,celebrates,celebrated,celebrating
 indicator,icor,,NOUN,indicators,,
 valley,vey,,NOUN,valleys,,
 climb,cib,,VERB,climbs,climbed,climbing
-supporter,surt,,NOUN,supporters,,
+supporter,suot,,NOUN,supporters,,
 closely,csel,,ADV,,,
 frame,frme,,NOUN,frames,,
 experimental,erim,,ADJ,,,
@@ -1868,7 +1868,7 @@ clothing,cthn,,NOUN,clothings,,
 cut,,,NOUN,cuts,,
 matrix,max,,NOUN,matrices,,
 struck,srk,,VERB,strikes,struck,striking
-qualify,ql,,VERB,qualifies,qualified,qualifying
+qualify,,,VERB,qualifies,qualified,qualifying
 hurt,hur,,VERB,hurts,hurt,hurting
 plenty,pny,,NOUN,plenties,,
 wash,wash,,VERB,washes,washed,washing
@@ -1904,7 +1904,7 @@ prior,pior,,ADV,,,
 mine,,,NOUN,ours,,
 filter,fitr,,NOUN,filters,,
 disorder,diso,,NOUN,disorders,,
-enzyme,ez,,NOUN,enzymes,,
+enzyme,,,NOUN,enzymes,,
 doubt,dub,,NOUN,doubts,,
 craft,caft,,NOUN,crafts,,
 coverage,crg,,NOUN,coverages,,
@@ -1950,7 +1950,7 @@ primarily,pmr,,ADV,,,
 promise,pms,,VERB,promises,promised,promising
 stable,sabe,,ADJ,,,
 knife,kie,,NOUN,knives,,
-instrument,iuen,,NOUN,instruments,,
+instrument,itru,,NOUN,instruments,,
 effectively,ectv,,ADV,,,
 abuse,ause,,NOUN,abuses,,
 regime,rgm,,NOUN,regimes,,
@@ -1964,7 +1964,7 @@ alternative,,,ADJ,,,
 Indian,,,ADJ,,,
 hate,,,VERB,hates,hated,hating
 comment,,,VERB,comments,commented,commenting
-storm,strm,,NOUN,storms,,
+storm,stom,,NOUN,storms,,
 damage,,,VERB,damages,damaged,damaging
 classification,clsi,,NOUN,classifications,,
 storage,sage,,NOUN,storages,,
@@ -1979,7 +1979,7 @@ tank,tnk,,NOUN,tanks,,
 east,,,ADV,,,
 long-term,lgt,,NOUN,long-terms,,
 guest,gest,,NOUN,guests,,
-equal,equ,,ADJ,,,
+equal,eual,,ADJ,,,
 limitation,liao,,NOUN,limitations,,
 resolve,rov,,VERB,resolves,resolved,resolving
 beauty,bey,,NOUN,beauties,,
