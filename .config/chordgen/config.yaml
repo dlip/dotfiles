@@ -1,34 +1,53 @@
-chords_file: ~/.config/chordgen/chords.csv
-keyboard: standard
-keyboard_options:
-  directional:
-    custom_layout:
-    - _X__X__X__X__X__X__X__X_
-    - X_XX_XX_XX_XX_XX_XX_XX_X
-    - _X__X__X__X__X__X__X__X_
-    - _X__X_
-    - X_XX_X
-    - _X__X_
-    - _X__X_
-    - X_XX_X
-    - _X__X_
-    directional_change_penalty: 2
-    layout: charachorder
-    style: five_way_switch
-  standard:
-    custom_layout:
-    - _byou'"ldvw_
-    - _ciea,.htsn_
-    - _gxjk-?rmfp_
-    - ____
-    layout: custom
-    same_column_chord_penalty: 2
-    same_row_chord_penalty: 2
-    scissor_penalty: 3
-    stagger: column
-min_chord_length: 0
-min_word_length: 3
-output_options:
+gen:
+  file: ~/.config/chordgen/chords.csv
+  keyboard:
+    directional:
+      custom_layout:
+      - _X__X__X__X__X__X__X__X_
+      - X_XX_XX_XX_XX_XX_XX_XX_X
+      - _X__X__X__X__X__X__X__X_
+      - _X__X_
+      - X_XX_X
+      - _X__X_
+      - _X__X_
+      - X_XX_X
+      - _X__X_
+      directional_change_penalty: 2
+      layout: charachorder
+      style: five_way_switch
+    standard:
+      custom_layout:
+      - _byou'"ldvw_
+      - _ciea,.htsn_
+      - _gxjk-?rmfp_
+      - ____
+      layout: custom
+      same_column_chord_penalty: 2
+      same_row_chord_penalty: 2
+      scissor_penalty: 3
+      stagger: column
+    type: standard
+  min_chord_length: 0
+  min_word_length: 3
+  overwrite_alts: false
+output:
+  charachorder:
+    alt1_keys:
+    - alt
+    alt2_keys:
+    - a1
+    alt3_keys:
+    - a2
+    chord_keys: []
+    file: ~/.config/chordgen/charachorder_chords.csv
+    shift_keys:
+    - shift
+  formats:
+  - qmk
+  - zmk
+  - charachorder
+  - kanata
+  - training
   kanata:
     alt1_keys:
     - lalt
@@ -72,14 +91,14 @@ output_options:
     - ralt
   qmk:
     alt1_keys:
-    - KC_COMBO_ALT1
+    - KC_CHORD_ALT1
     alt2_keys:
-    - KC_COMBO_ALT2
+    - KC_CHORD_ALT2
     alt3_keys:
-    - KC_COMBO_ALT1
-    - KC_COMBO_ALT2
+    - KC_CHORD_ALT1
+    - KC_CHORD_ALT2
     chord_keys:
-    - KC_COMBO
+    - KC_CHORD
     file: ~/.config/chordgen/qmk_chords.def
     key_codes:
       A: KC_CTL_A
@@ -93,19 +112,19 @@ output_options:
       S: KC_ALT_S
       T: KC_GUI_T
     shift_keys:
-    - KC_COMBO_SFT
+    - KC_CHORD_SFT
   training:
     file: ~/.config/chordgen/training.txt
   zmk:
     alt1_keys:
-    - COMBO_ALT1
+    - CHORD_ALT1
     alt2_keys:
-    - COMBO_ALT2
+    - CHORD_ALT2
     alt3_keys:
-    - COMBO_ALT1
-    - COMBO_ALT2
+    - CHORD_ALT1
+    - CHORD_ALT2
     chord_keys:
-    - COMBO
+    - CHORD
     chord_timeout: 100
     chords_file: ~/.config/chordgen/zmk_chords.dtsi
     key_positions:
@@ -146,18 +165,12 @@ output_options:
       - /
       - ''
     - - ''
-      - COMBO_ALT1
-      - COMBO_ALT2
-      - COMBO_SFT
-      - COMBO
+      - CHORD_ALT1
+      - CHORD_ALT2
+      - CHORD_SFT
+      - CHORD
       - ''
     limit: 0
     macros_file: ~/.config/chordgen/zmk_macros.dtsi
     shift_keys:
-    - COMBO_SFT
-outputs:
-- qmk
-- zmk
-- kanata
-- training
-overwrite_alts: false
+    - CHORD_SFT
