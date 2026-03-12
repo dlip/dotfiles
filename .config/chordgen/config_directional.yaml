@@ -1,5 +1,5 @@
 gen:
-  file: ~/.config/chordgen/chords.csv
+  file: ~/.config/chordgen/chords_directional.csv
   keyboard:
     directional:
       custom_layout:
@@ -13,7 +13,7 @@ gen:
       - X_XX_X
       - _X__X_
       directional_change_penalty: 2
-      layout: charachorder
+      layout: stained
       style: five_way_switch
     standard:
       custom_layout:
@@ -26,7 +26,7 @@ gen:
       same_row_chord_penalty: 2
       scissor_penalty: 3
       stagger: column
-    type: standard
+    type: directional
   min_chord_length: 0
   min_word_length: 3
   overwrite_alts: false
@@ -34,11 +34,7 @@ output:
   charachorder:
     file: ~/.config/chordgen/charachorder_chords.json
   formats:
-  - qmk
   - zmk
-  - charachorder
-  - kanata
-  - training
   kanata:
     alt1_keys:
     - lalt
@@ -112,19 +108,23 @@ output:
     alt2_keys:
     - '@'
     alt3_keys:
-    - '!'
-    - '@'
+    - '%'
     chord_keys:
     - $
     chord_timeout: 100
-    chords_file: ~/.config/chordgen/zmk_chords.dtsi
+    chords_file: ~/code/zmk-harite-v3/config/zmk_chords.dtsi
     key_positions:
-    - ' _qwertyuiop_'
-    - _asdfghjkl;_
-    - _zxcvbnm,./_
-    - _!@#$_
-    limit: 0
-    macros_file: ~/.config/chordgen/zmk_macros.dtsi
-    shift_keys:
+    - ' q   f   w   o   l   u   b   z '
+    - _ _ x k y h m c i g r v p j _ _
+    - ' _   s   t   a   n   e   d   _ '
+    - '             @   $             '
+    - '            ! % # _            '
+    - '             _   _             '
+    - '             _   _             '
+    - '            _ _ _ _            '
+    - '             _   _             '
+    limit: 200
+    macros_file: ~/code/zmk-harite-v3/config/zmk_macros.dtsi
+    shift_keys: []
+    shifted_chord_keys:
     - '#'
-    shifted_chord_keys: []
