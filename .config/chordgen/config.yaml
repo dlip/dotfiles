@@ -119,12 +119,12 @@ output:
     chord_timeout: 100
     chords_file: ~/.config/chordgen/zmk_chords.dtsi
     key_positions:
-    - ' _qwertyuiop_'
+    - _qwertyuiop_
     - _asdfghjkl;_
     - _zxcvbnm,./_
     - _!@#$_
     limit: 0
     macros_file: ~/.config/chordgen/zmk_macros.dtsi
-    shift_keys:
+    shifted_chord_keys:
+    - $
     - '#'
-    shifted_chord_keys: []

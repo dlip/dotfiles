@@ -125,6 +125,5 @@ output:
     - '             _   _             '
     limit: 200
     macros_file: ~/code/zmk-harite-v3/config/zmk_macros.dtsi
-    shift_keys: []
     shifted_chord_keys:
     - '#'
