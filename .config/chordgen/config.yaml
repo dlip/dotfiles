@@ -13,19 +13,32 @@ gen:
       - X_XX_X
       - _X__X_
       directional_change_penalty: 2
+      effort_map:
+      - '040030020020'
+      - '695594493493'
+      - '030020010010'
+      - '030'
+      - '192'
+      - '040'
+      - '030'
+      - '192'
+      - '040'
       layout: charachorder
-      style: five_way_switch
     standard:
       custom_layout:
       - _byou'"ldvw_
       - _ciea,.htsn_
       - _gxjk-?rmfp_
       - ____
+      effort_map:
+      - '965447'
+      - '732116'
+      - '865536'
+      - '43'
       layout: custom
       same_column_chord_penalty: 2
       same_row_chord_penalty: 2
       scissor_penalty: 3
-      stagger: column
     type: standard
   min_chord_length: 0
   min_word_length: 3
@@ -50,9 +63,8 @@ output:
     chord_keys:
     - prtsc
     chord_timeout: 100
-    file: ~/.config/chordgen/kanata_chords.kbd
+    file: ~/nix/keymaps/kanata/chords.kbd
     key_mapping:
-      ' ': spc
       a: d
       b: tab
       c: caps
@@ -78,7 +90,8 @@ output:
       x: z
       y: q
     limit: 0
-    shift_keys:
+    shifted_chord_keys:
+    - prtsc
     - ralt
   qmk:
     alt1_keys:
@@ -102,7 +115,8 @@ output:
       N: KC_SFT_N
       S: KC_ALT_S
       T: KC_GUI_T
-    shift_keys:
+    shifted_chord_keys:
+    - KC_CHORD
     - KC_CHORD_SFT
   training:
     file: ~/.config/chordgen/training.txt
