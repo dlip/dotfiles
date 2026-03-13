@@ -186,7 +186,7 @@ member,mr,,NOUN,members,,
 side,sie,,NOUN,sides,,
 us,,,PRON,,,
 about,ao,,ADV,,,
-method,met,,NOUN,methods,,
+method,mth,,NOUN,methods,,
 book,bk,,NOUN,books,,
 point,pn,,NOUN,points,,
 hand,hn,,NOUN,hands,,
@@ -232,7 +232,7 @@ build,bu,,VERB,builds,built,building
 often,ote,,ADV,,,
 believe,bl,,VERB,believes,believed,believing
 end,end,,NOUN,ends,,
-offer,oer,,VERB,offers,offered,offering
+offer,ofe,,VERB,offers,offered,offering
 dog,do,,NOUN,dogs,,
 death,dea,,NOUN,deaths,,
 person,pes,,NOUN,people,,
@@ -276,7 +276,7 @@ turn,tu,,VERB,turns,turned,turning
 although,ath,,SCONJ,,,
 value,va,,NOUN,values,,
 involve,io,,VERB,involves,involved,involving
-month,mth,,NOUN,months,,
+month,mnt,,NOUN,months,,
 road,roa,,NOUN,roads,,
 talk,tak,,VERB,talks,talked,talking
 use,,,NOUN,uses,,
@@ -363,11 +363,11 @@ once,onc,,ADV,,,
 accord,aco,,SCONJ,,,
 less,les,les,ADV,,,
 locate,lca,,VERB,locates,located,locating
-role,,,NOUN,roles,,
+role,roe,roe,NOUN,roles,,
 though,thu,,SCONJ,,,
 land,lan,,NOUN,lands,,
 first,,,ADV,,,
-meet,,,VERB,meets,met,meeting
+meet,met,met,VERB,meets,met,meeting
 until,un,,SCONJ,,,
 send,snd,,VERB,sends,sent,sending
 today,toa,,NOUN,todays,,
@@ -573,7 +573,7 @@ class,clas,,NOUN,classes,,
 state,,,VERB,states,stated,stating
 share,sha,,VERB,shares,shared,sharing
 temperature,teu,,NOUN,temperatures,,
-effort,efo,,NOUN,efforts,,
+effort,efrt,,NOUN,efforts,,
 whole,who,,ADJ,,,
 sell,,,VERB,sells,sold,selling
 security,scr,,NOUN,securities,,
@@ -686,7 +686,7 @@ series,seri,,NOUN,series,,
 clear,clea,,ADJ,,,
 indicate,inae,,VERB,indicates,indicated,indicating
 boy,boy,,NOUN,boys,,
-treatment,tmn,,NOUN,treatments,,
+treatment,tran,,NOUN,treatments,,
 test,,,NOUN,tests,,
 author,auh,,NOUN,authors,,
 achieve,ahie,,VERB,achieves,achieved,achieving
@@ -1057,7 +1057,7 @@ completely,cty,,ADV,,,
 visit,,,NOUN,visits,,
 cross,cros,,VERB,crosses,crossed,crossing
 paint,,,VERB,paints,painted,painting
-transport,tran,,NOUN,transports,,
+transport,taso,,NOUN,transports,,
 flower,fwe,,NOUN,flowers,,
 nearly,nay,,ADV,,,
 Q,,,NOUN,Qs,,
@@ -1366,7 +1366,7 @@ dollar,dol,,NOUN,dollars,,
 play,,,NOUN,plays,,
 node,node,,NOUN,nodes,,
 income,incm,,NOUN,incomes,,
-association,asot,,NOUN,associations,,
+association,asoi,,NOUN,associations,,
 adult,adu,,NOUN,adults,,
 prefer,prf,,VERB,prefers,preferred,preferring
 screen,scrn,,NOUN,screens,,
@@ -1475,7 +1475,7 @@ mental,ment,,ADJ,,,
 repeat,repat,,VERB,repeats,repeated,repeating
 publication,pua,,NOUN,publications,,
 science,scin,,NOUN,sciences,,
-forget,fret,,VERB,forgets,forgot,forgetting
+forget,fgt,,VERB,forgets,forgot,forgetting
 damage,dage,,NOUN,damages,,
 reply,repy,,VERB,replies,replied,replying
 leave,,,NOUN,leaves,,
@@ -1494,7 +1494,7 @@ brain,brn,,NOUN,brains,,
 agency,aecy,,NOUN,agencies,,
 possibility,pbt,,NOUN,possibilities,,
 launch,lnh,,VERB,launches,launched,launching
-gift,gft,,NOUN,gifts,,
+gift,gift,,NOUN,gifts,,
 finding,,,NOUN,findings,,
 root,,,NOUN,roots,,
 German,gem,,ADJ,,,
@@ -1680,7 +1680,7 @@ politician,pota,,NOUN,politicians,,
 i,,,PRON,,,
 package,pke,,NOUN,packages,,
 copy,coy,,NOUN,copies,,
-observation,osai,,NOUN,observations,,
+observation,oset,,NOUN,observations,,
 fix,fx,,VERB,fixes,fixed,fixing
 acquire,auie,,VERB,acquires,acquired,acquiring
 library,liy,,NOUN,libraries,,
@@ -1845,7 +1845,7 @@ celebrate,cbt,,VERB,celebrates,celebrated,celebrating
 indicator,incr,,NOUN,indicators,,
 valley,vey,,NOUN,valleys,,
 climb,clm,,VERB,climbs,climbed,climbing
-supporter,sote,,NOUN,supporters,,
+supporter,suot,,NOUN,supporters,,
 closely,csey,,ADV,,,
 frame,frme,,NOUN,frames,,
 experimental,exra,,ADJ,,,
