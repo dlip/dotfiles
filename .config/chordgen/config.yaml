@@ -103,7 +103,7 @@ output:
     - KC_CHORD_ALT2
     chord_keys:
     - KC_CHORD
-    file: ~/code/qmk_firmware/keyboards/dlip/koumori/keymaps/engram/chords.def:7052
+    file: ~/code/qmk_firmware/keyboards/dlip/koumori/keymaps/engram/chords.def
     key_codes:
       A: KC_CTL_A
       C: KC_SFT_C
