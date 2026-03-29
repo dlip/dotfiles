@@ -283,7 +283,8 @@ environment {
 }
 
 switch-events {
-    lid-close { spawn "bash" "-c" "[ $(niri msg --json outputs | jq 'length') -eq 1 ] && sway-lock-screen"; }
+    lid-close { spawn "loginctl" "lock-session"; }
+//    lid-close { spawn "bash" "-c" "[ $(niri msg --json outputs | jq 'length') -eq 1 ] && sway-lock-screen"; }
 }
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.

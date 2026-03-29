@@ -139,22 +139,7 @@ in
     DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = "1"; # Fixes libicu error in osu!
   };
 
-  # services = {
-  #   gnome.gnome-keyring.enable = true;
-  #   upower.enable = true;
-
-  #   dbus = {
-  #     enable = true;
-  #     packages = [pkgs.dconf];
-  #   };
-  #   xserver = {
-  #     enable = true;
-  #     layout = "us";
-  #     # Enable touchpad support (enabled default in most desktopManager).
-  #     libinput.enable = true;
-  #     libinput.touchpad.disableWhileTyping = true;
-  #   };
-  # };
+    services.upower.enable = true;
 
   services.gvfs = {
     enable = true;

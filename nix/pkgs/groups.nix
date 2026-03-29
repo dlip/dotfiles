@@ -1,7 +1,19 @@
 { pkgs, ... }:
 with pkgs;
 let
-  default = [
+  lsp = [
+    gopls
+    lua-language-server
+    markdownlint-cli2
+    marksman
+    nixd
+    nixfmt
+    ruff
+    rust-analyzer
+    shfmt
+    stylua
+  ];
+  default = lsp ++ [
     bash
     bat
     bc
@@ -10,6 +22,7 @@ let
     dig
     direnv
     entr
+    fastfetch
     fd
     findutils
     fontconfig
@@ -21,7 +34,6 @@ let
     gnugrep
     gnumake
     gnused
-    gopls
     gotop
     htop
     iconv
@@ -29,16 +41,10 @@ let
     killall
     lazygit
     lsd
-    lua-language-server
-    markdownlint-cli2
-    marksman
     ncdu
     ncurses
-    neofetch
     neovim
     nettools
-    nil
-    nixfmt
     nmap
     openssh_gssapi
     p7zip
@@ -46,16 +52,12 @@ let
     prettier
     pyright
     ripgrep
-    ruff
-    rust-analyzer
-    shfmt
     sops
     speedread
     sqlite
     sshfs
     stack
     starship
-    stylua
     tcpdump
     tmux
     tree
@@ -125,6 +127,7 @@ let
     eksctl
     evtest
     exiv2
+    f3
     ffmpeg
     file
     fluxcd
@@ -261,7 +264,6 @@ let
     gparted
     gramps
     hakuneko
-    helvum
     inkscape
     # kdePackages.kdenlive
     keyd
