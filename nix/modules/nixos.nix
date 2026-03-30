@@ -2,9 +2,31 @@
   withSystem,
   inputs,
   config,
+  self,
   ...
 }:
+let
+  mkHost =
+    {
+      name,
+      system ? "x86_64-linux",
+    }:
+    {
+      ${name} = inputs.nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          (import ../systems/${name}/configuration.nix self)
+          {
+            nixpkgs.pkgs = withSystem system ({ pkgs, ... }: pkgs);
+          }
+        ];
+      };
+
+    };
+in
 {
+  flake.modules.nixos.hosts_x = (import ../systems/x/configuration.nix self);
   flake.nixosConfigurations = {
     dex = inputs.nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
@@ -14,14 +36,6 @@
         {
           nixpkgs.pkgs = withSystem system ({ pkgs, ... }: pkgs);
         }
-      ];
-    };
-    x = inputs.nixpkgs.lib.nixosSystem rec {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      pkgs = withSystem system ({ pkgs, ... }: pkgs);
-      modules = [
-        config.flake.modules.nixos.hosts_x
       ];
     };
     ptv = inputs.nixpkgs.lib.nixosSystem rec {
@@ -34,5 +48,6 @@
         }
       ];
     };
-  };
+  }
+  // (mkHost { name = "x"; });
 }
