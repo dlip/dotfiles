@@ -1,4 +1,4 @@
-{
+top@{
   withSystem,
   inputs,
   config,
@@ -16,7 +16,7 @@ let
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          (import ../systems/${name}/configuration.nix self)
+          (import ../systems/${name}/configuration.nix top)
           {
             nixpkgs.pkgs = withSystem system ({ pkgs, ... }: pkgs);
           }
@@ -27,16 +27,6 @@ let
 in
 {
   flake.nixosConfigurations = {
-    dex = inputs.nixpkgs.lib.nixosSystem rec {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules = [
-        ../systems/dex/configuration.nix
-        {
-          nixpkgs.pkgs = withSystem system ({ pkgs, ... }: pkgs);
-        }
-      ];
-    };
     ptv = inputs.nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
@@ -48,5 +38,6 @@ in
       ];
     };
   }
-  // (mkHost { name = "x"; });
+  // (mkHost { name = "x"; })
+  // (mkHost { name = "dex"; });
 }

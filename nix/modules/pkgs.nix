@@ -27,7 +27,6 @@
           # poetry2nix.overlay
           # packages
           (final: prev: {
-            inherit (inputs) sops-nix niri-flake;
             # actualServer = final.callPackage ../pkgs/actualServer {
             #   src = actual-server;
             #   nodejs = final.nodejs-16_x;

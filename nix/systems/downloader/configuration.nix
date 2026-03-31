@@ -1,3 +1,4 @@
+{ inputs, ... }:
 {
   pkgs,
   ...
@@ -9,7 +10,7 @@ in
   imports = [
     # ../common/services/qbittorrent.nix
     ../common/services/ssmtp.nix
-    pkgs.sops-nix.nixosModules.default
+    inputs.sops-nix.nixosModules.sops
   ];
 
   nixpkgs.config.allowUnfree = true;
