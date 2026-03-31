@@ -26,7 +26,6 @@ let
     };
 in
 {
-  flake.modules.nixos.hosts_x = (import ../systems/x/configuration.nix self);
   flake.nixosConfigurations = {
     dex = inputs.nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
