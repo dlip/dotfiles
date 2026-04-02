@@ -56,7 +56,7 @@ in
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Set your time zone.
-  time.timeZone = "Australia/Sydney";
+  # time.timeZone = "Australia/Sydney";
 
   i18n.inputMethod = {
     enable = true;
@@ -139,7 +139,9 @@ in
     DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = "1"; # Fixes libicu error in osu!
   };
 
-    services.upower.enable = true;
+  services.upower.enable = true;
+  services.localtimed.enable = true;
+  services.geoclue2.enable = true;
 
   services.gvfs = {
     enable = true;
