@@ -16,6 +16,10 @@
       "rev": "841c6d4139aedb8a3f2baf30cef5327371385b93",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
+    "nvim-tmux-navigation": {
+      "rev": "4898c98702954439233fdaf764c39636681e2861",
+      "src": "https://github.com/alexghergh/nvim-tmux-navigation"
+    },
     "nvim-treesitter": {
       "rev": "0e0db770f2a3691fae478798342f4ac431accefd",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"

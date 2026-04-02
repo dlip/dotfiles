@@ -11,19 +11,39 @@
 -- An example helper to create a Normal mode mapping
 local nmap = function(lhs, rhs, desc)
   -- See `:h vim.keymap.set()`
-  vim.keymap.set('n', lhs, rhs, { desc = desc })
+  vim.keymap.set("n", lhs, rhs, { desc = desc })
 end
 
 -- Paste linewise before/after current line
 -- Usage: `yiw` to yank a word and `]p` to put it on the next line.
-nmap('[p', '<Cmd>exe "iput! " . v:register<CR>', 'Paste Above')
-nmap(']p', '<Cmd>exe "iput "  . v:register<CR>', 'Paste Below')
+nmap("[p", '<Cmd>exe "iput! " . v:register<CR>', "Paste Above")
+nmap("]p", '<Cmd>exe "iput "  . v:register<CR>', "Paste Below")
 
+local map = vim.keymap.set
+map("n", "<cr>", "<cmd>:wa<cr>", { desc = "Write all", remap = true })
+map("x", "y", "y`]", { desc = "Yank without moving cursor", remap = true })
+map("x", "p", "P", { desc = "Paste without yank", remap = true })
+-- map("n", "x", '"_x', { desc = "Delete without yank", remap = true })
+map("n", "<bs>", '"_X', { desc = "Backspace without yank", remap = true })
+map("n", "ga", "<c-6>", { desc = "Open alternate file", remap = true })
+map("n", "U", "<c-r>", { desc = "Redo", remap = true })
+-- map("n", "<leader>a", "<cmd>Telescope frecency workspace=CWD<cr>", { desc = "Telescope frecency" })
+map("n", "<leader>y", "<cmd>let @+=expand('%').':'.line('.')<CR>", { desc = "Yank relative filename with line" })
+map("n", "<leader>Y", "<cmd>let @+=expand('%:p')<CR>", { desc = "Yank absolute filename" })
+-- map("n", "<leader>r", LazyVim.pick("live_grep"), { desc = "Grep (Root Dir)" })
+-- map("n", "<leader>gC", "<cmd>Telescope git_bcommits<Cr>", { desc = "Buffer commits" })
+-- map("n", "<leader>gi", "<cmd>DiffviewFileHistory<Cr>", { desc = "Diffview history" })
+-- map("n", "<leader>gI", "<cmd>DiffviewFileHistory %<Cr>", { desc = "Diffview history (buffer)" })
+map("n", "<C-Left>", "<Cmd>NvimTmuxNavigateLeft<CR>", { desc = "NvimTmuxNavigateLeft", remap = true })
+map("n", "<C-Down>", "<Cmd>NvimTmuxNavigateDown<CR>", { desc = "NvimTmuxNavigateDown", remap = true })
+map("n", "<C-Up>", "<Cmd>NvimTmuxNavigateUp<CR>", { desc = "NvimTmuxNavigateUp", remap = true })
+map("n", "<C-Right>", "<Cmd>NvimTmuxNavigateRight<CR>", { desc = "NvimTmuxNavigateRight", remap = true })
 -- Many general mappings are created by 'mini.basics'. See 'plugin/30_mini.lua'
 
 -- stylua: ignore start
 -- The next part (until `-- stylua: ignore end`) is aligned manually for easier
 -- reading. Consider preserving this or remove `-- stylua` lines to autoformat.
+
 
 -- Leader mappings ============================================================
 
@@ -152,6 +172,7 @@ nmap_leader('fr', '<Cmd>Pick resume<CR>',                       'Resume')
 nmap_leader('fR', '<Cmd>Pick lsp scope="references"<CR>',       'References (LSP)')
 nmap_leader('fs', pick_workspace_symbols_live,                  'Symbols workspace (live)')
 nmap_leader('fS', '<Cmd>Pick lsp scope="document_symbol"<CR>',  'Symbols document')
+nmap_leader('ft', '<Cmd>Pick files tool="git"<CR>',              'Files (Git)')
 nmap_leader('fv', '<Cmd>Pick visit_paths cwd=""<CR>',           'Visit paths (all)')
 nmap_leader('fV', '<Cmd>Pick visit_paths<CR>',                  'Visit paths (cwd)')
 

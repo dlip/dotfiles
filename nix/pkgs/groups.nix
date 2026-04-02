@@ -12,6 +12,7 @@ let
     rust-analyzer
     shfmt
     stylua
+    tree-sitter
   ];
   default = lsp ++ [
     bash
