@@ -563,7 +563,7 @@ end)
 -- - `:h MiniJump2d.gen_spotter` - list of available spotters
 later(function()
   require("mini.jump2d").setup({ mappings = {
-    start_jumping = "<Tab>",
+    start_jumping = "<C-j>",
   } })
 end)
 
@@ -708,7 +708,11 @@ end)
 --   Execute one either with Lua function, `:Pick <picker-name>` command, or
 --   one of `<Leader>f` mappings defined in 'plugin/20_keymaps.lua'
 later(function()
-  require("mini.pick").setup()
+  require("mini.pick").setup({
+    windows = {
+      width_preview = 50,
+    },
+  })
 end)
 
 -- Manage and expand snippets (templates for a frequently used text).
@@ -911,6 +915,14 @@ later(function()
       source = {
         name = is_git and "Git files (frecency)" or "Files (frecency)",
         items = items,
+
+        match = function(stritems, inds, query)
+          local prompt_pattern = vim.pesc(table.concat(query))
+          local f = function(i)
+            return stritems[i]:find(prompt_pattern) ~= nil
+          end
+          return vim.tbl_filter(f, inds)
+        end,
       },
     })
   end
