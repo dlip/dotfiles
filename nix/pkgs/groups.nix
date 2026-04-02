@@ -174,10 +174,10 @@ let
     nix-index
     nix-init
     # nodePackages.node2nix
-    nodePackages.pnpm
-    nodePackages.quicktype
-    nodePackages.reveal-md
-    nodePackages.typescript
+    # nodePackages.pnpm
+    # nodePackages.quicktype
+    # nodePackages.reveal-md
+    # nodePackages.typescript
     nodejs
     notify
     notify-desktop

@@ -8,6 +8,9 @@
   modulesPath,
   ...
 }:
+let
+  cifsOptions = "uid=1000,gid=100,x-systemd.automount,noauto,nofail,soft,timeo=100,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,credentials=/etc/nixos/smb-secrets";
+in
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -45,28 +48,28 @@
     device = "//10.10.0.123/media";
     fsType = "cifs";
     options = [
-      "uid=1000,gid=100,x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,credentials=/etc/nixos/smb-secrets"
+      cifsOptions
     ];
   };
   fileSystems."/media/media2" = {
     device = "//10.10.0.123/media2";
     fsType = "cifs";
     options = [
-      "uid=1000,gid=100,x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,credentials=/etc/nixos/smb-secrets"
+      cifsOptions
     ];
   };
   fileSystems."/media/personal" = {
     device = "//10.10.0.123/personal";
     fsType = "cifs";
     options = [
-      "uid=1000,gid=100,x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,credentials=/etc/nixos/smb-secrets"
+      cifsOptions
     ];
   };
   fileSystems."/media/games" = {
     device = "//10.10.0.123/games";
     fsType = "cifs";
     options = [
-      "uid=1000,gid=100,x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,credentials=/etc/nixos/smb-secrets"
+      cifsOptions
     ];
   };
 

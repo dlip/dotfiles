@@ -380,7 +380,7 @@ window-rule {
 }
 
 window-rule {
-    match app-id="obsidian"
+    match app-id="electron"
     open-on-workspace "notes"
 }
 
