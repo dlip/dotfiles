@@ -859,9 +859,58 @@ later(function()
       source = {
         name = "Visited files (frecency)",
         items = items,
-        choose = function(item)
-          vim.cmd("edit " .. item.path)
-        end,
+      },
+    })
+  end
+
+  local visits = require("mini.visits")
+
+  MiniPick.registry.smart_files = function()
+    local cwd = vim.fn.getcwd()
+
+    -- 1. Detect git repo
+    local is_git = vim.fn.system("git rev-parse --is-inside-work-tree 2>/dev/null"):match("true")
+
+    local files = {}
+
+    if is_git then
+      -- include tracked + untracked (but not ignored)
+      files = vim.fn.systemlist("git ls-files --cached --others --exclude-standard")
+    else
+      -- fallback: ripgrep (fast)
+      files = vim.fn.systemlist("rg --files --hidden --follow 2>/dev/null")
+    end
+
+    -- 2. Build frecency ranking from mini.visits
+    local visit_order = {}
+    local visit_paths = visits.list_paths(cwd, {
+      sort = visits.gen_sort.default({ recency_weight = 1 }),
+    })
+
+    for i, path in ipairs(visit_paths) do
+      visit_order[vim.fn.fnamemodify(path, ":p")] = i
+    end
+
+    -- 3. Sort files by frecency
+    table.sort(files, function(a, b)
+      local pa = vim.fn.fnamemodify(cwd .. "/" .. a, ":p")
+      local pb = vim.fn.fnamemodify(cwd .. "/" .. b, ":p")
+
+      return (visit_order[pa] or math.huge) < (visit_order[pb] or math.huge)
+    end)
+
+    -- 4. Convert to picker items
+    local items = vim.tbl_map(function(path)
+      return {
+        text = path,
+        path = cwd .. "/" .. path,
+      }
+    end, files)
+
+    MiniPick.start({
+      source = {
+        name = is_git and "Git files (frecency)" or "Files (frecency)",
+        items = items,
       },
     })
   end
