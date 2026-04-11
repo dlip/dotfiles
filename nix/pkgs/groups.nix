@@ -308,7 +308,7 @@ let
     alvr
     bottles
     cdecrypt
-    cemu
+    # cemu
     gamemode
     heroic
     igir
