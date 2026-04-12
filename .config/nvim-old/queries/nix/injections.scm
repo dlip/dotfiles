@@ -1,0 +1,1 @@
+/nix/store/v1brcqjx0l4v5kf8bcx3fgxmhym0wq1j-home-manager-files/.config/nvim/queries/nix/injections.scm
