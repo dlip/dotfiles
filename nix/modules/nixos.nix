@@ -13,7 +13,7 @@ let
     }:
     {
       ${name} = inputs.nixpkgs.lib.nixosSystem rec {
-        system = "x86_64-linux";
+        inherit system;
         specialArgs = { inherit inputs; };
         modules = [
           (import ../systems/${name}/configuration.nix top)

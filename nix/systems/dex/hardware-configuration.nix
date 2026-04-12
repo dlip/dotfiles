@@ -109,21 +109,25 @@
   };
   fileSystems."/d" = {
     device = "/media/media";
+    fsType = "none";
     options = [ "bind" ];
   };
 
   fileSystems."/f" = {
     device = "/media/media2";
+    fsType = "none";
     options = [ "bind" ];
   };
 
   fileSystems."/audiobooks" = {
     device = "/media/media/audiobooks";
+    fsType = "none";
     options = [ "bind" ];
   };
 
   fileSystems."/podcasts" = {
     device = "/media/media/podcasts";
+    fsType = "none";
     options = [ "bind" ];
   };
 

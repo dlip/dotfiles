@@ -375,7 +375,7 @@ rec {
     ephemeral = true;
     autoStart = true;
     enableTun = true;
-    config = import ../downloader/configuration.nix {
+    config = import ../downloader/configuration.nix top {
       inherit pkgs config;
     };
     privateNetwork = true;
