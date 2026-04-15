@@ -119,6 +119,7 @@ let
     cargo-wasi
     cheat
     clang-tools
+    claude-code
     delve
     deno
     difftastic
@@ -184,6 +185,7 @@ let
     notify-desktop
     ns-usbloader
     nushell
+    opencode
     openssl
     openvpn
     pandoc

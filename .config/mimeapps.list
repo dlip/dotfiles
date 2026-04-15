@@ -61,5 +61,6 @@ application/octet-stream=neovide.desktop
 application/vnd.rar=org.gnome.FileRoller.desktop
 x-scheme-handler/discord-712465656758665259=discord-712465656758665259.desktop
 image/vnd.dxf=org.inkscape.Inkscape.desktop
+x-scheme-handler/claude-cli=claude-code-url-handler.desktop
 
 [Removed Associations]

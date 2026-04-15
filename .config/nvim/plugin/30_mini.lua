@@ -236,8 +236,10 @@ now_if_args(function()
   require("mini.files").setup({
     windows = { preview = true },
     mappings = {
-      go_in_plus = "<Right>",
-      go_out = "<Left>",
+      reset = "<C-r>",
+      close = "<ESC>",
+      go_in_plus = "<CR>",
+      go_out = "<BS>",
     },
     windows = {
       preview = true,
