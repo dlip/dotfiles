@@ -19,6 +19,9 @@
         enable = true;
         systemd.enable = true;
       };
+      environment.sessionVariables = {
+        QS_DISABLE_CRASH_HANDLER = "1";
+      };
 
       # environment.sessionVariables = {
       #   DMS_MODAL_LAYER = "overlay";
