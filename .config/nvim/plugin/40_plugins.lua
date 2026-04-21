@@ -116,7 +116,7 @@ now_if_args(function()
     "nil_ls",
     "nixd",
     -- python
-    "pyright",
+    "basedpyright",
     "ruff",
     -- markdown
     "ltex",
@@ -201,10 +201,16 @@ end)
 -- If you need them to work elsewhere, consider using other package managers.
 --
 -- You can use it like so:
--- now_if_args(function()
---   add({ 'https://github.com/mason-org/mason.nvim' })
---   require('mason').setup()
--- end)
+now_if_args(function()
+  add({ "https://github.com/mason-org/mason.nvim" })
+  require("mason").setup()
+end)
+
+later(function()
+  add({ "https://github.com/j-hui/fidget.nvim" })
+
+  require("fidget").setup()
+end)
 
 -- Beautiful, usable, well maintained color schemes outside of 'mini.nvim' and
 -- have full support of its highlight groups. Use if you don't like 'miniwinter'
