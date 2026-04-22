@@ -19,5 +19,26 @@
     {
         "key": "alt+4",
         "command": "workbench.action.focusAuxiliaryBar"
+    },
+    {
+        "key": "cmd+left",
+        "command": "workbench.action.navigateBack",
+        "when": "canNavigateBack",
+        "isAIItem": false
+    },
+    {
+        "key": "ctrl+-",
+        "command": "-workbench.action.navigateBack",
+        "when": "canNavigateBack"
+    },
+    {
+        "key": "cmd+right",
+        "command": "workbench.action.navigateForward",
+        "when": "canNavigateForward"
+    },
+    {
+        "key": "ctrl+shift+-",
+        "command": "-workbench.action.navigateForward",
+        "when": "canNavigateForward"
     }
 ]

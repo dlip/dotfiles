@@ -1,79 +1,130 @@
 {
-    "AI.rules.importClaudeMd": true,
-    "chat.useClaudeSkills": true,
-    "AI.toolcall.v2.command.allowList": "[\"mv\",\"grep\"]",
-    "search.exclude": {
-        "**/node_modules": true,
-        "**/bower_components": true,
-        "**/*.code-search": true,
-        "**/.eden-mono": true
-    },
-    "extensions.supportUntrustedWorkspaces": {
-      "byted-ide.dev-environment-manager": {
-        "supported": true
-      }
-    },
-    "remote.extensionKind": {
-        "alefragnani.project-manager": [
-            "workspace"
-        ]
-    },
-    "remote.SSH.defaultExtensions": [
-        "byted-ide.gallery"
-    ],
+  "editor.formatOnSave": true,
+  "editor.smoothScrolling": true,
+  "projectManager.git.baseFolders": [
+    "$home/code"
+  ],
+  "AI.rules.importClaudeMd": true,
+  "chat.useClaudeSkills": true,
+  "AI.toolcall.v2.command.allowList": "[\"mv\",\"grep\"]",
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "**/.eden-mono": true
+  },
+  "extensions.supportUntrustedWorkspaces": {
+    "byted-ide.dev-environment-manager": {
+      "supported": true
+    }
+  },
+  "remote.extensionKind": {
+    "alefragnani.project-manager": [
+      "workspace"
+    ]
+  },
+  "remote.SSH.defaultExtensions": [
+    "byted-ide.gallery"
+  ],
   "vim.easymotion": true,
   "vim.incsearch": true,
   "vim.useSystemClipboard": true,
-  "vim.useCtrlKeys": true,
+  "vim.useCtrlKeys": false,
   "vim.hlsearch": true,
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "before": ["<leader>", "d"],
-      "after": ["d", "d"]
+      "before": [
+        "<leader>",
+        "d"
+      ],
+      "after": [
+        "d",
+        "d"
+      ]
     },
     {
-      "before": ["<ESC>"],
-      "commands": [":nohl"]
+      "before": [
+        "<leader>",
+        "w",
+        "s"
+      ],
+      "commands": [
+        ":split"
+      ]
     },
     {
-      "before": ["<TAB>"],
-      "commands": ["workbench.action.quickOpenPreviousRecentlyUsedEditor"]
+      "before": [
+        "<leader>",
+        "w",
+        "v"
+      ],
+      "commands": [
+        ":vsplit"
+      ]
     },
     {
-      "before": ["<CR>"],
-      "commands": [":wa"]
+      "before": [
+        "<ESC>"
+      ],
+      "commands": [
+        ":nohl"
+      ]
     },
     {
-      "before": ["K"],
-      "commands": ["lineBreakInsert"],
+      "before": [
+        "<TAB>"
+      ],
+      "after": [
+        "<leader>",
+        "<leader>",
+        "s"
+      ]
+    },
+    {
+      "before": [
+        "<CR>"
+      ],
+      "commands": [
+        ":wa"
+      ]
+    },
+    {
+      "before": [
+        "K"
+      ],
+      "commands": [
+        "lineBreakInsert"
+      ],
       "silent": true
     },
     {
-      "before": ["<leader>", "f", "b"],
-      "commands": ["workbench.action.showAllEditorsByMostRecentlyUsed"],
+      "before": [
+        "<leader>",
+        "f",
+        "b"
+      ],
+      "commands": [
+        "workbench.action.showAllEditorsByMostRecentlyUsed"
+      ],
       "silent": true
     }
   ],
   "vim.leader": "<space>",
-  "vim.handleKeys": {
-    "<C-a>": false,
-    "<C-f>": false
-  },
   // To improve performance
   "extensions.experimental.affinity": {
     "vscodevim.vim": 1
-},
-"extensionSync": [
-  "alefragnani.project-manager",
-  "byted-ide.gallery",
-  "e4mi.extension-sync",
-  "eamodio.gitlens",
-  "jnoortheen.nix-ide",
-  "ms-python.debugpy",
-  "ms-python.python",
-  "ms-python.vscode-pylance",
-  "ms-python.vscode-python-envs"
-],
-"workbench.colorTheme": "Catppuccin Macchiato",
-"workbench.iconTheme": "catppuccin-macchiato"
+  },
+  "extensionSync": [
+    "alefragnani.project-manager",
+    "byted-ide.gallery",
+    "e4mi.extension-sync",
+    "eamodio.gitlens",
+    "jnoortheen.nix-ide",
+    "ms-python.debugpy",
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "ms-python.vscode-python-envs"
+  ],
+  "workbench.colorTheme": "Catppuccin Macchiato",
+  "workbench.iconTheme": "catppuccin-macchiato"
 }
