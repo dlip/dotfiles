@@ -1,0 +1,23 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "alt+2",
+        "command": "terminal.focus"
+    },
+    {
+        "key": "alt+1",
+        "command": "workbench.action.focusActiveEditorGroup"
+    },
+    {
+        "key": "alt+3",
+        "command": "workbench.action.focusSideBar"
+    },
+    {
+        "key": "cmd+0",
+        "command": "-workbench.action.focusSideBar"
+    },
+    {
+        "key": "alt+4",
+        "command": "workbench.action.focusAuxiliaryBar"
+    }
+]
