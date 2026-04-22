@@ -9,9 +9,9 @@
         "**/.eden-mono": true
     },
     "extensions.supportUntrustedWorkspaces": {
-        "byted-ide.dev-environment-manager": {
-            "supported": true
-        }
+      "byted-ide.dev-environment-manager": {
+        "supported": true
+      }
     },
     "remote.extensionKind": {
         "alefragnani.project-manager": [
@@ -64,14 +64,16 @@
     "vscodevim.vim": 1
 },
 "extensionSync": [
-    "alefragnani.project-manager",
-    "byted-ide.gallery",
-    "e4mi.extension-sync",
-    "eamodio.gitlens",
-    "jnoortheen.nix-ide",
-    "ms-python.debugpy",
-    "ms-python.python",
-    "ms-python.vscode-pylance",
-    "ms-python.vscode-python-envs"
-]
+  "alefragnani.project-manager",
+  "byted-ide.gallery",
+  "e4mi.extension-sync",
+  "eamodio.gitlens",
+  "jnoortheen.nix-ide",
+  "ms-python.debugpy",
+  "ms-python.python",
+  "ms-python.vscode-pylance",
+  "ms-python.vscode-python-envs"
+],
+"workbench.colorTheme": "Catppuccin Macchiato",
+"workbench.iconTheme": "catppuccin-macchiato"
 }
