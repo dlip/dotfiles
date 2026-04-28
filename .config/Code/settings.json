@@ -4,9 +4,8 @@
   "projectManager.git.baseFolders": [
     "$home/code"
   ],
-  "AI.rules.importClaudeMd": true,
   "chat.useClaudeSkills": true,
-  "AI.toolcall.v2.command.allowList": "[\"mv\",\"grep\"]",
+  "AI.toolcall.v2.command.allowList": "[\"mv\",\"grep\",\"rm\",\"cat\"]",
   "search.exclude": {
     "**/node_modules": true,
     "**/bower_components": true,
@@ -31,6 +30,7 @@
   "vim.useSystemClipboard": true,
   "vim.useCtrlKeys": false,
   "vim.hlsearch": true,
+  "vim.smartRelativeLine": true,
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": [
@@ -64,7 +64,7 @@
     },
     {
       "before": [
-        "<ESC>"
+        "<BS>"
       ],
       "commands": [
         ":nohl"
@@ -90,10 +90,20 @@
     },
     {
       "before": [
+        "<leader>",
+        "a"
+      ],
+      "commands": [
+        "editor.action.quickFix"
+      ],
+      "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly",
+    },
+    {
+      "before": [
         "K"
       ],
       "commands": [
-        "lineBreakInsert"
+        "editor.action.showHover"
       ],
       "silent": true
     },
@@ -107,7 +117,27 @@
         "workbench.action.showAllEditorsByMostRecentlyUsed"
       ],
       "silent": true
-    }
+    },
+    {
+      "before": [
+        "<leader>",
+        "e",
+        "s"
+      ],
+      "commands": [
+        "workbench.action.openApplicationSettingsJson"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "e",
+        "k"
+      ],
+      "commands": [
+        "workbench.action.openGlobalKeybindingsFile"
+      ]
+    },
   ],
   "vim.leader": "<space>",
   // To improve performance

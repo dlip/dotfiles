@@ -46,3 +46,7 @@ fpath=(/Users/dane.lipscombe/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
+
+# Make Ctrl-W stop on punctuation instead of deleting till space
+autoload -U select-word-style
+select-word-style bash
