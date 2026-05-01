@@ -147,8 +147,10 @@
   "extensionSync": [
     "alefragnani.project-manager",
     "byted-ide.gallery",
+    "charliermarsh.ruff",
     "e4mi.extension-sync",
     "eamodio.gitlens",
+    "hnrk-str.vscode-fugitive",
     "jnoortheen.nix-ide",
     "ms-python.debugpy",
     "ms-python.python",
@@ -156,5 +158,8 @@
     "ms-python.vscode-python-envs"
   ],
   "workbench.colorTheme": "Catppuccin Macchiato",
-  "workbench.iconTheme": "catppuccin-macchiato"
+  "workbench.iconTheme": "catppuccin-macchiato",
+  "git.enableSmartCommit": true,
+  "git.useIntegratedAskPass": false,
+  "remote.autoForwardPortsSource": "hybrid"
 }
