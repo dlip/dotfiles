@@ -7,9 +7,38 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "icon_theme": "Catppuccin Macchiato",
+  "ssh_connections": [
+    {
+      "host": "cloudide-ws8d625ba02d0caff2",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/byteide/code/alto_automation"],
+        },
+      ],
+    },
+  ],
+  "project_panel": {
+    "dock": "left",
+  },
+  "outline_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "agent": {
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "git_panel": {
+    "dock": "left",
+  },
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
+    "metrics": false,
   },
   "vim_mode": true,
   "ui_font_size": 16,
@@ -17,6 +46,14 @@
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "Catppuccin Macchiato"
-  }
+    "dark": "Catppuccin Macchiato",
+  },
+  "auto_install_extensions": {
+    "html": true,
+    "dockerfile": true,
+    "docker-compose": true,
+    "nix": true,
+    "catppuccin": true,
+    "catppuccin-icons": true,
+  },
 }
