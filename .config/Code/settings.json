@@ -25,41 +25,41 @@
   "remote.SSH.defaultExtensions": [
     "byted-ide.gallery"
   ],
+  "vim.leader": "<space>",
+  "vim.handleKeys": {
+    "<C-v>": true,
+  },
   "vim.easymotion": true,
   "vim.incsearch": true,
   "vim.useSystemClipboard": true,
-  "vim.useCtrlKeys": false,
   "vim.hlsearch": true,
   "vim.smartRelativeLine": true,
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": [
-        "<leader>",
-        "d"
+        "U",
       ],
       "after": [
-        "d",
-        "d"
+        "<C-r>",
       ]
     },
     {
       "before": [
         "<leader>",
-        "w",
-        "s"
+        "o",
       ],
-      "commands": [
-        ":split"
+      "after": [
+        "<C-v>",
       ]
     },
     {
       "before": [
         "<leader>",
-        "w",
-        "v"
+        "x",
+        "f"
       ],
       "commands": [
-        ":vsplit"
+        ":%s/.*/\"\\0\","
       ]
     },
     {
@@ -139,7 +139,6 @@
       ]
     },
   ],
-  "vim.leader": "<space>",
   // To improve performance
   "extensions.experimental.affinity": {
     "vscodevim.vim": 1
@@ -150,7 +149,6 @@
     "charliermarsh.ruff",
     "e4mi.extension-sync",
     "eamodio.gitlens",
-    "hnrk-str.vscode-fugitive",
     "jnoortheen.nix-ide",
     "ms-python.debugpy",
     "ms-python.python",
@@ -161,5 +159,9 @@
   "workbench.iconTheme": "catppuccin-macchiato",
   "git.enableSmartCommit": true,
   "git.useIntegratedAskPass": false,
-  "remote.autoForwardPortsSource": "hybrid"
+  "remote.autoForwardPortsSource": "hybrid",
+  "editor.fontFamily": "'RobotoMono Nerd Font Mono', 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 14,
+  "editor.fontLigatures": false,
+  "git.confirmSync": false
 }

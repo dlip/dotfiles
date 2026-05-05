@@ -7,6 +7,13 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "terminal": {
+    "shell": {
+      "program": "zsh",
+    },
+    "detect_venv": "off",
+  },
+  "buffer_font_family": "RobotoMono Nerd Font Mono",
   "icon_theme": "Catppuccin Macchiato",
   "ssh_connections": [
     {
@@ -49,11 +56,12 @@
     "dark": "Catppuccin Macchiato",
   },
   "auto_install_extensions": {
-    "html": true,
-    "dockerfile": true,
-    "docker-compose": true,
-    "nix": true,
     "catppuccin": true,
     "catppuccin-icons": true,
+    "docker-compose": true,
+    "dockerfile": true,
+    "html": true,
+    "nix": true,
+    "toml": true,
   },
 }
