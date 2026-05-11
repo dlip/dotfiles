@@ -13,6 +13,12 @@ let
   downloader-services = import ../downloader/services.nix;
   domain = "dex-lips.duckdns.org";
 
+  restic-dex = pkgs.writeShellScriptBin "restic-dex" ''
+    export RESTIC_REPOSITORY="/media/backup/restic"
+    export RESTIC_PASSWORD_FILE="${config.sops.secrets.restic-encryption.path}"
+
+    ${pkgs.restic}/bin/restic $@
+  '';
   params = {
     hostname = "dex";
   };
@@ -28,6 +34,8 @@ rec {
     ../common/services/komf.nix
     # ../common/desktop/xfce.nix
     self.modules.nixos.xfce
+    self.modules.nixos.notify-problems
+    self.modules.nixos.ssmtp
   ];
 
   # Open ports in the firewall.
@@ -177,7 +185,14 @@ rec {
     ];
   };
 
-  environment.systemPackages = pkgs.groups.gui ++ pkgs.groups.gaming;
+  environment.systemPackages =
+    with pkgs;
+    groups.gui
+    ++ groups.gaming
+    ++ [
+      restic
+      restic-dex
+    ];
 
   programs.steam = {
     enable = true;

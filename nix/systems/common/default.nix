@@ -1,25 +1,16 @@
-{ hostname }:
 {
   config,
   pkgs,
   lib,
   inputs,
+  hostname,
   ...
 }:
-let
-  restic-dex = pkgs.writeShellScriptBin "restic-dex" ''
-    export RESTIC_REPOSITORY="/media/backup/restic"
-    export RESTIC_PASSWORD_FILE="${config.sops.secrets.restic-encryption.path}"
-
-    ${pkgs.restic}/bin/restic $@
-  '';
-in
 {
   imports = [
     ./cachix.nix
     ./services/notify-problems.nix
     ./services/ssmtp.nix
-    inputs.sops-nix.nixosModules.default
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -109,17 +100,6 @@ in
     enable = true;
     memoryPercent = 100;
   };
-
-  sops.defaultSopsFile = ./.. + builtins.toPath "/${hostname}/secrets/secrets.yaml";
-  # This will automatically import SSH keys as age keys
-  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-  # This is using an age key that is expected to already be in the filesystem
-  sops.age.keyFile = "/var/lib/sops-nix/key.txt";
-  # This will generate a new key if the key specified above does not exist
-  sops.age.generateKey = true;
-
-  sops.secrets.restic-encryption = { };
-  sops.secrets.wireguard-key = { };
 
   # keyring
   services.gnome.gnome-keyring.enable = true;
@@ -243,8 +223,6 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    restic
-    restic-dex
     pulseaudio
     hunspell
     hunspellDicts.en_US-large

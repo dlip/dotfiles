@@ -1,0 +1,271 @@
+{
+  ...
+}:
+{
+  flake.modules.nixos.common =
+    {
+      config,
+      pkgs,
+      lib,
+      hostname,
+      ...
+    }:
+
+    {
+
+      nix = {
+        # package = pkgs.nixUnstable;
+        settings.auto-optimise-store = true;
+        extraOptions = ''
+          experimental-features = nix-command flakes
+        '';
+        daemonCPUSchedPolicy = "idle";
+        daemonIOSchedClass = "idle";
+        # Optional: set an explicit I/O priority (0-7, 7 is lowest)
+        daemonIOSchedPriority = 7;
+
+        settings = {
+          substituters = [
+            "https://cache.nixos.org"
+            "https://nix-community.cachix.org"
+            "https://nixpkgs-wayland.cachix.org"
+          ];
+          trusted-public-keys = [
+            "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+            "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+            "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
+          ];
+        };
+      };
+
+      # Use the systemd-boot EFI boot loader.
+      boot.loader.systemd-boot.enable = true;
+      boot.loader.efi.canTouchEfiVariables = true;
+
+      # Enable OBS virtual camera
+      boot.extraModulePackages = with config.boot.kernelPackages; [
+        v4l2loopback
+      ];
+      boot.extraModprobeConfig = ''
+        options v4l2loopback devices=1 video_nr=21 card_label="OBS Cam" exclusive_caps=1
+      '';
+      security.polkit.enable = true;
+
+      system.autoUpgrade = {
+        enable = false;
+        flake = "github:dlip/nixconfig";
+        flags = [ "--no-write-lock-file" ];
+      };
+
+      # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+      # Set your time zone.
+      # time.timeZone = "Australia/Sydney";
+
+      i18n.inputMethod = {
+        enable = true;
+        type = "fcitx5";
+        fcitx5.addons = with pkgs; [ fcitx5-mozc ];
+      };
+
+      # The global useDHCP flag is deprecated, therefore explicitly set to false here.
+      # Per-interface useDHCP will be mandatory in the future, so this generated config
+      # replicates the default behaviour.
+      networking.hostName = hostname; # Define your hostname.
+      networking.useDHCP = false;
+      networking.networkmanager.enable = true;
+      networking.extraHosts = ''
+        10.10.0.123 dex.local
+      '';
+      networking.enableIPv6 = false;
+
+      # Configure network proxy if necessary
+      # networking.proxy.default = "http://user:password@proxy:port/";
+      # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+      # Select internationalisation properties.
+      i18n = {
+        defaultLocale = "en_AU.UTF-8";
+        extraLocaleSettings = {
+          LC_ALL = "en_AU.UTF-8";
+        };
+      };
+
+      fonts.packages = with pkgs; [
+        font-awesome
+        hachimarupop
+        hanazono
+        nerd-fonts.droid-sans-mono
+        nerd-fonts.fira-code
+        nerd-fonts.roboto-mono
+        nerd-fonts.sauce-code-pro
+        noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-color-emoji
+      ];
+
+      console = {
+        font = "Lat2-Terminus16";
+        keyMap = "us";
+      };
+
+      zramSwap = {
+        enable = true;
+        memoryPercent = 100;
+      };
+
+      # keyring
+      services.gnome.gnome-keyring.enable = true;
+      programs.seahorse.enable = true;
+
+      programs.zsh.enable = true;
+      users.defaultUserShell = pkgs.zsh;
+
+      environment.sessionVariables = {
+        GOPATH = "$HOME/go";
+        PATH = "$HOME/code/nixconfig/bin:$HOME/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/.cargo/bin:/etc/profiles/per-user/$USER/bin:/opt/homebrew/bin:$PATH";
+        EDITOR = "nvim";
+        LANG = "en_AU.UTF-8";
+        LC_ALL = "en_AU.UTF-8";
+        STEAM_EXTRA_COMPAT_TOOLS_PATHS = "$HOME/.steam/root/compatibilitytools.d";
+        # STEEL_HOME = "${pkgs.steel}/lib";
+        DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = "1"; # Fixes libicu error in osu!
+      };
+
+      services.upower.enable = true;
+      services.localtimed.enable = true;
+      services.geoclue2.enable = true;
+
+      services.gvfs = {
+        enable = true;
+        package = lib.mkForce pkgs.gnome.gvfs;
+      };
+
+      services.avahi = {
+        enable = true;
+        openFirewall = true;
+        nssmdns4 = true;
+        publish = {
+          enable = true;
+          addresses = true;
+          workstation = true;
+        };
+      };
+
+      networking.firewall = {
+        enable = true;
+        allowedUDPPorts = [ 51820 ]; # wireguard
+        allowedTCPPorts = [
+          1701
+          9001 # weylus
+          33455 # remote-touchpad
+        ];
+      };
+
+      # networking.wireguard.interfaces = {
+      #   wg0 = {
+      #     listenPort = 51820; # to match firewall allowedUDPPorts (without this wg uses random port numbers)
+      #     privateKeyFile = config.sops.secrets.wireguard-key.path;
+      #   };
+      # };
+
+      services.printing.enable = true;
+      services.printing.drivers = with pkgs; [
+        brgenml1lpr
+        brgenml1cupswrapper
+      ];
+
+      programs.nm-applet.enable = true;
+      hardware.graphics.enable32Bit = true;
+      hardware.enableAllFirmware = true;
+
+      # Enable sound.
+      # sound.enable = true;
+      # hardware.pulseaudio.enable = true;
+
+      # disable suspend on lid closed
+      services.logind.settings.Login.HandleLidSwitch = "ignore";
+      # services.autorandr = {
+      #   enable = true;
+      # };
+
+      services.udev = {
+        enable = true;
+        # extraRules = ''
+        #   ACTION=="change", SUBSYSTEM=="drm", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/dane/.Xauthority", RUN+="${pkgs.bash}/bin/bash /home/dane/code/nixconfig/bin/display-change"
+        # '';
+      };
+
+      services.acpid = {
+        enable = true;
+        # lidEventCommands = "${pkgs.bash}/bin/bash /home/dane/code/nixconfig/bin/display-change";
+      };
+
+      services.locate.enable = true;
+
+      # Pipewire sound
+      security.rtkit.enable = true;
+      services.pipewire = {
+        enable = true;
+        alsa.enable = true;
+        alsa.support32Bit = true;
+        pulse.enable = true;
+        # If you want to use JACK applications, uncomment this
+        #jack.enable = true;
+        wireplumber.configPackages = [
+          (pkgs.writeTextDir "share/wireplumber/bluetooth.lua.d/51-bluez-config.lua" ''
+            bluez_monitor.properties = {
+              ["bluez5.enable-sbc-xq"] = true,
+              ["bluez5.enable-msbc"] = true,
+              ["bluez5.enable-hw-volume"] = true,
+              ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]",
+              ["bluez5.autoswitch-profile"] = true
+            }
+          '')
+        ];
+      };
+
+      hardware.bluetooth.enable = true;
+      services.blueman.enable = true;
+      # services.clamav.daemon.enable = true;
+      # services.clamav.updater.enable = true;
+
+      virtualisation.docker.enable = true;
+      # hardware.nvidia-container-toolkit.enable = true;
+
+      # List packages installed in system profile. To search, run:
+      # $ nix search wget
+      environment.systemPackages = with pkgs; [
+        pulseaudio
+        hunspell
+        hunspellDicts.en_US-large
+        hunspellDicts.en_AU-large
+      ];
+
+      environment.pathsToLink = [
+        "share/hunspell"
+        "share/myspell"
+        "share/hyphen"
+      ];
+      environment.variables.DICPATH = "/run/current-system/sw/share/hunspell:/run/current-system/sw/share/hyphen";
+
+      hardware.ledger.enable = true;
+      services.udev.packages = with pkgs; [
+        via
+        vial
+      ];
+
+      # Some programs need SUID wrappers, can be configured further or are
+      # started in user sessions.
+      # programs.mtr.enable = true;
+      # programs.gnupg.agent = {
+      #   enable = true;
+      #   enableSSHSupport = true;
+      # };
+
+      # List services that you want to enable:
+
+      # Enable the OpenSSH daemon.
+      # services.openssh.enable = true;
+    };
+}

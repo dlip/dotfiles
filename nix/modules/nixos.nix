@@ -8,15 +8,18 @@ top@{
 let
   mkHost =
     {
-      name,
+      hostname,
       system ? "x86_64-linux",
     }:
     {
-      ${name} = inputs.nixpkgs.lib.nixosSystem rec {
+      ${hostname} = inputs.nixpkgs.lib.nixosSystem rec {
         inherit system;
-        specialArgs = { inherit inputs; };
+        specialArgs = {
+          inherit inputs;
+          inherit hostname;
+        };
         modules = [
-          (import ../systems/${name}/configuration.nix top)
+          (import ../systems/${hostname}/configuration.nix top)
           {
             nixpkgs.pkgs = withSystem system ({ pkgs, ... }: pkgs);
           }
@@ -38,7 +41,7 @@ in
       ];
     };
   }
-  // (mkHost { name = "x"; })
-  // (mkHost { name = "metabox"; })
-  // (mkHost { name = "dex"; });
+  // (mkHost { hostname = "x"; })
+  // (mkHost { hostname = "metabox"; })
+  // (mkHost { hostname = "dex"; });
 }
