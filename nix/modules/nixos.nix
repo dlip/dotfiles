@@ -39,5 +39,6 @@ in
     };
   }
   // (mkHost { name = "x"; })
+  // (mkHost { name = "metabox"; })
   // (mkHost { name = "dex"; });
 }
