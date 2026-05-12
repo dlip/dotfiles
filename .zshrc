@@ -1,3 +1,4 @@
+if [ -e /etc/cloudide_profile ]; then . /etc/cloudide_profile; fi
 export PATH=~/bin:~/.local/bin:~/.nix-profile/bin:~/go/bin:~/.docker/bin:~/.docker/cli-plugins:/Applications/Docker.app/Contents/Resources/bin:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:/Applications/Ollama.app/Contents/Resources:$PATH
 export EDITOR=nvim
 export XDG_DATA_DIRS=~/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:$XDG_DATA_DIRS
@@ -50,3 +51,5 @@ compinit
 # Make Ctrl-W stop on punctuation instead of deleting till space
 autoload -U select-word-style
 select-word-style bash
+
+command -v devenv >/dev/null 2>&1 && eval "$(devenv hook zsh)"

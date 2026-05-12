@@ -122,6 +122,7 @@ let
     claude-code
     delve
     deno
+    devenv
     difftastic
     dive
     docker-buildx

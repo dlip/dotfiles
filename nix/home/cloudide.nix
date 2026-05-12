@@ -3,10 +3,10 @@
   home = {
     packages =
       with pkgs;
-      groups.extra++ [
+      groups.extra
+      ++ [
         valkey
         oci-cli
-        devenv
       ];
     username = "byteide";
     homeDirectory = "/home/byteide";

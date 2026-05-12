@@ -23,6 +23,7 @@
         overlays = [
           inputs.nix-on-droid.overlays.default
           inputs.nixgl.overlay
+          inputs.devenv.overlays.default
           # helix.overlays.default
           # poetry2nix.overlay
           # packages
