@@ -14,7 +14,7 @@
     }:
     {
       config.sops.secrets.notify = {
-        sopsFile = ../secrets/secrets.yaml;
+        sopsFile = ../../systems/common/secrets/secrets.yaml;
       };
       config.systemd.services."notify-problems@" = {
         enable = true;

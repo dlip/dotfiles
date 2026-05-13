@@ -6,6 +6,7 @@ top@{ self, ... }:
   config,
   pkgs,
   lib,
+  hostname,
   ...
 }:
 let
@@ -19,23 +20,21 @@ let
 
     ${pkgs.restic}/bin/restic $@
   '';
-  params = {
-    hostname = "dex";
-  };
 in
 rec {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    (import ../common params)
+    self.modules.nixos.common
     # ../common/desktop/kde.nix
     # ../common/desktop/hyprland.nix
-    ../common/services/notify-problems.nix
+    # ../common/services/notify-problems.nix
     ../common/services/komf.nix
     # ../common/desktop/xfce.nix
     self.modules.nixos.xfce
     self.modules.nixos.notify-problems
     self.modules.nixos.ssmtp
+    self.modules.nixos.sops
   ];
 
   # Open ports in the firewall.
@@ -192,6 +191,7 @@ rec {
     ++ [
       restic
       restic-dex
+      pi-coding-agent
     ];
 
   programs.steam = {
@@ -714,8 +714,8 @@ rec {
     settings = {
       global = {
         workgroup = "WORKGROUP";
-        "server string" = "${params.hostname}";
-        "netbios name" = "${params.hostname}";
+        "server string" = "${hostname}";
+        "netbios name" = "${hostname}";
         security = "user";
         #use sendfile = yes
         #max protocol = smb2
