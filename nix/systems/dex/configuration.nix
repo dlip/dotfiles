@@ -787,4 +787,7 @@ rec {
     };
   };
   system.stateVersion = "23.05"; # Did you read the comment?
+
+  # TEST PR - Hermes Agent setup verification
+  test.comment = "PR workflow test - can be removed after verification";
 }
