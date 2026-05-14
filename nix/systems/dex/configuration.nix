@@ -35,6 +35,7 @@ rec {
     self.modules.nixos.notify-problems
     self.modules.nixos.ssmtp
     self.modules.nixos.sops
+    self.inputs.hermes-agent.nixosModules.default
   ];
 
   # Open ports in the firewall.
@@ -133,6 +134,18 @@ rec {
   #       fi
   #     '';
   # };
+
+  sops.secrets."hermes-env" = { };
+
+  services.hermes-agent = {
+    enable = true;
+    settings.model.default = "minimax/minimax-m2.7";
+    environmentFiles = [ config.sops.secrets."hermes-env".path ];
+    addToSystemPackages = true;
+    package = self.inputs.hermes-agent.packages.${pkgs.system}.default.override {
+      extraPythonPackages = with pkgs.stable; [ python312Packages.python-telegram-bot ];
+    };
+  };
 
   systemd.services.mokuro-reader = {
     description = "Mokuro reader";
@@ -274,13 +287,13 @@ rec {
       #     "/media/media/podcasts:/podcasts"
       #   ];
       # };
-      yaruki = {
-        image = "dlip/yaruki";
-        ports = [ "8095:8080" ];
-        volumes = [
-          "/mnt/services/yaruki:/app/data"
-        ];
-      };
+      # yaruki = {
+      #   image = "dlip/yaruki";
+      #   ports = [ "8095:8080" ];
+      #   volumes = [
+      #     "/mnt/services/yaruki:/app/data"
+      #   ];
+      # };
       # actual = {
       #   image = "actualbudget/actual-server";
       #   ports = ["5006:5006"];
