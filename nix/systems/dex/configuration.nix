@@ -145,6 +145,14 @@ rec {
     package = self.inputs.hermes-agent.packages.${pkgs.system}.default.override {
       extraPythonPackages = with pkgs.stable; [ python312Packages.python-telegram-bot ];
     };
+    settings = {
+      providers = {
+        ollama = {
+          api_key = "";
+          base_url = "http://10.10.0.122:11434/v1";
+        };
+      };
+    };
   };
 
   systemd.services.mokuro-reader = {
@@ -787,7 +795,4 @@ rec {
     };
   };
   system.stateVersion = "23.05"; # Did you read the comment?
-
-  # TEST PR - Hermes Agent setup verification
-  test.comment = "PR workflow test - can be removed after verification";
 }
