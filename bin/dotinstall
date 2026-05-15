@@ -1,19 +1,11 @@
-# Dotfiles
+#!/usr/bin/env bash
+set -euo pipefail
 
-My dotfiles and nix config
-hi
-
-## Setup
-
-```
 git clone https://github.com/dlip/dotfiles.git
 mv dotfiles/.git ~
 rm -rf dotfiles
+echo "Backing up any existing files to ~/.dotbackup, restore with `rsync -a ~/.dotbackup ~`"
 mkdir -p .dotbackup
 git diff-index --diff-filter=dr --name-only HEAD | xargs -I {} rsync -R {} .dotbackup/
 git reset --hard
 git submodule update --init
-```
-
-Note: the .gitignore ignores all files so to add a new file run `git add -f filename` to force add it
-
