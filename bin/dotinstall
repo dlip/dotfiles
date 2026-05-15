@@ -1,11 +1,19 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-git clone https://github.com/dlip/dotfiles.git
-mv dotfiles/.git ~
-rm -rf dotfiles
-echo "Backing up any existing files to ~/.dotbackup, restore with `rsync -a ~/.dotbackup ~`"
+if [ -d "$HOME/.git" ]; then
+  echo "Error: ~/.git directory already exists. Please remove it first with 'rm -rf ~/.git'"
+  exit 1
+fi
+
+TMP_DIR=$(mktemp -d)
+cd ~
+git clone https://github.com/dlip/dotfiles.git $TMP_DIR
+mv $TMP_DIR/.git .
+rm -rf $TMP_DIR
+echo "*** Backing up any existing files to ~/.dotbackup, restore with 'rsync -a ~/.dotbackup ~' ***"
 mkdir -p .dotbackup
+git status
 git diff-index --diff-filter=dr --name-only HEAD | xargs -I {} rsync -R {} .dotbackup/
 git reset --hard
 git submodule update --init

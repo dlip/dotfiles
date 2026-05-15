@@ -1,19 +1,14 @@
 # Dotfiles
 
 My dotfiles and nix config
-hi
 
 ## Setup
 
+Run [dotinstall](./bin/dotinstall)
+
 ```
-git clone https://github.com/dlip/dotfiles.git
-mv dotfiles/.git ~
-rm -rf dotfiles
-mkdir -p .dotbackup
-git diff-index --diff-filter=dr --name-only HEAD | xargs -I {} rsync -R {} .dotbackup/
-git reset --hard
-git submodule update --init
+curl -sL https://raw.githubusercontent.com/dlip/dotfiles/refs/heads/main/bin/dotinstall | bash
 ```
 
-Note: the .gitignore ignores all files so to add a new file run `git add -f filename` to force add it
+Note: To add new files add to the .gitignore
 
