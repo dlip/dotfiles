@@ -5,7 +5,7 @@
     "$home/code"
   ],
   "chat.useClaudeSkills": true,
-  "AI.toolcall.v2.command.allowList": "[\"mv\",\"grep\",\"rm\",\"cat\"]",
+  "AI.toolcall.v2.command.allowList": "[\"mv\",\"grep\",\"rm\",\"cat\",\"python3\",\"head\",\"wc\",\"echo\",\"tail\",\"black\",\"git\"]",
   "search.exclude": {
     "**/node_modules": true,
     "**/bower_components": true,
@@ -145,15 +145,19 @@
   },
   "extensionSync": [
     "alefragnani.project-manager",
+    "astral-sh.ty",
     "byted-ide.gallery",
     "charliermarsh.ruff",
     "e4mi.extension-sync",
     "eamodio.gitlens",
+    "hashicorp.terraform",
     "jnoortheen.nix-ide",
     "ms-python.debugpy",
     "ms-python.python",
     "ms-python.vscode-pylance",
-    "ms-python.vscode-python-envs"
+    "ms-python.vscode-python-envs",
+    "redhat.vscode-yaml",
+    "timonwong.shellcheck"
   ],
   "workbench.colorTheme": "Catppuccin Macchiato",
   "workbench.iconTheme": "catppuccin-macchiato",
@@ -163,5 +167,7 @@
   "editor.fontFamily": "'RobotoMono Nerd Font Mono', 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
   "editor.fontSize": 14,
   "editor.fontLigatures": false,
-  "git.confirmSync": false
+  "git.confirmSync": false,
+  "trae.tab.enableSmartEdit": false,
+  "python.languageServer": "Default"
 }
