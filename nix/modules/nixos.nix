@@ -30,7 +30,7 @@ let
 in
 {
   flake.nixosConfigurations = { }
-  // (mkHost { hostname = "ptv"; })
+  # // (mkHost { hostname = "ptv"; }) # TODO: uncomment after adding traefik-env to ptv secrets
   // (mkHost { hostname = "x"; })
   // (mkHost { hostname = "metabox"; })
   // (mkHost { hostname = "dex"; });
