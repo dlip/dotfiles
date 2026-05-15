@@ -26,11 +26,7 @@ rec {
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     self.modules.nixos.common
-    # ../common/desktop/kde.nix
-    # ../common/desktop/hyprland.nix
-    # ../common/services/notify-problems.nix
-    ../common/services/komf.nix
-    # ../common/desktop/xfce.nix
+    self.modules.nixos.komf
     self.modules.nixos.xfce
     self.modules.nixos.notify-problems
     self.modules.nixos.ssmtp

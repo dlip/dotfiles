@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-# trace: warning: using unmanaged configuration for homepage-dashboard is deprecated and will be removed in 24.05. please see the NixOS documentation for `services.homepage-dashboard' and add your bookmarks, services, widgets, and other configuration using the options provided.
+# and in the NixOS manual (accessible by running 'nixos-help').
+top@{ self, inputs, ... }:
 {
   config,
   pkgs,
@@ -16,8 +16,9 @@ in
 rec {
   imports = [
     # Include the results of the hardware scan.
-    # ../common/services/qbittorrent.nix
     ./hardware-configuration.nix
+    inputs.sops-nix.nixosModules.default
+    self.modules.nixos.ssmtp
   ];
 
   # Bootloader.
@@ -32,12 +33,6 @@ rec {
       experimental-features = nix-command flakes
     '';
   };
-  networking.hostName = "ptv"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -118,7 +113,7 @@ rec {
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.tv = {
     isNormalUser = true;
     description = "tv";
@@ -136,7 +131,7 @@ rec {
       "networkmanager"
       "dialout"
       "adbusers"
-    ]; # Enable ‘sudo’ for the user.
+    ]; # Enable 'sudo' for the user.
   };
 
   programs.zsh.enable = true;
@@ -184,7 +179,7 @@ rec {
     ephemeral = true;
     autoStart = true;
     enableTun = true;
-    config = import ../downloader/configuration.nix {
+    config = import ../downloader/configuration.nix top {
       inherit pkgs config;
     };
     privateNetwork = true;
@@ -345,11 +340,6 @@ rec {
   #     ];
   #   };
   # };
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+
   system.stateVersion = "23.05"; # Did you read the comment?
 }

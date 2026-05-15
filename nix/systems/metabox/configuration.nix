@@ -14,7 +14,6 @@ top@{ self, ... }:
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    #(import ../common param)
     self.modules.nixos.common
     self.modules.nixos.xfce
   ];

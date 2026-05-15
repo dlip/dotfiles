@@ -50,13 +50,33 @@ This means **every `.nix` file under `nix/modules/` is automatically imported** 
 ### Key directories
 
 - **`nix/modules/`** — Auto-imported flake-parts modules. Entry points for NixOS (`nixos.nix`), Home Manager (`homemanager.nix`), nix-on-droid (`nixondroid.nix`), and overlays/packages (`pkgs.nix`).
-- **`nix/systems/`** — Per-host NixOS/darwin system configurations (e.g. `dex/`, `ptv/`, `x/`).
+- **`nix/modules/nixos/`** — Shared NixOS modules exposed as `self.modules.nixos.<name>` (e.g. `common`, `sops`, `niri`, `xfce`, `komf`, `ssmtp`, `notify-problems`). Hosts opt in to these via their `imports` list.
+- **`nix/systems/`** — Per-host NixOS/darwin system configurations (e.g. `dex/`, `ptv/`, `x/`). Each host's `configuration.nix` is a curried function: `top@{ self, ... }: { config, pkgs, ... }: { ... }`. The first arg receives flake-parts attrs (including `self` for accessing `self.modules.nixos.*`), the second receives NixOS module args.
+- **`nix/systems/common/`** — Shared data files only (secrets, wireguard peers). **Not** NixOS modules — all shared modules live in `nix/modules/nixos/`.
 - **`nix/home/`** — Home Manager modules, composed into profiles by the hosts.
 - **`nix/pkgs/`** — Custom Nix package definitions.
 
+### How hosts are defined
+
+All hosts use the `mkHost` helper in `nix/modules/nixos.nix`, which:
+1. Passes flake-parts `top` attrs as the first curried arg to `configuration.nix`
+2. Passes `hostname` and `inputs` via `specialArgs`
+3. Sets up the correct `nixpkgs.pkgs` overlay
+
+Hosts select which shared modules they need:
+```nix
+imports = [
+  ./hardware-configuration.nix
+  self.modules.nixos.common
+  self.modules.nixos.sops
+  self.modules.nixos.niri
+];
+```
+
 ### When modifying Nix config
 
-- New modules under `nix/modules/` are auto-discovered — no imports to update.
+- New modules under `nix/modules/` are auto-discovered by `import-tree` — no imports to update.
+- New shared NixOS modules go in `nix/modules/nixos/` and are exposed as `self.modules.nixos.<name>`.
 - Files outside `nix/modules/` (e.g. in `nix/home/`, `nix/systems/`, `nix/pkgs/`) are imported explicitly by the modules, so they must be referenced from an existing module.
 - The flake uses `flake-parts` for structuring outputs.
 

@@ -7,25 +7,15 @@
   pkgs,
   ...
 }:
-let
-  params = {
-    hostname = "x";
-  };
-in
 {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    (import ../common params)
+    self.modules.nixos.common
+    self.modules.nixos.sops
+    self.modules.nixos.notify-problems
+    self.modules.nixos.ssmtp
     self.modules.nixos.niri
-    # ../common/desktop/sway.nix
-    # ../common/desktop/hyprland.nix
-    # ../common/desktop/niri.nix
-    # ../common/desktop/xfce.nix
-    # ../common/desktop/leftwm.nix
-    # ../common/desktop/kde.nix
-    # ../common/desktop/awesome.nix
-    # ../common/desktop/i3.nix
   ];
 
   # Bootloader.

@@ -29,18 +29,8 @@ let
     };
 in
 {
-  flake.nixosConfigurations = {
-    ptv = inputs.nixpkgs.lib.nixosSystem rec {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules = [
-        ../systems/ptv/configuration.nix
-        {
-          nixpkgs.pkgs = withSystem system ({ pkgs, ... }: pkgs);
-        }
-      ];
-    };
-  }
+  flake.nixosConfigurations = { }
+  // (mkHost { hostname = "ptv"; })
   // (mkHost { hostname = "x"; })
   // (mkHost { hostname = "metabox"; })
   // (mkHost { hostname = "dex"; });
