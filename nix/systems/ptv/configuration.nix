@@ -336,7 +336,7 @@ rec {
   #     listenPort = 51820;
 
   #     peers = [
-  #       (import ../common/wireguard/dex-peer.nix)
+  #       self.lib.wireguard.dex-peer
   #     ];
   #   };
   # };
