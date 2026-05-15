@@ -9,6 +9,7 @@
 !/.zshrc
 !/Brewfile
 !/Brewfile.lock.json
+!/AGENTS.md
 !/README.md
 !/bin
 !/docker
