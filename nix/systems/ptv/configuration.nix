@@ -305,9 +305,7 @@ rec {
       };
     };
   };
-  sops.secrets.nordvpnLogin = {
-    sopsFile = ../secrets.yaml;
-  };
+  sops.secrets.nordvpnLogin = { };
   #
   services.jellyfin = {
     enable = true;

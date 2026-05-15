@@ -9,12 +9,9 @@
 }:
 {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     self.modules.nixos.common
     self.modules.nixos.sops
-    self.modules.nixos.notify-problems
-    self.modules.nixos.ssmtp
     self.modules.nixos.niri
   ];
 
@@ -103,9 +100,7 @@
   };
   services.flatpak.enable = true;
 
-  sops.secrets.nordvpnLogin = {
-    sopsFile = ../secrets.yaml;
-  };
+  sops.secrets.nordvpnLogin = { };
 
   # systemd.services.keyd = {
   #   description = "keyd daemon";
@@ -155,7 +150,7 @@
     package = pkgs.obs-studio.override { cudaSupport = true; };
   };
 
-  # TODO: get this working
+  sops.secrets.wireguard-key = { };
   networking.wireguard.interfaces = {
     wg0 = {
       ips = [ "10.100.0.5/24" ];
