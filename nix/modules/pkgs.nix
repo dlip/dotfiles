@@ -23,7 +23,12 @@
         overlays = [
           inputs.nix-on-droid.overlays.default
           inputs.nixgl.overlay
-          inputs.devenv.overlays.default
+          # Wrap devenv overlay to avoid deprecated pkgs.system access
+          (final: prev:
+            inputs.devenv.overlays.default
+              final
+              (prev // { system = prev.stdenv.hostPlatform.system; })
+          )
           # helix.overlays.default
           # poetry2nix.overlay
           # packages

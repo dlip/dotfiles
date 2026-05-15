@@ -32,7 +32,7 @@ in {
       (import ./vscode-extensions.nix).extensions
       ++ (
         with pkgs.vscode-extensions;
-          if pkgs.system == "aarch64-linux"
+          if pkgs.stdenv.hostPlatform.system == "aarch64-linux"
           then [
             # ms-vscode.cpptools
             # ms-vsliveshare.vsliveshare

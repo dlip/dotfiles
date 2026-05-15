@@ -137,7 +137,7 @@ rec {
     enable = true;
     environmentFiles = [ config.sops.secrets."hermes-env".path ];
     addToSystemPackages = true;
-    package = self.inputs.hermes-agent.packages.${pkgs.system}.default.override {
+    package = self.inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
       extraPythonPackages = with pkgs.stable; [ python312Packages.python-telegram-bot ];
     };
     settings = {
