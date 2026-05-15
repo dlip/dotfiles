@@ -139,19 +139,13 @@ rec {
 
   services.hermes-agent = {
     enable = true;
-    settings.model.default = "minimax/minimax-m2.7";
     environmentFiles = [ config.sops.secrets."hermes-env".path ];
     addToSystemPackages = true;
     package = self.inputs.hermes-agent.packages.${pkgs.system}.default.override {
       extraPythonPackages = with pkgs.stable; [ python312Packages.python-telegram-bot ];
     };
     settings = {
-      providers = {
-        ollama = {
-          api_key = "";
-          base_url = "http://10.10.0.122:11434/v1";
-        };
-      };
+      model.default = "minimax/minimax-m2.7";
     };
   };
 
