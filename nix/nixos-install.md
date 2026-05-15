@@ -122,9 +122,8 @@ sops updatekeys systems/common/secrets/secrets.yaml
 Create secrets
 
 ```sh
-mkdir systems/<HOSTNAME>/secrets
-touch systems/<HOSTNAME>/secrets/secrets.yaml
-sops systems/<HOSTNAME>/secrets/secrets.yaml
+touch systems/<HOSTNAME>/secrets.yaml
+sops systems/<HOSTNAME>/secrets.yaml
 ```
 
 Generate wireguard key

@@ -160,7 +160,7 @@ rec {
       ))
     ];
 
-  sops.defaultSopsFile = ./secrets/secrets.yaml;
+  sops.defaultSopsFile = ./secrets.yaml;
   # This will automatically import SSH keys as age keys
   sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
   # This is using an age key that is expected to already be in the filesystem
@@ -212,7 +212,7 @@ rec {
   sops.secrets.traefik-env = {
     owner = "traefik";
     group = "traefik";
-    sopsFile = ../common/secrets/secrets.yaml;
+    sopsFile = ../secrets.yaml;
   };
 
   services.cron.systemCronJobs = [
@@ -307,7 +307,7 @@ rec {
     };
   };
   sops.secrets.nordvpnLogin = {
-    sopsFile = ../common/secrets/secrets.yaml;
+    sopsFile = ../secrets.yaml;
   };
   #
   services.jellyfin = {
@@ -336,7 +336,7 @@ rec {
   #     listenPort = 51820;
 
   #     peers = [
-  #       self.lib.wireguard.dex-peer
+  #       self.modules.nixos.wireguard-dex-peer
   #     ];
   #   };
   # };

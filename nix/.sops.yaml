@@ -7,7 +7,7 @@ keys:
   - &x age1wajqarhnwgdvwmd3kz0cqx35nwjg3fpe06hdpyuftj0zprwuy4asspdajv
   - &ptv age1e87t0gjlaav3uygyqtasjzgg846d3n6v53t90se79qy82ky2e9ksjrkz0x
 creation_rules:
-  - path_regex: systems/common/secrets/[^/]+\.yaml$
+  - path_regex: systems/secrets\.yaml$
     key_groups:
     - age:
       - *dane
@@ -17,32 +17,32 @@ creation_rules:
       - *metabox
       - *x
       - *ptv
-  - path_regex: systems/dex/secrets/[^/]+\.yaml$
+  - path_regex: systems/dex/secrets\.yaml$
     key_groups:
     - age:
       - *dane
       - *dex
-  - path_regex: systems/g/secrets/[^/]+\.yaml$
+  - path_regex: systems/g/secrets\.yaml$
     key_groups:
     - age:
       - *dane
       - *g
-  - path_regex: systems/downloader/secrets/[^/]+\.yaml$
+  - path_regex: systems/downloader/secrets\.yaml$
     key_groups:
     - age:
       - *dane
       - *downloader
-  - path_regex: systems/metabox/secrets/[^/]+\.yaml$
+  - path_regex: systems/metabox/secrets\.yaml$
     key_groups:
     - age:
       - *dane
       - *metabox
-  - path_regex: systems/x/secrets/[^/]+\.yaml$
+  - path_regex: systems/x/secrets\.yaml$
     key_groups:
     - age:
       - *dane
       - *x
-  - path_regex: systems/ptv/secrets/[^/]+\.yaml$
+  - path_regex: systems/ptv/secrets\.yaml$
     key_groups:
     - age:
       - *dane

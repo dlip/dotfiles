@@ -28,7 +28,7 @@
 
       config = {
         sops.secrets.ssmtpPassword = {
-          sopsFile = ../../systems/common/secrets/secrets.yaml;
+          sopsFile = ../../systems/secrets.yaml;
         };
         # services.ssmtp = {
         #   enable = true;

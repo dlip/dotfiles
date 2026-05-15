@@ -55,7 +55,7 @@ in
     };
   };
 
-  sops.defaultSopsFile = ../common/secrets/secrets.yaml;
+  sops.defaultSopsFile = ../secrets.yaml;
   # This will automatically import SSH keys as age keys
   sops.age.sshKeyPaths = [ "/var/lib/ssh/ssh_host_ed25519_key" ];
   # This is using an age key that is expected to already be in the filesystem

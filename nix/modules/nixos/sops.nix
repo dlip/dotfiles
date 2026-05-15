@@ -10,7 +10,7 @@
         inputs.sops-nix.nixosModules.default
       ];
 
-      sops.defaultSopsFile = ./../../systems + builtins.toPath "/${hostname}/secrets/secrets.yaml";
+      sops.defaultSopsFile = ./../../systems + builtins.toPath "/${hostname}/secrets.yaml";
       # This will automatically import SSH keys as age keys
       sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
       # This is using an age key that is expected to already be in the filesystem

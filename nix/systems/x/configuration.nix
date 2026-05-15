@@ -104,7 +104,7 @@
   services.flatpak.enable = true;
 
   sops.secrets.nordvpnLogin = {
-    sopsFile = ../common/secrets/secrets.yaml;
+    sopsFile = ../secrets.yaml;
   };
 
   # systemd.services.keyd = {
@@ -163,7 +163,7 @@
       listenPort = 51820;
 
       peers = [
-        self.lib.wireguard.dex-peer
+        self.modules.nixos.wireguard-dex-peer
       ];
     };
   };
