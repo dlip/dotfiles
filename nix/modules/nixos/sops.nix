@@ -17,8 +17,5 @@
       sops.age.keyFile = "/var/lib/sops-nix/key.txt";
       # This will generate a new key if the key specified above does not exist
       sops.age.generateKey = true;
-
-      sops.secrets.restic-encryption = { };
-      sops.secrets.wireguard-key = { };
     };
 }

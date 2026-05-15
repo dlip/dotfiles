@@ -338,6 +338,7 @@ rec {
   ];
   networking.nat.externalInterface = "enp0s31f6";
 
+  sops.secrets.wireguard-key = { };
   networking.wireguard.interfaces = {
     # "wg0" is the network interface name. You can name the interface arbitrarily.
     wg0 = {
@@ -678,6 +679,7 @@ rec {
 
   # services.homepage-dashboard.enable = true;
 
+  sops.secrets.restic-encryption = { };
   environment.etc.restic-ignore.text = ''
     .cache
     .Cache

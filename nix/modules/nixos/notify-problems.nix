@@ -12,9 +12,7 @@
       ...
     }:
     {
-      config.sops.secrets.notify = {
-        sopsFile = ../../systems/secrets.yaml;
-      };
+      config.sops.secrets.notify = { };
       config.systemd.services."notify-problems@" = {
         enable = true;
         description = "Alert email for %i to user";

@@ -7,11 +7,6 @@ let
   downloader-services = import ./services.nix;
 in
 {
-  imports = [
-    self.modules.nixos.ssmtp
-    inputs.sops-nix.nixosModules.default
-  ];
-
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
     # sonarr
@@ -28,7 +23,10 @@ in
     '';
   };
 
-  environment.systemPackages = with pkgs; [ traceroute ];
+  environment.systemPackages = with pkgs; [
+    traceroute
+    vim
+  ];
   networking = {
     nameservers = [
       "1.1.1.1"
@@ -54,16 +52,6 @@ in
       '';
     };
   };
-
-  sops.defaultSopsFile = ../secrets.yaml;
-  # This will automatically import SSH keys as age keys
-  sops.age.sshKeyPaths = [ "/var/lib/ssh/ssh_host_ed25519_key" ];
-  # This is using an age key that is expected to already be in the filesystem
-  sops.age.keyFile = "/var/lib/sops-nix/key.txt";
-  # This will generate a new key if the key specified above does not exist
-  sops.age.generateKey = true;
-  # Secrets
-  sops.secrets.nordvpnLogin = { };
 
   # qbittorrent stops downloading when vpn gets reconnected
   systemd.services.restart-qbittorrent = {

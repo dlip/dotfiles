@@ -27,9 +27,7 @@
       };
 
       config = {
-        sops.secrets.ssmtpPassword = {
-          sopsFile = ../../systems/secrets.yaml;
-        };
+        sops.secrets.ssmtpPassword = { };
         # services.ssmtp = {
         #   enable = true;
         #   # The user that gets all the mails (UID < 1000, usually the admin)
