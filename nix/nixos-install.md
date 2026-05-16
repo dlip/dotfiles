@@ -1,46 +1,44 @@
 # NixOS Install
 
-Boot into the NixOS installer and get a shell:
+Boot into the NixOS graphical installer, connect to the network and open the terminal:
+
+Format the disk with [disko](https://github.com/nix-community/disko)
 
 ```sh
-sudo -s
-# Optional: connect to wifi
-# wpa_cli device wifi connect 'SSID' password='PASSWORD'
+# Get the disko config
+curl -OL https://raw.githubusercontent.com/dlip/dotfiles/refs/heads/main/nix/systems/disko.nix
+# Find the root block device
+lsblk
+# Configure the filesystems and ensure the main device matches
+vim disko.nix
+# Format
+sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount /disko.nix
 ```
 
 Clone the configuration repository:
 
 ```sh
+sudo -s
+mkdir /mnt/root
+cd /mnt/root
 git clone https://github.com/dlip/dotfiles.git
 cd dotfiles/nix
 ```
 
-Find the block device
-
-```sh
-lsblk
-```
-
-Set the system host name and disk
+Set the system host name (replace foo with desired name)
 
 ```sh
 export HOST=foo
-export DISK=/dev/nvme0n1
 ```
 
-Copy the new system template (replace foo with the hostname)
+Copy the new system template
 
 ```sh
 cp -r systems/new systems/$HOST
-nixos-generate-config --show-hardware-config --no-filesystems > systems/$HOST/hardware-configuration.nix
+nixos-generate-config --show-hardware-config --root /mnt > systems/$HOST/hardware-configuration.nix
 git add systems/$HOST
 ```
 
-Configure the filesystems and ensure the main device matches
-
-```sh
-vim systems/foo/disko.nix
-```
 
 Add the host to the bottom of the nixos modules eg. `// (mkHost { hostname = "foo"; })`
 
@@ -48,11 +46,24 @@ Add the host to the bottom of the nixos modules eg. `// (mkHost { hostname = "fo
 vim modules/nixos.nix
 ```
 
-Install NixOS
+Install NixOS then reboot
 
 ```sh
-sudo nix run --extra-experimental-features nix-command --extra-experimental-features flakes 'github:nix-community/disko/latest#disko-install' -- --write-efi-boot-entries --flake ..#$HOST --disk main $DISK
+nixos-install --flake ..#$HOST
+reboot
 ```
+
+Log in with password 'password', connect to the network and open a terminal
+
+Install the dotfiles with changes to the current user
+
+```sh
+sudo rsync -av --chown=$(whoami):users /root/dotfiles/ .
+git submodule update --init
+```
+
+
+
 
 Test error
 

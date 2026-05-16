@@ -9,7 +9,6 @@ top@{ self, ... }:
 
   imports = [
     ./hardware-configuration.nix
-    ./disko.nix
     self.modules.nixos.common
     self.modules.nixos.xfce
   ];

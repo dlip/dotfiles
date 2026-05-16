@@ -3,16 +3,10 @@
     disk = {
       main = {
         type = "disk";
-        # When using disko-install, we will overwrite this value from the commandline
-        device = "/dev/disk/by-id/some-disk-id";
+        device = "/dev/nvme0n1";
         content = {
           type = "gpt";
           partitions = {
-            MBR = {
-              type = "EF02"; # for grub MBR
-              size = "1M";
-              priority = 1; # Needs to be first partition
-            };
             ESP = {
               type = "EF00";
               size = "512M";
@@ -21,15 +15,6 @@
                 format = "vfat";
                 mountpoint = "/boot";
                 mountOptions = [ "umask=0077" ];
-              };
-            };
-            swap = {
-              size = "8G";
-              content = {
-                type = "swap";
-                randomEncryption = true;
-                discardPolicy = "both";
-                resumeDevice = false;
               };
             };
             luks = {
