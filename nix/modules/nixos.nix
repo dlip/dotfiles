@@ -20,6 +20,7 @@ let
         };
         modules = [
           (import ../systems/${hostname}/configuration.nix top)
+          inputs.disko.nixosModules.disko
           {
             nixpkgs.pkgs = withSystem system ({ pkgs, ... }: pkgs);
           }
@@ -29,9 +30,10 @@ let
     };
 in
 {
-  flake.nixosConfigurations = { }
-  # // (mkHost { hostname = "ptv"; }) # TODO: uncomment after adding traefik-env to ptv secrets
-  // (mkHost { hostname = "x"; })
-  // (mkHost { hostname = "metabox"; })
-  // (mkHost { hostname = "dex"; });
+  flake.nixosConfigurations =
+    { }
+    # // (mkHost { hostname = "ptv"; }) # TODO: uncomment after adding traefik-env to ptv secrets
+    // (mkHost { hostname = "x"; })
+    // (mkHost { hostname = "metabox"; })
+    // (mkHost { hostname = "dex"; });
 }

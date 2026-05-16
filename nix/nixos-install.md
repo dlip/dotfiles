@@ -18,10 +18,32 @@ cd dotfiles/nix
 Copy the new system template (replace foo with the hostname)
 
 ```sh
-cp systems/new systems/foo
+cp -r systems/new systems/foo
 ```
 
-Use vim to edit the contents of `systems/foo/*.nix`
+Find the block device
+
+```sh
+lsblk
+```
+
+Configure the filesystems and ensure the main device matches
+
+```sh
+vim systems/foo/disko.nix
+```
+
+Add the host to the bottom of the nixos modules eg. `// (mkHost { hostname = "foo"; })`
+
+```sh
+vim modules/nixos.nix
+```
+
+Replacing foo with the hostname and the disk device if necessary run:
+
+```sh
+sudo nix run 'github:nix-community/disko/latest#disko-install' -- --write-efi-boot-entries --flake '../nixos#foo' --disk main /dev/nvme0n1
+```
 
 Format the disk and mount it using `disko`. Edit the `disko-template.nix` file to match your disk device (e.g., `/dev/nvme0n1`):
 
