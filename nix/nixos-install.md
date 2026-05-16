@@ -62,78 +62,19 @@ sudo rsync -av --chown=$(whoami):users /root/dotfiles/ .
 git submodule update --init
 ```
 
-
-
-
-Test error
+Open a new shell and commit and push the changes
 
 ```sh
-nix --extra-experimental-features nix-command --extra-experimental-features flakes build .#nixosConfigurations.$HOST.config.system.build.toplevel
+git commit -am 'install host'
+git push
 ```
 
-Format the disk and mount it using `disko`. Edit the `disko-template.nix` file to match your disk device (e.g., `/dev/nvme0n1`):
+Enter github credentials, username 'pat' and use the generated token from here with repo access https://github.com/settings/tokens 
 
-```sh
-vim nix/disko-template.nix # update `device = "/dev/nvme0n1";`
-nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko nix/disko-template.nix
+Test nixos config
+
 ```
-
-You will be prompted to enter a LUKS passphrase for encryption.
-
-Generate hardware configuration:
-
-```sh
-nixos-generate-config --root /mnt
-```
-
-Set up the new host configuration:
-
-```sh
-export HOST=new-machine
-mkdir -p nix/systems/$HOST
-cp /mnt/etc/nixos/hardware-configuration.nix nix/systems/$HOST/
-```
-
-Create the system configuration:
-
-```sh
-vim nix/systems/$HOST/configuration.nix
-```
-
-```nix
-{ config, pkgs, ... }:
-
-{
-  networking.hostName = "new-machine";
-  # Enable wifi
-  networking.networkmanager.enable = true;
-
-  users.users.dane = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-  };
-
-  environment.systemPackages = with pkgs; [
-    vim
-    wget
-    firefox
-    git
-  ];
-}
-```
-
-Update `flake.nix` by copying an existing `nixosConfigurations` entry, replace the host name with the new one, and remove the `sops` import if not yet set up.
-
-```sh
-vim flake.nix
-```
-
-Install the system:
-
-```sh
-git add .
-nixos-install --flake .#$HOST
-reboot
+nixosconfig
 ```
 
 Setup SOPS
