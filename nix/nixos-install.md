@@ -15,17 +15,26 @@ git clone https://github.com/dlip/dotfiles.git
 cd dotfiles/nix
 ```
 
-Copy the new system template (replace foo with the hostname)
-
-```sh
-cp -r systems/new systems/foo
-```
-
 Find the block device
 
 ```sh
 lsblk
 ```
+
+Set the system hostname and disk
+
+```sh
+export HOSTNAME=foo
+export DISK=/dev/nvme0n1
+```
+
+Copy the new system template (replace foo with the hostname)
+
+```sh
+cp -r systems/new systems/foo
+nixos-generate-config --show-hardware-config --no-filesystems > systems/metabox/hardware-configurnation.nix
+```
+
 
 Configure the filesystems and ensure the main device matches
 
@@ -42,7 +51,7 @@ vim modules/nixos.nix
 Replacing foo with the hostname and the disk device if necessary run:
 
 ```sh
-sudo nix run 'github:nix-community/disko/latest#disko-install' -- --write-efi-boot-entries --flake '../nixos#foo' --disk main /dev/nvme0n1
+sudo nix run 'github:nix-community/disko/latest#disko-install' -- --write-efi-boot-entries --flake 'nixos#foo' --disk main /dev/nvme0n1
 ```
 
 Format the disk and mount it using `disko`. Edit the `disko-template.nix` file to match your disk device (e.g., `/dev/nvme0n1`):
