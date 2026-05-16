@@ -21,20 +21,20 @@ Find the block device
 lsblk
 ```
 
-Set the system hostname and disk
+Set the system host name and disk
 
 ```sh
-export HOSTNAME=foo
+export HOST=foo
 export DISK=/dev/nvme0n1
 ```
 
 Copy the new system template (replace foo with the hostname)
 
 ```sh
-cp -r systems/new systems/foo
-nixos-generate-config --show-hardware-config --no-filesystems > systems/metabox/hardware-configurnation.nix
+cp -r systems/new systems/$HOST
+nixos-generate-config --show-hardware-config --no-filesystems > systems/$HOST/hardware-configuration.nix
+git add systems/$HOST
 ```
-
 
 Configure the filesystems and ensure the main device matches
 
@@ -48,10 +48,16 @@ Add the host to the bottom of the nixos modules eg. `// (mkHost { hostname = "fo
 vim modules/nixos.nix
 ```
 
-Replacing foo with the hostname and the disk device if necessary run:
+Install NixOS
 
 ```sh
-sudo nix run 'github:nix-community/disko/latest#disko-install' -- --write-efi-boot-entries --flake 'nixos#foo' --disk main /dev/nvme0n1
+sudo nix run --extra-experimental-features nix-command --extra-experimental-features flakes 'github:nix-community/disko/latest#disko-install' -- --write-efi-boot-entries --flake ..#$HOST --disk main $DISK
+```
+
+Test error
+
+```sh
+nix --extra-experimental-features nix-command --extra-experimental-features flakes build .#nixosConfigurations.$HOST.config.system.build.toplevel
 ```
 
 Format the disk and mount it using `disko`. Edit the `disko-template.nix` file to match your disk device (e.g., `/dev/nvme0n1`):
