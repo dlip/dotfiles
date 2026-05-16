@@ -90,5 +90,11 @@ top@{ self, ... }:
     nvidiaBusId = "PCI:1:0:0";
   };
 
+  # services.ollama = {
+  #   enable = true;
+  #   package = pkgs.ollama-cuda;
+  #   host = "0.0.0.0";
+  #   openFirewall = true;
+  # };
   system.stateVersion = "25.05";
 }
