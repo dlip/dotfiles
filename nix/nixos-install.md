@@ -1,5 +1,7 @@
 # NixOS Install
 
+## Installation
+
 Boot into the NixOS graphical installer, connect to the network and open the terminal:
 
 Format the disk with [disko](https://github.com/nix-community/disko)
@@ -53,6 +55,8 @@ nixos-install --flake ..#$HOST
 reboot
 ```
 
+## Setup dotfiles
+
 Log in with password 'password', connect to the network and open a terminal
 
 Install the dotfiles with changes to the current user
@@ -77,7 +81,7 @@ Test nixos config
 nixosconfig
 ```
 
-Setup SOPS
+## Setup SOPS
 
 If not using sshd generate keyfile
 
