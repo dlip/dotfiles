@@ -11,9 +11,17 @@ sudo -s
 Clone the configuration repository:
 
 ```sh
-git clone https://github.com/dlip/nixconfig.git /tmp/nixconfig
-cd /tmp/nixconfig
+git clone https://github.com/dlip/dotfiles.git
+cd dotfiles/nix
 ```
+
+Copy the new system template (replace foo with the hostname)
+
+```sh
+cp systems/new systems/foo
+```
+
+Use vim to edit the contents of `systems/foo/*.nix`
 
 Format the disk and mount it using `disko`. Edit the `disko-template.nix` file to match your disk device (e.g., `/dev/nvme0n1`):
 
