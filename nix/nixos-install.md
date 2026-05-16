@@ -1,102 +1,80 @@
 # NixOS Install
 
+Boot into the NixOS installer and get a shell:
+
 ```sh
 sudo -s
-fdisk -l
-export D=/dev/nvme0n1
+# Optional: connect to wifi
+# wpa_cli device wifi connect 'SSID' password='PASSWORD'
+```
 
-# partition disk
-gdisk $D
-# create new partition table
-o
-# create efi partition
-n
-<enter>
-<enter>
-+512M
-ef00
-# create root partition
-n
-<enter>
-<enter>
-<enter>
-<enter>
-# wp write
-w
+Clone the configuration repository:
 
-export P1=${D}p1
-export P2=${D}p2
+```sh
+git clone https://github.com/dlip/nixconfig.git /tmp/nixconfig
+cd /tmp/nixconfig
+```
 
-mkfs.fat $P1
-fatlabel $P1 BOOT
+Format the disk and mount it using `disko`. Edit the `disko-template.nix` file to match your disk device (e.g., `/dev/nvme0n1`):
 
-# format the disk with the luks structure
-cryptsetup luksFormat $P2
-# open the encrypted partition and map it to /dev/mapper/cryptroot
-cryptsetup luksOpen $P2 cryptroot
-# format encrypted partition
-mkfs.ext4 /dev/mapper/cryptroot -L ROOT
-# mount
-mount /dev/disk/by-label/ROOT /mnt
-mkdir /mnt/boot
-mount /dev/disk/by-label/BOOT /mnt/boot
+```sh
+vim nix/disko-template.nix # update `device = "/dev/nvme0n1";`
+nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko nix/disko-template.nix
+```
 
-# create swap file
-fallocate -l 8G /mnt/.swapfile
-chmod 600 /mnt/.swapfile
-mkswap /mnt/.swapfile
+You will be prompted to enter a LUKS passphrase for encryption.
 
+Generate hardware configuration:
+
+```sh
 nixos-generate-config --root /mnt
-
-mkdir /mnt/root
-cd /mnt/root
-git clone https://github.com/dlip/nixconfig.git
-cd nixconfig
-
-export HOST=metabox
-mkdir systems/$HOST
-cp /mnt/etc/nixos/* systems/$HOST
-vim systems/$HOST/hardware-configuration.nix
 ```
 
-Add
+Set up the new host configuration:
 
-```
-swapDevices = [{ device = "/.swapfile"; }];
+```sh
+export HOST=new-machine
+mkdir -p nix/systems/$HOST
+cp /mnt/etc/nixos/hardware-configuration.nix nix/systems/$HOST/
 ```
 
-```
-vim systems/$HOST/configuration.nix
+Create the system configuration:
 
+```sh
+vim nix/systems/$HOST/configuration.nix
 ```
 
 ```nix
-  networking.hostName = "HOSTNAME";
+{ config, pkgs, ... }:
+
+{
+  networking.hostName = "new-machine";
   # Enable wifi
   networking.networkmanager.enable = true;
 
   users.users.dane = {
-     isNormalUser = true;
-     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-   };
+    isNormalUser = true;
+    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+  };
 
   environment.systemPackages = with pkgs; [
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     wget
-     firefox
-     git
+    vim
+    wget
+    firefox
+    git
   ];
+}
 ```
 
-```
+Update `flake.nix` by copying an existing `nixosConfigurations` entry, replace the host name with the new one, and remove the `sops` import if not yet set up.
+
+```sh
 vim flake.nix
 ```
 
-Copy an existing nixosConfigurations, replace HOST with name above and remove sops import
+Install the system:
 
-Install system
-
-```
+```sh
 git add .
 nixos-install --flake .#$HOST
 reboot
