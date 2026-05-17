@@ -12,10 +12,10 @@
       ...
     }:
     {
-      config.sops.secrets.notify = { };
+      config.sops.secrets.gotify = { };
       config.systemd.services."notify-problems@" = {
         enable = true;
-        description = "Alert email for %i to user";
+        description = "Alert for %i via gotify";
         serviceConfig = {
           Type = "oneshot";
           User = "root";
@@ -24,13 +24,13 @@
 
         environment.SERVICE = "%i";
         script = ''
-          tmpfile=$(mktemp /tmp/notify.XXXXXX)
-          echo "
-          $HOSTNAME: $SERVICE Error:
-          $(systemctl status --full "$SERVICE")
-          " > "$tmpfile"
-          ${pkgs.notify}/bin/notify -bulk -data "$tmpfile" -provider-config ${config.sops.secrets.notify.path}
-          rm "$tmpfile"
+          GOTIFY_TOKEN=$(cat ${config.sops.secrets.gotify.path})
+          ${pkgs.gotify-cli}/bin/gotify push \
+            --url "http://127.0.0.1:8080" \
+            --token "$GOTIFY_TOKEN" \
+            --title "$HOSTNAME: $SERVICE Error" \
+            --priority 5 \
+            <<< "$(systemctl status --full "$SERVICE" 2>&1)"
         '';
       };
     };

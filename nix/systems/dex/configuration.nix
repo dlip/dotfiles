@@ -247,6 +247,20 @@ rec {
     enable = true;
   };
 
+  sops.secrets.gotify-admin-pass = { };
+
+  services.gotify = {
+    enable = true;
+    environment = {
+      GOTIFY_SERVER_LISTEN_ADDRESS = "127.0.0.1";
+      GOTIFY_SERVER_PORT = 8080;
+      GOTIFY_DATABASE_DIALECT = "sqlite3";
+      GOTIFY_DATABASE_CONNECTION = "/var/lib/gotify-server/data/gotify.db";
+      GOTIFY_DEFAULTUSER_NAME = "admin";
+    };
+    environmentFiles = [ config.sops.secrets.gotify-admin-pass.path ];
+  };
+
   services.flatpak.enable = true;
   # systemd.services.xboxdrv = {
   #   wantedBy = [ "multi-user.target" ];

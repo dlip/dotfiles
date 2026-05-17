@@ -18,4 +18,5 @@
   sunshine = 47990;
   grafana = 3090;
   prometheus = 9090;
+  gotify = 8080;
 }
