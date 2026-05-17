@@ -31,6 +31,8 @@ rec {
     self.modules.nixos.notify-problems
     self.modules.nixos.ssmtp
     self.modules.nixos.sops
+    self.modules.nixos.monitoring
+    self.modules.nixos.restic-exporter
     self.inputs.hermes-agent.nixosModules.default
   ];
 
@@ -675,6 +677,11 @@ rec {
     settings = {
       Port = 6000;
     };
+  };
+
+  services.grafana.settings.server = {
+    domain = "dex-lips.duckdns.org";
+    root_url = "https://grafana.dex-lips.duckdns.org";
   };
 
   # services.homepage-dashboard.enable = true;

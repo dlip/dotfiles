@@ -1,0 +1,124 @@
+{
+  "title": "Restic Backup",
+  "uid": "restic-backup",
+  "schemaVersion": 39,
+  "version": 1,
+  "timezone": "browser",
+  "editable": true,
+  "panels": [
+    {
+      "id": 1,
+      "title": "Repository Size",
+      "type": "stat",
+      "gridPos": { "h": 8, "w": 4, "x": 0, "y": 0 },
+      "targets": [
+        {
+          "expr": "restic_repository_size_bytes",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes",
+          "decimals": 2,
+          "color": { "mode": "none" }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 2,
+      "title": "Snapshots",
+      "type": "stat",
+      "gridPos": { "h": 8, "w": 4, "x": 4, "y": 0 },
+      "targets": [
+        {
+          "expr": "restic_snapshots_total",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0,
+          "color": { "mode": "none" }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 3,
+      "title": "Total Files",
+      "type": "stat",
+      "gridPos": { "h": 8, "w": 4, "x": 8, "y": 0 },
+      "targets": [
+        {
+          "expr": "restic_total_file_count",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0,
+          "color": { "mode": "none" }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 4,
+      "title": "Last Backup",
+      "type": "stat",
+      "gridPos": { "h": 8, "w": 4, "x": 0, "y": 8 },
+      "targets": [
+        {
+          "expr": "restic_last_backup_timestamp_seconds",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "dateTimeFromNow",
+          "decimals": 0,
+          "color": { "mode": "none" }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 5,
+      "title": "Backup Status",
+      "type": "stat",
+      "gridPos": { "h": 8, "w": 4, "x": 4, "y": 8 },
+      "targets": [
+        {
+          "expr": "restic_backup_success",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "red", "value": null },
+              { "color": "green", "value": 1 }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    }
+  ]
+}
