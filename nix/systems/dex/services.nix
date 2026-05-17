@@ -19,4 +19,5 @@
   grafana = 3090;
   prometheus = 9090;
   gotify = 8080;
+  miniflux = 8090;
 }

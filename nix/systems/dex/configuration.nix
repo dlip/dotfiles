@@ -261,6 +261,19 @@ rec {
     environmentFiles = [ config.sops.secrets.gotify-admin-pass.path ];
   };
 
+  sops.secrets.miniflux-admin = { };
+
+  services.miniflux = {
+    enable = true;
+    config = {
+      LISTEN_ADDR = "127.0.0.1:8090";
+      CREATE_ADMIN = 1;
+    };
+    adminCredentialsFile = config.sops.secrets.miniflux-admin.path;
+  };
+
+  services.postgresql.enable = true;
+
   services.flatpak.enable = true;
   # systemd.services.xboxdrv = {
   #   wantedBy = [ "multi-user.target" ];
