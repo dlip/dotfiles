@@ -700,7 +700,6 @@ rec {
     VirtualBox VMs
     node_modules
   '';
-  systemd.services.restic-backups-dex.unitConfig.OnFailure = "notify-problems@%i.service";
   services.restic.backups = {
     dex = {
       paths = [

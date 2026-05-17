@@ -80,6 +80,10 @@ imports = [
 - Files outside `nix/modules/` (e.g. in `nix/home/`, `nix/systems/`, `nix/pkgs/`) are imported explicitly by the modules, so they must be referenced from an existing module.
 - The flake uses `flake-parts` for structuring outputs.
 
+## Sudo Commands
+
+Always ask the user to run commands that require `sudo`, including `nixos-rebuild switch`, `sops` operations that involve secrets, and any system-level operations. Do not attempt to run these commands yourself — prompt the user to run them instead.
+
 ## General Guidelines
 
 - This repo is configuration-only. Don't add build artifacts, caches, or generated files.
