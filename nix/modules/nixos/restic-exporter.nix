@@ -10,18 +10,6 @@
       pkgs,
       ...
     }:
-    let
-      gotify-notify = pkgs.writeShellScriptBin "gotify-notify" ''
-        GOTIFY_TOKEN=$(cat ${config.sops.secrets.gotify.path})
-        ${pkgs.gotify-cli}/bin/gotify push \
-          --url "http://127.0.0.1:8080" \
-          --token "$GOTIFY_TOKEN" \
-          --title "$HOSTNAME: restic-exporter Error" \
-          --priority 5 \
-          --quiet \
-          <<< "$1"
-      '';
-    in
     {
       services.restic.backups.dex.backupCleanupCommand = ''
         METRICS_DIR="/var/lib/prometheus-node-exporter-textfiles"
@@ -48,7 +36,6 @@
           echo "restic_total_file_count $(echo "$STATS" | ${lib.getExe pkgs.jq} '.total_file_count // 0')" >> "$TMPFILE"
         else
           echo "restic_backup_success 0" >> "$TMPFILE"
-          ${gotify-notify}/bin/gotify-notify "restic stats command failed"
         fi
 
         if SNAPSHOTS=$(${lib.getExe pkgs.restic} snapshots --json 2>/dev/null); then
