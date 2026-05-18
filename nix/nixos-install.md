@@ -1,108 +1,87 @@
 # NixOS Install
 
+## Installation
+
+Boot into the NixOS graphical installer, connect to the network and open the terminal:
+
+Format the disk with [disko](https://github.com/nix-community/disko)
+
+```sh
+# Get the disko config
+curl -OL https://raw.githubusercontent.com/dlip/dotfiles/refs/heads/main/nix/systems/disko.nix
+# Find the root block device
+lsblk
+# Configure the filesystems and ensure the main device matches
+vim disko.nix
+# Format
+sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount /disko.nix
+```
+
+Clone the configuration repository:
+
 ```sh
 sudo -s
-fdisk -l
-export D=/dev/nvme0n1
-
-# partition disk
-gdisk $D
-# create new partition table
-o
-# create efi partition
-n
-<enter>
-<enter>
-+512M
-ef00
-# create root partition
-n
-<enter>
-<enter>
-<enter>
-<enter>
-# wp write
-w
-
-export P1=${D}p1
-export P2=${D}p2
-
-mkfs.fat $P1
-fatlabel $P1 BOOT
-
-# format the disk with the luks structure
-cryptsetup luksFormat $P2
-# open the encrypted partition and map it to /dev/mapper/cryptroot
-cryptsetup luksOpen $P2 cryptroot
-# format encrypted partition
-mkfs.ext4 /dev/mapper/cryptroot -L ROOT
-# mount
-mount /dev/disk/by-label/ROOT /mnt
-mkdir /mnt/boot
-mount /dev/disk/by-label/BOOT /mnt/boot
-
-# create swap file
-fallocate -l 8G /mnt/.swapfile
-chmod 600 /mnt/.swapfile
-mkswap /mnt/.swapfile
-
-nixos-generate-config --root /mnt
-
 mkdir /mnt/root
 cd /mnt/root
-git clone https://github.com/dlip/nixconfig.git
-cd nixconfig
-
-export HOST=metabox
-mkdir systems/$HOST
-cp /mnt/etc/nixos/* systems/$HOST
-vim systems/$HOST/hardware-configuration.nix
+git clone https://github.com/dlip/dotfiles.git
+cd dotfiles/nix
 ```
 
-Add
+Set the system host name (replace foo with desired name)
 
-```
-swapDevices = [{ device = "/.swapfile"; }];
-```
-
-```
-vim systems/$HOST/configuration.nix
-
+```sh
+export HOST=foo
 ```
 
-```nix
-  networking.hostName = "HOSTNAME";
-  # Enable wifi
-  networking.networkmanager.enable = true;
+Copy the new system template
 
-  users.users.dane = {
-     isNormalUser = true;
-     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-   };
-
-  environment.systemPackages = with pkgs; [
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     wget
-     firefox
-     git
-  ];
+```sh
+cp -r systems/new systems/$HOST
+nixos-generate-config --show-hardware-config --root /mnt > systems/$HOST/hardware-configuration.nix
+git add systems/$HOST
 ```
 
-```
-vim flake.nix
+
+Add the host to the bottom of the nixos modules eg. `// (mkHost { hostname = "foo"; })`
+
+```sh
+vim modules/nixos.nix
 ```
 
-Copy an existing nixosConfigurations, replace HOST with name above and remove sops import
+Install NixOS then reboot
 
-Install system
-
-```
-git add .
-nixos-install --flake .#$HOST
+```sh
+nixos-install --flake ..#$HOST
 reboot
 ```
 
-Setup SOPS
+## Setup dotfiles
+
+Log in with password 'password', connect to the network and open a terminal
+
+Install the dotfiles with changes to the current user
+
+```sh
+sudo rsync -av --chown=$(whoami):users /root/dotfiles/ .
+git submodule update --init
+```
+
+Open a new shell and commit and push the changes
+
+```sh
+git commit -am 'install host'
+git push
+```
+
+Enter github credentials, username 'pat' and use the generated token from here with repo access https://github.com/settings/tokens 
+
+Test nixos config
+
+```
+nixosconfig
+```
+
+## Setup SOPS
 
 If not using sshd generate keyfile
 
