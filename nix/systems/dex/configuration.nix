@@ -272,9 +272,16 @@ rec {
     adminCredentialsFile = config.sops.secrets.miniflux-admin.path;
   };
 
-  services.linkding = {
+  sops.secrets.karakeep-env = { };
+  services.karakeep = {
     enable = true;
-    port = 9091;
+    extraEnvironment = {
+      PORT = "3003";
+      HOST = "127.0.0.1";
+      INFERENCE_TEXT_MODEL = "deepseek/deepseek-v4-flash:free";
+      INFERENCE_IMAGE_MODEL = "deepseek/deepseek-v4-flash:free";
+    };
+    environmentFile = config.sops.secrets."karakeep-env".path;
   };
 
   services.postgresql.enable = true;

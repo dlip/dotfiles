@@ -6,6 +6,7 @@ let
     lua-language-server
     markdownlint-cli2
     marksman
+    nil
     nixd
     nixfmt
     ruff

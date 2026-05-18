@@ -132,6 +132,7 @@
         STEAM_EXTRA_COMPAT_TOOLS_PATHS = "$HOME/.steam/root/compatibilitytools.d";
         # STEEL_HOME = "${pkgs.steel}/lib";
         DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = "1"; # Fixes libicu error in osu!
+        NH_OS_FLAKE = "~";
       };
 
       services.upower.enable = true;
@@ -257,6 +258,12 @@
         vial
       ];
 
+      programs.nh = {
+        enable = true;
+        # clean.enable = true;
+        # clean.extraArgs = "--keep-since 4d --keep 3";
+        # flake = "/home/user/my-nixos-config"; # sets NH_OS_FLAKE variable for you
+      };
       # Some programs need SUID wrappers, can be configured further or are
       # started in user sessions.
       # programs.mtr.enable = true;

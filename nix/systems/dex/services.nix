@@ -19,6 +19,6 @@
   grafana = 3090;
   prometheus = 9090;
   gotify = 8080;
-  linkding = 9091;
+  karakeep = 3003;
   miniflux = 8090;
 }
