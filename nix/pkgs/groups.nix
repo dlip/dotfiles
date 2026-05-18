@@ -171,16 +171,10 @@ let
     mdl
     mecab
     mkvtoolnix-cli
-    mysql80
     niv
     nix-du
     nix-index
     nix-init
-    # nodePackages.node2nix
-    # nodePackages.pnpm
-    # nodePackages.quicktype
-    # nodePackages.reveal-md
-    # nodePackages.typescript
     nodejs
     notify
     notify-desktop
@@ -227,7 +221,6 @@ let
     xdotool
     xhost # add root to xsession: xhost si:localuser:root
     yarn
-    yarn2nix
     yq
     yt-dlp
     zgrviewer
@@ -269,6 +262,7 @@ let
     gramps
     hakuneko
     inkscape
+    karere # whatsapp-for-linux
     # kdePackages.kdenlive
     keyd
     kitty
@@ -294,7 +288,6 @@ let
     vial
     vlc
     warpd
-    wasistlos # whatsapp-for-linux
     xclip
     xmodmap
     yacreader

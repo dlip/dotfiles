@@ -17,17 +17,16 @@
             "dotnet-sdk-wrapped-6.0.428"
             "dotnet-sdk-6.0.428"
             "libsoup-2.74.3"
-            "ventoy-1.1.10"
+            "ventoy-1.1.12"
           ];
         };
         overlays = [
           inputs.nix-on-droid.overlays.default
           inputs.nixgl.overlay
           # Wrap devenv overlay to avoid deprecated pkgs.system access
-          (final: prev:
-            inputs.devenv.overlays.default
-              final
-              (prev // { system = prev.stdenv.hostPlatform.system; })
+          (
+            final: prev:
+            inputs.devenv.overlays.default final (prev // { system = prev.stdenv.hostPlatform.system; })
           )
           # helix.overlays.default
           # poetry2nix.overlay
@@ -39,6 +38,10 @@
             # };
             # vscodeNodeDebug2 = final.callPackage ../pkgs/vscodeNodeDebug2 {src = vscodeNodeDebug2;};
 
+            # https://github.com/NixOS/nixpkgs/issues/514113
+            openldap = prev.openldap.overrideAttrs {
+              doCheck = !prev.stdenv.hostPlatform.isi686;
+            };
             mokuro-reader = inputs.mokuro-reader.packages.${final.stdenv.hostPlatform.system}.default;
             bottles = (prev.bottles.override { removeWarningPopup = true; });
             emoji-menu = final.writeShellScriptBin "emoji-menu" (

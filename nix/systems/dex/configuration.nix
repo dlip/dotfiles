@@ -272,6 +272,11 @@ rec {
     adminCredentialsFile = config.sops.secrets.miniflux-admin.path;
   };
 
+  services.linkding = {
+    enable = true;
+    port = 9091;
+  };
+
   services.postgresql.enable = true;
 
   services.flatpak.enable = true;
