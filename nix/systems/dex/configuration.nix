@@ -278,8 +278,8 @@ rec {
     extraEnvironment = {
       PORT = "3003";
       HOST = "127.0.0.1";
-      INFERENCE_TEXT_MODEL = "deepseek/deepseek-v4-flash:free";
-      INFERENCE_IMAGE_MODEL = "deepseek/deepseek-v4-flash:free";
+      INFERENCE_TEXT_MODEL = "openai/gpt-oss-120b:free";
+      INFERENCE_IMAGE_MODEL = "openai/gpt-oss-120b:free";
     };
     environmentFile = config.sops.secrets."karakeep-env".path;
   };
