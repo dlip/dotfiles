@@ -5,7 +5,7 @@
     "$home/code"
   ],
   "chat.useClaudeSkills": true,
-  "AI.toolcall.v2.command.allowList": "[\"mv\",\"grep\",\"rm\",\"cat\",\"python3\",\"head\",\"wc\",\"echo\",\"tail\",\"black\",\"git\"]",
+  "AI.toolcall.v2.command.allowList": "[\"mv\",\"grep\",\"rm\",\"cat\",\"python3\",\"head\",\"wc\",\"echo\",\"tail\",\"black\",\"git\",\"ls\",\"nix\",\"which\",\"source\"]",
   "search.exclude": {
     "**/node_modules": true,
     "**/bower_components": true,
