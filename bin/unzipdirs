@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Inverse of `zipdirs`: expand every <name>.<ext> archive in the cwd into a
+# directory of the same base name, then delete the archive. Defaults to .zip
+# but takes the extension as $1.
 set -euo pipefail
 
 EXT=${1:-zip}

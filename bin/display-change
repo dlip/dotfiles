@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+# X11/xrandr handler invoked on lid-switch / display-hotplug events.
+# Picks the right output layout depending on whether the lid is closed and
+# whether an HDMI monitor is connected, and logs each invocation to
+# /var/log/display-change.
 export PATH=/run/wrappers/bin:/run/current-system/sw/bin:$PATH
 export DISPLAY=":0"
 export XAUTHORITY="/home/dane/.Xauthority"

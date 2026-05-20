@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Print the SHA at which a feature branch diverged from `main` (or any
+# branch passed in $1) by intersecting first-parent revlists. Useful as the
+# base ref for `git rebase -i`.
 set -euo pipefail
 
 FROM="${1:-HEAD}"

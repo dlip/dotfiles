@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Focus the zellij `editor` tab and tell helix to `:o '<FILENAME>'`. Used as
+# an external "open file" hook from other tools.
 set -euo pipefail
 FILENAME=$1
 zellij action go-to-tab-name editor

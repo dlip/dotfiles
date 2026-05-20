@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Wipe and re-init the local k3s cluster: stops the systemd unit, removes its
+# state under /etc/rancher and /var/lib/rancher, restarts it, then exports
+# the freshly-generated kubeconfig as ~/.kube/k3s.yaml.
 set -euo pipefail
 
 sudo systemctl stop k3s

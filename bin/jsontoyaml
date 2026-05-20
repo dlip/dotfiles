@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Convert JSON in the X11 clipboard to YAML (via yq) and place the result back
+# in the clipboard. Tabs are stripped first because yq rejects them.
 set -euo pipefail
 
 xclip -o -selection clipboard | sed 's/\t//g' | yq -y | xclip -sel c

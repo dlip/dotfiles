@@ -1,3 +1,7 @@
+# Shell aliases sourced from ~/.zshrc — short single-letter aliases for
+# frequently used commands (editors, file managers, git, fzf job picker, etc.)
+# plus a couple of helpers for renaming, ripgrep, lazygit, zellij, and forcing
+# Wayland for VS Code.
 alias c='clear'
 alias g='git'
 alias h='hx'

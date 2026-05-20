@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Interactively pick a subtitle track from each .mkv in the current directory
+# (or apply a saved default) and extract it to a sidecar .srt/.ass file.
+# Requires mkvmerge, mkvextract and jq.
 set -euo pipefail
 
 # Check dependencies using 'which'

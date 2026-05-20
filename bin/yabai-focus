@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Focus the first yabai-managed window whose `app` matches $1. Used as a
+# global hotkey target on macOS to jump to a specific application.
 
 id=$(yabai -m query --windows | jq "map(select(.app == \"$1\"))[0].id  | select( . != null )")
 

@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Start (or attach to) a "work" zellij session — meant to be the entry point
+# launched by `launch-default-programs` for the daily working environment.
 set -euo pipefail
 
 session="work"

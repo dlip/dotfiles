@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Cycle hyprpaper through random images from ~/sync/wallpapers every 15 minutes,
+# preloading and unloading wallpapers per cycle to keep memory usage bounded.
 
 directory=~/sync/wallpapers
 monitor=$(hyprctl monitors | grep Monitor | awk '{print $2}')

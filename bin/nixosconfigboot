@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Build the NixOS configuration and add it as the default boot entry without
+# activating it now (use after a kernel/init change that requires a reboot).
 set -euo pipefail
 
 sudo nixos-rebuild boot --flake .# "$@" --show-trace

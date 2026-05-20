@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Lock the sway/Wayland session with swaylock, themed in Nord colours. No-op
+# if swaylock is already running.
 set -euo pipefail
 pidof swaylock || swaylock -i ~/sync/wallpapers/nordnixos.png --ring-color=5e81ac --inside-color=2e3440 --ring-ver-color=88c0d0 --inside-ver-color=5e81ac --ring-wrong-color=b74242 --inside-wrong-color=c62c2c --line-color=20242c --key-hl-color=88c0d0
 # display-change-hyprland

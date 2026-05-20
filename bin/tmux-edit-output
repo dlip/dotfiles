@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Capture the entire scrollback of the current tmux pane into a temp .sh
+# file and open it in $EDITOR in a new tmux window, scrolled to the bottom.
+# Handy for grepping/saving long terminal output.
 set -euo pipefail
 
 file=$(mktemp).sh

@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Cross-platform "copy stdin to clipboard" wrapper. Picks the first available
+# of wl-copy (Wayland), xsel (X11) or pbcopy (macOS).
 set -euo pipefail
 
 if which wl-copy &>/dev/null; then

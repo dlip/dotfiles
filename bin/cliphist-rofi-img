@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+# Rofi front-end for cliphist with image thumbnail support. Without args:
+# prints the cliphist list with rofi `icon` markers pointing at thumbnails
+# in /tmp/cliphist for image entries. With one arg: decodes the chosen
+# entry back to the Wayland clipboard via wl-copy.
 
 tmp_dir="/tmp/cliphist"
 rm -rf "$tmp_dir"

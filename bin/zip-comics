@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Walk every subdirectory and, for any directory containing image files
+# (png/jpg/jpeg/webp/gif/avif/jxl), zip them into a sibling .cbz archive
+# named after the directory.
 set -euo pipefail
 shopt -s nullglob
 

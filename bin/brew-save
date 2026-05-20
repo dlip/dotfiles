@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Snapshot the currently installed Homebrew packages back into ~/Brewfile,
+# then re-run brew-install so the Brewfile and system stay in sync. Run
+# after `brew install foo` to commit the new package to the dotfiles.
 set -euo pipefail
 
 brew bundle dump --force --file='~/Brewfile'

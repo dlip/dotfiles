@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Open my two notes vaults in a `notes` tmux session — neovim editing
+# ~/notes/personal/index.md in window 0 and ~/notes/immutable/index.md
+# in window 1.
 set -euo pipefail
 
 session="notes"

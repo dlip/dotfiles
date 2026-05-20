@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Save the most recent PNG entry from cliphist to ~/Pictures with a timestamped
+# filename and pop a notify-send notification with "Open Dir" / "Open File"
+# actions wired up through the freedesktop FileManager1 D-Bus interface.
 set -euo pipefail
 
 DATA=$(cliphist list | (grep '\[\[ binary .* png .* \]\]$' || true) | head -n 1)

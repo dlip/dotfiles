@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+# Hyprland equivalent of display-change: when the lid closes, disable the
+# laptop panel if an external monitor is attached, otherwise lock the screen.
+# When the lid opens, re-enable the laptop panel. Retries hyprctl up to 30
+# times to ride out Hyprland config-reload windows.
 
 echo "Display change $(date)"
 echo "Lid $(cat /proc/acpi/button/lid/LID/state)"

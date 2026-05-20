@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Project switcher (zellij). Picks a repo from ~/code/projects.txt with fzf
+# and either attaches to its zellij session or creates a fresh `programming`
+# layout via direnv.
 set -euo pipefail
 
 # Open project

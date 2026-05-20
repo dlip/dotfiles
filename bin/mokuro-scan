@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Run mokuro on every .cbz under $1 (default `.`) that doesn't already have a
+# matching .mokuro file. Batched into a single mokuro invocation so its model
+# is only loaded once.
 
 # Base directory from argument, default to current directory
 BASE_DIR="${1:-.}"

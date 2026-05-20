@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Watches for the ALVR/SteamVR `vrserver` audio source and routes desktop
+# audio into the VR headphones via a virtual sink, restoring the previous
+# default sink when the headset disconnects. Polls once a second.
 set -euo pipefail
 
 default_sink_name=$(pactl get-default-sink)

@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Strip cue numbers, timestamps and blank lines from a .srt subtitle file,
+# leaving just the dialogue text on stdout. Usage: srt2txt <file.srt>
 set -euo pipefail
 
 if [[ $# -ne 1 ]]; then

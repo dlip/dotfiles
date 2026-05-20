@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Launch a Chromium/Electron app under Wayland with the right flags
+# (UseOzonePlatform / wayland-ime). Usage: waytron <executable>
 set -euo pipefail
 
 EXEC=$1

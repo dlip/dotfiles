@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Open a file selected in nnn inside the running zellij/helix layout: switches
+# to the `files` tab and types `;w <FILENAME>` into helix's command line.
 set -euo pipefail
 FILENAME=$1
 # open file in existing files tab

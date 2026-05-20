@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
+# Tmux project switcher. Indexes every directory under ~/code into zoxide,
+# lets you fzf-pick one (with optional initial query in $1) and either
+# attaches to its existing tmux session or creates a new one with the
+# project's name.
 set -euo pipefail
-
-# Tmux session manager
 
 PROJECTS="$HOME/code"
 # Ensure each project is in zoxide

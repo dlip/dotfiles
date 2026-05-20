@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Convert each animated GIF in ~/sync/wallpapers/animated into a sequence of
+# bmp frames under ~/paperview/<name>/, ready for use with the `paperview`
+# animated wallpaper renderer. Skips any GIF that has already been processed.
 set -euo pipefail
 
 for x in ~/sync/wallpapers/animated/*; do

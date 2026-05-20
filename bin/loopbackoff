@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Tear down the pulseaudio modules created by `loopback` / `loopback2` by
+# unloading the IDs recorded in /tmp/pulseaudio_module_list.txt.
 set -euo pipefail
 
 module_file="/tmp/pulseaudio_module_list.txt"

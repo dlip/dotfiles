@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Minimal terminal-based notification daemon: stops xfce4-notifyd, then reads
+# notifications from `tiramisu` (source/summary/body triplets) and prints
+# them while announcing the source via the `mimic` text-to-speech engine.
 
 notify() {
   ARGS=0

@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Bootstrap a per-user Homebrew install at ~/.brew (no sudo required).
+# Bails out if ~/.brew already exists.
 set -euo pipefail
 
 cd ~

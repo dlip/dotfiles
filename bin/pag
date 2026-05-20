@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Walk up to four directory levels under the current directory looking for
+# git repositories and append each one to ~/code/projects.txt.
 set -euo pipefail
 
 # Project add git folders

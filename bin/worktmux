@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Tmux variant of `work`: starts a "work" tmux session and immediately opens
+# the `nixconfig` project in it via `p`, waiting for that command to signal
+# `project_opened`.
 set -euo pipefail
 
 session="work"

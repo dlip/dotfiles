@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Uninstall any Homebrew packages that are installed but no longer listed in
+# ~/Brewfile. Run after removing a package from the Brewfile.
 set -euo pipefail
 
 brew bundle cleanup --force --file='~/Brewfile'

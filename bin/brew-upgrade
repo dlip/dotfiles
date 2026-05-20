@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Update Homebrew, upgrade all installed packages, then re-run brew-install to
+# ensure anything new in the Brewfile is also installed.
 set -euo pipefail
 
 # ncurses build error with kitty

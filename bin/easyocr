@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Run EasyOCR (English) inside the challisa/easyocr GPU docker image against
+# the file passed as $1, printing the recognised text to stdout.
 set -euo pipefail
 
 nvidia-docker run -it --rm -v $HOME/.EasyOCR:/root/.EasyOCR -v $PWD:/workspace challisa/easyocr easyocr -l en --detail 0 --gpu true -f "$1"

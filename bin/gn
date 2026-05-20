@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# "git new branch" — fetch the remote default branch (auto-detecting `main`
+# vs `master`, caching the result in .git/default-branch) and create a new
+# branch from it. Usage: gn <branch>
 set -euo pipefail
 
 if [ -z "${1:-}" ]; then

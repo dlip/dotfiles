@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Two-microphone variant of `loopback`: sets up the same pulseaudio virtual
+# sinks, plus a second microphone (HDMI capture card) mixed into the
+# outgoing stream.
 set -euo pipefail
 
 # This script sets up pulseaudio virtual devices

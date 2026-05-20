@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Kill whichever process is bound to a TCP port. Usage: killport <port>
 set -euo pipefail
 
 kill $( lsof -i:$1 -t )

@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Launch the standard desktop environment programs (browser, terminal+work
+# session, obsidian, warpd) after a short delay. Intended to be called from
+# the WM startup script.
 
 sleep 2
 google-chrome-stable &

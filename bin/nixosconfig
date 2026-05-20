@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Apply the NixOS configuration for the current host using the flake in $PWD.
+# Equivalent to `nixos-rebuild switch` but with `--show-trace` for easier
+# debugging.
 set -euo pipefail
 
 sudo nixos-rebuild switch --flake .# "$@" --show-trace

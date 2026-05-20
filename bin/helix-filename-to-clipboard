@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
-# xclip first argument
+# Copy the path passed as $1 to the X11 clipboard, stripping the leading
+# $PWD/ so the result is repo-relative. Wired up to a helix keybind via
+# `:sh helix-filename-to-clipboard %{buffer_name}`.
 echo "${@#$PWD/}" | xclip -sel c

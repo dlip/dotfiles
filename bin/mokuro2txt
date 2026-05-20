@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Flatten a .mokuro JSON file into plain text — one OCR'd block per line —
+# by concatenating every line of every block on every page.
 set -euo pipefail
 
 if [[ $# -ne 1 ]]; then

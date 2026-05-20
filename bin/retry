@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Re-run a command every 3 seconds until it exits successfully. Usage: retry <cmd...>
 
 until "$@"; do
   echo "Retrying again in 3 seconds"

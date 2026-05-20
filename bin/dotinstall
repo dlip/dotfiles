@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+# Bootstrap this dotfiles repo into a fresh home directory: clones the repo
+# into ~ via a temporary directory, backs up any conflicting files into
+# ~/.dotbackup, then resets the worktree to match the repo and pulls
+# submodules.
 set -euo pipefail
 
 if [ -d "$HOME/.git" ]; then

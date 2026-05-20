@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Install everything declared in ~/Brewfile without upgrading already-installed
+# packages. TERMINFO is unset to work around an ncurses build error when run
+# from kitty.
 set -euo pipefail
 
 # ncurses build error with kitty

@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Picks a random animated wallpaper from ~/sync/wallpapers/animated and plays
+# it fullscreen via mpv+xwinwrap on every connected X11 monitor. Kills any
+# existing xwinwrap processes first so re-running this swaps wallpapers.
 
 _screen() {
     xwinwrap -ov -g $1 -- mpv --fullscreen\

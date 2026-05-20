@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Cross-platform "paste clipboard to stdout" wrapper. Picks the first
+# available of wl-paste (Wayland), xsel (X11) or pbpaste (macOS).
 set -euo pipefail
 
 if which wl-paste &>/dev/null; then

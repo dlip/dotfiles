@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Add the current working directory to ~/code/projects.txt so the project
+# switcher (`p` / `pz` / `t`) can find it.
 set -euo pipefail
 
 # Project add current dir

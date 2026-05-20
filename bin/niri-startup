@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+# Niri compositor user-session bootstrap: launches my preferred set of apps
+# (terminal, file manager, Telegram, Chrome, Obsidian, Discord) on the
+# `terminal` workspace, plus background helpers like cliphist, fcitx5,
+# udiskie and xwayland-satellite.
 
 if [[ $(whoami) == 'dane' ]]; then
   niri msg action focus-workspace terminal &

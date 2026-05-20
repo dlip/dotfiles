@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Set up two pulseaudio null sinks so video-conferencing apps can capture both
+# the microphone and any locally-played audio. Routes are recorded into
+# /tmp/pulseaudio_module_list.txt so `loopbackoff` can tear them down.
 set -euo pipefail
 
 # This script sets up pulseaudio virtual devices

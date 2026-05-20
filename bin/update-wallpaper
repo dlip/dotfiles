@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Set a random wallpaper from ~/sync/wallpapers using feh on each X11 monitor.
 set -euo pipefail
 
 feh --bg-fill --randomize ~/sync/wallpapers

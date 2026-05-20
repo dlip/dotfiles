@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Delete old home-manager generations and run `nix-collect-garbage -d` to
+# reclaim disk space from the Nix store.
 set -euo pipefail
 
 # needed?

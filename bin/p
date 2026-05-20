@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Project switcher (tmux). Picks a repo from ~/code/projects.txt with fzf and
+# either attaches to its existing tmux session or creates a fresh one with
+# editor / shell / lazygit / nnn windows.
 set -euo pipefail
 
 # Open project

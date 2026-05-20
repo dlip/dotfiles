@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Pause any media player and lock the X11 session with i3lock-color, themed in
+# Nord colours. Then forces DPMS off and disables the laptop panel.
 set -euo pipefail
 
 playerctl pause || true

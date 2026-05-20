@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Inverse of `unzipdirs`: zip every direct subdirectory of cwd into a
+# <name>.<ext> archive (default .zip) and remove the original directory.
 set -euo pipefail
 
 EXT=${1:-zip}

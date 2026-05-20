@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+# nnn plugin: prompt for a path and `cd` to it via the NNN_PIPE control channel.
 
 printf "cd to: "
 read -r dir
