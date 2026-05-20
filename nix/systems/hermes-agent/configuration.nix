@@ -9,6 +9,14 @@
     self.inputs.hermes-agent.nixosModules.default
   ];
 
+  # https://github.com/NousResearch/hermes-agent/issues/12195
+  system.activationScripts.binbash = {
+    deps = [ "binsh" ];
+    text = ''
+      ln -sfn /run/current-system/sw/bin/bash /bin/bash
+    '';
+  };
+
   environment.systemPackages =
     with pkgs;
     groups.default
