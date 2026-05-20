@@ -291,6 +291,7 @@ rec {
       HOST = "127.0.0.1";
       INFERENCE_TEXT_MODEL = "openai/gpt-oss-120b:free";
       INFERENCE_IMAGE_MODEL = "openai/gpt-oss-120b:free";
+      INFERENCE_ENABLE_AUTO_SUMMARIZATION = "true";
     };
     environmentFile = config.sops.secrets."karakeep-env".path;
   };
