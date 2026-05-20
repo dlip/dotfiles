@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Reads newline-delimited strings from the clipboard and rewrites it in the
+# clipboard as JSON-quoted, comma-separated lines ready to paste inside a
+# JSON array's `[ ... ]`. Empty lines are skipped, and backslashes/quotes
+# in each line are escaped so the output is valid JSON.
+#
+# Example:
+#   9.24.170.144            "9.24.170.144",
+#   9.27.172.199    -->     "9.27.172.199",
+#   9.24.128.252            "9.24.128.252"
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+"$SCRIPT_DIR/pst" \
+	| awk 'NF { lines[n++] = $0 } END {
+		for (i = 0; i < n; i++) {
+			gsub(/\\/, "\\\\", lines[i])
+			gsub(/"/, "\\\"", lines[i])
+			printf "\"%s\"%s\n", lines[i], (i < n - 1 ? "," : "")
+		}
+	}' \
+	| "$SCRIPT_DIR/cpy"
