@@ -134,16 +134,21 @@ rec {
   # };
 
   sops.secrets."hermes-env" = { };
-
-  services.hermes-agent = {
-    enable = true;
-    environmentFiles = [ config.sops.secrets."hermes-env".path ];
-    addToSystemPackages = true;
-    package = self.inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
-      extraPythonPackages = with pkgs.stable; [ python312Packages.python-telegram-bot ];
+  containers.hermes-agent = {
+    ephemeral = true;
+    autoStart = true;
+    privateNetwork = true;
+    hostAddress = "10.1.1.1";
+    localAddress = "10.1.1.2";
+    config = import ../hermes-agent/configuration.nix top {
+      inherit pkgs config;
     };
-    settings = {
-      model.default = "nvidia/nemotron-3-super-120b-a12b:free";
+    bindMounts = {
+      # Make the host's sops-rendered env file visible inside the container.
+      "/run/secrets/hermes-env" = {
+        hostPath = config.sops.secrets."hermes-env".path;
+        isReadOnly = true;
+      };
     };
   };
 
