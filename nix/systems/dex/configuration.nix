@@ -143,7 +143,7 @@ rec {
       extraPythonPackages = with pkgs.stable; [ python312Packages.python-telegram-bot ];
     };
     settings = {
-      model.default = "minimax/minimax-m2.7";
+      model.default = "nvidia/nemotron-3-super-120b-a12b:free";
     };
   };
 
@@ -268,6 +268,7 @@ rec {
     config = {
       LISTEN_ADDR = "127.0.0.1:8090";
       CREATE_ADMIN = 1;
+      FETCHER_ALLOW_PRIVATE_NETWORKS = 1;
     };
     adminCredentialsFile = config.sops.secrets.miniflux-admin.path;
   };
