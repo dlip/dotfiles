@@ -31,7 +31,6 @@ rec {
     self.modules.nixos.notify-problems
     self.modules.nixos.ssmtp
     self.modules.nixos.sops
-    self.inputs.hermes-agent.nixosModules.default
   ];
 
   # Open ports in the firewall.
@@ -131,19 +130,9 @@ rec {
   #     '';
   # };
 
+  # Decrypted on the host by sops-nix; the rendered file is bind-mounted into
+  # the hermes-agent container as /run/secrets/hermes-env (see below).
   sops.secrets."hermes-env" = { };
-
-  services.hermes-agent = {
-    enable = true;
-    environmentFiles = [ config.sops.secrets."hermes-env".path ];
-    addToSystemPackages = true;
-    package = self.inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
-      extraPythonPackages = with pkgs.stable; [ python312Packages.python-telegram-bot ];
-    };
-    settings = {
-      model.default = "minimax/minimax-m2.7";
-    };
-  };
 
   systemd.services.mokuro-reader = {
     description = "Mokuro reader";
@@ -440,6 +429,24 @@ rec {
       "/var/lib" = {
         hostPath = "/mnt/downloader/var/lib";
         isReadOnly = false;
+      };
+    };
+  };
+
+  containers.hermes-agent = {
+    ephemeral = true;
+    autoStart = true;
+    privateNetwork = true;
+    hostAddress = "10.1.1.1";
+    localAddress = "10.1.1.2";
+    config = import ../hermes-agent/configuration.nix top {
+      inherit pkgs config;
+    };
+    bindMounts = {
+      # Make the host's sops-rendered env file visible inside the container.
+      "/run/secrets/hermes-env" = {
+        hostPath = config.sops.secrets."hermes-env".path;
+        isReadOnly = true;
       };
     };
   };
