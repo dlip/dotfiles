@@ -13,6 +13,7 @@
     with pkgs;
     groups.default
     ++ [
+      go
       # Hermes can make a pr to add any extra packages it needs here
     ];
 
