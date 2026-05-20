@@ -9,6 +9,13 @@
     self.inputs.hermes-agent.nixosModules.default
   ];
 
+  environment.systemPackages =
+    with pkgs;
+    groups.default
+    ++ [
+      # Hermes can make a pr to add any extra packages it needs here
+    ];
+
   # Mirror the host's nix experimental-features so any agent-driven nix
   # invocations behave identically to the rest of the dotfiles.
   nix.extraOptions = ''
@@ -36,52 +43,12 @@
     # Useful inside the container shell (`nixos-container root-login
     # hermes-agent`); the host doesn't need it because the agent runs here.
     addToSystemPackages = true;
-    package =
-      self.inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.default.override
-        {
-          extraPythonPackages = with pkgs.stable; [ python312Packages.python-telegram-bot ];
-        };
+    package = self.inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
+      extraPythonPackages = with pkgs.stable; [ python312Packages.python-telegram-bot ];
+    };
     settings = {
       model.default = "nvidia/nemotron-3-super-120b-a12b:free";
     };
-  };
-
-  # Defense in depth: even though the container already provides namespace
-  # isolation, harden the unit itself so a compromised tool call has the
-  # smallest possible blast radius inside the container.
-  systemd.services.hermes-agent.serviceConfig = {
-    NoNewPrivileges = true;
-    ProtectSystem = "strict";
-    ProtectHome = true;
-    PrivateTmp = true;
-    PrivateDevices = true;
-    ProtectKernelTunables = true;
-    ProtectKernelModules = true;
-    ProtectKernelLogs = true;
-    ProtectControlGroups = true;
-    ProtectClock = true;
-    ProtectHostname = true;
-    LockPersonality = true;
-    RestrictRealtime = true;
-    RestrictSUIDSGID = true;
-    RestrictNamespaces = true;
-    RestrictAddressFamilies = [
-      "AF_INET"
-      "AF_INET6"
-      "AF_UNIX"
-    ];
-    SystemCallArchitectures = "native";
-    SystemCallFilter = [
-      "@system-service"
-      "~@privileged"
-      "~@resources"
-    ];
-    CapabilityBoundingSet = "";
-    AmbientCapabilities = "";
-    # Many Python LLM stacks JIT/load shared objects at runtime, so leaving
-    # MemoryDenyWriteExecute off by default. Flip it on if you confirm the
-    # agent never needs W^X.
-    MemoryDenyWriteExecute = false;
   };
 
   system.stateVersion = "25.05";

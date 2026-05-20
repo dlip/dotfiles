@@ -149,7 +149,12 @@ rec {
         hostPath = config.sops.secrets."hermes-env".path;
         isReadOnly = true;
       };
+      "/var/lib/hermes" = {
+        hostPath = "/mnt/hermes";
+        isReadOnly = false;
+      };
     };
+
   };
 
   systemd.services.mokuro-reader = {
@@ -752,6 +757,7 @@ rec {
         "/root"
         "/mnt/services"
         "/mnt/downloader"
+        "/mnt/hermes"
         "/var/lib"
         "/media/media/personal"
       ];
