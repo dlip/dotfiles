@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# lines2jsonarray — convert newline-delimited clipboard contents into a
+# JSON-array-ready, comma-separated list of quoted strings.
+#
+# Reads the clipboard via `pst`, drops blank lines, escapes any backslashes
+# and double quotes so each line is a valid JSON string, wraps each line in
+# `"..."`, and appends `,` to every entry except the last. The result is
+# written back to the clipboard via `cpy` so you can paste it directly
+# inside a JSON array's `[ ... ]`.
+#
+# Example:
+#     9.24.170.144            "9.24.170.144",
+#     9.27.172.199    -->     "9.27.172.199",
+#     9.24.128.252            "9.24.128.252"
+set -euo pipefail
+
+pst | awk '
+  NF {
+    # Escape backslashes first, then double quotes, so the output is valid JSON.
+    gsub(/\\/, "\\\\")
+    gsub(/"/, "\\\"")
+    lines[++n] = "\"" $0 "\""
+  }
+  END {
+    for (i = 1; i <= n; i++) {
+      printf "%s%s\n", lines[i], (i < n ? "," : "")
+    }
+  }
+' | cpy
