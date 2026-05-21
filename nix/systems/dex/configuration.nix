@@ -33,6 +33,7 @@ rec {
     self.modules.nixos.sops
     self.modules.nixos.monitoring
     self.modules.nixos.restic-exporter
+    self.modules.nixos.hermesVmHost
     self.inputs.hermes-agent.nixosModules.default
   ];
 
@@ -204,6 +205,7 @@ rec {
       "networkmanager"
       "dialout"
       "adbusers"
+      "libvirtd"
     ];
   };
 
@@ -389,7 +391,15 @@ rec {
     "wg0"
     "ve-+"
   ];
-  networking.nat.externalInterface = "enp0s31f6";
+  # Note: this used to be `enp0s31f6`, but that NIC is now enslaved into
+  # `br0` by the hermesVmHost module so the host's IP rides on the bridge.
+  # NAT for wireguard / nspawn containers must follow it onto br0.
+  networking.nat.externalInterface = "br0";
+
+  services.hermesVmHost = {
+    enable = true;
+    lanInterface = "enp0s31f6";
+  };
 
   sops.secrets.wireguard-key = { };
   networking.wireguard.interfaces = {

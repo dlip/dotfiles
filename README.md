@@ -13,6 +13,8 @@ Personal dotfiles and Nix system configurations, managed as a bare-style repo ch
 
 ## Setup
 
+Follow the [NixOS](./nix/nixos-install.md) install or [install Nix](https://nixos.org/download) into your current distribution
+
 Run [dotinstall](./bin/dotinstall) to clone into your home directory:
 
 ```sh
@@ -20,6 +22,20 @@ curl -sL https://raw.githubusercontent.com/dlip/dotfiles/refs/heads/main/bin/dot
 ```
 
 This clones the repo's `.git` into `~`, backs up any conflicting files to `~/.dotbackup`, then checks out.
+
+## Home Manager
+
+If using standalone nix, add a config to [nix/modules/homemanager.nix](nix/modules/homemanager.nix) then and to ~/.zshrc.local, replacing `CONFIG` with the name
+
+```sh
+export NIXCONFIG=CONFIG
+```
+
+Open a new shell and run this to switch:
+
+```sh
+nixconfig
+```
 
 ## Adding or removing tracked files
 

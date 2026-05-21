@@ -17,6 +17,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hermes-agent.url = "github:NousResearch/hermes-agent/v2026.5.7";
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # nix-darwin = {
     #   url = "github:LnL7/nix-darwin/master";
     #   inputs.nixpkgs.follows = "nixpkgs";
