@@ -1,6 +1,6 @@
 { withSystem, inputs, ... }:
 {
-  # nix run home-manager/master -- switch --flake .#hostname
+  # nix run home-manager/master -- switch --flake .#docker
   flake.homeConfigurations = {
     docker = inputs.home-manager.lib.homeManagerConfiguration {
       pkgs = withSystem "x86_64-linux" ({ pkgs, ... }: pkgs);
