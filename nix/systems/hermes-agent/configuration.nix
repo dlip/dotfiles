@@ -22,6 +22,7 @@
     groups.default
     ++ [
       go
+      python3
       # Hermes can make a pr to add any extra packages it needs here
     ];
 
