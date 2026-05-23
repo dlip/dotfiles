@@ -7,6 +7,7 @@
 {
   imports = [
     self.inputs.hermes-agent.nixosModules.default
+    self.modules.nixos.hermes-dashboard
   ];
 
   # https://github.com/NousResearch/hermes-agent/issues/12195
@@ -59,6 +60,13 @@
     settings = {
       model.default = "nvidia/nemotron-3-super-120b-a12b:free";
     };
+  };
+
+  services.hermes-dashboard = {
+    enable = true;
+    port = 9119;
+    host = "0.0.0.0";
+    user = "hermes";
   };
 
   system.stateVersion = "25.05";

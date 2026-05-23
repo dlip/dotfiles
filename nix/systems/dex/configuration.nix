@@ -580,7 +580,21 @@ rec {
               certResolver = "letsencrypt";
             };
           }
-        ) (dex-services // downloader-services);
+        ) (dex-services // downloader-services)
+        // {
+          hermes-dashboard = {
+            rule = "Host(`hermes.${domain}`)";
+            service = "hermes-dashboard";
+            tls = {
+              domains = [
+                {
+                  main = "*.${domain}";
+                }
+              ];
+              certResolver = "letsencrypt";
+            };
+          };
+        };
 
         services =
           (pkgs.lib.attrsets.mapAttrs' (
@@ -596,7 +610,14 @@ rec {
                 { url = "http://${containers.downloader.localAddress}:${toString port}/"; }
               ];
             }
-          ) downloader-services);
+          ) downloader-services)
+        // {
+          hermes-dashboard = {
+            loadBalancer.servers = [
+              { url = "http://${containers.hermes-agent.localAddress}:9119/"; }
+            ];
+          };
+        };
       };
     };
   };
