@@ -65,7 +65,7 @@
             Type = "simple";
             User = cfg.user;
             Group = cfg.user;
-            ExecStart = "${config.services.hermes-agent.package}/bin/hermes dashboard --host ${cfg.host} --port ${toString cfg.port} --insecure --no-open";
+            ExecStart = "${config.services.hermes-agent.package}/bin/hermes dashboard --host ${cfg.host} --port ${toString cfg.port} --insecure --no-open --tui";
             Restart = "on-failure";
             RestartSec = 5;
           };
@@ -73,3 +73,4 @@
       };
     };
 }
+

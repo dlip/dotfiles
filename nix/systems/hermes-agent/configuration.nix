@@ -58,12 +58,16 @@
       extraPythonPackages = with pkgs.stable; [ python312Packages.python-telegram-bot ];
     };
     settings = {
-      model.default = "nvidia/nemotron-3-super-120b-a12b:free";
+      model = {
+        provider = "opencode-go";
+        default = "deepseek-v4-pro";
+        base_url = "https://opencode.ai/zen/go/v1";
+      };
     };
   };
 
   services.hermes-dashboard = {
-    enable = true;
+    enable = false;
     port = 9119;
     host = "0.0.0.0";
     user = "hermes";
@@ -71,3 +75,4 @@
 
   system.stateVersion = "25.05";
 }
+
