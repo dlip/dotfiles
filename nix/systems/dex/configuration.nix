@@ -594,6 +594,18 @@ rec {
               certResolver = "letsencrypt";
             };
           };
+          hermes-webui = {
+            rule = "Host(`hermes-webui.${domain}`)";
+            service = "hermes-webui";
+            tls = {
+              domains = [
+                {
+                  main = "*.${domain}";
+                }
+              ];
+              certResolver = "letsencrypt";
+            };
+          };
         };
 
         services =
@@ -615,6 +627,11 @@ rec {
           hermes-dashboard = {
             loadBalancer.servers = [
               { url = "http://${containers.hermes-agent.localAddress}:9119/"; }
+            ];
+          };
+          hermes-webui = {
+            loadBalancer.servers = [
+              { url = "http://${containers.hermes-agent.localAddress}:8787/"; }
             ];
           };
         };
