@@ -8,6 +8,7 @@
   imports = [
     self.inputs.hermes-agent.nixosModules.default
     self.modules.nixos.hermes-dashboard
+    self.modules.nixos.hermes-webui
   ];
 
   # https://github.com/NousResearch/hermes-agent/issues/12195
@@ -69,6 +70,13 @@
   services.hermes-dashboard = {
     enable = false;
     port = 9119;
+    host = "0.0.0.0";
+    user = "hermes";
+  };
+
+  services.hermes-webui = {
+    enable = true;
+    port = 8787;
     host = "0.0.0.0";
     user = "hermes";
   };
