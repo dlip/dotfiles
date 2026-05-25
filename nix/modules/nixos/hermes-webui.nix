@@ -29,7 +29,7 @@
         export HERMES_WEBUI_HOST="${cfg.host}"
         export HERMES_WEBUI_PORT="${toString cfg.port}"
         export HERMES_WEBUI_STATE_DIR="/var/lib/hermes/webui"
-        export HERMES_HOME="/var/lib/hermes"
+        export HERMES_HOME="/var/lib/hermes/.hermes"
 
         mkdir -p /var/lib/hermes/webui
 

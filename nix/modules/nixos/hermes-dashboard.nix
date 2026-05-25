@@ -58,7 +58,7 @@
           wantedBy = [ "multi-user.target" ];
 
           environment = {
-            HERMES_HOME = "/var/lib/hermes";
+            HERMES_HOME = "/var/lib/hermes/.hermes";
           };
 
           serviceConfig = {

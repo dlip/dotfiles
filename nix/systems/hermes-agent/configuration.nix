@@ -61,14 +61,14 @@
     settings = {
       model = {
         provider = "opencode-go";
-        default = "deepseek-v4-pro";
+        default = "deepseek-v4-flash";
         base_url = "https://opencode.ai/zen/go/v1";
       };
     };
   };
 
   services.hermes-dashboard = {
-    enable = false;
+    enable = true;
     port = 9119;
     host = "0.0.0.0";
     user = "hermes";
@@ -83,4 +83,3 @@
 
   system.stateVersion = "25.05";
 }
-
