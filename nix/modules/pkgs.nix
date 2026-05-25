@@ -52,6 +52,9 @@
             # myEspanso = final.callPackage ../pkgs/espanso {};
             # hyprland = hyprland.packages.${final.stdenv.hostPlatform.system}.hyprland;
             # hyprcursor-catppuccin = hyprcursor-catppuccin.packages.${final.stdenv.hostPlatform.system}.hyprcursor-catppuccin;
+            hermes-agent = inputs.hermes-agent.packages.${final.stdenv.hostPlatform.system}.default.override {
+              extraPythonPackages = with final; [ python312Packages.python-telegram-bot ];
+            };
             power-menu = final.writeShellScriptBin "power-menu" (
               builtins.readFile "${inputs.power-menu}/rofi-power-menu"
             );

@@ -12,6 +12,7 @@ top@{ self, ... }:
 let
   dex-services = import ./services.nix;
   downloader-services = import ../downloader/services.nix;
+  hermes-services = import ../hermes-agent/services.nix;
   domain = "dex-lips.duckdns.org";
 
   restic-dex = pkgs.writeShellScriptBin "restic-dex" ''
@@ -140,11 +141,20 @@ rec {
     privateNetwork = true;
     hostAddress = "10.1.1.1";
     localAddress = "10.1.1.2";
-    config = import ../hermes-agent/configuration.nix top {
-      inherit pkgs config;
-    };
+    config =
+      import ../hermes-agent/configuration.nix
+        {
+          settings = {
+            provider = "opencode-go";
+            default = "kimi-k2.6";
+            base_url = "https://opencode.ai/zen/go/v1";
+          };
+        }
+        top
+        {
+          inherit pkgs config;
+        };
     bindMounts = {
-      # Make the host's sops-rendered env file visible inside the container.
       "/run/secrets/hermes-env" = {
         hostPath = config.sops.secrets."hermes-env".path;
         isReadOnly = true;
@@ -154,7 +164,40 @@ rec {
         isReadOnly = false;
       };
     };
+  };
 
+  sops.secrets."tony-env" = { };
+  containers.tony-agent = {
+    ephemeral = true;
+    autoStart = true;
+    privateNetwork = true;
+    hostAddress = "10.1.1.3";
+    localAddress = "10.1.1.4";
+    config =
+      import ../hermes-agent/configuration.nix
+        {
+          settings = {
+            model = {
+              provider = "opencode-go";
+              default = "kimi-k2.6";
+              base_url = "https://opencode.ai/zen/go/v1";
+            };
+          };
+        }
+        top
+        {
+          inherit pkgs config;
+        };
+    bindMounts = {
+      "/run/secrets/hermes-env" = {
+        hostPath = config.sops.secrets."tony-env".path;
+        isReadOnly = true;
+      };
+      "/var/lib/hermes" = {
+        hostPath = "/mnt/tony";
+        isReadOnly = false;
+      };
+    };
   };
 
   systemd.services.mokuro-reader = {
@@ -581,10 +624,12 @@ rec {
             };
           }
         ) (dex-services // downloader-services)
-        // {
-          hermes-dashboard = {
-            rule = "Host(`hermes.${domain}`)";
-            service = "hermes-dashboard";
+        // pkgs.lib.attrsets.mapAttrs' (
+          name: port:
+          pkgs.lib.attrsets.nameValuePair "hermes-${name}" {
+            rule = "Host(`hermes-${name}.${domain}`)";
+            service = "hermes-${name}";
+            middlewares = [ "cors" ];
             tls = {
               domains = [
                 {
@@ -593,10 +638,14 @@ rec {
               ];
               certResolver = "letsencrypt";
             };
-          };
-          hermes-webui = {
-            rule = "Host(`hermes-webui.${domain}`)";
-            service = "hermes-webui";
+          }
+        ) (hermes-services)
+        // pkgs.lib.attrsets.mapAttrs' (
+          name: port:
+          pkgs.lib.attrsets.nameValuePair "tony-${name}" {
+            rule = "Host(`tony-${name}.${domain}`)";
+            service = "tony-${name}";
+            middlewares = [ "cors" ];
             tls = {
               domains = [
                 {
@@ -605,8 +654,8 @@ rec {
               ];
               certResolver = "letsencrypt";
             };
-          };
-        };
+          }
+        ) (hermes-services);
 
         services =
           (pkgs.lib.attrsets.mapAttrs' (
@@ -623,18 +672,22 @@ rec {
               ];
             }
           ) downloader-services)
-        // {
-          hermes-dashboard = {
-            loadBalancer.servers = [
-              { url = "http://${containers.hermes-agent.localAddress}:9119/"; }
-            ];
-          };
-          hermes-webui = {
-            loadBalancer.servers = [
-              { url = "http://${containers.hermes-agent.localAddress}:8787/"; }
-            ];
-          };
-        };
+          // (pkgs.lib.attrsets.mapAttrs' (
+            name: port:
+            pkgs.lib.attrsets.nameValuePair "hermes-${name}" {
+              loadBalancer.servers = [
+                { url = "http://${containers.hermes-agent.localAddress}:${toString port}/"; }
+              ];
+            }
+          ) hermes-services)
+          // (pkgs.lib.attrsets.mapAttrs' (
+            name: port:
+            pkgs.lib.attrsets.nameValuePair "tony-${name}" {
+              loadBalancer.servers = [
+                { url = "http://${containers.tony-agent.localAddress}:${toString port}/"; }
+              ];
+            }
+          ) hermes-services);
       };
     };
   };
@@ -797,6 +850,7 @@ rec {
         "/mnt/services"
         "/mnt/downloader"
         "/mnt/hermes"
+        "/mnt/tony"
         "/var/lib"
         "/media/media/personal"
       ];

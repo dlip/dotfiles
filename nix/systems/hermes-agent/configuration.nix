@@ -1,3 +1,4 @@
+{ settings }:
 { self, inputs, ... }:
 {
   pkgs,
@@ -58,13 +59,7 @@
     package = self.inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
       extraPythonPackages = with pkgs.stable; [ python312Packages.python-telegram-bot ];
     };
-    settings = {
-      model = {
-        provider = "opencode-go";
-        default = "deepseek-v4-flash";
-        base_url = "https://opencode.ai/zen/go/v1";
-      };
-    };
+    inherit settings;
   };
 
   services.hermes-dashboard = {
