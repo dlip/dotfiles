@@ -197,6 +197,10 @@ rec {
         hostPath = "/mnt/tony";
         isReadOnly = false;
       };
+      "/var/lib/hermes/workspace" = {
+        hostPath = "/media/personal/dane/notes/tony";
+        isReadOnly = false;
+      };
     };
   };
 
@@ -355,6 +359,37 @@ rec {
   services.audiobookshelf = {
     enable = true;
     port = 13378;
+  };
+
+  services.home-assistant = {
+    enable = true;
+    extraComponents = [
+      # Components required to complete the onboarding
+      "esphome"
+      "met"
+      "radio_browser"
+      "cast"
+      "hue"
+      "ipp"
+      "brother"
+      "google_translate"
+      "device_tracker"
+      # Recommended for fast zlib compression
+      # https://www.home-assistant.io/integrations/isal
+      "isal"
+    ];
+    config = {
+      # Includes dependencies for a basic setup
+      # https://www.home-assistant.io/integrations/default_config/
+      default_config = { };
+      http = {
+        use_x_forwarded_for = true;
+        trusted_proxies = [
+          "127.0.0.1"
+          "::1"
+        ];
+      };
+    };
   };
 
   virtualisation.oci-containers = {

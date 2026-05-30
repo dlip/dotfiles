@@ -55,6 +55,7 @@
     environmentFiles = [ "/run/secrets/hermes-env" ];
     # Useful inside the container shell (`nixos-container root-login
     # hermes-agent`); the host doesn't need it because the agent runs here.
+    group = "users";
     addToSystemPackages = true;
     package = self.inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
       extraPythonPackages = with pkgs.stable; [ python312Packages.python-telegram-bot ];
@@ -64,16 +65,10 @@
 
   services.hermes-dashboard = {
     enable = true;
-    port = 9119;
-    host = "0.0.0.0";
-    user = "hermes";
   };
 
   services.hermes-webui = {
     enable = true;
-    port = 8787;
-    host = "0.0.0.0";
-    user = "hermes";
   };
 
   system.stateVersion = "25.05";

@@ -55,7 +55,12 @@
         user = lib.mkOption {
           type = lib.types.str;
           default = "hermes";
-          description = "User to run the Web UI service as.";
+          description = "user to run the web ui service as.";
+        };
+        group = lib.mkOption {
+          type = lib.types.str;
+          default = "users";
+          description = "Group to run the web ui service as.";
         };
       };
 
@@ -76,7 +81,7 @@
           serviceConfig = {
             Type = "simple";
             User = cfg.user;
-            Group = cfg.user;
+            Group = cfg.group;
             ExecStart = "${webuiStartScript}";
             Restart = "on-failure";
             RestartSec = 5;

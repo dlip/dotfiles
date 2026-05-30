@@ -38,7 +38,12 @@
         user = lib.mkOption {
           type = lib.types.str;
           default = "hermes";
-          description = "User to run the dashboard service as.";
+          description = "user to run the dashboard service as.";
+        };
+        group = lib.mkOption {
+          type = lib.types.str;
+          default = "users";
+          description = "group to run the dashboard service as.";
         };
       };
 
@@ -64,7 +69,7 @@
           serviceConfig = {
             Type = "simple";
             User = cfg.user;
-            Group = cfg.user;
+            Group = cfg.group;
             ExecStart = "${config.services.hermes-agent.package}/bin/hermes dashboard --host ${cfg.host} --port ${toString cfg.port} --insecure --no-open --tui";
             Restart = "on-failure";
             RestartSec = 5;
