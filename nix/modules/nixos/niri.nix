@@ -7,7 +7,7 @@
     { pkgs, ... }:
     {
       imports = [
-        inputs.noctalia.nixosModules.default
+        # inputs.noctalia.nixosModules.default
         inputs.dms.nixosModules.dank-material-shell
         inputs.dms.nixosModules.greeter
       ];
