@@ -132,7 +132,7 @@
         STEAM_EXTRA_COMPAT_TOOLS_PATHS = "$HOME/.steam/root/compatibilitytools.d";
         # STEEL_HOME = "${pkgs.steel}/lib";
         DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = "1"; # Fixes libicu error in osu!
-        NH_OS_FLAKE = "~";
+        NH_OS_FLAKE = "$HOME";
       };
 
       services.upower.enable = true;

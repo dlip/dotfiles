@@ -123,7 +123,7 @@ let
     claude-code
     delve
     deno
-    # devenv
+    devenv
     difftastic
     dive
     docker-buildx
@@ -216,7 +216,7 @@ let
     usbutils
     valkey
     vegeta
-    ventoy
+    # ventoy
     wasmtime
     wireshark-cli
     xdotool

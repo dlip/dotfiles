@@ -7,7 +7,6 @@
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
-    devenv.url = "github:cachix/devenv/v2.1.1";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
