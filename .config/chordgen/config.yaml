@@ -1,4 +1,29 @@
 gen:
+  alts:
+    adjective:
+      enabled: true
+      forms:
+      - comparative
+      - superlative
+    adverb:
+      enabled: true
+      forms: []
+    noun:
+      enabled: true
+      forms:
+      - plural
+    overwrite: false
+    verb:
+      enabled: true
+      forms:
+      - 3sg
+      - past
+      - gerund
+  assignment:
+    frequency_exponent: 4.0
+    min_frequency_weight: 1.0
+    priority_tiers: []
+    unmatched_penalty: 10000.0
   file: ~/.config/chordgen/chords.csv
   keyboard:
     directional:
@@ -42,7 +67,6 @@ gen:
     type: standard
   min_chord_length: 0
   min_word_length: 3
-  overwrite_alts: false
 output:
   charachorder:
     file: ~/.config/chordgen/charachorder_chords.json

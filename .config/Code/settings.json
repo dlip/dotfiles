@@ -5,7 +5,7 @@
     "$home/code"
   ],
   "chat.useClaudeSkills": true,
-  "AI.toolcall.v2.command.allowList": "[\"mv\",\"grep\",\"rm\",\"cat\",\"python3\",\"head\",\"wc\",\"echo\",\"tail\",\"black\",\"git\",\"ls\",\"nix\",\"which\",\"source\"]",
+  "AI.toolcall.v2.command.allowList": "[\"mv\",\"grep\",\"rm\",\"cat\",\"python3\",\"head\",\"wc\",\"echo\",\"tail\",\"black\",\"git\",\"ls\",\"nix\",\"which\",\"source\",\"lark-cli\",\"uv\",\"python\"]",
   "search.exclude": {
     "**/node_modules": true,
     "**/bower_components": true,
@@ -169,5 +169,6 @@
   "editor.fontLigatures": false,
   "git.confirmSync": false,
   "trae.tab.enableSmartEdit": false,
-  "python.languageServer": "Default"
+  "python.languageServer": "Default",
+  "AI.toolcall.v2.fileOp.allowPaths": "[\"/tmp\"]"
 }

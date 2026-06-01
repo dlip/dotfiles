@@ -53,4 +53,4 @@ autoload -U select-word-style
 select-word-style bash
 
 command -v devenv >/dev/null 2>&1 && eval "$(devenv hook zsh)"
-export PATH=/Users/dane.lipscombe/.local/bin:$PATH
+export PATH=$HOME/.brew/opt/node/bin:$HOME/.local/bin:$PATH
