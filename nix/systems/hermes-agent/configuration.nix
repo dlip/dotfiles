@@ -26,7 +26,7 @@
     ++ [
       go
       python3
-      # Hermes can make a pr to add any extra packages it needs here
+      devenv  # agent manages own tool deps via ~/.hermes/devenv.nix
     ];
 
   # Mirror the host's nix experimental-features so any agent-driven nix
