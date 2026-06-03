@@ -20,7 +20,7 @@ gen:
       - past
       - gerund
   assignment:
-    frequency_exponent: 2.0
+    frequency_exponent: 3.0
     min_frequency_weight: 1.0
     priority_tiers: []
     unmatched_penalty: 10000.0
