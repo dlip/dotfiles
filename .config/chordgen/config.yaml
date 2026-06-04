@@ -1,3 +1,8 @@
+drill:
+  count: 25
+  mode: time
+  show_words: 10
+  time_seconds: 30
 gen:
   alts:
     adjective:
@@ -166,3 +171,14 @@ output:
     shifted_chord_keys:
     - $
     - '#'
+theme: catppuccin-macchiato
+train:
+  leech_threshold: 8
+  mastery_threshold: 3
+  new_words_per_day: 10
+  relearn_steps: 3
+  reviews_per_day: 200
+  show_words: 10
+  slow_min_samples: 20
+  slow_wpm_fraction: 0.7
+  target_retention: 0.9
