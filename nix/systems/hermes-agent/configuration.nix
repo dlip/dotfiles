@@ -26,7 +26,7 @@
     ++ [
       go
       python3
-      devenv  # agent manages own tool deps via ~/.hermes/devenv.nix
+      devenv # agent manages own tool deps via ~/.hermes/devenv.nix
     ];
 
   # Mirror the host's nix experimental-features so any agent-driven nix
@@ -53,13 +53,9 @@
   services.hermes-agent = {
     enable = true;
     environmentFiles = [ "/run/secrets/hermes-env" ];
-    # Useful inside the container shell (`nixos-container root-login
-    # hermes-agent`); the host doesn't need it because the agent runs here.
     group = "users";
     addToSystemPackages = true;
-    package = self.inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
-      extraPythonPackages = with pkgs.stable; [ python312Packages.python-telegram-bot ];
-    };
+    extraDependencyGroups = [ "messaging" ];
     inherit settings;
   };
 
