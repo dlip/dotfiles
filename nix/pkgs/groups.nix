@@ -20,6 +20,7 @@ let
     bc
     curl
     delta
+    devenv
     dig
     direnv
     entr
@@ -122,7 +123,6 @@ let
     claude-code
     delve
     deno
-    # devenv
     difftastic
     dive
     docker-buildx
