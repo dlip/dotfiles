@@ -55,7 +55,11 @@
     environmentFiles = [ "/run/secrets/hermes-env" ];
     group = "users";
     addToSystemPackages = true;
-    extraDependencyGroups = [ "messaging" ];
+    extraDependencyGroups = [
+      "messaging"
+      "voice"
+      "web"
+    ];
     inherit settings;
   };
 
