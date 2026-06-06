@@ -1,3 +1,6 @@
+book:
+  max_width: 70
+  wpm_window_seconds: 30
 drill:
   count: 25
   mode: time
@@ -42,6 +45,7 @@ gen:
       - _X__X_
       - X_XX_X
       - _X__X_
+      custom_layout_name: custom
       directional_change_penalty: 2
       effort_map:
       - '040030020020'
@@ -60,12 +64,13 @@ gen:
       - _ciea,.htsn_
       - _gxjk-?rmfp_
       - ____
+      custom_layout_name: engram
       effort_map:
       - '987669'
       - '754338'
       - '987658'
       - '43'
-      layout: custom
+      layout: engram_en
       same_column_chord_penalty: 2
       same_row_chord_penalty: 2
       scissor_penalty: 3
