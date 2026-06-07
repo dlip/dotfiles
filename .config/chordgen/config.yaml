@@ -5,7 +5,7 @@ drill:
   count: 25
   mode: time
   show_words: 10
-  time_seconds: 30
+  time_seconds: 120
 gen:
   alts:
     adjective:
