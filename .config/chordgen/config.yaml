@@ -80,6 +80,18 @@ gen:
     type: standard
   min_chord_length: 0
   min_word_length: 3
+learn:
+  learning_steps: 5
+  leech_threshold: 8
+  mastery_threshold: 3
+  new_words_per_day: 20
+  relearn_steps: 2
+  reviews_per_day: 200
+  show_chord_steps: 3
+  show_words: 10
+  slow_min_samples: 20
+  slow_wpm_fraction: 0.7
+  target_retention: 0.9
 output:
   charachorder:
     file: ~/.config/chordgen/charachorder_chords.json
@@ -180,15 +192,3 @@ output:
     - $
     - '#'
 theme: catppuccin-macchiato
-train:
-  learning_steps: 5
-  leech_threshold: 8
-  mastery_threshold: 3
-  new_words_per_day: 3
-  relearn_steps: 2
-  reviews_per_day: 200
-  show_chord_steps: 3
-  show_words: 5
-  slow_min_samples: 20
-  slow_wpm_fraction: 0.7
-  target_retention: 0.9
