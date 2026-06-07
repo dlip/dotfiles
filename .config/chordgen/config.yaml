@@ -140,18 +140,18 @@ output:
     - KC_CHORD_ALT2
     chord_keys:
     - KC_CHORD
-    file: ~/code/qmk_firmware/keyboards/dlip/koumori/keymaps/engram/chords.def
+    file: ~/code/qmk_firmware/keyboards/dlip/koumori/keymaps/engram_en/chords.def
     key_codes:
-      A: KC_CTL_A
+      A: KC_GUI_A
       C: KC_SFT_C
-      E: KC_GUI_E
-      H: KC_CTL_H
+      E: KC_CTL_E
+      H: KC_SFT_H
       I: KC_ALT_I
-      J: KC_CAG_J
-      M: KC_CAG_M
-      N: KC_SFT_N
+      L: KC_CAG_L
+      R: KC_GUI_R
       S: KC_ALT_S
-      T: KC_GUI_T
+      T: KC_CTL_T
+      X: KC_CAG_X
     shifted_chord_keys:
     - KC_CHORD
     - KC_CHORD_SFT
