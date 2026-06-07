@@ -33,7 +33,9 @@ gen:
     priority_tiers: []
     unmatched_penalty: 10000.0
   file: ~/.config/chordgen/chords.csv
-  key_replacement: {}
+  key_replacement:
+    q: k
+    z: x
   keyboard:
     directional:
       custom_layout:
