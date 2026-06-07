@@ -33,6 +33,7 @@ gen:
     priority_tiers: []
     unmatched_penalty: 10000.0
   file: ~/.config/chordgen/chords.csv
+  key_replacement: {}
   keyboard:
     directional:
       custom_layout:
@@ -60,17 +61,17 @@ gen:
       layout: charachorder
     standard:
       custom_layout:
-      - _byou'"ldwv_
-      - _ciea,.htsn_
-      - _gxjk-?rmfp_
+      - _byou'"dngv_
+      - _hiae,.trsc_
+      - _kjxw-?mlfp_
       - ____
-      custom_layout_name: engram
+      custom_layout_name: engram_en
       effort_map:
       - '987669'
       - '754338'
       - '987658'
       - '43'
-      layout: engram_en
+      layout: custom
       same_column_chord_penalty: 2
       same_row_chord_penalty: 2
       scissor_penalty: 3
@@ -178,12 +179,14 @@ output:
     - '#'
 theme: catppuccin-macchiato
 train:
+  learning_steps: 5
   leech_threshold: 8
   mastery_threshold: 3
-  new_words_per_day: 10
-  relearn_steps: 3
+  new_words_per_day: 3
+  relearn_steps: 2
   reviews_per_day: 200
-  show_words: 10
+  show_chord_steps: 3
+  show_words: 5
   slow_min_samples: 20
   slow_wpm_fraction: 0.7
   target_retention: 0.9
