@@ -169,7 +169,7 @@
   "editor.fontLigatures": false,
   "git.confirmSync": false,
   "trae.tab.enableSmartEdit": false,
-  "python.languageServer": "Default",
+  "python.languageServer": "None",
   "AI.toolcall.v2.fileOp.allowPaths": "[\"/tmp\"]",
   "AI.toolcall.reviewMode.solo": "skip",
   "AI.toolcall.reviewMode.ide": "skip"
