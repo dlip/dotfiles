@@ -1,8 +1,11 @@
 book:
+  always_show_chords: false
   max_width: 70
   wpm_window_seconds: 30
 drill:
+  always_show_chords: false
   count: 25
+  include_alts: true
   mode: time
   show_words: 10
   time_seconds: 120
