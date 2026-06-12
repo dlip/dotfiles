@@ -54,6 +54,7 @@ gen:
     min_frequency_weight: 1.0
     priority_tiers: []
     unmatched_penalty: 10000.0
+  debug: true
   file: ~/.config/chordgen/chords.csv
   key_replacement:
     '''': x

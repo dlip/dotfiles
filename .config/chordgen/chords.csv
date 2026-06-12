@@ -82,7 +82,6 @@ who,who,pronoun,6.32,,,,w=1595.395 pick=who:19 cands=[w:5 wh:10 wo:14 who:19]
 oh,oh,,6.29,,,,w=1565.318 pick=oh:11 cands=[o:6 oh:11]
 or,or,,6.29,,,,w=1565.318 pick=or:9 cands=[o:6 or:9]
 really,ry,adverb,6.29,,,,w=1565.318 pick=ry:10 cands=[r:3 re:6 ra:6 rea:9]
-be,,verb,6.80,is,were,being,w=2138.138 pick=be:11 cands=[b:8 be:11]
 by,by,,6.28,,,,w=1555.387 pick=by:15 cands=[b:8 by:15]
 their,,pronoun,6.28,,,,
 could,,modal,6.27,,,,
