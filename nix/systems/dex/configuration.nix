@@ -204,6 +204,44 @@ rec {
     };
   };
 
+  sops.secrets."vk-env" = { };
+  containers.vk-agent = {
+    ephemeral = true;
+    autoStart = true;
+    privateNetwork = true;
+    hostAddress = "10.1.1.5";
+    localAddress = "10.1.1.6";
+    config =
+      import ../hermes-agent/configuration.nix
+        {
+          settings = {
+            model = {
+              provider = "opencode-go";
+              default = "kimi-k2.6";
+              base_url = "https://opencode.ai/zen/go/v1";
+            };
+          };
+        }
+        top
+        {
+          inherit pkgs config;
+        };
+    bindMounts = {
+      "/run/secrets/hermes-env" = {
+        hostPath = config.sops.secrets."vk-env".path;
+        isReadOnly = true;
+      };
+      "/var/lib/hermes" = {
+        hostPath = "/mnt/vk";
+        isReadOnly = false;
+      };
+      "/var/lib/hermes/workspace" = {
+        hostPath = "/media/personal/dane/notes/vault";
+        isReadOnly = false;
+      };
+    };
+  };
+
   systemd.services.mokuro-reader = {
     description = "Mokuro reader";
 
@@ -690,6 +728,22 @@ rec {
               certResolver = "letsencrypt";
             };
           }
+        ) (hermes-services)
+        // pkgs.lib.attrsets.mapAttrs' (
+          name: port:
+          pkgs.lib.attrsets.nameValuePair "vk-${name}" {
+            rule = "Host(`vk-${name}.${domain}`)";
+            service = "vk-${name}";
+            middlewares = [ "cors" ];
+            tls = {
+              domains = [
+                {
+                  main = "*.${domain}";
+                }
+              ];
+              certResolver = "letsencrypt";
+            };
+          }
         ) (hermes-services);
 
         services =
@@ -720,6 +774,14 @@ rec {
             pkgs.lib.attrsets.nameValuePair "tony-${name}" {
               loadBalancer.servers = [
                 { url = "http://${containers.tony-agent.localAddress}:${toString port}/"; }
+              ];
+            }
+          ) hermes-services)
+          // (pkgs.lib.attrsets.mapAttrs' (
+            name: port:
+            pkgs.lib.attrsets.nameValuePair "vk-${name}" {
+              loadBalancer.servers = [
+                { url = "http://${containers.vk-agent.localAddress}:${toString port}/"; }
               ];
             }
           ) hermes-services);
@@ -886,6 +948,7 @@ rec {
         "/mnt/downloader"
         "/mnt/hermes"
         "/mnt/tony"
+        "/mnt/vk"
         "/var/lib"
         "/media/media/personal"
       ];
@@ -971,5 +1034,12 @@ rec {
       };
     };
   };
+
+  services.vikunja = {
+    enable = true;
+    frontendScheme = "https";
+    frontendHostname = "vikunja.dex-lips.duckdns.org";
+  };
+
   system.stateVersion = "23.05"; # Did you read the comment?
 }

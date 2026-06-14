@@ -66,6 +66,7 @@ let
     tree-sitter
     unzip
     util-linux
+    uv
     vim
     wget
     wireguard-tools

@@ -27,6 +27,7 @@
       go
       python3
       devenv # agent manages own tool deps via ~/.hermes/devenv.nix
+      nodejs
     ];
 
   # Mirror the host's nix experimental-features so any agent-driven nix
