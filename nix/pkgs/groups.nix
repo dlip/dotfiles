@@ -301,7 +301,7 @@ let
     # minecraft
     # sidequest
     # wine64
-    (emulationstation-de { retroarch = retroarchWithCores; })
+    # (emulationstation-de { retroarch = retroarchWithCores; })
     alvr
     bottles
     cdecrypt
