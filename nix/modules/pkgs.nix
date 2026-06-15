@@ -17,6 +17,7 @@
             "dotnet-sdk-wrapped-6.0.428"
             "dotnet-sdk-6.0.428"
             "libsoup-2.74.3"
+            "freeimage-3.18.0-unstable-2024-04-18"
             "ventoy-1.1.12"
           ];
         };
@@ -39,10 +40,14 @@
             };
             mokuro-reader = inputs.mokuro-reader.packages.${final.stdenv.hostPlatform.system}.default;
             bottles = (prev.bottles.override { removeWarningPopup = true; });
+
+            emulationstation-de = final.callPackage ../pkgs/emulationstation-de { };
             emoji-menu = final.writeShellScriptBin "emoji-menu" (
               builtins.readFile "${inputs.emoji-menu}/bin/emoji-menu"
             );
 
+            freeimage = final.callPackage ../pkgs/freeimage/package.nix { };
+            libjpeg_turbo = final.callPackage ../pkgs/libjpeg-turbo/package.nix { };
             fusee-launcher = final.callPackage ../pkgs/fusee-launcher/package.nix { };
             groups = final.callPackage ../pkgs/groups.nix { };
             # myEspanso = final.callPackage ../pkgs/espanso {};
