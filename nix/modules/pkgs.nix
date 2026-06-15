@@ -43,6 +43,7 @@
               builtins.readFile "${inputs.emoji-menu}/bin/emoji-menu"
             );
 
+            fusee-launcher = final.callPackage ../pkgs/fusee-launcher/package.nix { };
             groups = final.callPackage ../pkgs/groups.nix { };
             # myEspanso = final.callPackage ../pkgs/espanso {};
             # hyprland = hyprland.packages.${final.stdenv.hostPlatform.system}.hyprland;
@@ -133,7 +134,7 @@
               );
           })
           (final: prev: {
-            stable = import inputs.nixpkgs-stable {
+            unstable = import inputs.nixpkgs-unstable {
               inherit system;
               config = {
                 allowUnfree = true;

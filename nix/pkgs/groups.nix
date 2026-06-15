@@ -136,7 +136,7 @@ let
     ffmpeg
     file
     fluxcd
-    stable.fusee-launcher
+    fusee-launcher
     ghc
     glow
     gnupg
@@ -200,7 +200,6 @@ let
     skopeo
     speedread
     ssh-to-age
-    stable.awscli2
     stern
     strace
     tagainijisho
@@ -302,7 +301,7 @@ let
     # minecraft
     # sidequest
     # wine64
-    (stable.emulationstation-de { retroarch = retroarchWithCores; })
+    # (stable.emulationstation-de { retroarch = retroarchWithCores; })
     alvr
     bottles
     cdecrypt
