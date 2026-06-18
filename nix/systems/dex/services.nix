@@ -23,4 +23,5 @@
   miniflux = 8090;
   home-assistant = 8123;
   vikunja = 3456;
+  tududi = 3004;
 }

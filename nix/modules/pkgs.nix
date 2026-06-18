@@ -47,7 +47,7 @@
             );
 
             freeimage = final.callPackage ../pkgs/freeimage/package.nix { };
-            libjpeg_turbo = final.callPackage ../pkgs/libjpeg-turbo/package.nix { };
+            # libjpeg_turbo = final.callPackage ../pkgs/libjpeg-turbo/package.nix { };
             fusee-launcher = final.callPackage ../pkgs/fusee-launcher/package.nix { };
             groups = final.callPackage ../pkgs/groups.nix { };
             # myEspanso = final.callPackage ../pkgs/espanso {};

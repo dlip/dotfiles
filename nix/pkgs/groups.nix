@@ -319,7 +319,7 @@ let
     protonup-ng
     retool
     retroarchWithCores
-    ryubing
+    # ryubing
     skyscraper
     vulkan-tools
     wine

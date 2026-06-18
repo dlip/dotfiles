@@ -34,6 +34,7 @@ rec {
     self.modules.nixos.sops
     self.modules.nixos.monitoring
     self.modules.nixos.restic-exporter
+    self.modules.nixos.tududi
     self.inputs.hermes-agent.nixosModules.default
   ];
 
@@ -340,6 +341,23 @@ rec {
 
   services.komf = {
     enable = true;
+  };
+
+  sops.secrets.tududi-session-secret = { };
+  sops.secrets.tududi-user-password = { };
+
+  services.tududi = {
+    enable = true;
+    port = 3004;
+    userEmail = "admin@dex-lips.duckdns.org";
+    sessionSecretFile = config.sops.secrets.tududi-session-secret.path;
+    userPasswordFile = config.sops.secrets.tududi-user-password.path;
+    allowedOrigins = "http://localhost:3004,https://tududi.dex-lips.duckdns.org";
+    trustProxy = true;
+    extraEnv = {
+      FF_ENABLE_HABITS = "true";
+      FF_ENABLE_MCP = "true";
+    };
   };
 
   sops.secrets.gotify-admin-pass = { };
