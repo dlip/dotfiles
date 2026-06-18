@@ -1,4 +1,7 @@
-{ settings }:
+{
+  settings,
+  mcpServers ? { },
+}:
 { self, inputs, ... }:
 {
   pkgs,
@@ -61,7 +64,7 @@
       "voice"
       "web"
     ];
-    inherit settings;
+    inherit settings mcpServers;
   };
 
   services.hermes-dashboard = {

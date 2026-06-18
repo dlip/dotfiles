@@ -102,6 +102,7 @@
     #   url = "github:nix-community/talon-nix";
     # };
     nixgl.url = "github:nix-community/nixGL";
+    tududi.url = "github:dlip/tududi/nixos-module";
   };
 
   outputs =

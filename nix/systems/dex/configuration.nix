@@ -34,7 +34,7 @@ rec {
     self.modules.nixos.sops
     self.modules.nixos.monitoring
     self.modules.nixos.restic-exporter
-    self.modules.nixos.tududi
+    self.inputs.tududi.nixosModules.default
     self.inputs.hermes-agent.nixosModules.default
   ];
 
@@ -150,6 +150,11 @@ rec {
             default = "kimi-k2.6";
             base_url = "https://opencode.ai/zen/go/v1";
           };
+          mcpServers.tududi = {
+            url = "https://tududi.dex-lips.duckdns.org/api/mcp";
+            headers.Authorization = "Bearer \${TUDUDI_API_KEY}";
+            timeout = 180;
+          };
         }
         top
         {
@@ -196,44 +201,6 @@ rec {
       };
       "/var/lib/hermes" = {
         hostPath = "/mnt/tony";
-        isReadOnly = false;
-      };
-      "/var/lib/hermes/workspace" = {
-        hostPath = "/media/personal/dane/notes/tony";
-        isReadOnly = false;
-      };
-    };
-  };
-
-  sops.secrets."vk-env" = { };
-  containers.vk-agent = {
-    ephemeral = true;
-    autoStart = true;
-    privateNetwork = true;
-    hostAddress = "10.1.1.5";
-    localAddress = "10.1.1.6";
-    config =
-      import ../hermes-agent/configuration.nix
-        {
-          settings = {
-            model = {
-              provider = "opencode-go";
-              default = "kimi-k2.6";
-              base_url = "https://opencode.ai/zen/go/v1";
-            };
-          };
-        }
-        top
-        {
-          inherit pkgs config;
-        };
-    bindMounts = {
-      "/run/secrets/hermes-env" = {
-        hostPath = config.sops.secrets."vk-env".path;
-        isReadOnly = true;
-      };
-      "/var/lib/hermes" = {
-        hostPath = "/mnt/vk";
         isReadOnly = false;
       };
       "/var/lib/hermes/workspace" = {
@@ -343,20 +310,31 @@ rec {
     enable = true;
   };
 
-  sops.secrets.tududi-session-secret = { };
-  sops.secrets.tududi-user-password = { };
+  sops.secrets.tududi-session-secret = {
+    owner = "tududi";
+    group = "tududi";
+  };
+  sops.secrets.tududi-user-password = {
+    owner = "tududi";
+    group = "tududi";
+  };
 
   services.tududi = {
     enable = true;
     port = 3004;
-    userEmail = "admin@dex-lips.duckdns.org";
+    host = "127.0.0.1";
+    adminEmail = "admin@dex-lips.duckdns.org";
     sessionSecretFile = config.sops.secrets.tududi-session-secret.path;
-    userPasswordFile = config.sops.secrets.tududi-user-password.path;
-    allowedOrigins = "http://localhost:3004,https://tududi.dex-lips.duckdns.org";
+    adminPasswordFile = config.sops.secrets.tududi-user-password.path;
+    allowedOrigins = [
+      "http://127.0.0.1:3004"
+      "https://tududi.dex-lips.duckdns.org"
+    ];
     trustProxy = true;
-    extraEnv = {
-      FF_ENABLE_HABITS = "true";
-      FF_ENABLE_MCP = "true";
+    featureFlags = {
+      mcp = true;
+      calendar = true;
+      habits = true;
     };
   };
 
@@ -746,22 +724,6 @@ rec {
               certResolver = "letsencrypt";
             };
           }
-        ) (hermes-services)
-        // pkgs.lib.attrsets.mapAttrs' (
-          name: port:
-          pkgs.lib.attrsets.nameValuePair "vk-${name}" {
-            rule = "Host(`vk-${name}.${domain}`)";
-            service = "vk-${name}";
-            middlewares = [ "cors" ];
-            tls = {
-              domains = [
-                {
-                  main = "*.${domain}";
-                }
-              ];
-              certResolver = "letsencrypt";
-            };
-          }
         ) (hermes-services);
 
         services =
@@ -792,14 +754,6 @@ rec {
             pkgs.lib.attrsets.nameValuePair "tony-${name}" {
               loadBalancer.servers = [
                 { url = "http://${containers.tony-agent.localAddress}:${toString port}/"; }
-              ];
-            }
-          ) hermes-services)
-          // (pkgs.lib.attrsets.mapAttrs' (
-            name: port:
-            pkgs.lib.attrsets.nameValuePair "vk-${name}" {
-              loadBalancer.servers = [
-                { url = "http://${containers.vk-agent.localAddress}:${toString port}/"; }
               ];
             }
           ) hermes-services);

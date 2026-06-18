@@ -24,3 +24,5 @@
   layout = "LOCAL,BASE,REMOTE / MERGED"
 [credential]
 	helper = store
+[safe]
+	directory = *
