@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# csv2md — parse a CSV and convert it to a GitHub-flavored Markdown table,
+# then copy it to the clipboard via `cpy`.
+#
+# Reads from a file argument or stdin, parses the CSV properly (handling quoted
+# fields, embedded commas, and newlines). The first row is treated as the
+# header.
+#
+# Usage:
+#     csv2md data.csv          # copy a Markdown table to the clipboard
+#     cat data.csv | csv2md    # read from stdin
+set -euo pipefail
+
+python3 -c '
+import csv, sys
+
+rows = list(csv.reader(sys.stdin))
+if not rows:
+    sys.exit(0)
+
+ncols = max(len(r) for r in rows)
+# Pad short rows and escape pipes/newlines so cells stay on one line.
+def clean(cells):
+    cells = list(cells) + [""] * (ncols - len(cells))
+    return [c.replace("\\", "\\\\").replace("|", "\\|")
+             .replace("\r", " ").replace("\n", " ") for c in cells]
+
+rows = [clean(r) for r in rows]
+# Column widths, with a minimum of 3 to fit the "---" separator.
+widths = [max(3, max(len(r[i]) for r in rows)) for i in range(ncols)]
+
+def fmt(cells):
+    return "| " + " | ".join(c.ljust(widths[i]) for i, c in enumerate(cells)) + " |\n"
+
+out = sys.stdout
+out.write(fmt(rows[0]))
+out.write("| " + " | ".join("-" * widths[i] for i in range(ncols)) + " |\n")
+for row in rows[1:]:
+    out.write(fmt(row))
+' < "${1:-/dev/stdin}" | cpy
