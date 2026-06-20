@@ -35,6 +35,7 @@ rec {
     self.modules.nixos.monitoring
     self.modules.nixos.restic-exporter
     self.inputs.tududi.nixosModules.default
+    self.inputs.sparkyfitness.nixosModules.sparkyfitness
     self.inputs.hermes-agent.nixosModules.default
   ];
 
@@ -188,6 +189,11 @@ rec {
               default = "kimi-k2.6";
               base_url = "https://opencode.ai/zen/go/v1";
             };
+          };
+          mcpServers.sparkyfitness = {
+            url = "https://sparkyfitness.dex-lips.duckdns.org/mcp";
+            headers.Authorization = "Bearer \${SPARKYFITNESS_API_KEY}";
+            timeout = 180;
           };
         }
         top
@@ -377,7 +383,25 @@ rec {
     environmentFile = config.sops.secrets."karakeep-env".path;
   };
 
+  # SparkyFitness enables its own PostgreSQL via the module when
+  # database.createLocally is true (the default).
   services.postgresql.enable = true;
+
+  sops.secrets.sparkyfitness-env = { };
+  services.sparkyfitness = {
+    enable = true;
+    frontendUrl = "https://sparkyfitness.${domain}";
+    environmentFile = config.sops.secrets."sparkyfitness-env".path;
+    nginx.virtualHost = "sparkyfitness.${domain}";
+  };
+  # SparkyFitness brings up its own nginx for the frontend + API proxy.
+  # Route it to a non-standard port so it doesn't conflict with Traefik.
+  services.nginx.defaultListen = [
+    {
+      addr = "127.0.0.1";
+      port = 3011;
+    }
+  ];
 
   services.flatpak.enable = true;
   # systemd.services.xboxdrv = {

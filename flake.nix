@@ -103,6 +103,7 @@
     # };
     nixgl.url = "github:nix-community/nixGL";
     tududi.url = "github:dlip/tududi/nixos-module";
+    sparkyfitness.url = "github:dlip/SparkyFitness/nix-module";
   };
 
   outputs =
