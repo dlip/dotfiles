@@ -150,6 +150,13 @@ rec {
             provider = "opencode-go";
             default = "kimi-k2.6";
             base_url = "https://opencode.ai/zen/go/v1";
+            image_gen = {
+              model = "fal-ai/gpt-image-2";
+              use_gateway = "false";
+            };
+            display = {
+              tool_progress = "all";
+            };
           };
           mcpServers.tududi = {
             url = "https://tududi.dex-lips.duckdns.org/api/mcp";
@@ -168,6 +175,10 @@ rec {
       };
       "/var/lib/hermes" = {
         hostPath = "/mnt/hermes";
+        isReadOnly = false;
+      };
+      "/var/lib/hermes/workspace/Books" = {
+        hostPath = "/media/personal/dane/Books";
         isReadOnly = false;
       };
     };
@@ -189,6 +200,15 @@ rec {
               default = "kimi-k2.6";
               base_url = "https://opencode.ai/zen/go/v1";
             };
+            image_gen = {
+              model = "fal-ai/gpt-image-2";
+              use_gateway = "false";
+            };
+          };
+          mcpServers.tududi = {
+            url = "https://tududi.dex-lips.duckdns.org/api/mcp";
+            headers.Authorization = "Bearer \${TUDUDI_API_KEY}";
+            timeout = 180;
           };
           mcpServers.sparkyfitness = {
             url = "https://sparkyfitness.dex-lips.duckdns.org/mcp";

@@ -212,16 +212,16 @@
         "uv2nix": "uv2nix_2"
       },
       "locked": {
-        "lastModified": 1780061757,
-        "narHash": "sha256-0CmNH879jnsAAszo1nkkFm8RNE49xtwUditYdFIYBCM=",
+        "lastModified": 1781897911,
+        "narHash": "sha256-Oyl6Cpg2bTiX9MyBxFT5q4yVdYf3lCIptzFdiVULmjo=",
         "owner": "NousResearch",
         "repo": "hermes-agent",
-        "rev": "77a1650c78a4cb1813d8a81fa1da40a15b6a3ec5",
+        "rev": "2bd1977d8fad185c9b4be47884f7e87f1add0ce3",
         "type": "github"
       },
       "original": {
         "owner": "NousResearch",
-        "ref": "v2026.5.29.2",
+        "ref": "v2026.6.19",
         "repo": "hermes-agent",
         "type": "github"
       }
@@ -750,11 +750,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1781912134,
-        "narHash": "sha256-3Oh1RoVPfU7Xz305si4d4UkqC7uZoTZA7vTB+mXMSwE=",
+        "lastModified": 1782099145,
+        "narHash": "sha256-psRhPegYCHApHRyWN1h9pyggQuYAS5+/ttJBrd4hSuE=",
         "owner": "dlip",
         "repo": "SparkyFitness",
-        "rev": "8c5688c36564b9f86c03725a4349347fa3aff966",
+        "rev": "183229bbc758b78053e66e786fa8b6fc24377c23",
         "type": "github"
       },
       "original": {
@@ -845,16 +845,16 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1781692128,
-        "narHash": "sha256-LbAueKO+8Lr2lu9CefbkIZFHJkzctAwnBcLCJ8qhfIg=",
+        "lastModified": 1782286248,
+        "narHash": "sha256-17MeorFquNlti7eHeiZKzPa8ngd2+U6140e3DrqBcXE=",
         "owner": "dlip",
         "repo": "tududi",
-        "rev": "2d8a63bc3a41c06af274593e630adde48320d7aa",
+        "rev": "8f8a3497d4d1282e60c8b50a0cabc2357f5b8df9",
         "type": "github"
       },
       "original": {
         "owner": "dlip",
-        "ref": "nixos-module",
+        "ref": "dlip",
         "repo": "tududi",
         "type": "github"
       }

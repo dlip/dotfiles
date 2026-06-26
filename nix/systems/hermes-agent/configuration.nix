@@ -63,6 +63,7 @@
       "messaging"
       "voice"
       "web"
+      "fal"
     ];
     inherit settings mcpServers;
   };

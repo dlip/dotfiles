@@ -15,7 +15,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hermes-agent.url = "github:NousResearch/hermes-agent/v2026.5.29.2";
+    hermes-agent.url = "github:NousResearch/hermes-agent/v2026.6.19";
     # nix-darwin = {
     #   url = "github:LnL7/nix-darwin/master";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -102,7 +102,7 @@
     #   url = "github:nix-community/talon-nix";
     # };
     nixgl.url = "github:nix-community/nixGL";
-    tududi.url = "github:dlip/tududi/nixos-module";
+    tududi.url = "github:dlip/tududi/dlip";
     sparkyfitness.url = "github:dlip/SparkyFitness/nix-module";
   };
 
