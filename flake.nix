@@ -102,7 +102,7 @@
     #   url = "github:nix-community/talon-nix";
     # };
     nixgl.url = "github:nix-community/nixGL";
-    tududi.url = "github:dlip/tududi/dlip";
+    tududi.url = "github:dlip/tududi/feature/nixos-module";
     sparkyfitness.url = "github:dlip/SparkyFitness/nix-module";
   };
 

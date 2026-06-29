@@ -76,26 +76,6 @@ let
     zsh
   ];
   extra = default ++ [
-    # kdePackages.k3b # export QTWEBENGINE_DISABLE_SANDBOX=1; sudo -EH k3b
-    # mimic
-    # musikcube
-    # myPythonPackages.adafruit-nrfutil
-    # myPythonPackages.shirah-reader
-    # ngrok
-    # openvpn_aws
-    # poetry
-    # python311Packages.adafruit-nrfutil
-    # python39Packages.grip
-    # python39Packages.pip
-    # python39Packages.pynvim
-    # python39Packages.setuptools
-    # rustc
-    # rustup
-    # steel
-    # terminal-typeracer
-    # turbo
-    # visidata #broken
-    # yubikey-manager #broken
     (lua.withPackages (ps: with ps; [ luacheck ]))
     (python3.withPackages (
       ps: with ps; [
@@ -146,6 +126,7 @@ let
     gptfdisk
     graphviz
     hdparm
+    unstable.herdr
     hexdino
     hottext
     imagemagick
