@@ -181,6 +181,10 @@ rec {
         hostPath = "/media/personal/dane/Books";
         isReadOnly = false;
       };
+      "/var/lib/hermes/workspace/Library" = {
+        hostPath = "/media/media2/Books";
+        isReadOnly = false;
+      };
     };
   };
 
@@ -231,6 +235,14 @@ rec {
       };
       "/var/lib/hermes/workspace" = {
         hostPath = "/media/personal/dane/notes/vault";
+        isReadOnly = false;
+      };
+      "/var/lib/hermes/Books" = {
+        hostPath = "/media/personal/dane/Books";
+        isReadOnly = false;
+      };
+      "/var/lib/hermes/Library" = {
+        hostPath = "/media/media2/Books";
         isReadOnly = false;
       };
     };
@@ -467,47 +479,6 @@ rec {
           "::1"
         ];
       };
-    };
-  };
-
-  virtualisation.oci-containers = {
-    backend = "docker";
-    containers = {
-      homepage = {
-        image = "ghcr.io/benphelps/homepage:latest";
-        volumes = [
-          "/mnt/services/homepage/config:/app/config"
-          "/var/run/docker.sock:/var/run/docker.sock"
-        ];
-        extraOptions = [ "--network=host" ];
-        environment = {
-          PORT = "3001";
-        };
-      };
-      # audiobookshelf = {
-      #   image = "ghcr.io/advplyr/audiobookshelf";
-      #   ports = ["13378:80"];
-      #   volumes = [
-      #     "/mnt/services/audiobookshelf/config:/config"
-      #     "/mnt/services/audiobookshelf/metadata:/metadata"
-      #     "/media/media/audiobooks:/audiobooks"
-      #     "/media/media/podcasts:/podcasts"
-      #   ];
-      # };
-      # yaruki = {
-      #   image = "dlip/yaruki";
-      #   ports = [ "8095:8080" ];
-      #   volumes = [
-      #     "/mnt/services/yaruki:/app/data"
-      #   ];
-      # };
-      # actual = {
-      #   image = "actualbudget/actual-server";
-      #   ports = ["5006:5006"];
-      #   volumes = [
-      #     "/mnt/services/actual:/data"
-      #   ];
-      # };
     };
   };
 
@@ -939,7 +910,132 @@ rec {
     root_url = "https://grafana.dex-lips.duckdns.org";
   };
 
-  # services.homepage-dashboard.enable = true;
+  sops.secrets.homepage-env = { };
+  services.homepage-dashboard = {
+    enable = true;
+    listenPort = 3001;
+    openFirewall = true;
+    environmentFiles = [ config.sops.secrets.homepage-env.path ];
+    allowedHosts = "homepage.dex-lips.duckdns.org";
+    settings = {
+      title = "Lipscombe Home";
+      providers.openweathermap = "{{HOMEPAGE_VAR_OPENWEATHERMAP}}";
+    };
+    widgets = [
+      {
+        resources = {
+          cpu = true;
+          disk = "/";
+          memory = true;
+        };
+      }
+      {
+        search = {
+          provider = "duckduckgo";
+          target = "_blank";
+        };
+      }
+    ];
+    services = [
+      {
+        "Media Mangement" = [
+          {
+            Sonarr = {
+              icon = "sonarr.png";
+              href = "https://sonarr.dex-lips.duckdns.org";
+              description = "TV Series management";
+              widget = {
+                type = "sonarr";
+                url = "https://sonarr.dex-lips.duckdns.org";
+                key = "{{HOMEPAGE_VAR_SONARR}}";
+              };
+            };
+          }
+          {
+            Radarr = {
+              icon = "radarr.png";
+              href = "https://radarr.dex-lips.duckdns.org";
+              description = "Movie management";
+              widget = {
+                type = "radarr";
+                url = "https://radarr.dex-lips.duckdns.org";
+                key = "{{HOMEPAGE_VAR_RADARR}}";
+              };
+            };
+          }
+          {
+            Lidarr = {
+              icon = "lidarr.png";
+              href = "https://lidarr.dex-lips.duckdns.org";
+              description = "Music management";
+              widget = {
+                type = "lidarr";
+                url = "https://lidarr.dex-lips.duckdns.org";
+                key = "{{HOMEPAGE_VAR_LIDARR}}";
+              };
+            };
+          }
+          {
+            Audiobookshelf = {
+              icon = "audiobookshelf.png";
+              href = "https://audiobookshelf.dex-lips.duckdns.org";
+              description = "Audiobook management";
+              widget = {
+                type = "audiobookshelf";
+                url = "https://audiobookshelf.dex-lips.duckdns.org";
+                key = "{{HOMEPAGE_VAR_AUDIOBOOKSHELF}}";
+              };
+            };
+          }
+        ];
+      }
+      {
+        "Download Clients" = [
+          {
+            qBittorrent = {
+              icon = "qbittorrent.png";
+              href = "https://qbittorrent.dex-lips.duckdns.org";
+              description = "Torrent Client";
+              widget = {
+                type = "qbittorrent";
+                url = "https://qbittorrent.dex-lips.duckdns.org";
+                username = "{{HOMEPAGE_VAR_QBITTORRENT_USER}}";
+                password = "{{HOMEPAGE_VAR_QBITTORRENT_PASS}}";
+              };
+            };
+          }
+          {
+            Prowlarr = {
+              icon = "prowlarr.png";
+              href = "https://prowlarr.dex-lips.duckdns.org";
+              description = "Torrent Proxy";
+              widget = {
+                type = "prowlarr";
+                url = "https://prowlarr.dex-lips.duckdns.org";
+                key = "{{HOMEPAGE_VAR_PROWLARR}}";
+              };
+            };
+          }
+        ];
+      }
+      {
+        "Media Providers" = [
+          {
+            Plex = {
+              icon = "plex.png";
+              href = "https://plex.dex-lips.duckdns.org";
+              description = "Media provider";
+              widget = {
+                type = "plex";
+                url = "https://plex.dex-lips.duckdns.org";
+                key = "{{HOMEPAGE_VAR_PLEX}}";
+              };
+            };
+          }
+        ];
+      }
+    ];
+  };
 
   sops.secrets.restic-encryption = { };
   environment.etc.restic-ignore.text = ''
