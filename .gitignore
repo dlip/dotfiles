@@ -1,4 +1,4 @@
-/*
+*
 !/.antidote
 !/.gitignore
 !/.gitmodules
@@ -33,6 +33,11 @@
 !/.config/discord/settings.json
 !/.config/ghostty/config
 !/.config/git/config
+!/.config/
+/.config/*
+!/.config/herdr/
+/.config/herdr/*
+!/.config/herdr/config.toml
 !/.config/hypr/hypridle.conf
 !/.config/hypr/hyprland.conf
 !/.config/hypr/hyprlock.conf

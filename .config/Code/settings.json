@@ -172,5 +172,6 @@
   "python.languageServer": "None",
   "AI.toolcall.v2.fileOp.allowPaths": "[\"/tmp\"]",
   "AI.toolcall.reviewMode.solo": "skip",
-  "AI.toolcall.reviewMode.ide": "skip"
+  "AI.toolcall.reviewMode.ide": "skip",
+  "gitai.enabled": false
 }
