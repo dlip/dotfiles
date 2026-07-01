@@ -61,48 +61,48 @@
 # alt+..., cmd/super, and punctuation-with-modifiers may depend on your terminal/tmux setup.
 # prefix = "ctrl+b"
 
-# Prefix-mode actions
-# help = "prefix+?"
-# settings = "prefix+s"
-# detach = "prefix+q"
-# reload_config = "prefix+shift+r"
-# open_notification_target = "prefix+o"
-# workspace_picker = "prefix+w"
-# goto = "prefix+g"
-# new_workspace = "prefix+shift+n"
-# new_worktree = "prefix+shift+g"
+# Actions bound to direct ctrl+alt chords (no prefix required)
+help = "ctrl+alt+?"
+settings = "ctrl+alt+s"
+detach = "ctrl+alt+q"
+reload_config = "ctrl+alt+shift+r"
+open_notification_target = "ctrl+alt+o"
+workspace_picker = "ctrl+alt+w"
+goto = "ctrl+alt+g"
+new_workspace = "ctrl+alt+shift+n"
+new_worktree = "ctrl+alt+shift+g"
 # open_worktree = ""    # optional, unset by default
 # remove_worktree = ""  # optional, unset by default; opens confirmation
-# rename_workspace = "prefix+shift+w"
-# close_workspace = "prefix+shift+d"
+rename_workspace = "ctrl+alt+shift+w"
+close_workspace = "ctrl+alt+shift+d"
 # previous_workspace = "" # optional, unset by default
 # next_workspace = ""     # optional, unset by default
 # previous_agent = ""     # optional, unset by default
 # next_agent = ""         # optional, unset by default
-# focus_agent = ""        # optional indexed binding, e.g. "prefix+alt+1..9"
+# focus_agent = ""        # optional indexed binding, e.g. "ctrl+alt+1..9"
 # remote_image_paste = "ctrl+v" # only active in herdr --remote; empty disables raw-key image paste
-# new_tab = "prefix+c"
-# rename_tab = "prefix+shift+t"
-# previous_tab = "prefix+p"
-# next_tab = "prefix+n"
-# switch_tab = "prefix+1..9"
-# switch_workspace = ""   # optional indexed binding, e.g. "prefix+shift+1..9"
-# close_tab = "prefix+shift+x"
-# rename_pane = "prefix+shift+p"
-# edit_scrollback = "prefix+e"
-# focus_pane_left = "prefix+h"
-# focus_pane_down = "prefix+j"
-# focus_pane_up = "prefix+k"
-# focus_pane_right = "prefix+l"
-# cycle_pane_next = "prefix+tab"
-# cycle_pane_previous = "prefix+shift+tab"
-# last_pane = ""          # optional, unset by default; bind e.g. "prefix+tab" for global back-and-forth
-# split_vertical = "prefix+v"
-# split_horizontal = "prefix+minus"
-# close_pane = "prefix+x"
-# zoom = "prefix+z"       # legacy alias: fullscreen
-# resize_mode = "prefix+r"
-# toggle_sidebar = "prefix+b"
+new_tab = "ctrl+alt+c"
+rename_tab = "ctrl+alt+shift+t"
+previous_tab = "ctrl+alt+p"
+next_tab = "ctrl+alt+n"
+switch_tab = "ctrl+alt+1..9"
+# switch_workspace = ""   # optional indexed binding, e.g. "ctrl+alt+shift+1..9"
+close_tab = "ctrl+alt+shift+x"
+rename_pane = "ctrl+alt+shift+p"
+edit_scrollback = "ctrl+alt+e"
+focus_pane_left = "ctrl+alt+h"
+focus_pane_down = "ctrl+alt+j"
+focus_pane_up = "ctrl+alt+k"
+focus_pane_right = "ctrl+alt+l"
+cycle_pane_next = "ctrl+alt+tab"
+cycle_pane_previous = "ctrl+alt+shift+tab"
+# last_pane = ""          # optional, unset by default; bind e.g. "ctrl+alt+tab" for global back-and-forth
+split_vertical = "ctrl+alt+v"
+split_horizontal = "ctrl+alt+minus"
+close_pane = "ctrl+alt+x"
+zoom = "ctrl+alt+z"       # legacy alias: fullscreen
+resize_mode = "ctrl+alt+r"
+toggle_sidebar = "ctrl+alt+b"
 
 # Navigate-mode movement. These local shortcuts win while navigate mode is open.
 # They are independent from focus_pane_*. Do not include prefix+, esc, enter, tab, or 1..9 here.
