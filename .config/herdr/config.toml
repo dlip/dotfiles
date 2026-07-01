@@ -121,6 +121,13 @@ toggle_sidebar = "ctrl+alt+b"
 # type = "pane"
 # command = "lazygit"
 
+# Project workspace picker (bin/h). Runs in a temporary pane for the fzf UI;
+# bin/h then creates/focuses a Herdr workspace per selected project.
+[[keys.command]]
+key = "ctrl+alt+h"
+type = "pane"
+command = "h"
+
 # Legacy indexed shortcut config is still parsed for compatibility.
 # Prefer switch_tab, switch_workspace, and focus_agent for new configs.
 # [keys.indexed]

@@ -12,6 +12,7 @@
 !/AGENTS.md
 !/README.md
 !/bin
+!/bin/*
 !/docker
 !/flake.lock
 !/flake.nix
