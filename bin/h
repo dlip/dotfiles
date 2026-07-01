@@ -40,7 +40,9 @@ fi
 # Create the workspace; its root pane becomes the editor tab.
 ws_json=$(herdr workspace create --cwd "$dir" --label "$session" --focus)
 ws_id=$(echo "$ws_json" | jq -r '.result.workspace.workspace_id')
+editor_tab=$(echo "$ws_json" | jq -r '.result.tab.tab_id')
 editor_pane=$(echo "$ws_json" | jq -r '.result.root_pane.pane_id')
+herdr tab rename "$editor_tab" editor >/dev/null
 herdr pane run "$editor_pane" "${EDITOR:-vi}"
 
 # shell tab
