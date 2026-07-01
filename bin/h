@@ -6,22 +6,44 @@ set -euo pipefail
 # with one tab each for editor, shell, git (lazygit), and files (yazi).
 
 PROJECTS="$HOME/code"
+CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/h-projects"
 
-# Ensure each project is in zoxide.
-for path in $(find "$PROJECTS" -maxdepth 1 -mindepth 1 -type d -o -type l); do
-  if [[ -L "$path" ]] && [[ ! -e "$path" ]]; then
-    continue
+# Building the project list (find + per-dir zoxide sync + frecency query) is
+# slow, so cache the candidate list and only rebuild it once a day. Force a
+# rebuild with `h --refresh`.
+refresh=0
+if [ "${1:-}" = "--refresh" ]; then
+  refresh=1
+  shift
+fi
+
+cache_stale=1
+if [ "$refresh" -eq 0 ] && [ -f "$CACHE" ]; then
+  # Rebuild if the cache is older than 24h (mtime more than a day ago).
+  if [ -z "$(find "$CACHE" -mtime +1 -print 2>/dev/null)" ]; then
+    cache_stale=0
   fi
-  if [[ $(zoxide query -l -s "$path" | wc -c) -eq 0 ]]; then
-    zoxide add "$path"
-  fi
-done
+fi
+
+if [ "$cache_stale" -eq 1 ]; then
+  # Ensure each project is in zoxide.
+  for path in $(find "$PROJECTS" -maxdepth 1 -mindepth 1 -type d -o -type l); do
+    if [[ -L "$path" ]] && [[ ! -e "$path" ]]; then
+      continue
+    fi
+    if [[ $(zoxide query -l -s "$path" | wc -c) -eq 0 ]]; then
+      zoxide add "$path"
+    fi
+  done
+  mkdir -p "$(dirname "$CACHE")"
+  zoxide query -l "$PROJECTS/" | sed "s|$PROJECTS/||" >"$CACHE"
+fi
 
 filter_params=""
 if [ -n "${1:-}" ]; then
   filter_params="-q $1"
 fi
-repo_path=$(zoxide query -l "$PROJECTS/" | sed "s|$PROJECTS/||" | fzf $filter_params --select-1)
+repo_path=$(fzf $filter_params --select-1 <"$CACHE")
 [ -z "$repo_path" ] && exit 0
 
 session=$(basename "$repo_path")
