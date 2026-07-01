@@ -13,5 +13,6 @@
     "height": 1162
   },
   "openH264Enabled": true,
-  "enableLibOpenH264Electron": false
+  "enableLibOpenH264Electron": false,
+  "DESKTOP_TTI_DNSTCP_WARMUP": true
 }
