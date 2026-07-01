@@ -28,35 +28,61 @@ session=$(basename "$repo_path")
 dir="$PROJECTS/$repo_path"
 zoxide add "$dir"
 
-# If a workspace with this label already exists, just focus it.
-existing=$(herdr workspace list \
-  | jq -r --arg l "$session" '.result.workspaces[] | select(.label == $l) | .workspace_id' \
-  | head -n1)
-if [ -n "$existing" ]; then
-  herdr workspace focus "$existing" >/dev/null
-  exit 0
+# The workspace/tab/pane commands talk to a running Herdr server over its
+# socket. When launched from a plain shell (not from inside a Herdr pane) there
+# may be no server yet, so start one headlessly and wait for the socket.
+inside_herdr=0
+[ -n "${HERDR_PANE_ID:-}" ] && inside_herdr=1
+
+if [ "$(herdr status server 2>/dev/null | awk '/^status:/{print $2}')" != "running" ]; then
+  herdr server >/dev/null 2>&1 &
+  for _ in $(seq 1 50); do
+    [ "$(herdr status server 2>/dev/null | awk '/^status:/{print $2}')" = "running" ] && break
+    sleep 0.1
+  done
 fi
 
-# Create the workspace; its root pane becomes the editor tab.
-ws_json=$(herdr workspace create --cwd "$dir" --label "$session" --focus)
-ws_id=$(echo "$ws_json" | jq -r '.result.workspace.workspace_id')
-editor_tab=$(echo "$ws_json" | jq -r '.result.tab.tab_id')
-editor_pane=$(echo "$ws_json" | jq -r '.result.root_pane.pane_id')
-herdr tab rename "$editor_tab" editor >/dev/null
-herdr pane run "$editor_pane" "${EDITOR:-vi}"
+build_workspace() {
+  # If a workspace with this label already exists, just focus it.
+  local existing
+  existing=$(herdr workspace list \
+    | jq -r --arg l "$session" '.result.workspaces[] | select(.label == $l) | .workspace_id' \
+    | head -n1)
+  if [ -n "$existing" ]; then
+    herdr workspace focus "$existing" >/dev/null
+    return
+  fi
 
-# shell tab
-herdr tab create --workspace "$ws_id" --cwd "$dir" --label shell --no-focus >/dev/null
+  # Create the workspace; its root pane becomes the editor tab.
+  local ws_json ws_id editor_tab editor_pane git_pane files_pane
+  ws_json=$(herdr workspace create --cwd "$dir" --label "$session" --focus)
+  ws_id=$(echo "$ws_json" | jq -r '.result.workspace.workspace_id')
+  editor_tab=$(echo "$ws_json" | jq -r '.result.tab.tab_id')
+  editor_pane=$(echo "$ws_json" | jq -r '.result.root_pane.pane_id')
+  herdr tab rename "$editor_tab" editor >/dev/null
+  herdr pane run "$editor_pane" "${EDITOR:-vi}"
 
-# git tab -> lazygit
-git_pane=$(herdr tab create --workspace "$ws_id" --cwd "$dir" --label git --no-focus \
-  | jq -r '.result.root_pane.pane_id')
-herdr pane run "$git_pane" "lazygit"
+  # shell tab
+  herdr tab create --workspace "$ws_id" --cwd "$dir" --label shell --no-focus >/dev/null
 
-# files tab -> yazi
-files_pane=$(herdr tab create --workspace "$ws_id" --cwd "$dir" --label files --no-focus \
-  | jq -r '.result.root_pane.pane_id')
-herdr pane run "$files_pane" "yazi"
+  # git tab -> lazygit
+  git_pane=$(herdr tab create --workspace "$ws_id" --cwd "$dir" --label git --no-focus \
+    | jq -r '.result.root_pane.pane_id')
+  herdr pane run "$git_pane" "lazygit"
 
-# Focus the workspace (leaves the editor tab active).
-herdr workspace focus "$ws_id" >/dev/null
+  # files tab -> yazi
+  files_pane=$(herdr tab create --workspace "$ws_id" --cwd "$dir" --label files --no-focus \
+    | jq -r '.result.root_pane.pane_id')
+  herdr pane run "$files_pane" "yazi"
+
+  # Focus the workspace (leaves the editor tab active).
+  herdr workspace focus "$ws_id" >/dev/null
+}
+
+build_workspace
+
+# Launched from a plain shell: attach to the session so the user lands in the UI.
+# Inside a Herdr pane the setup above is already visible, so don't nest.
+if [ "$inside_herdr" -eq 0 ]; then
+  exec herdr
+fi
