@@ -1,13 +1,30 @@
 binds {
-    // Core Noctalia binds
-    Mod+Space { spawn-sh "noctalia msg panel-toggle launcher"; }
-    Mod+S { spawn-sh "noctalia msg panel-toggle control-center"; }
-    Mod+Comma { spawn-sh "noctalia msg settings-toggle"; }
+    // Migrated from dms/binds.kdl to Noctalia v5 IPC.
+    // v5 syntax is `noctalia msg <command>` (flat command names).
+    // Full list: `noctalia msg --help`. Docs: https://docs.noctalia.dev/v5/ipc/
+
+    // Core
+    Mod+Space hotkey-overlay-title="Application Launcher" { spawn-sh "noctalia msg panel-toggle launcher"; }
+    Mod+V hotkey-overlay-title="Clipboard Manager" { spawn-sh "noctalia msg panel-toggle clipboard"; }
+    Mod+S hotkey-overlay-title="Control Center" { spawn-sh "noctalia msg panel-toggle control-center"; }
+    Mod+Comma hotkey-overlay-title="Settings" { spawn-sh "noctalia msg settings-toggle"; }
+    Mod+N hotkey-overlay-title="Notification Center" { spawn-sh "noctalia msg panel-toggle control-center notifications"; }
+    Mod+Y hotkey-overlay-title="Browse Wallpapers" { spawn-sh "noctalia msg panel-toggle wallpaper"; }
+    Mod+Alt+L hotkey-overlay-title="Lock Screen" { spawn-sh "noctalia msg session lock"; }
+    Super+I hotkey-overlay-title="Idle Inhibit: Toggle" { spawn-sh "noctalia msg caffeine-toggle"; }
+    Super+P hotkey-overlay-title="Power Menu: Toggle" { spawn-sh "noctalia msg panel-toggle session"; }
 
     // Audio & Brightness
-    XF86AudioRaiseVolume { spawn-sh "noctalia msg volume-up"; }
-    XF86AudioLowerVolume { spawn-sh "noctalia msg volume-down"; }
-    XF86AudioMute { spawn-sh "noctalia msg volume-mute"; }
-    XF86MonBrightnessUp { spawn-sh "noctalia msg brightness-up"; }
-    XF86MonBrightnessDown { spawn-sh "noctalia msg brightness-down"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "noctalia msg volume-up"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "noctalia msg volume-down"; }
+    XF86AudioMute allow-when-locked=true { spawn-sh "noctalia msg volume-mute"; }
+    XF86AudioMicMute allow-when-locked=true { spawn-sh "noctalia msg mic-mute"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn-sh "noctalia msg brightness-up"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn-sh "noctalia msg brightness-down"; }
+
+    // Media (MPRIS)
+    XF86AudioNext allow-when-locked=true { spawn-sh "noctalia msg media next"; }
+    XF86AudioPrev allow-when-locked=true { spawn-sh "noctalia msg media previous"; }
+    XF86AudioPlay allow-when-locked=true { spawn-sh "noctalia msg media toggle"; }
+    XF86AudioStop allow-when-locked=true { spawn-sh "noctalia msg media stop"; }
 }
