@@ -2,7 +2,7 @@
 
 if [[ $(whoami) == 'dane' ]]; then
   niri msg action focus-workspace terminal &
-  kitty -e t dotfiles &
+  kitty -e h dotfiles &
   wl-paste --watch cliphist store &
   thunar &
   Telegram &

@@ -1,63 +1,46 @@
+[theme]
+builtin = "Catppuccin"
+mode = "dark"
+
 [bar.default]
+thickness = 25
 margin_edge = 0
 margin_ends = 0
 radius = 0
+start = [ "launcher", "wallpaper", "workspaces", "active_window" ]
+end = [
+    "media",
+    "weather",
+    "notifications",
+    "clipboard",
+    "network",
+    "bluetooth",
+    "volume",
+    "brightness",
+    "battery",
+    "control-center",
+    "tray",
+    "session"
+]
 
-[lockscreen_widgets]
-enabled = false
-schema_version = 2
-widget_order = [ "lockscreen-login-box@DP-6", "lockscreen-login-box@eDP-1" ]
+[widget.active_window]
+min_length = 80
+max_length = 500
 
-    [lockscreen_widgets.grid]
-    cell_size = 16
-    major_interval = 4
-    visible = true
-
-    [lockscreen_widgets.widget."lockscreen-login-box@DP-6"]
-    box_height = 70.0
-    box_width = 400.0
-    cx = 960.0
-    cy = 961.0
-    output = "DP-6"
-    rotation = 0.0
-    type = "login_box"
-
-        [lockscreen_widgets.widget."lockscreen-login-box@DP-6".settings]
-        background_color = "surface_variant"
-        background_opacity = 0.88
-        background_radius = 12.0
-        input_opacity = 1.0
-        input_radius = 6.0
-        show_caps_lock = true
-        show_keyboard_layout = true
-        show_login_button = true
-        show_password_hint = true
-
-    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
-    box_height = 70.0
-    box_width = 400.0
-    cx = 960.0
-    cy = 1081.0
-    output = "eDP-1"
-    rotation = 0.0
-    type = "login_box"
-
-        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
-        background_color = "surface_variant"
-        background_opacity = 0.88
-        background_radius = 12.0
-        input_opacity = 1.0
-        input_radius = 6.0
-        show_caps_lock = true
-        show_keyboard_layout = true
-        show_login_button = true
-        show_password_hint = true
+[location]
+address = "Sydney, Australia"
 
 [shell]
 corner_radius_scale = 0.0
 
-[theme]
-builtin = "Catppuccin"
+[shell.animation]
+enabled = true
+speed   = 2.0
 
 [wallpaper]
 directory = "/home/dane/sync/wallpapers"
+
+[wallpaper.automation]
+enabled                      = false
+interval_seconds             = 1800
+order                        = "random"
