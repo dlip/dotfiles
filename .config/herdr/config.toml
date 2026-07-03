@@ -62,48 +62,51 @@ onboarding = false
 # alt+..., cmd/super, and punctuation-with-modifiers may depend on your terminal/tmux setup.
 # prefix = "ctrl+b"
 
-# Actions bound to direct ctrl+alt chords (no prefix required)
-help = "ctrl+alt+?"
-settings = "ctrl+alt+."
-detach = "ctrl+alt+d"
-reload_config = "ctrl+alt+shift+r"
-open_notification_target = "ctrl+alt+o"
-workspace_picker = "ctrl+alt+p"
-goto = "ctrl+alt+g"
-new_workspace = "ctrl+alt+n"
-new_worktree = "ctrl+alt+shift+g"
+# Each action accepts a list of bindings: a prefix+ chord (your direct chord
+# minus ctrl/alt) plus the direct ctrl+alt (or custom) chord.
+help = ["prefix+?", "ctrl+alt+?"]
+settings = ["prefix+.", "ctrl+alt+."]
+detach = ["prefix+d", "ctrl+alt+d"]
+reload_config = ["prefix+shift+r", "ctrl+alt+shift+r"]
+open_notification_target = ["prefix+o", "ctrl+alt+o"]
+workspace_picker = ["prefix+p", "ctrl+alt+p"]
+goto = ["prefix+g", "ctrl+alt+g"]
+new_workspace = ["prefix+n", "ctrl+alt+n"]
+new_worktree = ["prefix+shift+g", "ctrl+alt+shift+g"]
 # open_worktree = ""    # optional, unset by default
 # remove_worktree = ""  # optional, unset by default; opens confirmation
-# rename_workspace = "ctrl+alt+shift+w"
-close_workspace = "ctrl+alt+shift+w"
-previous_workspace = "alt+up"
-next_workspace = "alt+down"
+# rename_workspace = ["prefix+shift+w", "ctrl+alt+shift+w"]
+close_workspace = ["prefix+shift+w", "ctrl+alt+shift+w"]
+previous_workspace = ["prefix+up", "alt+up"]
+next_workspace = ["prefix+down", "alt+down"]
 # previous_agent = ""     # optional, unset by default
 # next_agent = ""         # optional, unset by default
 # focus_agent = ""        # optional indexed binding, e.g. "ctrl+alt+1..9"
 # remote_image_paste = "ctrl+v" # only active in herdr --remote; empty disables raw-key image paste
-new_tab = "ctrl+alt+t"
-rename_tab = "ctrl+alt+shift+t"
-previous_tab = "alt+left"
-next_tab = "alt+right"
-switch_tab = "alt+1..9"
-switch_workspace = "alt+shift+1..9"
-# close_tab = "ctrl+alt+shift+w"
-rename_pane = "ctrl+alt+shift+p"
-edit_scrollback = "ctrl+alt+e"
+new_tab = ["prefix+t", "ctrl+alt+t"]
+rename_tab = ["prefix+shift+t", "ctrl+alt+shift+t"]
+previous_tab = ["prefix+left", "alt+left"]
+next_tab = ["prefix+right", "alt+right"]
+switch_tab = ["prefix+1..9", "alt+1..9"]
+switch_workspace = ["prefix+shift+1..9", "alt+shift+1..9"]
+# close_tab = ["prefix+shift+w", "ctrl+alt+shift+w"]
+rename_pane = ["prefix+shift+p", "ctrl+alt+shift+p"]
+edit_scrollback = ["prefix+e", "ctrl+alt+e"]
+# focus_pane_* keep only the direct chord: prefix+arrow would collide with the
+# tab/workspace nav bindings above (both strip to prefix+arrow).
 focus_pane_left = "ctrl+left"
 focus_pane_down = "ctrl+down"
 focus_pane_up = "ctrl+up"
 focus_pane_right = "ctrl+right"
-cycle_pane_next = "ctrl+alt+tab"
-cycle_pane_previous = "ctrl+alt+shift+tab"
+cycle_pane_next = ["prefix+tab", "ctrl+alt+tab"]
+cycle_pane_previous = ["prefix+shift+tab", "ctrl+alt+shift+tab"]
 # last_pane = ""          # optional, unset by default; bind e.g. "ctrl+alt+tab" for global back-and-forth
-split_vertical = "ctrl+alt+v"
-split_horizontal = "ctrl+alt+s"
-close_pane = "ctrl+alt+w"
-zoom = "ctrl+alt+z"       # legacy alias: fullscreen
-resize_mode = "ctrl+alt+r"
-toggle_sidebar = "ctrl+alt+b"
+split_vertical = ["prefix+v", "ctrl+alt+v"]
+split_horizontal = ["prefix+s", "ctrl+alt+s"]
+close_pane = ["prefix+w", "ctrl+alt+w"]
+zoom = ["prefix+z", "ctrl+alt+z"]       # legacy alias: fullscreen
+resize_mode = ["prefix+r", "ctrl+alt+r"]
+toggle_sidebar = ["prefix+b", "ctrl+alt+b"]
 
 # Navigate-mode movement. These local shortcuts win while navigate mode is open.
 # They are independent from focus_pane_*. Do not include prefix+, esc, enter, tab, or 1..9 here.
