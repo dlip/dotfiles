@@ -7,18 +7,19 @@
     { pkgs, ... }:
     {
       imports = [
-        # inputs.noctalia.nixosModules.default
-        inputs.dms.nixosModules.dank-material-shell
-        inputs.dms.nixosModules.greeter
+        # DankMaterialShell replaced by Noctalia v5 (spawned from the niri
+        # config's spawn-at-startup). DMS module/greeter left disabled below.
+        # inputs.dms.nixosModules.dank-material-shell
+        # inputs.dms.nixosModules.greeter
       ];
       programs.niri = {
         enable = true;
       };
-      # services.noctalia-shell.enable = true;
-      programs.dank-material-shell = {
-        enable = true;
-        systemd.enable = true;
-      };
+      # DankMaterialShell (previous shell) - disabled in favour of Noctalia.
+      # programs.dank-material-shell = {
+      #   enable = true;
+      #   systemd.enable = true;
+      # };
       environment.sessionVariables = {
         QS_DISABLE_CRASH_HANDLER = "1";
       };
@@ -27,11 +28,12 @@
       #   DMS_MODAL_LAYER = "overlay";
       # };
 
-      programs.dank-material-shell.greeter = {
-        enable = true;
-        compositor.name = "niri"; # Or "hyprland" or "sway"
-        configHome = "/home/dane";
-      };
+      # Greeter disabled (was the DMS greeter). Log in via TTY.
+      # programs.dank-material-shell.greeter = {
+      #   enable = true;
+      #   compositor.name = "niri"; # Or "hyprland" or "sway"
+      #   configHome = "/home/dane";
+      # };
       # services.greetd = {
       #   enable = true;
       #   settings = {
@@ -43,7 +45,7 @@
       # };
       services.xserver.desktopManager.runXdgAutostartIfNone = true;
       environment.systemPackages = with pkgs; [
-        # inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+        inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
         adwaita-icon-theme # default gnome cursors
         brightnessctl
         cliphist

@@ -17,11 +17,13 @@
 !/flake.lock
 !/flake.nix
 !/nix
+!/nix/*
 !/Library/Application Support/Trae/User/keybindings.json
 !/Library/Application Support/Trae/User/settings.json
 !/Library/Application Support/lazygit
 !/Library/Application Support/nushell
 !/Library/Keyboard Layouts/Engrammer.bundle
+!/.config
 !/.config/Code/keybindings.json
 !/.config/Code/settings.json
 !/.config/DankMaterialShell/firefox.css
@@ -34,10 +36,7 @@
 !/.config/discord/settings.json
 !/.config/ghostty/config
 !/.config/git/config
-!/.config/
-/.config/*
 !/.config/herdr/
-/.config/herdr/*
 !/.config/herdr/config.toml
 !/.config/hypr/hypridle.conf
 !/.config/hypr/hyprland.conf

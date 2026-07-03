@@ -264,6 +264,8 @@ layout {
 
 spawn-at-startup "niri-startup"
 // spawn-at-startup "waybar"
+// Noctalia v5 shell (replaces DankMaterialShell). Runs as a plain binary.
+spawn-at-startup "noctalia"
 // spawn-at-startup "dms run --session"
 // spawn-at-startup "niri" "msg" "action" "focus-workspace" "terminal"
 // spawn-at-startup "kitty" "-e" "t" "dotfiles"
@@ -682,6 +684,6 @@ hotkey-overlay {
     skip-at-startup
 }
 
-include "dms/binds.kdl"
-// include "./noctalia.kdl"
+// include "dms/binds.kdl"
+include "./noctalia.kdl"
 // include "./noctalia-binds.kdl"
