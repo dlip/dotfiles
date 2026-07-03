@@ -51,6 +51,7 @@
 !/.config/mpv/mpv.conf
 !/.config/mpv/script-opts/subs2srs.conf
 !/.config/mpv/scripts
+!/.config/niri
 !/.config/niri/config.kdl
 !/.config/niri/dms/alttab.kdl
 !/.config/niri/dms/binds.kdl
