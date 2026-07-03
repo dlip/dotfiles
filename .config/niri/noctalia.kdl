@@ -1,35 +1,13 @@
-layout {
+binds {
+    // Core Noctalia binds
+    Mod+Space { spawn-sh "noctalia msg panel-toggle launcher"; }
+    Mod+S { spawn-sh "noctalia msg panel-toggle control-center"; }
+    Mod+Comma { spawn-sh "noctalia msg settings-toggle"; }
 
-    focus-ring {
-        active-color   "#fff59b"
-        inactive-color "#070722"
-        urgent-color   "#FD4663"
-    }
-
-    border {
-        active-color   "#fff59b"
-        inactive-color "#070722"
-        urgent-color   "#FD4663"
-    }
-
-    shadow {
-        color "#00000070"
-    }
-
-    tab-indicator {
-        active-color   "#fff59b"
-        inactive-color "#998a00"
-        urgent-color   "#FD4663"
-    }
-
-    insert-hint {
-        color "#fff59b80"
-    }
-}
-
-recent-windows {
-    highlight {
-        active-color "#fff59b"
-        urgent-color "#FD4663"
-    }
+    // Audio & Brightness
+    XF86AudioRaiseVolume { spawn-sh "noctalia msg volume-up"; }
+    XF86AudioLowerVolume { spawn-sh "noctalia msg volume-down"; }
+    XF86AudioMute { spawn-sh "noctalia msg volume-mute"; }
+    XF86MonBrightnessUp { spawn-sh "noctalia msg brightness-up"; }
+    XF86MonBrightnessDown { spawn-sh "noctalia msg brightness-down"; }
 }
