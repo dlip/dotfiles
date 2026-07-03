@@ -64,25 +64,58 @@ if [ "$(herdr status server 2>/dev/null | awk '/^status:/{print $2}')" != "runni
   done
 fi
 
-# Run a command in a pane, reliably even on a freshly started server. On a cold
-# server the pane's shell is still initializing when the pane is created, so
-# keystrokes sent too early get dropped (the tab ends up at a bare shell). Send
-# the command, then confirm the target program actually became a foreground
-# process; if not, clear the line (ctrl+u, to avoid concatenation) and resend.
+# Print "idle" when the pane's only foreground process is its login shell
+# (i.e. sitting at a prompt), otherwise "busy".
+pane_state() {
+  herdr pane process-info --pane "$1" 2>/dev/null | jq -r \
+    '.result.process_info | if (.foreground_processes | length) <= 1 and ((.foreground_processes[0].pid // .shell_pid) == .shell_pid) then "idle" else "busy" end' 2>/dev/null \
+    || echo unknown
+}
+
+# Confirm the pane's shell line editor is actually accepting input. On a cold
+# server the shell is still initializing and early keystrokes are dropped, so we
+# repeatedly send a harmless idempotent sentinel (ctrl+u first, so a partial
+# send can't concatenate) until it runs.
+pane_wait_live() {
+  local pane="$1" marker
+  marker=$(mktemp -u "${TMPDIR:-/tmp}/.h-live.XXXXXX")
+  rm -f "$marker"
+  for _ in $(seq 1 100); do
+    herdr pane send-keys "$pane" ctrl+u >/dev/null 2>&1 || true
+    herdr pane run "$pane" "command touch '$marker'" >/dev/null 2>&1 || true
+    for _ in $(seq 1 5); do
+      [ -e "$marker" ] && { rm -f "$marker"; return 0; }
+      sleep 0.1
+    done
+  done
+  rm -f "$marker"
+  return 1
+}
+
+# Launch a command in a pane, reliably on both cold and warm servers. We only
+# ever type while the pane is at an idle shell prompt, so we never type into an
+# already-running program (which previously caused e.g. "nvim" being typed into
+# the opened editor). A send succeeds once the pane stays busy for ~0.6s: a
+# launched program persists, whereas a transient shell prompt hook (starship)
+# does not, so we don't falsely resend.
 pane_run_ready() {
-  local pane="$1" cmd="$2" name tries=0
-  name=$(basename "${cmd%% *}")
-  while [ "$tries" -lt 60 ]; do
+  local pane="$1" cmd="$2" attempt j streak
+  pane_wait_live "$pane" || return 1
+  for attempt in $(seq 1 40); do
+    while [ "$(pane_state "$pane")" != idle ]; do sleep 0.05; done
     herdr pane send-keys "$pane" ctrl+u >/dev/null 2>&1 || true
     herdr pane run "$pane" "$cmd" >/dev/null 2>&1 || true
-    for _ in $(seq 1 8); do
-      if herdr pane process-info --pane "$pane" 2>/dev/null | jq -e --arg n "$name" \
-        '.result.process_info.foreground_processes // [] | any(.name == $n or (.argv0 == $n))' >/dev/null; then
-        return 0
+    streak=0
+    for j in $(seq 1 30); do
+      if [ "$(pane_state "$pane")" = busy ]; then
+        streak=$((streak + 1))
+        [ "$streak" -ge 6 ] && return 0
+      else
+        streak=0
+        [ "$j" -ge 8 ] && break   # back at prompt, nothing launched: resend
       fi
       sleep 0.1
     done
-    tries=$((tries + 1))
   done
   return 1
 }
