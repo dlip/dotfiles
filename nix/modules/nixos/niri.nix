@@ -28,21 +28,16 @@
       #   DMS_MODAL_LAYER = "overlay";
       # };
 
-      # Greeter disabled (was the DMS greeter). Log in via TTY.
-      # programs.dank-material-shell.greeter = {
-      #   enable = true;
-      #   compositor.name = "niri"; # Or "hyprland" or "sway"
-      #   configHome = "/home/dane";
-      # };
-      # services.greetd = {
-      #   enable = true;
-      #   settings = {
-      #     default_session = {
-      #       command = "${pkgs.tuigreet}/bin/tuigreet /usr/bin/env --xsessions ${config.services.displayManager.sessionData.desktops}/share/xsessions --sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions --remember --remember-user-session";
-      #       user = "greeter";
-      #     };
-      #   };
-      # };
+      # Login via greetd + tuigreet, launching niri-session.
+      services.greetd = {
+        enable = true;
+        settings = {
+          default_session = {
+            command = "${pkgs.tuigreet}/bin/tuigreet --sessions /run/current-system/sw/share/wayland-sessions --remember --remember-session --cmd niri-session";
+            user = "greeter";
+          };
+        };
+      };
       services.xserver.desktopManager.runXdgAutostartIfNone = true;
       environment.systemPackages = with pkgs; [
         inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -64,7 +59,7 @@
         swayidle
         swaylock
         swaynotificationcenter
-        # tuigreet
+        tuigreet
         udiskie
         waybar
         wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
