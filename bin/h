@@ -64,6 +64,29 @@ if [ "$(herdr status server 2>/dev/null | awk '/^status:/{print $2}')" != "runni
   done
 fi
 
+# Run a command in a pane, reliably even on a freshly started server. On a cold
+# server the pane's shell is still initializing when the pane is created, so
+# keystrokes sent too early get dropped (the tab ends up at a bare shell). Send
+# the command, then confirm the target program actually became a foreground
+# process; if not, clear the line (ctrl+u, to avoid concatenation) and resend.
+pane_run_ready() {
+  local pane="$1" cmd="$2" name tries=0
+  name=$(basename "${cmd%% *}")
+  while [ "$tries" -lt 60 ]; do
+    herdr pane send-keys "$pane" ctrl+u >/dev/null 2>&1 || true
+    herdr pane run "$pane" "$cmd" >/dev/null 2>&1 || true
+    for _ in $(seq 1 8); do
+      if herdr pane process-info --pane "$pane" 2>/dev/null | jq -e --arg n "$name" \
+        '.result.process_info.foreground_processes // [] | any(.name == $n or (.argv0 == $n))' >/dev/null; then
+        return 0
+      fi
+      sleep 0.1
+    done
+    tries=$((tries + 1))
+  done
+  return 1
+}
+
 build_workspace() {
   # If a workspace with this label already exists, just focus it.
   local existing
@@ -82,7 +105,7 @@ build_workspace() {
   editor_tab=$(echo "$ws_json" | jq -r '.result.tab.tab_id')
   editor_pane=$(echo "$ws_json" | jq -r '.result.root_pane.pane_id')
   herdr tab rename "$editor_tab" editor >/dev/null
-  herdr pane run "$editor_pane" "${EDITOR:-vi}"
+  pane_run_ready "$editor_pane" "${EDITOR:-vi}"
 
   # shell tab
   herdr tab create --workspace "$ws_id" --cwd "$dir" --label shell --no-focus >/dev/null
@@ -90,12 +113,12 @@ build_workspace() {
   # git tab -> lazygit
   git_pane=$(herdr tab create --workspace "$ws_id" --cwd "$dir" --label git --no-focus \
     | jq -r '.result.root_pane.pane_id')
-  herdr pane run "$git_pane" "lazygit"
+  pane_run_ready "$git_pane" "lazygit"
 
   # files tab -> yazi
   files_pane=$(herdr tab create --workspace "$ws_id" --cwd "$dir" --label files --no-focus \
     | jq -r '.result.root_pane.pane_id')
-  herdr pane run "$files_pane" "yazi"
+  pane_run_ready "$files_pane" "yazi"
 
   # Focus the workspace (leaves the editor tab active).
   herdr workspace focus "$ws_id" >/dev/null
