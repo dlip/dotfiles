@@ -1,6 +1,4 @@
-{
-  ...
-}:
+{ ... }:
 {
   flake.modules.nixos.common =
     {
@@ -15,7 +13,6 @@
 
       nix = {
         # package = pkgs.nixUnstable;
-        settings.auto-optimise-store = true;
         extraOptions = ''
           experimental-features = nix-command flakes
         '';
@@ -25,6 +22,7 @@
         daemonIOSchedPriority = 7;
 
         settings = {
+          auto-optimise-store = true;
           substituters = [
             "https://cache.nixos.org"
             "https://nix-community.cachix.org"

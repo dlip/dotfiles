@@ -59,10 +59,8 @@
 !/.config/niri/dms/wpblur.kdl
 !/.config/niri/noctalia.kdl
 !/.config/nix/nix.conf
-!/.config/noctalia/colors.json
-!/.config/noctalia/gui-settings.json
-!/.config/noctalia/plugins.json
-!/.config/noctalia/settings.json
+!/.config/noctalia
+!/.config/noctalia/settings.toml
 !/.config/nushell
 !/.config/nvim
 !/.config/plex-mpv-shim/conf.json
