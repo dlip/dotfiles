@@ -25,4 +25,5 @@
   vikunja = 3456;
   tududi = 3004;
   sparkyfitness = 3011;
+  storyteller = 8001;
 }

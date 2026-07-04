@@ -489,6 +489,21 @@ rec {
     };
   };
 
+  # Storyteller: audiobook/ebook alignment platform. Not in nixpkgs, so run
+  # the published Docker image via oci-containers. Binds to 127.0.0.1 only;
+  # Traefik proxies https://storyteller.${domain} to it (see services.nix).
+  sops.secrets.storyteller-env = { };
+  virtualisation.oci-containers = {
+    backend = "docker";
+    containers.storyteller = {
+      image = "registry.gitlab.com/storyteller-platform/storyteller:latest";
+      ports = [ "127.0.0.1:8001:8001" ];
+      volumes = [ "/mnt/services/storyteller:/data:rw" ];
+      # storyteller-env supplies STORYTELLER_SECRET_KEY (openssl rand -base64 32).
+      environmentFiles = [ config.sops.secrets.storyteller-env.path ];
+    };
+  };
+
   # systemd.services.actual-server = {
   #   wantedBy = [ "multi-user.target" ];
   #   after = [ "network.target" ];

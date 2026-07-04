@@ -17,7 +17,7 @@
 !/flake.lock
 !/flake.nix
 !/nix
-!/nix/*
+!/nix/**
 !/Library/Application Support/Trae/User/keybindings.json
 !/Library/Application Support/Trae/User/settings.json
 !/Library/Application Support/lazygit
