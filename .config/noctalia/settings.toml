@@ -1,0 +1,46 @@
+[theme]
+builtin = "Catppuccin"
+mode = "dark"
+
+[bar.default]
+thickness = 25
+margin_edge = 0
+margin_ends = 0
+radius = 0
+start = [ "launcher", "wallpaper", "workspaces", "active_window" ]
+end = [
+    "media",
+    "weather",
+    "notifications",
+    "clipboard",
+    "network",
+    "bluetooth",
+    "volume",
+    "brightness",
+    "battery",
+    "control-center",
+    "tray",
+    "session"
+]
+
+[widget.active_window]
+min_length = 80
+max_length = 500
+
+[location]
+address = "Sydney, Australia"
+
+[shell]
+corner_radius_scale = 0.0
+
+[shell.animation]
+enabled = true
+speed   = 2.0
+
+[wallpaper]
+directory = "/home/dane/sync/wallpapers"
+
+[wallpaper.automation]
+enabled                      = false
+interval_seconds             = 1800
+order                        = "random"

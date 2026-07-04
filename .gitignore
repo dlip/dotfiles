@@ -17,11 +17,13 @@
 !/flake.lock
 !/flake.nix
 !/nix
+!/nix/*
 !/Library/Application Support/Trae/User/keybindings.json
 !/Library/Application Support/Trae/User/settings.json
 !/Library/Application Support/lazygit
 !/Library/Application Support/nushell
 !/Library/Keyboard Layouts/Engrammer.bundle
+!/.config
 !/.config/Code/keybindings.json
 !/.config/Code/settings.json
 !/.config/DankMaterialShell/firefox.css
@@ -34,10 +36,7 @@
 !/.config/discord/settings.json
 !/.config/ghostty/config
 !/.config/git/config
-!/.config/
-/.config/*
 !/.config/herdr/
-/.config/herdr/*
 !/.config/herdr/config.toml
 !/.config/hypr/hypridle.conf
 !/.config/hypr/hyprland.conf
@@ -52,6 +51,7 @@
 !/.config/mpv/mpv.conf
 !/.config/mpv/script-opts/subs2srs.conf
 !/.config/mpv/scripts
+!/.config/niri
 !/.config/niri/config.kdl
 !/.config/niri/dms/alttab.kdl
 !/.config/niri/dms/binds.kdl
@@ -60,10 +60,8 @@
 !/.config/niri/dms/wpblur.kdl
 !/.config/niri/noctalia.kdl
 !/.config/nix/nix.conf
-!/.config/noctalia/colors.json
-!/.config/noctalia/gui-settings.json
-!/.config/noctalia/plugins.json
-!/.config/noctalia/settings.json
+!/.config/noctalia
+!/.config/noctalia/settings.toml
 !/.config/nushell
 !/.config/nvim
 !/.config/plex-mpv-shim/conf.json

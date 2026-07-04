@@ -10,9 +10,10 @@
     "x": 0,
     "y": 0,
     "width": 1920,
-    "height": 1162
+    "height": 1046
   },
   "openH264Enabled": true,
   "enableLibOpenH264Electron": false,
-  "DESKTOP_TTI_DNSTCP_WARMUP": true
+  "DESKTOP_TTI_DNSTCP_WARMUP": true,
+  "DESKTOP_TTI_REMOVE_V8_CACHE_CLEAR": true
 }

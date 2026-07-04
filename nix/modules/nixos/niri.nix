@@ -7,18 +7,19 @@
     { pkgs, ... }:
     {
       imports = [
-        # inputs.noctalia.nixosModules.default
-        inputs.dms.nixosModules.dank-material-shell
-        inputs.dms.nixosModules.greeter
+        # DankMaterialShell replaced by Noctalia v5 (spawned from the niri
+        # config's spawn-at-startup). DMS module/greeter left disabled below.
+        # inputs.dms.nixosModules.dank-material-shell
+        # inputs.dms.nixosModules.greeter
       ];
       programs.niri = {
         enable = true;
       };
-      # services.noctalia-shell.enable = true;
-      programs.dank-material-shell = {
-        enable = true;
-        systemd.enable = true;
-      };
+      # DankMaterialShell (previous shell) - disabled in favour of Noctalia.
+      # programs.dank-material-shell = {
+      #   enable = true;
+      #   systemd.enable = true;
+      # };
       environment.sessionVariables = {
         QS_DISABLE_CRASH_HANDLER = "1";
       };
@@ -27,23 +28,19 @@
       #   DMS_MODAL_LAYER = "overlay";
       # };
 
-      programs.dank-material-shell.greeter = {
+      # Login via greetd + tuigreet, launching niri-session.
+      services.greetd = {
         enable = true;
-        compositor.name = "niri"; # Or "hyprland" or "sway"
-        configHome = "/home/dane";
+        settings = {
+          default_session = {
+            command = "${pkgs.tuigreet}/bin/tuigreet --sessions /run/current-system/sw/share/wayland-sessions --remember --remember-session --cmd niri-session";
+            user = "greeter";
+          };
+        };
       };
-      # services.greetd = {
-      #   enable = true;
-      #   settings = {
-      #     default_session = {
-      #       command = "${pkgs.tuigreet}/bin/tuigreet /usr/bin/env --xsessions ${config.services.displayManager.sessionData.desktops}/share/xsessions --sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions --remember --remember-user-session";
-      #       user = "greeter";
-      #     };
-      #   };
-      # };
       services.xserver.desktopManager.runXdgAutostartIfNone = true;
       environment.systemPackages = with pkgs; [
-        # inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+        inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
         adwaita-icon-theme # default gnome cursors
         brightnessctl
         cliphist
@@ -62,7 +59,7 @@
         swayidle
         swaylock
         swaynotificationcenter
-        # tuigreet
+        tuigreet
         udiskie
         waybar
         wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
