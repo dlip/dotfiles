@@ -37,6 +37,7 @@ rec {
     self.inputs.tududi.nixosModules.default
     self.inputs.sparkyfitness.nixosModules.sparkyfitness
     self.inputs.hermes-agent.nixosModules.default
+    self.inputs.storyteller.nixosModules.default
   ];
 
   # Open ports in the firewall.
@@ -159,7 +160,7 @@ rec {
             };
           };
           mcpServers.tududi = {
-            url = "https://tududi.dex-lips.duckdns.org/api/mcp";
+            url = "https://tududi.${domain}/api/mcp";
             headers.Authorization = "Bearer \${TUDUDI_API_KEY}";
             timeout = 180;
           };
@@ -210,12 +211,12 @@ rec {
             };
           };
           mcpServers.tududi = {
-            url = "https://tududi.dex-lips.duckdns.org/api/mcp";
+            url = "https://tududi.${domain}/api/mcp";
             headers.Authorization = "Bearer \${TUDUDI_API_KEY}";
             timeout = 180;
           };
           mcpServers.sparkyfitness = {
-            url = "https://sparkyfitness.dex-lips.duckdns.org/mcp";
+            url = "https://sparkyfitness.${domain}/mcp";
             headers.Authorization = "Bearer \${SPARKYFITNESS_API_KEY}";
             timeout = 180;
           };
@@ -361,12 +362,12 @@ rec {
     enable = true;
     port = 3004;
     host = "127.0.0.1";
-    adminEmail = "admin@dex-lips.duckdns.org";
+    adminEmail = "admin@${domain}";
     sessionSecretFile = config.sops.secrets.tududi-session-secret.path;
     adminPasswordFile = config.sops.secrets.tududi-user-password.path;
     allowedOrigins = [
       "http://127.0.0.1:3004"
-      "https://tududi.dex-lips.duckdns.org"
+      "https://tududi.${domain}"
     ];
     trustProxy = true;
     featureFlags = {
@@ -492,18 +493,30 @@ rec {
   # Storyteller: audiobook/ebook alignment platform. Not in nixpkgs, so run
   # the published Docker image via oci-containers. Binds to 127.0.0.1 only;
   # Traefik proxies https://storyteller.${domain} to it (see services.nix).
-  sops.secrets.storyteller-env = { };
-  virtualisation.oci-containers = {
-    backend = "docker";
-    containers.storyteller = {
-      image = "registry.gitlab.com/storyteller-platform/storyteller:latest";
-      ports = [ "127.0.0.1:8001:8001" ];
-      volumes = [ "/mnt/services/storyteller:/data:rw" ];
-      # storyteller-env supplies STORYTELLER_SECRET_KEY (openssl rand -base64 32).
-      environmentFiles = [ config.sops.secrets.storyteller-env.path ];
+  # sops.secrets.storyteller-env = { };
+  # virtualisation.oci-containers = {
+  #   backend = "docker";
+  #   containers.storyteller = {
+  #     image = "registry.gitlab.com/storyteller-platform/storyteller:latest";
+  #     ports = [ "127.0.0.1:8001:8001" ];
+  #     volumes = [ "/mnt/services/storyteller:/data:rw" ];
+  #     # storyteller-env supplies STORYTELLER_SECRET_KEY (openssl rand -base64 32).
+  #     environmentFiles = [ config.sops.secrets.storyteller-env.path ];
+  #   };
+  # };
+
+  sops.secrets.storyteller-key = { };
+  services.storyteller = {
+    enable = true;
+    secretKeyFile = config.sops.secrets.storyteller-key.path;
+    dataDir = "/media/media2/storyteller";
+    whisperVariant = "linux-x64-cuda-12.9.0";
+    environment = {
+      STORYTELLER_LOG_LEVEL = "debug";
+      ENABLE_WEB_READER = "true";
+      AUTH_URL = "https://storyteller.${domain}";
     };
   };
-
   # systemd.services.actual-server = {
   #   wantedBy = [ "multi-user.target" ];
   #   after = [ "network.target" ];
@@ -837,7 +850,7 @@ rec {
 
   # services.nextcloud = {
   #   enable = true;
-  #   hostName = "nextcloud.dex-lips.duckdns.org";
+  #   hostName = "nextcloud.${domain}";
   #   home = "/media/media/nextcloud";
   #   config = {
   #     dbtype = "pgsql";
@@ -895,7 +908,7 @@ rec {
     mediaDir = "/media/personal/paperless/media";
     consumptionDir = "/media/personal/paperless/consume";
     passwordFile = config.sops.secrets.paperless-adminpass.path;
-    settings.PAPERLESS_URL = "https://paperless.dex-lips.duckdns.org";
+    settings.PAPERLESS_URL = "https://paperless.${domain}";
   };
 
   sops.secrets.photoprism-adminpass = { };
@@ -921,8 +934,8 @@ rec {
   };
 
   services.grafana.settings.server = {
-    domain = "dex-lips.duckdns.org";
-    root_url = "https://grafana.dex-lips.duckdns.org";
+    domain = "${domain}";
+    root_url = "https://grafana.${domain}";
   };
 
   sops.secrets.homepage-env = { };
@@ -931,7 +944,7 @@ rec {
     listenPort = 3001;
     openFirewall = true;
     environmentFiles = [ config.sops.secrets.homepage-env.path ];
-    allowedHosts = "homepage.dex-lips.duckdns.org";
+    allowedHosts = "homepage.${domain}";
     settings = {
       title = "Lipscombe Home";
       providers.openweathermap = "{{HOMEPAGE_VAR_OPENWEATHERMAP}}";
@@ -957,11 +970,11 @@ rec {
           {
             Sonarr = {
               icon = "sonarr.png";
-              href = "https://sonarr.dex-lips.duckdns.org";
+              href = "https://sonarr.${domain}";
               description = "TV Series management";
               widget = {
                 type = "sonarr";
-                url = "https://sonarr.dex-lips.duckdns.org";
+                url = "https://sonarr.${domain}";
                 key = "{{HOMEPAGE_VAR_SONARR}}";
               };
             };
@@ -969,11 +982,11 @@ rec {
           {
             Radarr = {
               icon = "radarr.png";
-              href = "https://radarr.dex-lips.duckdns.org";
+              href = "https://radarr.${domain}";
               description = "Movie management";
               widget = {
                 type = "radarr";
-                url = "https://radarr.dex-lips.duckdns.org";
+                url = "https://radarr.${domain}";
                 key = "{{HOMEPAGE_VAR_RADARR}}";
               };
             };
@@ -981,11 +994,11 @@ rec {
           {
             Lidarr = {
               icon = "lidarr.png";
-              href = "https://lidarr.dex-lips.duckdns.org";
+              href = "https://lidarr.${domain}";
               description = "Music management";
               widget = {
                 type = "lidarr";
-                url = "https://lidarr.dex-lips.duckdns.org";
+                url = "https://lidarr.${domain}";
                 key = "{{HOMEPAGE_VAR_LIDARR}}";
               };
             };
@@ -993,11 +1006,11 @@ rec {
           {
             Audiobookshelf = {
               icon = "audiobookshelf.png";
-              href = "https://audiobookshelf.dex-lips.duckdns.org";
+              href = "https://audiobookshelf.${domain}";
               description = "Audiobook management";
               widget = {
                 type = "audiobookshelf";
-                url = "https://audiobookshelf.dex-lips.duckdns.org";
+                url = "https://audiobookshelf.${domain}";
                 key = "{{HOMEPAGE_VAR_AUDIOBOOKSHELF}}";
               };
             };
@@ -1009,11 +1022,11 @@ rec {
           {
             qBittorrent = {
               icon = "qbittorrent.png";
-              href = "https://qbittorrent.dex-lips.duckdns.org";
+              href = "https://qbittorrent.${domain}";
               description = "Torrent Client";
               widget = {
                 type = "qbittorrent";
-                url = "https://qbittorrent.dex-lips.duckdns.org";
+                url = "https://qbittorrent.${domain}";
                 username = "{{HOMEPAGE_VAR_QBITTORRENT_USER}}";
                 password = "{{HOMEPAGE_VAR_QBITTORRENT_PASS}}";
               };
@@ -1022,11 +1035,11 @@ rec {
           {
             Prowlarr = {
               icon = "prowlarr.png";
-              href = "https://prowlarr.dex-lips.duckdns.org";
+              href = "https://prowlarr.${domain}";
               description = "Torrent Proxy";
               widget = {
                 type = "prowlarr";
-                url = "https://prowlarr.dex-lips.duckdns.org";
+                url = "https://prowlarr.${domain}";
                 key = "{{HOMEPAGE_VAR_PROWLARR}}";
               };
             };
@@ -1038,11 +1051,11 @@ rec {
           {
             Plex = {
               icon = "plex.png";
-              href = "https://plex.dex-lips.duckdns.org";
+              href = "https://plex.${domain}";
               description = "Media provider";
               widget = {
                 type = "plex";
-                url = "https://plex.dex-lips.duckdns.org";
+                url = "https://plex.${domain}";
                 key = "{{HOMEPAGE_VAR_PLEX}}";
               };
             };
@@ -1165,7 +1178,7 @@ rec {
   services.vikunja = {
     enable = true;
     frontendScheme = "https";
-    frontendHostname = "vikunja.dex-lips.duckdns.org";
+    frontendHostname = "vikunja.${domain}";
   };
 
   system.stateVersion = "23.05"; # Did you read the comment?

@@ -507,6 +507,22 @@
     },
     "nixpkgs_7": {
       "locked": {
+        "lastModified": 1782959384,
+        "narHash": "sha256-xnJJk+ct+D2+wdRxj1wk36w5zV9RVESwRqcklPdt3fM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "65179426c83bb3f6bc14898b42ea1c6f01d374b0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_8": {
+      "locked": {
         "lastModified": 1781216227,
         "narHash": "sha256-9mUW6gNwoN2SWc/l0fW4svPNOulXLl8ijqKyeSOGgJE=",
         "owner": "NixOS",
@@ -738,6 +754,7 @@
         "power-menu": "power-menu",
         "sops-nix": "sops-nix",
         "sparkyfitness": "sparkyfitness",
+        "storyteller": "storyteller",
         "tududi": "tududi"
       }
     },
@@ -795,6 +812,25 @@
         "ref": "nix-module",
         "repo": "SparkyFitness",
         "type": "github"
+      }
+    },
+    "storyteller": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_7"
+      },
+      "locked": {
+        "lastModified": 1783304589,
+        "narHash": "sha256-s4ZNX+I4Cudxz4Pkhq77L5a9tssDx4GcPvsYBApxTIY=",
+        "ref": "dlip",
+        "rev": "cbd16c584f792951aafa56d514eb1b345e88f8ab",
+        "revCount": 1458,
+        "type": "git",
+        "url": "https://gitlab.com/dlip/storyteller"
+      },
+      "original": {
+        "ref": "dlip",
+        "type": "git",
+        "url": "https://gitlab.com/dlip/storyteller"
       }
     },
     "systems": {
@@ -875,7 +911,7 @@
     "tududi": {
       "inputs": {
         "flake-utils": "flake-utils_5",
-        "nixpkgs": "nixpkgs_7"
+        "nixpkgs": "nixpkgs_8"
       },
       "locked": {
         "lastModified": 1782717136,
