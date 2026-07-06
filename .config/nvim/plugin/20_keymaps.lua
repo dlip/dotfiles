@@ -31,14 +31,18 @@ map("n", "<leader>a", "<Cmd>Pick smart_files<CR>", { desc = "Pick files (smart)"
 -- map("n", "<leader>a", "<cmd>Telescope frecency workspace=CWD<cr>", { desc = "Telescope frecency" })
 map("n", "<leader>y", "<cmd>let @+=expand('%').':'.line('.')<CR>", { desc = "Yank relative filename with line" })
 map("n", "<leader>Y", "<cmd>let @+=expand('%:p')<CR>", { desc = "Yank absolute filename" })
+
+map("n", "<C-left>", function()
+  print("Hello!")
+end, { desc = "Print Hello to the message area" })
 -- map("n", "<leader>r", LazyVim.pick("live_grep"), { desc = "Grep (Root Dir)" })
 -- map("n", "<leader>gC", "<cmd>Telescope git_bcommits<Cr>", { desc = "Buffer commits" })
 -- map("n", "<leader>gi", "<cmd>DiffviewFileHistory<Cr>", { desc = "Diffview history" })
 -- map("n", "<leader>gI", "<cmd>DiffviewFileHistory %<Cr>", { desc = "Diffview history (buffer)" })
-map("n", "<C-Left>", "<Cmd>NvimTmuxNavigateLeft<CR>", { desc = "NvimTmuxNavigateLeft", remap = true })
-map("n", "<C-Down>", "<Cmd>NvimTmuxNavigateDown<CR>", { desc = "NvimTmuxNavigateDown", remap = true })
-map("n", "<C-Up>", "<Cmd>NvimTmuxNavigateUp<CR>", { desc = "NvimTmuxNavigateUp", remap = true })
-map("n", "<C-Right>", "<Cmd>NvimTmuxNavigateRight<CR>", { desc = "NvimTmuxNavigateRight", remap = true })
+-- map("n", "<C-Left>", "<Cmd>NvimTmuxNavigateLeft<CR>", { desc = "NvimTmuxNavigateLeft", remap = true })
+-- map("n", "<C-Down>", "<Cmd>NvimTmuxNavigateDown<CR>", { desc = "NvimTmuxNavigateDown", remap = true })
+-- map("n", "<C-Up>", "<Cmd>NvimTmuxNavigateUp<CR>", { desc = "NvimTmuxNavigateUp", remap = true })
+-- map("n", "<C-Right>", "<Cmd>NvimTmuxNavigateRight<CR>", { desc = "NvimTmuxNavigateRight", remap = true })
 -- Many general mappings are created by 'mini.basics'. See 'plugin/30_mini.lua'
 
 -- stylua: ignore start
