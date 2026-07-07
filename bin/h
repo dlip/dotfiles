@@ -5,16 +5,55 @@ set -euo pipefail
 # Picks a project under $PROJECTS with fzf and opens a Herdr workspace for it,
 # with one tab each for editor, shell, git (lazygit), and files (yazi).
 
-# The workspace/tab/pane commands need a running Herdr server. Rather than
-# start one headlessly and wait for it to warm up, when run from a plain shell
-# we simply launch Herdr and exit; the user re-runs `h` from inside, where the
-# server is already up and pane commands land reliably without any waiting.
-if [ -z "${HERDR_PANE_ID:-}" ]; then
-  exec herdr
-fi
-
 PROJECTS="$HOME/code"
 CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/h-projects"
+
+# The program each named tab should run. The shell tab stays a bare shell.
+tab_program() {
+  case "$1" in
+    editor) echo "${EDITOR:-vi}" ;;
+    git) echo lazygit ;;
+    files) echo yazi ;;
+    *) echo "" ;;
+  esac
+}
+
+# Re-launch each tab's program in every pane of a workspace. Used after a Herdr
+# server restart, where every restored pane has dropped back to a bare shell, so
+# running unconditionally is safe (no live program to clobber).
+repopulate_workspace() {
+  local ws="$1" tab_id pane_id label cmd
+  while read -r tab_id pane_id; do
+    label=$(herdr tab get "$tab_id" | jq -r '.result.tab.label')
+    cmd=$(tab_program "$label")
+    [ -n "$cmd" ] && herdr pane run "$pane_id" "$cmd" >/dev/null
+  done < <(herdr pane list --workspace "$ws" \
+    | jq -r '.result.panes[] | "\(.tab_id) \(.pane_id)"')
+}
+
+# --restore: repopulate every workspace. Run in the background at Herdr startup
+# so restored workspaces get their editor/git/files programs back automatically.
+if [ "${1:-}" = "--restore" ]; then
+  # Wait for the freshly started server's socket (background, so no visible lag).
+  for _ in $(seq 1 100); do
+    [ "$(herdr status server 2>/dev/null | awk '/^status:/{print $2}')" = "running" ] && break
+    sleep 0.2
+  done
+  # Give restored pane shells a moment to finish initializing so early
+  # keystrokes aren't dropped.
+  sleep 1
+  herdr workspace list 2>/dev/null | jq -r '.result.workspaces[].workspace_id' \
+    | while read -r ws; do repopulate_workspace "$ws"; done
+  exit 0
+fi
+
+# The workspace/tab/pane commands need a running Herdr server. When run from a
+# plain shell we launch a background restore watcher, then launch Herdr; the
+# user re-runs `h` from inside, where pane commands land reliably.
+if [ -z "${HERDR_PANE_ID:-}" ]; then
+  ("$0" --restore >/dev/null 2>&1 &)
+  exec herdr
+fi
 
 # Building the project list (find + per-dir zoxide sync + frecency query) is
 # slow, so cache the candidate list and only rebuild it once a day. Force a
