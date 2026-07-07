@@ -151,6 +151,7 @@ key = "ctrl+right"
 type = "plugin_action"
 command = "vim-herdr-navigation.right"
 description = "navigate right (vim/herdr)"
+
 # Project workspace picker (bin/h). Runs in a temporary pane for the fzf UI;
 # bin/h then creates/focuses a Herdr workspace per selected project.
 [[keys.command]]
