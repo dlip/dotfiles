@@ -33,6 +33,8 @@ application/x-7z-compressed=org.gnome.FileRoller.desktop;
 application/xml=neovide.desktop;
 application/vnd.comicbook+zip=org.gnome.FileRoller.desktop;
 image/vnd.dxf=org.inkscape.Inkscape.desktop;
+video/mp4=audacity.desktop;
+application/epub+zip=thorium-reader.desktop;
 
 [Default Applications]
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop

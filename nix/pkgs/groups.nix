@@ -209,7 +209,6 @@ let
     zoxide
   ];
   gui = extra ++ [
-    # audacity
     # calibre # Test /get ... /nix/store/ncv68hjnidcd2bm5abkhklrijhn0cgn6-stdenv-linux/setup: line 1721: 20786 Segmentation fault      (core dumped) python setup.py test ${EXCLUDED_FLAGS[@]}
     # kicad-unstable
     # memento
@@ -221,6 +220,7 @@ let
     # super-slicer-latest
     anki
     arandr
+    audacity
     blender
     brightnessctl
     cheese
@@ -265,6 +265,7 @@ let
     screenkey
     slack
     telegram-desktop
+    thorium-reader
     v4l-utils
     via
     vial
