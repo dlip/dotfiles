@@ -405,7 +405,7 @@ rec {
 
   sops.secrets.karakeep-env = { };
   services.karakeep = {
-    enable = true;
+    enable = false;
     extraEnvironment = {
       PORT = "3003";
       HOST = "127.0.0.1";
@@ -511,6 +511,10 @@ rec {
     secretKeyFile = config.sops.secrets.storyteller-key.path;
     dataDir = "/media/media2/storyteller";
     whisperVariant = "linux-x64-cuda-12.9.0";
+    # whisperx = {
+    #   enable = true;
+    #   device = "cuda";
+    # };
     environment = {
       STORYTELLER_LOG_LEVEL = "debug";
       ENABLE_WEB_READER = "true";

@@ -33,6 +33,7 @@ let
     gh
     gh-markdown-preview
     git
+    git-lfs
     gnugrep
     gnumake
     gnused

@@ -19,7 +19,7 @@
             "libsoup-2.74.3"
             "freeimage-3.18.0-unstable-2024-04-18"
             "ventoy-1.1.12"
-            "pnpm-10.29.2"
+            "pnpm-9.15.9"
           ];
         };
         overlays = [
