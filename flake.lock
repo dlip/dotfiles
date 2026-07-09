@@ -819,11 +819,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1783496343,
-        "narHash": "sha256-yi0MnaasZrOj0kcPilVTKfULeUA4p/NX3xcDbSJyueU=",
+        "lastModified": 1783563021,
+        "narHash": "sha256-NzLUOAH90tgnGgryTbZThmdk6Eytz8nvCpprjFC+ry4=",
         "ref": "dlip",
-        "rev": "f65733a6026f0ab8e813e2818bc3a41f1ab0f4a3",
-        "revCount": 1463,
+        "rev": "23dc5f960128688321cf5d4e81d0cd07bb2f0d4d",
+        "revCount": 1459,
         "type": "git",
         "url": "https://gitlab.com/dlip/storyteller"
       },
