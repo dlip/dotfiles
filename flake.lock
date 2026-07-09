@@ -28,11 +28,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782696187,
-        "narHash": "sha256-qr0elP4zbj963dyoaViCAOBCGgjH2HFmZSNXtDJHWBM=",
+        "lastModified": 1783543350,
+        "narHash": "sha256-FnA0/LPAKhLEBGlFm/miFv9EhsR2qb7REb4gbxT8Pw8=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "8f2a50c00e0ac2e39e525dd0b29844e2c4fe006c",
+        "rev": "a095d0ed905d72d4f6f78d0a63c8eeecd27940da",
         "type": "github"
       },
       "original": {
@@ -78,11 +78,11 @@
         "nixpkgs-lib": "nixpkgs-lib"
       },
       "locked": {
-        "lastModified": 1778716662,
-        "narHash": "sha256-m1Yf0wZ8j1OHjTc2UwHwyQRSnNeSgLJOd7q5Y45hzi4=",
+        "lastModified": 1782949081,
+        "narHash": "sha256-vp6Y/Grm98ESt6ceOkWiHWyZRDV3J1RID4w+6NWK9yA=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "f7c1a2d347e4c52d5fb8d10cb4d94b5884e546fb",
+        "rev": "17c9d6cdfc60c64f4ee8d306f9bc0b4ccb51481e",
         "type": "github"
       },
       "original": {
@@ -233,11 +233,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782702263,
-        "narHash": "sha256-8/MG4Su7PhnynrmsVO61IeAfrK7GuUEu+E+gwbhy1QQ=",
+        "lastModified": 1783550008,
+        "narHash": "sha256-qbbZUk9IG9dLNwCPwdPBs6I5clxwugRpP+1YU+GPK20=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "789a35fbdeb3c46b260096daa0b321c11be527ea",
+        "rev": "f4d01c1d87c7c2ec909549165d5a8338f1bd3315",
         "type": "github"
       },
       "original": {
@@ -400,11 +400,11 @@
     },
     "nixpkgs-lib": {
       "locked": {
-        "lastModified": 1777168982,
-        "narHash": "sha256-GOkGPcboWE9BmGCRMLX3worL4EMnsnG8MyKmXNeYuhQ=",
+        "lastModified": 1782614948,
+        "narHash": "sha256-ePjCwr1sNm9NYUqywL7QfK3JnlS015msC+eBu2zKlp8=",
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
-        "rev": "f5901329dade4a6ea039af1433fb087bd9c1fe14",
+        "rev": "db3f255737b94216eb71cce308e2912cf6bc2d7c",
         "type": "github"
       },
       "original": {
@@ -413,18 +413,18 @@
         "type": "github"
       }
     },
-    "nixpkgs-unstable": {
+    "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1782467914,
-        "narHash": "sha256-pGvFkM8N0xEkIIXDe5YYfbEAvHrk4IxBrjB/x8OomhE=",
+        "lastModified": 1783389287,
+        "narHash": "sha256-0xIy4dVLqq47rA+mRy0hXDfjhQd4E5PoIns/RmB7nR4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e73de5be04e0eff4190a1432b946d469c794e7b4",
+        "rev": "0ad6f47ea4fe188f4bc8f0380f93ae8523337c6c",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-unstable",
+        "ref": "nixos-26.05",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -462,27 +462,27 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1782535326,
-        "narHash": "sha256-ZeRxu4yn6shd3SNF5ZUQb4r7BaVo1zBKMjRhfoNSBmw=",
+        "lastModified": 1783279667,
+        "narHash": "sha256-/NAkDSsve+GNM0Bt6tleJdCGfsTlK89nPjkVOzZMo0s=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "714a5f8c4ead6b31148d829288440ed033ccc041",
+        "rev": "f205b5574fd0cb7da5b702a2da51507b7f4fdd1b",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-26.05",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1782467914,
-        "narHash": "sha256-inDx/w70OSJoJPqtKh0BrzAsbZZhpya7YgS43jHnhwg=",
-        "rev": "e73de5be04e0eff4190a1432b946d469c794e7b4",
+        "lastModified": 1782959384,
+        "narHash": "sha256-l57y2CK9dTSChgb6Edg7kkXu5DA4rucVbNFoQHUBjmw=",
+        "rev": "65179426c83bb3f6bc14898b42ea1c6f01d374b0",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1022855.e73de5be04e0/nixexprs.tar.xz"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1026231.65179426c83b/nixexprs.tar.xz"
       },
       "original": {
         "type": "tarball",
@@ -596,11 +596,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1783039622,
-        "narHash": "sha256-RHgZ1P0yWOvApgArWzKllRWC0ByNa5JfcywJddf3qVY=",
+        "lastModified": 1783547526,
+        "narHash": "sha256-FY8+x1FBd7ipU36ax6C2ca+t/xjcvH7he0oXECCpbVo=",
         "owner": "noctalia-dev",
         "repo": "noctalia",
-        "rev": "6e7aa3b4daaf13f3cd7c622b248efaba5c1c1eb3",
+        "rev": "0b91292d8e3998ce53948e046f3b37b004af9598",
         "type": "github"
       },
       "original": {
@@ -749,7 +749,7 @@
         "nix-on-droid": "nix-on-droid",
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs_4",
-        "nixpkgs-unstable": "nixpkgs-unstable",
+        "nixpkgs-stable": "nixpkgs-stable",
         "noctalia": "noctalia",
         "power-menu": "power-menu",
         "sops-nix": "sops-nix",
@@ -781,11 +781,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782165805,
-        "narHash": "sha256-478kKQBvK6SYTOdN2h9jhKJv94nbXRbFMfuL1WshErg=",
+        "lastModified": 1783174389,
+        "narHash": "sha256-aCWC8ngycU7OdJrU2+Je3qf+1a2ykuBvpPhZT/9tXMc=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "56b24064fdcaedca53553b1a6d607fd23b613a24",
+        "rev": "f1406619a3884cd5c47992a70b8b35c9c0fcb4c9",
         "type": "github"
       },
       "original": {
@@ -819,11 +819,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1783304589,
-        "narHash": "sha256-s4ZNX+I4Cudxz4Pkhq77L5a9tssDx4GcPvsYBApxTIY=",
+        "lastModified": 1783496343,
+        "narHash": "sha256-yi0MnaasZrOj0kcPilVTKfULeUA4p/NX3xcDbSJyueU=",
         "ref": "dlip",
-        "rev": "cbd16c584f792951aafa56d514eb1b345e88f8ab",
-        "revCount": 1458,
+        "rev": "f65733a6026f0ab8e813e2818bc3a41f1ab0f4a3",
+        "revCount": 1463,
         "type": "git",
         "url": "https://gitlab.com/dlip/storyteller"
       },

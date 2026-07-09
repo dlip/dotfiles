@@ -126,7 +126,7 @@ let
     gptfdisk
     graphviz
     hdparm
-    unstable.herdr
+    herdr
     hexdino
     hottext
     imagemagick
