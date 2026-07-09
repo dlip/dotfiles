@@ -78,8 +78,10 @@
 !/.config/waybar/macchiato.css
 !/.config/waybar/style.css
 !/.config/xdg-desktop-portal/niri-portals.conf
+!/.config/yazi
 !/.config/yazi/keymap.toml
 !/.config/yazi/plugins/compress.yazi
 !/.config/yazi/yazi.toml
+!/.config/yazi/init.lua
 !/.config/zed/keymap.json
 !/.config/zed/settings.json
