@@ -140,7 +140,7 @@
               );
           })
           (final: prev: {
-            unstable = import inputs.nixpkgs-unstable {
+            stable = import inputs.nixpkgs-stable {
               inherit system;
               config = {
                 allowUnfree = true;
