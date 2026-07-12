@@ -48,10 +48,14 @@ if [ "${1:-}" = "--restore" ]; then
 fi
 
 # The workspace/tab/pane commands need a running Herdr server. When run from a
-# plain shell we launch a background restore watcher, then launch Herdr; the
-# user re-runs `h` from inside, where pane commands land reliably.
+# plain shell we launch Herdr and attach. If no server is running yet, this is a
+# cold start that will restore saved workspaces as bare shells, so kick off a
+# background restore to re-launch their programs. If a server is already
+# running, just attach — restoring would type into live programs.
 if [ -z "${HERDR_PANE_ID:-}" ]; then
-  ("$0" --restore >/dev/null 2>&1 &)
+  if [ "$(herdr status server 2>/dev/null | awk '/^status:/{print $2}')" != "running" ]; then
+    ("$0" --restore >/dev/null 2>&1 &)
+  fi
   exec herdr
 fi
 
