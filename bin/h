@@ -7,6 +7,19 @@ set -euo pipefail
 
 PROJECTS="$HOME/code"
 CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/h-projects"
+PLUGINS_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/herdr/plugins"
+
+# Herdr rewrites plugin paths to absolute and expands neither ~ nor $HOME, so
+# the generated plugins.json is machine-specific and isn't tracked in the repo.
+# The plugin *sources* are tracked, so (re)link them here with absolute paths.
+# Linking is local, idempotent, and takes effect on the live server.
+link_plugins() {
+  local dir
+  for dir in "$PLUGINS_DIR"/*/; do
+    [ -f "$dir/herdr-plugin.toml" ] || continue
+    herdr plugin link "${dir%/}" >/dev/null 2>&1 || true
+  done
+}
 
 # The program each named tab should run. The shell tab stays a bare shell.
 tab_program() {
@@ -42,6 +55,7 @@ if [ "${1:-}" = "--restore" ]; then
   # Give restored pane shells a moment to finish initializing so early
   # keystrokes aren't dropped.
   sleep 1
+  link_plugins
   herdr workspace list 2>/dev/null | jq -r '.result.workspaces[].workspace_id' \
     | while read -r ws; do repopulate_workspace "$ws"; done
   exit 0

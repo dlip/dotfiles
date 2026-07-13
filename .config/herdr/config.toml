@@ -89,7 +89,7 @@ next_tab = ["prefix+right", "alt+right"]
 switch_tab = ["prefix+1..9", "alt+1..9"]
 switch_workspace = ["prefix+shift+1..9", "alt+shift+1..9"]
 # close_tab = ["prefix+shift+w", "ctrl+alt+shift+w"]
-rename_pane = ["prefix+shift+p", "ctrl+alt+shift+p"]
+rename_pane = ["prefix+m", "ctrl+alt+m"]
 edit_scrollback = ["prefix+e", "ctrl+alt+e"]
 # focus_pane_* keep only the direct chord: prefix+arrow would collide with the
 # tab/workspace nav bindings above (both strip to prefix+arrow).
@@ -158,6 +158,12 @@ description = "navigate right (vim/herdr)"
 key = ["prefix+p", "ctrl+alt+p"]
 type = "pane"
 command = "h"
+
+
+[[keys.command]]
+key = ["prefix+shift+p", "ctrl+alt+shift+p"]
+type = "pane"
+command = "h --refresh"
 
 # Legacy indexed shortcut config is still parsed for compatibility.
 # Prefer switch_tab, switch_workspace, and focus_agent for new configs.

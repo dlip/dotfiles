@@ -1,16 +1,14 @@
 {
   "editor.formatOnSave": true,
   "editor.smoothScrolling": true,
-  "projectManager.git.baseFolders": [
-    "$home/code"
-  ],
+  "projectManager.git.baseFolders": ["$home/code"],
   "chat.useClaudeSkills": true,
-  "AI.toolcall.v2.command.allowList": "[\"mv\",\"grep\",\"rm\",\"cat\",\"python3\",\"head\",\"wc\",\"echo\",\"tail\",\"black\",\"git\",\"ls\",\"nix\",\"which\",\"source\",\"lark-cli\",\"uv\",\"python\"]",
+  "AI.toolcall.v2.command.allowList": "[\"mv\",\"grep\",\"rm\",\"cat\",\"python3\",\"head\",\"wc\",\"echo\",\"tail\",\"black\",\"git\",\"ls\",\"nix\",\"which\",\"source\",\"lark-cli\",\"uv\",\"python\",\"cd\"]",
   "search.exclude": {
     "**/node_modules": true,
     "**/bower_components": true,
     "**/*.code-search": true,
-    "**/.eden-mono": true
+    "**/.eden-mono": true,
   },
   "extensions.supportUntrustedWorkspaces": {
     "byted-ide.dev-environment-manager": {
@@ -18,13 +16,9 @@
     }
   },
   "remote.extensionKind": {
-    "alefragnani.project-manager": [
-      "workspace"
-    ]
+    "alefragnani.project-manager": ["workspace"],
   },
-  "remote.SSH.defaultExtensions": [
-    "byted-ide.gallery"
-  ],
+  "remote.SSH.defaultExtensions": ["byted-ide.gallery"],
   "vim.leader": "<space>",
   "vim.handleKeys": {
     "<C-v>": true,
@@ -36,112 +30,56 @@
   "vim.smartRelativeLine": true,
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "before": [
-        "U",
-      ],
-      "after": [
-        "<C-r>",
-      ]
+      "before": ["U"],
+      "after": ["<C-r>"],
     },
     {
-      "before": [
-        "<leader>",
-        "o",
-      ],
-      "after": [
-        "<C-v>",
-      ]
+      "before": ["<leader>", "o"],
+      "after": ["<C-v>"],
     },
     {
-      "before": [
-        "<leader>",
-        "x",
-        "f"
-      ],
-      "commands": [
-        ":%s/.*/\"\\0\","
-      ]
+      "before": ["<leader>", "x", "f"],
+      "commands": [":%s/.*/\"\\0\","],
     },
     {
-      "before": [
-        "<BS>"
-      ],
-      "commands": [
-        ":nohl"
-      ]
+      "before": ["<BS>"],
+      "commands": [":nohl"],
     },
     {
-      "before": [
-        "<TAB>"
-      ],
-      "after": [
-        "<leader>",
-        "<leader>",
-        "s"
-      ]
+      "before": ["<TAB>"],
+      "after": ["<leader>", "<leader>", "s"],
     },
     {
-      "before": [
-        "<CR>"
-      ],
-      "commands": [
-        ":wa"
-      ]
+      "before": ["<CR>"],
+      "commands": [":wa"],
     },
     {
-      "before": [
-        "<leader>",
-        "a"
-      ],
-      "commands": [
-        "editor.action.quickFix"
-      ],
+      "before": ["<leader>", "a"],
+      "commands": ["editor.action.quickFix"],
       "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly",
     },
     {
-      "before": [
-        "K"
-      ],
-      "commands": [
-        "editor.action.showHover"
-      ],
-      "silent": true
+      "before": ["K"],
+      "commands": ["editor.action.showHover"],
+      "silent": true,
     },
     {
-      "before": [
-        "<leader>",
-        "f",
-        "b"
-      ],
-      "commands": [
-        "workbench.action.showAllEditorsByMostRecentlyUsed"
-      ],
-      "silent": true
+      "before": ["<leader>", "f", "b"],
+      "commands": ["workbench.action.showAllEditorsByMostRecentlyUsed"],
+      "silent": true,
     },
     {
-      "before": [
-        "<leader>",
-        "e",
-        "s"
-      ],
-      "commands": [
-        "workbench.action.openApplicationSettingsJson"
-      ]
+      "before": ["<leader>", "e", "s"],
+      "commands": ["workbench.action.openApplicationSettingsJson"],
     },
     {
-      "before": [
-        "<leader>",
-        "e",
-        "k"
-      ],
-      "commands": [
-        "workbench.action.openGlobalKeybindingsFile"
-      ]
+      "before": ["<leader>", "e", "k"],
+      "commands": ["workbench.action.openGlobalKeybindingsFile"],
     },
   ],
   // To improve performance
   "extensions.experimental.affinity": {
-    "vscodevim.vim": 1
+    "vscodevim.vim": 1,
   },
   "extensionSync": [
     "alefragnani.project-manager",
@@ -157,7 +95,7 @@
     "ms-python.vscode-pylance",
     "ms-python.vscode-python-envs",
     "redhat.vscode-yaml",
-    "timonwong.shellcheck"
+    "timonwong.shellcheck",
   ],
   "workbench.colorTheme": "Catppuccin Macchiato",
   "workbench.iconTheme": "catppuccin-macchiato",
@@ -172,5 +110,5 @@
   "python.languageServer": "None",
   "AI.toolcall.v2.fileOp.allowPaths": "[\"/tmp\"]",
   "AI.toolcall.reviewMode.solo": "skip",
-  "AI.toolcall.reviewMode.ide": "skip"
+  "AI.toolcall.reviewMode.ide": "skip",
 }
