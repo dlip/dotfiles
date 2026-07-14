@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 # csv2md — parse a CSV and convert it to a GitHub-flavored Markdown table,
-# then copy it to the clipboard via `cpy`.
+# then write it to stdout.
 #
 # Reads from a file argument or stdin, parses the CSV properly (handling quoted
 # fields, embedded commas, and newlines). The first row is treated as the
 # header.
 #
 # Usage:
-#     csv2md data.csv          # copy a Markdown table to the clipboard
+#     csv2md data.csv          # write a Markdown table to stdout
 #     cat data.csv | csv2md    # read from stdin
+#     csv2md data.csv | cpy    # copy to the clipboard
 set -euo pipefail
 
 python3 -c '
@@ -37,4 +38,4 @@ out.write(fmt(rows[0]))
 out.write("| " + " | ".join("-" * widths[i] for i in range(ncols)) + " |\n")
 for row in rows[1:]:
     out.write(fmt(row))
-' < "${1:-/dev/stdin}" | cpy
+' < "${1:-/dev/stdin}"
