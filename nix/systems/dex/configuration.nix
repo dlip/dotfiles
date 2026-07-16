@@ -925,6 +925,19 @@ rec {
     passwordFile = config.sops.secrets.photoprism-adminpass.path;
   };
 
+  # Immich photo/video management. Uses the native NixOS module which manages
+  # its own PostgreSQL + Redis. Binds to 127.0.0.1:2283; Traefik proxies
+  # https://immich.${domain} to it (port registered in services.nix).
+  services.immich = {
+    enable = true;
+    host = "127.0.0.1";
+    port = dex-services.immich;
+    mediaLocation = "/media/personal/immich";
+    settings.server.externalDomain = "https://immich.${domain}";
+    # Enable hardware transcoding via the NVIDIA GPU / render node if present.
+    accelerationDevices = null;
+  };
+
   sops.secrets.kavita-token = {
     owner = "kavita";
     group = "kavita";
