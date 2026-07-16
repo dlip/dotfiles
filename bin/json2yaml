@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# json2yaml — convert JSON to YAML.
+#
+# Reads JSON from a file argument or stdin and writes YAML to stdout via `yq`.
+#
+# Usage:
+#     json2yaml data.json          # write YAML to stdout
+#     cat data.json | json2yaml    # read from stdin
+#     json2yaml data.json | cpy    # copy to the clipboard
+set -euo pipefail
+
+sed 's/\t//g' < "${1:-/dev/stdin}" | yq -p json -o yaml

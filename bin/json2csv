@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+# json2csv — convert JSON to CSV.
+#
+# Reads from a file argument or stdin. Accepts either an array of objects
+# (the header is the union of all keys, in first-seen order) or an array of
+# arrays (rows are written as-is, no header). A single object is treated as a
+# one-row array. Nested values are serialized back to compact JSON.
+#
+# Usage:
+#     json2csv data.json          # write CSV to stdout
+#     cat data.json | json2csv    # read from stdin
+#     json2csv data.json | cpy    # copy to the clipboard
+set -euo pipefail
+
+python3 -c '
+import csv, json, sys
+
+data = json.load(sys.stdin)
+if isinstance(data, dict):
+    data = [data]
+if not isinstance(data, list):
+    sys.exit("json2csv: expected a JSON array or object")
+
+writer = csv.writer(sys.stdout)
+
+def cell(v):
+    if v is None:
+        return ""
+    if isinstance(v, (dict, list)):
+        return json.dumps(v, separators=(",", ":"), ensure_ascii=False)
+    if isinstance(v, bool):
+        return "true" if v else "false"
+    return str(v)
+
+if all(isinstance(r, list) for r in data):
+    for row in data:
+        writer.writerow([cell(v) for v in row])
+else:
+    header = []
+    seen = set()
+    for row in data:
+        if not isinstance(row, dict):
+            sys.exit("json2csv: mixed array items; expected all objects")
+        for k in row:
+            if k not in seen:
+                seen.add(k)
+                header.append(k)
+    writer.writerow(header)
+    for row in data:
+        writer.writerow([cell(row.get(k)) for k in header])
+' < "${1:-/dev/stdin}"

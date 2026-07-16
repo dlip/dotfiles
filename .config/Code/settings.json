@@ -5,12 +5,12 @@
     "$home/code"
   ],
   "chat.useClaudeSkills": true,
-  "AI.toolcall.v2.command.allowList": "[\"mv\",\"grep\",\"rm\",\"cat\",\"python3\",\"head\",\"wc\",\"echo\",\"tail\",\"black\",\"git\",\"ls\",\"nix\",\"which\",\"source\",\"lark-cli\",\"uv\",\"python\"]",
+  "AI.toolcall.v2.command.allowList": "[\"mv\",\"grep\",\"rm\",\"cat\",\"python3\",\"head\",\"wc\",\"echo\",\"tail\",\"black\",\"git\",\"ls\",\"nix\",\"which\",\"source\",\"lark-cli\",\"uv\",\"python\",\"cd\",\"npm\"]",
   "search.exclude": {
     "**/node_modules": true,
     "**/bower_components": true,
     "**/*.code-search": true,
-    "**/.eden-mono": true
+    "**/.eden-mono": true,
   },
   "extensions.supportUntrustedWorkspaces": {
     "byted-ide.dev-environment-manager": {
@@ -20,7 +20,7 @@
   "remote.extensionKind": {
     "alefragnani.project-manager": [
       "workspace"
-    ]
+    ],
   },
   "remote.SSH.defaultExtensions": [
     "byted-ide.gallery"
@@ -37,20 +37,20 @@
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": [
-        "U",
+        "U"
       ],
       "after": [
-        "<C-r>",
-      ]
+        "<C-r>"
+      ],
     },
     {
       "before": [
         "<leader>",
-        "o",
+        "o"
       ],
       "after": [
-        "<C-v>",
-      ]
+        "<C-v>"
+      ],
     },
     {
       "before": [
@@ -60,7 +60,7 @@
       ],
       "commands": [
         ":%s/.*/\"\\0\","
-      ]
+      ],
     },
     {
       "before": [
@@ -68,7 +68,7 @@
       ],
       "commands": [
         ":nohl"
-      ]
+      ],
     },
     {
       "before": [
@@ -78,7 +78,7 @@
         "<leader>",
         "<leader>",
         "s"
-      ]
+      ],
     },
     {
       "before": [
@@ -86,7 +86,7 @@
       ],
       "commands": [
         ":wa"
-      ]
+      ],
     },
     {
       "before": [
@@ -105,7 +105,7 @@
       "commands": [
         "editor.action.showHover"
       ],
-      "silent": true
+      "silent": true,
     },
     {
       "before": [
@@ -116,7 +116,7 @@
       "commands": [
         "workbench.action.showAllEditorsByMostRecentlyUsed"
       ],
-      "silent": true
+      "silent": true,
     },
     {
       "before": [
@@ -126,7 +126,7 @@
       ],
       "commands": [
         "workbench.action.openApplicationSettingsJson"
-      ]
+      ],
     },
     {
       "before": [
@@ -136,12 +136,12 @@
       ],
       "commands": [
         "workbench.action.openGlobalKeybindingsFile"
-      ]
+      ],
     },
   ],
   // To improve performance
   "extensions.experimental.affinity": {
-    "vscodevim.vim": 1
+    "vscodevim.vim": 1,
   },
   "extensionSync": [
     "alefragnani.project-manager",
@@ -157,7 +157,7 @@
     "ms-python.vscode-pylance",
     "ms-python.vscode-python-envs",
     "redhat.vscode-yaml",
-    "timonwong.shellcheck"
+    "timonwong.shellcheck",
   ],
   "workbench.colorTheme": "Catppuccin Macchiato",
   "workbench.iconTheme": "catppuccin-macchiato",
@@ -172,5 +172,5 @@
   "python.languageServer": "None",
   "AI.toolcall.v2.fileOp.allowPaths": "[\"/tmp\"]",
   "AI.toolcall.reviewMode.solo": "skip",
-  "AI.toolcall.reviewMode.ide": "skip"
+  "AI.toolcall.reviewMode.ide": "skip",
 }

@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# csv2tsv — parse a CSV and convert it to tab-separated values on stdout, so it
+# can be pasted straight into a spreadsheet UI (Excel, Google Sheets, Numbers,
+# etc.), with each field landing in its own cell.
+#
+# Reads from a file argument or stdin, parses the CSV properly (handling quoted
+# fields, embedded commas, and newlines), and converts rows to tab-separated
+# lines.
+#
+# Usage:
+#     csv2tsv data.csv         # write TSV to stdout
+#     cat data.csv | csv2tsv   # read from stdin
+#     csv2tsv data.csv | cpy   # copy to the clipboard
+set -euo pipefail
+
+python3 -c '
+import csv, sys
+
+reader = csv.reader(sys.stdin)
+out = sys.stdout
+for row in reader:
+    # Strip embedded tabs/newlines from cells so the TSV layout stays intact.
+    cells = [c.replace("\t", " ").replace("\r", " ").replace("\n", " ") for c in row]
+    out.write("\t".join(cells) + "\n")
+' < "${1:-/dev/stdin}"

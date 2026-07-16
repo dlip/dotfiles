@@ -38,7 +38,6 @@
 !/.config/git/config
 !/.config/herdr/
 !/.config/herdr/config.toml
-!/.config/herdr/plugins.json
 !/.config/herdr/plugins
 !/.config/herdr/plugins/**
 !/.config/hypr/hypridle.conf
