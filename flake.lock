@@ -800,16 +800,15 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1782099145,
-        "narHash": "sha256-psRhPegYCHApHRyWN1h9pyggQuYAS5+/ttJBrd4hSuE=",
-        "owner": "dlip",
+        "lastModified": 1783704470,
+        "narHash": "sha256-uFKpQ1lwhGdimtv9JS+dQGHxmEh67f0Cl+ULhpTObUI=",
+        "owner": "CodeWithCJ",
         "repo": "SparkyFitness",
-        "rev": "183229bbc758b78053e66e786fa8b6fc24377c23",
+        "rev": "5bbfff17fd5eaa41388c49c166374166ccfce223",
         "type": "github"
       },
       "original": {
-        "owner": "dlip",
-        "ref": "nix-module",
+        "owner": "CodeWithCJ",
         "repo": "SparkyFitness",
         "type": "github"
       }
@@ -819,16 +818,16 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1783563021,
-        "narHash": "sha256-NzLUOAH90tgnGgryTbZThmdk6Eytz8nvCpprjFC+ry4=",
-        "ref": "dlip",
-        "rev": "23dc5f960128688321cf5d4e81d0cd07bb2f0d4d",
-        "revCount": 1459,
+        "lastModified": 1783665827,
+        "narHash": "sha256-1qUhmZYVSpgufaa8VzJbXlrLCcQqBVNx0gSHF8VKwqk=",
+        "ref": "feat/nixos-module",
+        "rev": "daa4d11f3e736cc6a7eb5a88016ce881d4116f71",
+        "revCount": 1475,
         "type": "git",
         "url": "https://gitlab.com/dlip/storyteller"
       },
       "original": {
-        "ref": "dlip",
+        "ref": "feat/nixos-module",
         "type": "git",
         "url": "https://gitlab.com/dlip/storyteller"
       }

@@ -16,7 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hermes-agent.url = "github:NousResearch/hermes-agent/v2026.7.1";
-    storyteller.url = "git+https://gitlab.com/dlip/storyteller?ref=dlip";
+    storyteller.url = "git+https://gitlab.com/dlip/storyteller?ref=feat/nixos-module";
     # nix-darwin = {
     #   url = "github:LnL7/nix-darwin/master";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -103,7 +103,7 @@
     # };
     nixgl.url = "github:nix-community/nixGL";
     tududi.url = "github:dlip/tududi/feature/nixos-module";
-    sparkyfitness.url = "github:dlip/SparkyFitness/nix-module";
+    sparkyfitness.url = "github:CodeWithCJ/SparkyFitness";
   };
 
   outputs =

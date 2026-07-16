@@ -405,7 +405,8 @@ rec {
 
   sops.secrets.karakeep-env = { };
   services.karakeep = {
-    enable = false;
+    enable = true;
+    package = pkgs.stable.karakeep;
     extraEnvironment = {
       PORT = "3003";
       HOST = "127.0.0.1";
