@@ -249,6 +249,51 @@ rec {
     };
   };
 
+  sops.secrets.litellm-env = { };
+  services.litellm = {
+    enable = true;
+    port = dex-services.litellm;
+    environment = {
+      CHATGPT_TOKEN_DIR = "/var/lib/litellm";
+      CHATGPT_AUTH_FILE = "chatgpt-auth.json";
+    };
+    environmentFile = config.sops.secrets.litellm-env.path;
+    settings = {
+      model_list = [
+        {
+          model_name = "gpt-5.6-sol";
+          model_info.mode = "responses";
+          litellm_params.model = "chatgpt/gpt-5.6-sol";
+        }
+        {
+          model_name = "gpt-5.6-terra";
+          model_info.mode = "responses";
+          litellm_params.model = "chatgpt/gpt-5.6-terra";
+        }
+        {
+          model_name = "gpt-5.6-luna";
+          model_info.mode = "responses";
+          litellm_params.model = "chatgpt/gpt-5.6-luna";
+        }
+        {
+          model_name = "gpt-5.5";
+          model_info.mode = "responses";
+          litellm_params.model = "chatgpt/gpt-5.5";
+        }
+        {
+          model_name = "gpt-5.4";
+          model_info.mode = "responses";
+          litellm_params.model = "chatgpt/gpt-5.4";
+        }
+        {
+          model_name = "gpt-5.4-mini";
+          model_info.mode = "responses";
+          litellm_params.model = "chatgpt/gpt-5.4-mini";
+        }
+      ];
+    };
+  };
+
   systemd.services.mokuro-reader = {
     description = "Mokuro reader";
 
@@ -408,7 +453,7 @@ rec {
     enable = true;
     package = pkgs.stable.karakeep;
     extraEnvironment = {
-      PORT = "3003";
+      PORT = "${toString dex-services.karakeep}";
       HOST = "127.0.0.1";
       INFERENCE_TEXT_MODEL = "openai/gpt-oss-120b:free";
       INFERENCE_IMAGE_MODEL = "openai/gpt-oss-120b:free";
