@@ -148,9 +148,11 @@ rec {
       import ../hermes-agent/configuration.nix
         {
           settings = {
-            provider = "opencode-go";
-            default = "kimi-k2.6";
-            base_url = "https://opencode.ai/zen/go/v1";
+            model = {
+              provider = "openai-codex";
+              default = "gpt-5.6-luna";
+              base_url = "https://litellm.${domain}/v1";
+            };
             image_gen = {
               model = "fal-ai/gpt-image-2";
               use_gateway = "false";
@@ -201,9 +203,9 @@ rec {
         {
           settings = {
             model = {
-              provider = "opencode-go";
-              default = "kimi-k2.6";
-              base_url = "https://opencode.ai/zen/go/v1";
+              provider = "openai-codex";
+              default = "gpt-5.6-luna";
+              base_url = "https://litellm.${domain}/v1";
             };
             image_gen = {
               model = "fal-ai/gpt-image-2";
