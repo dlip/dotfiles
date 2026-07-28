@@ -292,6 +292,14 @@ rec {
           model_info.mode = "responses";
           litellm_params.model = "chatgpt/gpt-5.4-mini";
         }
+        {
+          model_name = "stable-diffusion";
+          model_info.mode = "image_generation";
+          litellm_params = {
+            model = "fal_ai/fal-ai/stable-diffusion-v35-medium";
+            api_key = "os.environ/FAL_AI_API_KEY";
+          };
+        }
       ];
     };
   };
@@ -387,6 +395,11 @@ rec {
           username = "dane";
           password = "dane";
           directory = "/media/personal/dane/webdav";
+        }
+        {
+          username = "chimahon";
+          password = "chimahon";
+          directory = "/media/personal/dane/chimahon";
         }
       ];
     };
