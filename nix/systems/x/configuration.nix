@@ -44,7 +44,15 @@
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
 
-  environment.systemPackages = with pkgs; groups.gui ++ groups.gaming;
+  environment.systemPackages =
+    with pkgs;
+    groups.gui
+    ++ groups.gaming
+    ++ [
+      godot
+      zed-editor
+      codex
+    ];
 
   hardware.graphics = {
     enable = true;
