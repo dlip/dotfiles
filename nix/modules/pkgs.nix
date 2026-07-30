@@ -103,6 +103,8 @@
             skyscraper = final.callPackage ../pkgs/skyscraper { };
             # solang = final.callPackage ../pkgs/solang { };
             jreadability = final.callPackage ../pkgs/jreadability/package.nix { };
+            whisrs = inputs.whisrs.packages.${final.stdenv.hostPlatform.system}.default;
+            whisper-ggml-model = final.callPackage ../pkgs/whisper-ggml-model { };
             # juliusSpeech = final.callPackage ../pkgs/juliusSpeech { };
             # talon = final.callPackage ../pkgs/talon { };
             # inherit (final.callPackages "${openvpn-aws}/derivations/openvpn.nix" { }) openvpn_aws;

@@ -101,6 +101,11 @@
     # talon = {
     #   url = "github:nix-community/talon-nix";
     # };
+    whisrs = {
+      url = "github:y0sif/whisrs";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
     nixgl.url = "github:nix-community/nixGL";
     tududi.url = "github:dlip/tududi/feature/nixos-module";
     sparkyfitness.url = "github:CodeWithCJ/SparkyFitness";

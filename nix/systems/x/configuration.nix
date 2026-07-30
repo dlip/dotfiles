@@ -13,6 +13,7 @@
     self.modules.nixos.common
     self.modules.nixos.sops
     self.modules.nixos.niri
+    self.modules.nixos.whisrs
   ];
 
   # Bootloader.
@@ -30,6 +31,11 @@
       "adbusers"
       "cdrom"
     ]; # Enable ‘sudo’ for the user.
+  };
+
+  services.whisrs = {
+    enable = true;
+    user = "dane";
   };
 
   services.syncthing = {
