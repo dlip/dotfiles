@@ -23,6 +23,8 @@
 !/Library/Application Support/lazygit
 !/Library/Application Support/nushell
 !/Library/Keyboard Layouts/Engrammer.bundle
+!/.claude
+!/.claude/settings.json
 !/.config
 !/.config/Code/keybindings.json
 !/.config/Code/settings.json
