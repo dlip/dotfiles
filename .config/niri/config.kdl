@@ -433,6 +433,11 @@ binds {
     // Mod+P hotkey-overlay-title="Power menu" { spawn "rofi" "-show" "power-menu" "-modi" "power-menu:power-menu"; }
     Mod+Space hotkey-overlay-title="Run an Application" { spawn "rofi" "-show-icons" "-show" "combi" "-combi-modi" "drun,run" "-modi" "combi"; }
 
+    // whisrs dictation. Press to start recording, press again to stop; the
+    // transcript is typed at the cursor. Mod+Shift+D discards a recording.
+    Mod+D hotkey-overlay-title="Dictate: whisrs" { spawn "whisrs" "toggle"; }
+    Mod+Shift+D hotkey-overlay-title="Cancel dictation" { spawn "whisrs" "cancel"; }
+
     Control+Space hotkey-overlay-title="Toggle language" { spawn "fcitx5-remote" "-t"; }
 
     // Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "sway-lock-screen"; }
