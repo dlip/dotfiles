@@ -36,6 +36,10 @@
   services.whisrs = {
     enable = true;
     user = "dane";
+    cuda = true;
+    # GPU decoding makes a larger model than base.en affordable.
+    model = "small.en";
+    modelHash = "sha256-xhONbVjsyDIgl+D5h8MvG+i7ChhTKj+I9zTRu/nEHl0=";
   };
 
   services.syncthing = {

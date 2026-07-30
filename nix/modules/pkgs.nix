@@ -103,6 +103,9 @@
             skyscraper = final.callPackage ../pkgs/skyscraper { };
             # solang = final.callPackage ../pkgs/solang { };
             jreadability = final.callPackage ../pkgs/jreadability/package.nix { };
+            # Stock upstream build: CPU-only and cheap, because GPU decoding is
+            # done by whisper-cpp via the asr-sidecar backend rather than by
+            # whisrs's own vendored whisper.cpp.
             whisrs = inputs.whisrs.packages.${final.stdenv.hostPlatform.system}.default;
             whisper-ggml-model = final.callPackage ../pkgs/whisper-ggml-model { };
             # juliusSpeech = final.callPackage ../pkgs/juliusSpeech { };
