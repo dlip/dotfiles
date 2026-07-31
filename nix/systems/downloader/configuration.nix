@@ -41,7 +41,7 @@ in
         iptables -P OUTPUT DROP
 
         # Let the VPN client communicate with the outside world.
-        iptables -A OUTPUT -p udp -m udp --dport 1194 -j ACCEPT
+        iptables -A OUTPUT -p udp -m udp --dport 53 -j ACCEPT
 
         # The loopback device is harmless, and TUN is required for the VPN.
         iptables -A OUTPUT -j ACCEPT -o lo

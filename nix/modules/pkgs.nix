@@ -23,6 +23,7 @@
           ];
         };
         overlays = [
+          inputs.storyteller.overlays.default
           inputs.nix-on-droid.overlays.default
           inputs.nixgl.overlay
           # helix.overlays.default
@@ -151,6 +152,7 @@
                 allowUnfree = true;
                 permittedInsecurePackages = [
                   "freeimage-3.18.0-unstable-2024-04-18"
+                  "pnpm-9.15.9"
                 ];
               };
               overlays = [

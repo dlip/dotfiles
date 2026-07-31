@@ -103,6 +103,7 @@ let
     cheat
     clang-tools
     claude-code
+    codex
     delve
     deno
     devenv
@@ -130,6 +131,7 @@ let
     herdr
     hexdino
     hottext
+    # hunk
     imagemagick
     iotop
     iputils

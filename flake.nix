@@ -15,8 +15,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hermes-agent.url = "github:NousResearch/hermes-agent/v2026.7.1";
-    storyteller.url = "git+https://gitlab.com/dlip/storyteller?ref=feat/nixos-module";
+    hermes-agent.url = "github:NousResearch/hermes-agent/v2026.7.30";
+    storyteller.url = "git+https://gitlab.com/dlip/storyteller?ref=feat/nixos-module-wip";
     # nix-darwin = {
     #   url = "github:LnL7/nix-darwin/master";
     #   inputs.nixpkgs.follows = "nixpkgs";
