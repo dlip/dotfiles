@@ -28,7 +28,7 @@ rec {
     ./hardware-configuration.nix
     self.modules.nixos.common
     self.modules.nixos.komf
-    self.modules.nixos.xfce
+    # self.modules.nixos.xfce
     self.modules.nixos.notify-problems
     self.modules.nixos.ssmtp
     self.modules.nixos.sops
@@ -66,6 +66,7 @@ rec {
 
   # services.xserver.videoDrivers = ["nvidia"];
 
+  hardware.graphics.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     # Modesetting is required.
@@ -356,31 +357,30 @@ rec {
 
   environment.systemPackages =
     with pkgs;
-    groups.gui
-    ++ groups.gaming
+    groups.extra
     ++ [
       restic
       restic-dex
       pi-coding-agent
     ];
 
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-  };
-  hardware.steam-hardware.enable = true;
+  # programs.steam = {
+  #   enable = true;
+  #   remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+  #   dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  #   localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  # };
+  # hardware.steam-hardware.enable = true;
 
-  services.sunshine = {
-    enable = true;
-    autoStart = true;
-    capSysAdmin = true;
-    openFirewall = true;
-    package = pkgs.sunshine.override {
-      cudaSupport = true;
-    };
-  };
+  # services.sunshine = {
+  #   enable = true;
+  #   autoStart = true;
+  #   capSysAdmin = true;
+  #   openFirewall = true;
+  #   package = pkgs.sunshine.override {
+  #     cudaSupport = true;
+  #   };
+  # };
 
   services.webdav = {
     enable = true;
@@ -497,7 +497,7 @@ rec {
     }
   ];
 
-  services.flatpak.enable = true;
+  # services.flatpak.enable = true;
   # systemd.services.xboxdrv = {
   #   wantedBy = [ "multi-user.target" ];
   #   after = [ "network.target" ];

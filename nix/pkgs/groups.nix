@@ -131,7 +131,7 @@ let
     herdr
     hexdino
     hottext
-    # hunk
+    hunk
     imagemagick
     iotop
     iputils

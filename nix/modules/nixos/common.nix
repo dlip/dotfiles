@@ -179,7 +179,7 @@
       ];
 
       programs.nm-applet.enable = true;
-      hardware.graphics.enable32Bit = true;
+      # hardware.graphics.enable32Bit = true;
       hardware.enableAllFirmware = true;
 
       # Enable sound.
