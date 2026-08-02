@@ -39,7 +39,11 @@ repopulate_workspace() {
   while read -r tab_id pane_id; do
     label=$(herdr tab get "$tab_id" | jq -r '.result.tab.label')
     cmd=$(tab_program "$label")
-    [ -n "$cmd" ] && herdr pane run "$pane_id" "$cmd" >/dev/null
+    # `if`, not `&&`: under `set -e` a false `[ -n ... ]` would abort the whole
+    # restore, stopping after the first tab that has no program to run.
+    if [ -n "$cmd" ]; then
+      herdr pane run "$pane_id" "$cmd" >/dev/null
+    fi
   done < <(herdr pane list --workspace "$ws" \
     | jq -r '.result.panes[] | "\(.tab_id) \(.pane_id)"')
 }
