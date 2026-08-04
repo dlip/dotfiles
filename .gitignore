@@ -22,7 +22,13 @@
 !/.config/btop/themes/
 !/.config/btop/themes/catppuccin_macchiato.theme
 !/.config/chordgen/
-!/.config/chordgen/**
+!/.config/chordgen/books.json
+!/.config/chordgen/chords.csv
+!/.config/chordgen/chords_directional.csv
+!/.config/chordgen/config.yaml
+!/.config/chordgen/config_directional.yaml
+!/.config/chordgen/progress.json
+!/.config/chordgen/training.txt
 !/.config/discord/
 !/.config/discord/settings.json
 !/.config/ghostty/
@@ -67,7 +73,12 @@
 !/.config/noctalia/
 !/.config/noctalia/settings.toml
 !/.config/nushell/
-!/.config/nushell/**
+!/.config/nushell/completions/
+!/.config/nushell/completions/git-completions.nu
+!/.config/nushell/config.nu
+!/.config/nushell/env.nu
+!/.config/nushell/scripts/
+!/.config/nushell/scripts/catppuccin-macchiato.nu
 !/.config/nvim/
 !/.config/nvim/**
 !/.config/plex-mpv-shim/
@@ -129,10 +140,3 @@
 !/flake.nix
 !/nix/
 !/nix/**
-
-# junk inside allowlisted dirs
-/.config/chordgen/cache/
-/.config/chordgen/*_chords.*
-/.config/chordgen/*_macros.*
-/.config/chordgen/scores.json
-/.config/nushell/history.txt
