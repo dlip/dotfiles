@@ -1,28 +1,12 @@
 *
+!/.agents
+!/.agents/skills
+!/.agents/skills/coding
+!/.agents/skills/coding/**
 !/.antidote
-!/.gitignore
-!/.gitmodules
-!/.profile
-!/.skyscraper/config.ini
-!/.tmux/plugins/tpm
-!/.zsh_plugins.txt
-!/.zshrc
-!/Brewfile
-!/Brewfile.lock.json
-!/AGENTS.md
-!/README.md
-!/bin
-!/bin/*
-!/docker
-!/flake.lock
-!/flake.nix
-!/nix
-!/nix/**
-!/Library/Application Support/Trae/User/keybindings.json
-!/Library/Application Support/Trae/User/settings.json
-!/Library/Application Support/lazygit
-!/Library/Application Support/nushell
-!/Library/Keyboard Layouts/Engrammer.bundle
+!/.claude
+!/.claude/skills
+!/.claude/skills/coding
 !/.config
 !/.config/Code/keybindings.json
 !/.config/Code/settings.json
@@ -36,7 +20,7 @@
 !/.config/discord/settings.json
 !/.config/ghostty/config
 !/.config/git/config
-!/.config/herdr/
+!/.config/herdr
 !/.config/herdr/config.toml
 !/.config/herdr/plugins
 !/.config/herdr/plugins/**
@@ -78,10 +62,33 @@
 !/.config/waybar/style.css
 !/.config/xdg-desktop-portal/niri-portals.conf
 !/.config/yazi
+!/.config/yazi/init.lua
 !/.config/yazi/keymap.toml
 !/.config/yazi/plugins/compress.yazi
 !/.config/yazi/yazi.toml
-!/.config/yazi/init.lua
 !/.config/zed
 !/.config/zed/keymap.json
 !/.config/zed/settings.json
+!/.gitignore
+!/.gitmodules
+!/.profile
+!/.skyscraper/config.ini
+!/.tmux/plugins/tpm
+!/.zsh_plugins.txt
+!/.zshrc
+!/AGENTS.md
+!/Brewfile
+!/Brewfile.lock.json
+!/Library/Application Support/Trae/User/keybindings.json
+!/Library/Application Support/Trae/User/settings.json
+!/Library/Application Support/lazygit
+!/Library/Application Support/nushell
+!/Library/Keyboard Layouts/Engrammer.bundle
+!/README.md
+!/bin
+!/bin/*
+!/docker
+!/flake.lock
+!/flake.nix
+!/nix
+!/nix/**
