@@ -22,7 +22,7 @@ You must load these skills first:
 
 ## Style
 
-- Less is more. Comments and messages are direct and straight to the point. This applies to code too, the simplest approach that follows clean code practices should be preferred.
+- Less is more. Comments and messages are direct and straight to the point. This applies to code too, the simplest approach that follows clean code practices should be preferred. Minimal comments, prefer to use code structure with descriptive variable and function names instead.
 
 ## Workflow styles
 
