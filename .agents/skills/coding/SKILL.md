@@ -3,6 +3,13 @@ name: coding
 description: Always load this at the start of the session
 ---
 
+## Dependencies
+
+You must load these skills first:
+
+- i-have-adhd
+- humanizer
+
 ## Aliases
 
 - ship: commit and push the changes
@@ -12,6 +19,10 @@ description: Always load this at the start of the session
 - Never add agent co-author notes to commit messages
 - If a prompt contains '?' never modify any files without confirming
 - Never commit without approval
+
+## Style
+
+- Less is more. Comments and messages are direct and straight to the point. This applies to code too, the simplest approach that follows clean code practices should be preferred.
 
 ## Workflow styles
 

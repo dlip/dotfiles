@@ -3,10 +3,15 @@
 !/.agents/skills/
 !/.agents/skills/coding/
 !/.agents/skills/coding/**
+!/.agents/skills/i-have-adhd/
+!/.agents/skills/i-have-adhd/**
+!/.agents/skills/humanizer
 !/.antidote
 !/.claude/
 !/.claude/skills/
 !/.claude/skills/coding
+!/.claude/skills/i-have-adhd
+!/.claude/skills/humanizer
 !/.config/
 !/.config/Code/
 !/.config/Code/keybindings.json

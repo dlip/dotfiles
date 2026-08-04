@@ -7,3 +7,6 @@
 [submodule ".config/yazi/plugins/compress.yazi"]
 	path = .config/yazi/plugins/compress.yazi
 	url = https://github.com/KKV9/compress.yazi.git
+[submodule ".agents/skills/humanizer"]
+	path = .agents/skills/humanizer
+	url = https://github.com/blader/humanizer.git
