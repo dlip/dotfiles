@@ -38,5 +38,6 @@ The workflow style defines what is required for a change to be accepted. You mus
 
 ### Formal (default)
 
-- Changes should happen on a feature branch
+- Changes should happen on a feature branch. If the current branch name seems unrelated, confirm if a new one should be created.
+- Plan your changes first, then show the user a brief summary and ask for their confirmation
 - Run lint and unit tests if the project supports it
