@@ -31,6 +31,7 @@ bindkey -M menuselect '\e' send-break
 bindkey '^[e' edit-command-line
 
 set -o emacs
+bindkey '^L' reset-terminal
 
 if [ -e ~/.zshrc.local ]; then . ~/.zshrc.local; fi
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
