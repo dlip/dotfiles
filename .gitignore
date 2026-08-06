@@ -115,6 +115,8 @@
 !/.gitignore
 !/.gitmodules
 !/.profile
+!/.shell/
+!/.shell/**
 !/.skyscraper/
 !/.skyscraper/config.ini
 !/.tmux/

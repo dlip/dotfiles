@@ -14,15 +14,8 @@ if [ -e "$HOME/.brew/bin/brew" ]; then
   export PKG_CONFIG_PATH="${HOMEBREW_PREFIX}/opt/mysql-client@8.4/lib/pkgconfig"
 fi
 
-# yazi - keep current dir when exiting
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
-}
+for f in ~/.shell/*.sh; do [ -r "$f" ] && . "$f"; done
+unset f
 
 source ~/.antidote/antidote.zsh
 antidote load
@@ -38,8 +31,6 @@ bindkey -M menuselect '\e' send-break
 bindkey '^[e' edit-command-line
 
 set -o emacs
-alias e="$EDITOR"
-alias copy='printf "\033]52;c;$(base64 | tr -d "\n")\a"'
 
 if [ -e ~/.zshrc.local ]; then . ~/.zshrc.local; fi
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
