@@ -781,11 +781,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1785538714,
-        "narHash": "sha256-lD+Hx4FhOfHUEQSTEyhD+F8m7ANaFBfGlbnWWiWvFgY=",
+        "lastModified": 1785912133,
+        "narHash": "sha256-pAE1cOudI5WPAdn3IujoZMd6QIdU9uTpK3sko5E7R1Y=",
         "ref": "feat/nixos-module-wip",
-        "rev": "5c1560dc1640beff4bc5177785c605deb4d62b19",
-        "revCount": 1513,
+        "rev": "1bfb9bacd65daf0b03e496819f327b04c655a14a",
+        "revCount": 1515,
         "type": "git",
         "url": "https://gitlab.com/dlip/storyteller"
       },
@@ -876,11 +876,11 @@
         "nixpkgs": "nixpkgs_8"
       },
       "locked": {
-        "lastModified": 1782717136,
-        "narHash": "sha256-pTEYgQr75yIPUegEKoYojIM3SH49XrUJKhG2vPVl4vg=",
+        "lastModified": 1785627727,
+        "narHash": "sha256-cLP/iTJXT3Eo/AQebc99JOhfcWXpH3n/scWYrtna1IE=",
         "owner": "dlip",
         "repo": "tududi",
-        "rev": "96dc531bf4f6cd0cf3ed11b3c98055806b636048",
+        "rev": "2fa53e92223773c5a5a288e9c0252bc2ea952064",
         "type": "github"
       },
       "original": {
