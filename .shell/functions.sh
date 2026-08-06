@@ -9,6 +9,6 @@ y() {
 }
 
 # view a CSV as a Markdown table in the pager
-csvless() {
+csv() {
 	csv2md "$@" | less -S
 }
