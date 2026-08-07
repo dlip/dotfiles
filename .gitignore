@@ -44,6 +44,7 @@
 !/.config/herdr/config.toml
 !/.config/herdr/plugins/
 !/.config/herdr/plugins/**
+/.config/herdr/plugins/config/
 !/.config/hypr/
 !/.config/hypr/hypridle.conf
 !/.config/hypr/hyprland.conf
