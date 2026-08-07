@@ -42,7 +42,7 @@
 # =====================================================================
 
 set -euo pipefail
-shopt -s nullglob
+shopt -s nullglob dotglob
 
 # Function to handle errors
 error_handler() {
