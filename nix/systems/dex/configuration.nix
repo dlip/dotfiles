@@ -40,6 +40,40 @@ rec {
     self.inputs.storyteller.nixosModules.default
   ];
 
+  fileSystems."/".device = lib.mkForce "/dev/mapper/cryptroot";
+
+  # Remote unlock
+  boot.kernelParams = [ "rd.systemd.debug_shell=1" ];
+  boot.initrd = {
+    availableKernelModules = [ "e1000e" ];
+    systemd = {
+      enable = true;
+      network = {
+        enable = true;
+        networks."10-enp0s31f6" = {
+          matchConfig.Name = "enp0s31f6";
+          networkConfig.DHCP = "ipv4";
+          # Wait until network interfaces have a routable address
+          # https://wiki.archlinux.org/title/Systemd-networkd
+          linkConfig.RequiredForOnline = "routable";
+        };
+      };
+    };
+    network = {
+      enable = true;
+      ssh = {
+        enable = true;
+        port = 2222;
+        hostKeys = [ "/etc/secrets/initrd/ssh_host_ed25519_key" ];
+        authorizedKeys = [
+          ''command="systemctl default" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFmyTiUXNyqb0qucoLjZ6EWJXIk8JqaPxkiz8yOylwkN dane@x''
+        ];
+      };
+    };
+  };
+
+  services.resolved.enable = true;
+
   # Open ports in the firewall.
   networking.firewall.enable = true;
   networking.firewall.allowPing = true;
