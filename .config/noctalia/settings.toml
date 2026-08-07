@@ -27,6 +27,9 @@ end = [
 min_length = 80
 max_length = 500
 
+[widget.clock]
+format = "{:%H:%M} - {:%d}/{:%m}/{:%y}"
+
 [location]
 address = "Sydney, Australia"
 

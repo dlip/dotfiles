@@ -3,7 +3,7 @@ application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
 application/x-wine-extension-ini=neovide.desktop
 application/zip=org.freecad.FreeCAD.desktop;org.gnome.FileRoller.desktop;
 image/jpeg=gimp.desktop;krita_jpeg.desktop;feh.desktop;
-image/png=feh.desktop
+image/png=gimp.desktop;feh.desktop;
 inode/directory=thunar.desktop
 model/stl=PrusaSlicer.desktop;f3d-plugin-native.desktop;fstl.desktop;
 text/csv=calc.desktop;neovide.desktop;
@@ -35,6 +35,8 @@ application/vnd.comicbook+zip=org.gnome.FileRoller.desktop;
 image/vnd.dxf=org.inkscape.Inkscape.desktop;
 video/mp4=audacity.desktop;
 application/epub+zip=thorium-reader.desktop;
+application/xhtml+xml=neovide.desktop;
+application/smil+xml=neovide.desktop;
 
 [Default Applications]
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
