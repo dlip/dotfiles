@@ -39,8 +39,9 @@
     experimental-features = nix-command flakes
   '';
 
-  # Public DNS (independent of the host's resolver) so the container can be
-  # reasoned about in isolation.
+  # The host's 127.0.0.53 stub is not reachable from private-network
+  # containers.
+  networking.useHostResolvConf = false;
   networking.nameservers = [
     "1.1.1.1"
     "8.8.8.8"
