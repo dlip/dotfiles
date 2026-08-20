@@ -46,10 +46,10 @@
     #   url = "github:AvengeMedia/dgop";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-    dms = {
-      url = "github:AvengeMedia/DankMaterialShell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # dms = {
+    #   url = "github:AvengeMedia/DankMaterialShell";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     noctalia = {
       url = "github:noctalia-dev/noctalia/cachix";
     };

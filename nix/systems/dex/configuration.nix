@@ -371,7 +371,14 @@ rec {
 
   users.users.ryoko = {
     isNormalUser = true;
-    home = "/media/media/home/ryoko";
+    home = "/media/personal/ryoko";
+    createHome = true;
+    extraGroups = [ ];
+  };
+
+  users.users.neo = {
+    isNormalUser = true;
+    home = "/media/personal/neo";
     createHome = true;
     extraGroups = [ ];
   };
@@ -518,6 +525,16 @@ rec {
   sops.secrets.sparkyfitness-env = { };
   services.sparkyfitness = {
     enable = true;
+    backendPackage = lib.mkForce (
+      self.inputs.sparkyfitness.packages.${pkgs.system}.sparkyfitness-server.overrideAttrs (_: {
+        doCheck = false;
+      })
+    );
+    frontendPackage = lib.mkForce (
+      self.inputs.sparkyfitness.packages.${pkgs.system}.sparkyfitness-frontend.overrideAttrs (_: {
+        doCheck = false;
+      })
+    );
     frontendUrl = "https://sparkyfitness.${domain}";
     environmentFile = config.sops.secrets."sparkyfitness-env".path;
     nginx.virtualHost = "sparkyfitness.${domain}";
