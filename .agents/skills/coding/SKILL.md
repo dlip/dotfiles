@@ -13,12 +13,13 @@ You must load these skills first:
 ## Aliases
 
 - ship: commit and push the changes
+- gn: create a new feature branch with a name that suits the feature request using the command `gn <branch-name>`
 
 ## Rules
 
 - Never add agent co-author notes to commit messages
 - If a prompt contains '?' never modify any files without confirming
-- Never commit without approval
+- Never commit automatically
 
 ## Style
 
@@ -38,6 +39,6 @@ The workflow style defines what is required for a change to be accepted. You mus
 
 ### Formal (default)
 
-- Changes should happen on a feature branch. If the current branch name seems unrelated, confirm if a new one should be created.
+- Changes should happen on a feature branch. If the current branch name seems unrelated, or it has already been merged to the default branch, confirm if a new one should be created.
 - Plan your changes first, then show the user a brief summary and ask for their confirmation
 - Run lint and unit tests if the project supports it
