@@ -13,7 +13,7 @@ You must load these skills first:
 ## Aliases
 
 - ship: commit and push the changes
-- gn: create a new feature branch with a name that suits the feature request using the command `gn <branch-name>`
+- gn: create a new feature branch with a name that suits the request using the command `gn <branch-name>`
 
 ## Rules
 
