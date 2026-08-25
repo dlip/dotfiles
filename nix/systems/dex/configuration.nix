@@ -507,7 +507,7 @@ rec {
   sops.secrets.karakeep-env = { };
   services.karakeep = {
     enable = true;
-    package = pkgs.stable.karakeep;
+    package = pkgs.karakeep;
     extraEnvironment = {
       PORT = "${toString dex-services.karakeep}";
       HOST = "127.0.0.1";
@@ -585,6 +585,68 @@ rec {
       # Includes dependencies for a basic setup
       # https://www.home-assistant.io/integrations/default_config/
       default_config = { };
+      automation = [
+        {
+          alias = "Sunset light on";
+          description = "";
+          triggers = [
+            {
+              trigger = "sun.sunset";
+              options = {
+                offset = {
+                  days = 0;
+                  hours = 0;
+                  minutes = 0;
+                  seconds = 0;
+                };
+                offset_type = "before";
+              };
+            }
+          ];
+          conditions = [ ];
+          actions = [
+            {
+              action = "light.turn_on";
+              metadata = { };
+              target = {
+                device_id = "4cb83a9de6f40102cb598290a9f0ea72";
+              };
+              data = { };
+            }
+          ];
+          mode = "single";
+        }
+        {
+          description = "";
+          mode = "single";
+          triggers = [
+            {
+              trigger = "sun.sunset";
+              options = {
+                offset = {
+                  hours = 3;
+                  minutes = 0;
+                  seconds = 0;
+                  days = 0;
+                };
+                offset_type = "after";
+              };
+            }
+          ];
+          conditions = [ ];
+          actions = [
+            {
+              action = "light.turn_off";
+              metadata = { };
+              target = {
+                device_id = "4cb83a9de6f40102cb598290a9f0ea72";
+              };
+              data = { };
+            }
+          ];
+          alias = "Evening light off";
+        }
+      ];
       http = {
         use_x_forwarded_for = true;
         trusted_proxies = [
