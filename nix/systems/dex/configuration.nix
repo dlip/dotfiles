@@ -564,8 +564,83 @@ rec {
     port = 13378;
   };
 
+  services.mosquitto = {
+    enable = true;
+    listeners = [
+      {
+        address = "127.0.0.1";
+        port = 1883;
+        omitPasswordAuth = true;
+        acl = [ "topic readwrite #" ];
+        settings.listener_allow_anonymous = true;
+      }
+    ];
+  };
+
+  # Add frigate-tapo-env to secrets.yaml with the Tapo camera account:
+  # FRIGATE_TAPO_HOST=192.0.2.10
+  # FRIGATE_RTSP_USER=camera-account
+  # FRIGATE_RTSP_PASSWORD=url-encoded-password
+  sops.secrets.frigate-tapo-env = { };
+  services.frigate = {
+    enable = true;
+    hostname = "frigate.${domain}";
+    # The camera values are supplied at runtime by the SOPS environment file.
+    preCheckConfig = ''
+      export FRIGATE_TAPO_HOST=192.0.2.1
+      export FRIGATE_RTSP_USER=viewer
+      export FRIGATE_RTSP_PASSWORD=password
+    '';
+    settings = {
+      mqtt = {
+        enabled = true;
+        host = "127.0.0.1";
+      };
+      tls.enabled = false;
+      detectors.cpu.type = "cpu";
+      cameras.tapo_c200 = {
+        ffmpeg.inputs = [
+          {
+            path = "rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@{FRIGATE_TAPO_HOST}:554/stream2";
+            roles = [ "detect" ];
+          }
+          {
+            path = "rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@{FRIGATE_TAPO_HOST}:554/stream1";
+            roles = [ "record" ];
+          }
+        ];
+        detect = {
+          width = 640;
+          height = 360;
+          fps = 5;
+        };
+        record = {
+          enabled = true;
+          retain = {
+            days = 7;
+            mode = "motion";
+          };
+          detections.retain.days = 14;
+        };
+        snapshots = {
+          enabled = true;
+          retain.default = 14;
+        };
+      };
+    };
+  };
+
+  systemd.services.frigate = {
+    wants = [ "mosquitto.service" ];
+    after = [ "mosquitto.service" ];
+    serviceConfig.EnvironmentFile = lib.mkAfter [ config.sops.secrets.frigate-tapo-env.path ];
+  };
+
   services.home-assistant = {
     enable = true;
+    customComponents = with pkgs.home-assistant-custom-components; [
+      frigate
+    ];
     extraComponents = [
       # Components required to complete the onboarding
       "esphome"
@@ -577,6 +652,9 @@ rec {
       "brother"
       "google_translate"
       "device_tracker"
+      "mqtt"
+      "stream"
+      "media_source"
       # Recommended for fast zlib compression
       # https://www.home-assistant.io/integrations/isal
       "isal"
