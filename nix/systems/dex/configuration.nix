@@ -596,6 +596,7 @@ rec {
         enabled = true;
         host = "127.0.0.1";
       };
+      ffmpeg.hwaccel_args = "preset-nvidia";
       tls.enabled = false;
       detectors.cpu.type = "cpu";
       cameras.tapo_c200 = {
@@ -616,11 +617,15 @@ rec {
         };
         record = {
           enabled = true;
-          retain = {
-            days = 7;
+          motion.days = 7;
+          alerts.retain = {
+            days = 14;
             mode = "motion";
           };
-          detections.retain.days = 14;
+          detections.retain = {
+            days = 14;
+            mode = "motion";
+          };
         };
         snapshots = {
           enabled = true;
@@ -634,6 +639,18 @@ rec {
     wants = [ "mosquitto.service" ];
     after = [ "mosquitto.service" ];
     serviceConfig.EnvironmentFile = lib.mkAfter [ config.sops.secrets.frigate-tapo-env.path ];
+  };
+
+  systemd.tmpfiles.rules = [
+    "d /media/media2/frigate 0750 frigate frigate -"
+  ];
+  fileSystems."/var/lib/frigate" = {
+    device = "/media/media2/frigate";
+    fsType = "none";
+    options = [
+      "bind"
+      "x-systemd.requires-mounts-for=/media/media2"
+    ];
   };
 
   services.home-assistant = {
