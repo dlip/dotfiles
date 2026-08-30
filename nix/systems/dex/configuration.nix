@@ -578,18 +578,24 @@ rec {
   };
 
   # Add frigate-tapo-env to secrets.yaml with the Tapo camera account:
-  # FRIGATE_TAPO_HOST=192.0.2.10
-  # FRIGATE_RTSP_USER=camera-account
-  # FRIGATE_RTSP_PASSWORD=url-encoded-password
+  # FRIGATE_TAPO_FRONT_DOOR_HOST=192.0.2.10
+  # FRIGATE_TAPO_BACK_DOOR_HOST=192.0.2.11
+  # FRIGATE_TAPO_FRONT_DOOR_USER=front-door-camera-account
+  # FRIGATE_TAPO_FRONT_DOOR_PASSWORD=url-encoded-password
+  # FRIGATE_TAPO_BACK_DOOR_USER=back-door-camera-account
+  # FRIGATE_TAPO_BACK_DOOR_PASSWORD=url-encoded-password
   sops.secrets.frigate-tapo-env = { };
   services.frigate = {
     enable = true;
     hostname = "frigate.${domain}";
     # The camera values are supplied at runtime by the SOPS environment file.
     preCheckConfig = ''
-      export FRIGATE_TAPO_HOST=192.0.2.1
-      export FRIGATE_RTSP_USER=viewer
-      export FRIGATE_RTSP_PASSWORD=password
+      export FRIGATE_TAPO_FRONT_DOOR_HOST=192.0.2.1
+      export FRIGATE_TAPO_BACK_DOOR_HOST=192.0.2.2
+      export FRIGATE_TAPO_FRONT_DOOR_USER=viewer
+      export FRIGATE_TAPO_FRONT_DOOR_PASSWORD=password
+      export FRIGATE_TAPO_BACK_DOOR_USER=viewer
+      export FRIGATE_TAPO_BACK_DOOR_PASSWORD=password
     '';
     settings = {
       mqtt = {
@@ -599,14 +605,47 @@ rec {
       ffmpeg.hwaccel_args = "preset-nvidia";
       tls.enabled = false;
       detectors.cpu.type = "cpu";
-      cameras.tapo_c200 = {
+      cameras.c200_front_door = {
         ffmpeg.inputs = [
           {
-            path = "rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@{FRIGATE_TAPO_HOST}:554/stream2";
+            path = "rtsp://{FRIGATE_TAPO_FRONT_DOOR_USER}:{FRIGATE_TAPO_FRONT_DOOR_PASSWORD}@{FRIGATE_TAPO_FRONT_DOOR_HOST}:554/stream2";
             roles = [ "detect" ];
           }
           {
-            path = "rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@{FRIGATE_TAPO_HOST}:554/stream1";
+            path = "rtsp://{FRIGATE_TAPO_FRONT_DOOR_USER}:{FRIGATE_TAPO_FRONT_DOOR_PASSWORD}@{FRIGATE_TAPO_FRONT_DOOR_HOST}:554/stream1";
+            roles = [ "record" ];
+          }
+        ];
+        detect = {
+          width = 640;
+          height = 360;
+          fps = 5;
+        };
+        record = {
+          enabled = true;
+          motion.days = 7;
+          alerts.retain = {
+            days = 14;
+            mode = "motion";
+          };
+          detections.retain = {
+            days = 14;
+            mode = "motion";
+          };
+        };
+        snapshots = {
+          enabled = true;
+          retain.default = 14;
+        };
+      };
+      cameras.c200_back_door = {
+        ffmpeg.inputs = [
+          {
+            path = "rtsp://{FRIGATE_TAPO_BACK_DOOR_USER}:{FRIGATE_TAPO_BACK_DOOR_PASSWORD}@{FRIGATE_TAPO_BACK_DOOR_HOST}:554/stream2";
+            roles = [ "detect" ];
+          }
+          {
+            path = "rtsp://{FRIGATE_TAPO_BACK_DOOR_USER}:{FRIGATE_TAPO_BACK_DOOR_PASSWORD}@{FRIGATE_TAPO_BACK_DOOR_HOST}:554/stream1";
             roles = [ "record" ];
           }
         ];
