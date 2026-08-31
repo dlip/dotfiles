@@ -37,10 +37,10 @@
             # vscodeNodeDebug2 = final.callPackage ../pkgs/vscodeNodeDebug2 {src = vscodeNodeDebug2;};
 
             # tempfix https://github.com/NixOS/nixpkgs/issues/554550
-            karakeep = final.callPackage "${inputs.nixpkgs}/pkgs/by-name/ka/karakeep/package.nix" {
-              # Avoid nodejs 24 while waiting on bugfix for https://github.com/karakeep-app/karakeep/issues/2989
-              nodejs = final.nodejs_22;
-            };
+            # karakeep = final.callPackage "${inputs.nixpkgs}/pkgs/by-name/ka/karakeep/package.nix" {
+            #   # Avoid nodejs 24 while waiting on bugfix for https://github.com/karakeep-app/karakeep/issues/2989
+            #   nodejs = final.nodejs_22;
+            # };
             # https://github.com/NixOS/nixpkgs/issues/514113
             openldap = prev.openldap.overrideAttrs {
               doCheck = !prev.stdenv.hostPlatform.isi686;
