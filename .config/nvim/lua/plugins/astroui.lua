@@ -6,7 +6,7 @@ return {
   "AstroNvim/astroui",
   ---@type AstroUIOpts
   opts = {
-    colorscheme = "catppuccin",
+    colorscheme = "catppuccin-macchiato",
     icons = {
       LSPLoading1 = "⠋",
       LSPLoading2 = "⠙",
