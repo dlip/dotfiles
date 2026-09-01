@@ -87,6 +87,8 @@
 !/.config/nushell/scripts/catppuccin-macchiato.nu
 !/.config/nvim/
 !/.config/nvim/**
+!/.config/nvim.bak/
+!/.config/nvim.bak/**
 !/.config/plex-mpv-shim/
 !/.config/plex-mpv-shim/conf.json
 !/.config/rofi/
