@@ -13,7 +13,6 @@ return {
         "gofumpt",
         "goimports",
         "shfmt",
-        "alejandra",
         "prettier",
         "taplo",
         "sqlfluff",
