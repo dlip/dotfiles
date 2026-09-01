@@ -1,5 +1,3 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
-
 -- Customize Treesitter
 -- --------------------
 -- Treesitter customizations are handled with AstroCore
@@ -11,13 +9,46 @@ return {
   ---@type AstroCoreOpts
   opts = {
     treesitter = {
-      highlight = true, -- enable/disable treesitter based highlighting
-      indent = true, -- enable/disable treesitter based indentation
-      auto_install = true, -- enable/disable automatic installation of detected languages
+      highlight = true,
+      indent = true,
+      auto_install = true,
       ensure_installed = {
+        "bash",
+        "c",
+        "diff",
+        "dockerfile",
+        "git_config",
+        "gitcommit",
+        "gitignore",
+        "go",
+        "gomod",
+        "gosum",
+        "gotmpl",
+        "gowork",
+        "hcl",
+        "hyprlang",
+        "javascript",
+        "jsdoc",
+        "json",
+        "json5",
+        "jsonc",
         "lua",
+        "luadoc",
+        "make",
+        "markdown",
+        "markdown_inline",
+        "nix",
+        "python",
+        "regex",
+        "rust",
+        "sql",
+        "terraform",
+        "toml",
+        "tsx",
+        "typescript",
         "vim",
-        -- add more arguments for adding more treesitter parsers
+        "vimdoc",
+        "yaml",
       },
     },
   },

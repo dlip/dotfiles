@@ -1,26 +1,35 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
-
 -- Customize Mason
+-- Language servers and treesitter parsers mostly come from the community packs,
+-- this list covers the extra formatters, linters and debuggers.
 
 ---@type LazySpec
 return {
-  -- use mason-tool-installer for automatically installing Mason packages
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    -- overrides `require("mason-tool-installer").setup(...)`
     opts = {
-      -- Make sure to use the names found in `:Mason`
       ensure_installed = {
-        -- install language servers
-        "lua-language-server",
-
-        -- install formatters
+        -- formatters
         "stylua",
+        "gofumpt",
+        "goimports",
+        "shfmt",
+        "alejandra",
+        "prettier",
+        "taplo",
+        "sqlfluff",
 
-        -- install debuggers
+        -- linters
+        "shellcheck",
+        "yamllint",
+        "hadolint",
+        "markdownlint-cli2",
+        "eslint_d",
+        "ruff",
+
+        -- debuggers
+        "delve",
         "debugpy",
 
-        -- install any other package
         "tree-sitter-cli",
       },
     },
