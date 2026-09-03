@@ -36,4 +36,5 @@ return {
   { import = "astrocommunity.split-and-window.mini-map" },
   { import = "astrocommunity.editing-support.nvim-treesitter-context" },
   { import = "astrocommunity.git.git-blame-nvim" },
+  { import = "astrocommunity.git.blame-nvim" },
 }
