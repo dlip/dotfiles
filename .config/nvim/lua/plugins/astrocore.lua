@@ -69,6 +69,10 @@ return {
 
         ["<Leader>a"] = { function() require("snacks").picker.smart() end, desc = "Find files (smart)" },
         ["<Leader>gr"] = { function() require("snacks").picker.git_grep() end, desc = "Git grep" },
+        ["<Leader>gy"] = {
+          function() require("gitblame").copy_commit_url_to_clipboard() end,
+          desc = "Copy commit URL",
+        },
 
         ["<Leader>y"] = { desc = "Yank path" },
         ["<Leader>yf"] = { yank_path(":.", false), desc = "Relative filename" },
@@ -83,6 +87,8 @@ return {
           end,
           desc = "Alternate buffer",
         },
+
+        ["U"] = { "<C-r>", desc = "Redo" },
       },
     },
   },
