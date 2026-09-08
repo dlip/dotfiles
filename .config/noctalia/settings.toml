@@ -36,7 +36,7 @@ stat = "ram_pct"
 
 [widget.disk]
 type = "sysmon"
-stat = "disk_pct"
+stat = "disk_used_pct"
 path = "/"
 glyph = "storage"
 
