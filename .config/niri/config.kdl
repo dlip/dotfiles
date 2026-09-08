@@ -690,4 +690,3 @@ hotkey-overlay {
 }
 
 // include "dms/binds.kdl"
-include "./noctalia.kdl"

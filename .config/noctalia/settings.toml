@@ -7,7 +7,7 @@ thickness = 25
 margin_edge = 0
 margin_ends = 0
 radius = 0
-start = [ "launcher", "wallpaper", "workspaces", "active_window" ]
+start = ["launcher", "wallpaper", "workspaces", "active_window"]
 end = [
     "media",
     "weather",
@@ -17,11 +17,31 @@ end = [
     "bluetooth",
     "volume",
     "brightness",
+    "cpu",
+    "ram",
+    "disk",
     "battery",
     "control-center",
     "tray",
-    "session"
+    "session",
 ]
+
+[widget.cpu]
+type = "sysmon"
+stat = "cpu_usage"
+
+[widget.ram]
+type = "sysmon"
+stat = "ram_pct"
+
+[widget.disk]
+type = "sysmon"
+stat = "disk_pct"
+path = "/"
+glyph = "storage"
+
+[system.monitor]
+enabled = true
 
 [widget.active_window]
 min_length = 80
@@ -31,37 +51,38 @@ max_length = 500
 format = "{:%H:%M} - {:%a} {:%d}/{:%m}/{:%Y}"
 
 [location]
-address = "Sydney, Australia"
+address = "Nishinomiya, Japan"
+# address = "Sydney, Australia"
 
 [shell]
 corner_radius_scale = 0.0
 
 [shell.animation]
 enabled = true
-speed   = 2.0
+speed = 2.0
 
 [wallpaper]
 directory = "/home/dane/sync/wallpapers"
 
 [wallpaper.automation]
-enabled                      = false
-interval_seconds             = 1800
-order                        = "random"
+enabled = false
+interval_seconds = 1800
+order = "random"
 
 [idle]
-behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
+behavior_order = ["lock", "screen-off", "lock-and-suspend"]
 
-    [idle.behavior.lock]
-    action = "lock"
-    enabled = true
-    timeout = 600.0
+[idle.behavior.lock]
+action = "lock"
+enabled = true
+timeout = 600.0
 
-    [idle.behavior.lock-and-suspend]
-    action = "lock_and_suspend"
-    enabled = true
-    timeout = 900.0
+[idle.behavior.lock-and-suspend]
+action = "lock_and_suspend"
+enabled = true
+timeout = 900.0
 
-    [idle.behavior.screen-off]
-    action = "screen_off"
-    enabled = true
-    timeout = 660.0
+[idle.behavior.screen-off]
+action = "screen_off"
+enabled = true
+timeout = 660.0

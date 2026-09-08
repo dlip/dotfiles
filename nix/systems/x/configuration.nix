@@ -60,6 +60,7 @@
     ++ groups.gaming
     ++ [
       godot
+      hermes-desktop
       zed-editor
       codex
     ];

@@ -63,6 +63,7 @@
             hermes-agent = inputs.hermes-agent.packages.${final.stdenv.hostPlatform.system}.default.override {
               extraPythonPackages = with final; [ python312Packages.python-telegram-bot ];
             };
+            hermes-desktop = inputs.hermes-agent.packages.${final.stdenv.hostPlatform.system}.desktop;
             power-menu = final.writeShellScriptBin "power-menu" (
               builtins.readFile "${inputs.power-menu}/rofi-power-menu"
             );
