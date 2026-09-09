@@ -470,11 +470,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1785090369,
-        "narHash": "sha256-m0pDuRJG7EDo9ri+4Ksu83VsI+PlxNC9lNBfydejce4=",
+        "lastModified": 1788752844,
+        "narHash": "sha256-VaWGJ6+cIYN2erfSecbRV+4ljI185Ty2wUrXyvQbgOw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "624af665418d3c65d544145b4d34ad696439570e",
+        "rev": "dc5d91f840324650bac8c379428c7037a416959a",
         "type": "github"
       },
       "original": {
@@ -743,16 +743,16 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1786339974,
-        "narHash": "sha256-an8+ePa8WUbMxf30J29LJmeqy/RzJdQyk/3GScEb51s=",
-        "ref": "feat/nixos-module",
-        "rev": "1a0083debed7178e86b60e4e56568f92a15201ac",
-        "revCount": 1528,
+        "lastModified": 1788934920,
+        "narHash": "sha256-LHpGf1LkxPwJSnUKiVgIXA6QjkBWsbltQcKVOnWCkOE=",
+        "ref": "sqlite",
+        "rev": "9a080ba609d444fd6f8c7156c0f9eee92bf33776",
+        "revCount": 1571,
         "type": "git",
         "url": "https://gitlab.com/dlip/storyteller"
       },
       "original": {
-        "ref": "feat/nixos-module",
+        "ref": "sqlite",
         "type": "git",
         "url": "https://gitlab.com/dlip/storyteller"
       }
