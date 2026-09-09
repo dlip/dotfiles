@@ -8,6 +8,9 @@ return {
   opts = function(_, opts)
     local null_ls = require "null-ls"
 
+    -- Keep temp-file based sources (such as SQLFluff diagnostics) out of projects.
+    opts.temp_dir = "/tmp"
+
     local sources = {
       null_ls.builtins.formatting.shfmt.with { extra_args = { "-i", "2", "-ci" } },
       null_ls.builtins.formatting.sqlfluff.with { extra_args = { "--dialect", "postgres" } },
