@@ -431,7 +431,6 @@ binds {
     Mod+T hotkey-overlay-title="Open a Terminal" { spawn "kitty"; }
     Mod+E hotkey-overlay-title="Emoji Menu" { spawn "emoji-menu"; }
     // Mod+P hotkey-overlay-title="Power menu" { spawn "rofi" "-show" "power-menu" "-modi" "power-menu:power-menu"; }
-    Mod+P { spawn "noctalia" "msg" "panel-toggle" "session"; }
     Mod+Space hotkey-overlay-title="Run an Application" { spawn "rofi" "-show-icons" "-show" "combi" "-combi-modi" "drun,run" "-modi" "combi"; }
 
     // whisrs dictation. Press to start recording, press again to stop; the
@@ -691,3 +690,4 @@ hotkey-overlay {
 }
 
 // include "dms/binds.kdl"
+include "noctalia.kdl"
