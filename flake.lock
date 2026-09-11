@@ -745,14 +745,14 @@
       "locked": {
         "lastModified": 1788934920,
         "narHash": "sha256-LHpGf1LkxPwJSnUKiVgIXA6QjkBWsbltQcKVOnWCkOE=",
-        "ref": "sqlite",
+        "ref": "feat/nixos-module",
         "rev": "9a080ba609d444fd6f8c7156c0f9eee92bf33776",
         "revCount": 1571,
         "type": "git",
         "url": "https://gitlab.com/dlip/storyteller"
       },
       "original": {
-        "ref": "sqlite",
+        "ref": "feat/nixos-module",
         "type": "git",
         "url": "https://gitlab.com/dlip/storyteller"
       }
