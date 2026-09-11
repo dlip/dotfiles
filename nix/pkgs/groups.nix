@@ -2,7 +2,14 @@
 with pkgs;
 let
   lsp = [
+    deadnix
+    delve
+    (python3Packages.debugpy)
+    eslint_d
+    gofumpt
     gopls
+    gotools
+    hadolint
     lua-language-server
     markdownlint-cli2
     marksman
@@ -10,10 +17,14 @@ let
     nixd
     nixfmt
     ruff
+    shellcheck
+    sqlfluff
     rust-analyzer
     shfmt
     stylua
+    taplo
     tree-sitter
+    yamllint
   ];
   default = lsp ++ [
     bash
