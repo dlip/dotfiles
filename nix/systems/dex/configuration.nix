@@ -505,6 +505,15 @@ rec {
   };
 
   sops.secrets.karakeep-env = { };
+  environment.etc."karakeep/overrides.env".text = ''
+    INFERENCE_SUPPORTS_STRUCTURED_OUTPUT=false
+  '';
+  systemd.services.karakeep-workers.serviceConfig.EnvironmentFile = lib.mkAfter [
+    "/etc/karakeep/overrides.env"
+  ];
+  systemd.services.karakeep-web.serviceConfig.EnvironmentFile = lib.mkAfter [
+    "/etc/karakeep/overrides.env"
+  ];
   services.karakeep = {
     enable = true;
     package = pkgs.karakeep;
@@ -513,6 +522,9 @@ rec {
       HOST = "127.0.0.1";
       INFERENCE_TEXT_MODEL = "openai/gpt-oss-120b:free";
       INFERENCE_IMAGE_MODEL = "openai/gpt-oss-120b:free";
+      # LiteLLM's ChatGPT/Codex adapter currently returns an empty Responses
+      # payload for Karakeep's structured-output request format.
+      INFERENCE_SUPPORTS_STRUCTURED_OUTPUT = "false";
       INFERENCE_ENABLE_AUTO_SUMMARIZATION = "true";
     };
     environmentFile = config.sops.secrets."karakeep-env".path;
