@@ -175,5 +175,4 @@
   "AI.toolcall.reviewMode.ide": "skip",
   "git.blame.editorDecoration.enabled": true,
   "AI.toolcall.v2.solo.command.mode": "alwaysRun",
-  "gitai.enabled": true,
 }

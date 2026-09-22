@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# tsv2csv — parse tab-separated values and convert them to CSV on stdout, so
+# spreadsheet output (Excel, Google Sheets, Numbers, etc.) can be fed to tools
+# that expect CSV.
+#
+# Reads from a file argument or stdin, splits each line on tabs, and writes
+# properly quoted CSV rows.
+#
+# Usage:
+#     tsv2csv data.tsv         # write CSV to stdout
+#     cat data.tsv | tsv2csv   # read from stdin
+#     tsv2csv data.tsv | cpy   # copy to the clipboard
+set -euo pipefail
+
+python3 -c '
+import csv, sys
+
+writer = csv.writer(sys.stdout, lineterminator="\n")
+for line in sys.stdin:
+    writer.writerow(line.rstrip("\r\n").split("\t"))
+' < "${1:-/dev/stdin}"

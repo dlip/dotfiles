@@ -12,8 +12,11 @@ You must load these skills first:
 
 ## Aliases
 
-- ship: commit and push the changes
-- gn: create a new feature branch with a name that suits the request using the command `gn <branch-name>`
+- gn: create a new feature branch with a name that suits the request using the command `gn <branch-name>`. It may be used on its own if there is some context or at the start of a prompt relating to a new feature.
+- ship:
+  - review the changes, and if there are any improvements, ask the user the user if they would like you to apply them
+  - commit
+  - push the changes
 
 ## Rules
 
@@ -39,6 +42,5 @@ The workflow style defines what is required for a change to be accepted. You mus
 
 ### Formal (default)
 
-- Changes should happen on a feature branch. If the current branch name seems unrelated, or it has already been merged to the default branch, confirm if a new one should be created.
 - Plan your changes first, then show the user a brief summary and ask for their confirmation
 - Run lint and unit tests if the project supports it
