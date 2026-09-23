@@ -14,88 +14,90 @@ gen:
     adjective:
       enabled: true
       forms:
-        - comparative
-        - superlative
+      - comparative
+      - superlative
     adverb:
       enabled: true
       forms: []
     demonstrative:
       enabled: true
       forms:
-        - plural
-        - distal
+      - plural
+      - distal
     modal:
       enabled: true
       forms:
-        - past
+      - past
     noun:
       enabled: true
       forms:
-        - plural
+      - plural
     number:
       enabled: true
       forms:
-        - ordinal
+      - ordinal
     overwrite: true
     pronoun:
       enabled: true
       forms:
-        - objective
-        - possessive_det
-        - reflexive
+      - objective
+      - possessive_det
+      - reflexive
     verb:
       enabled: true
       forms:
-        - 3sg
-        - past
-        - gerund
+      - 3sg
+      - past
+      - gerund
   assignment:
     frequency_exponent: 4.0
     min_frequency_weight: 1.0
     priority_tiers: []
     unmatched_penalty: 10000.0
+  debug: false
   file: ~/.config/chordgen/chords.csv
+  ignore_words: []
   key_replacement:
-    "'": x
+    '''': x
     q: k
     z: x
   keyboard:
     directional:
       custom_layout:
-        - _X__X__X__X__X__X__X__X_
-        - X_XX_XX_XX_XX_XX_XX_XX_X
-        - _X__X__X__X__X__X__X__X_
-        - _X__X_
-        - X_XX_X
-        - _X__X_
-        - _X__X_
-        - X_XX_X
-        - _X__X_
+      - _X__X__X__X__X__X__X__X_
+      - X_XX_XX_XX_XX_XX_XX_XX_X
+      - _X__X__X__X__X__X__X__X_
+      - _X__X_
+      - X_XX_X
+      - _X__X_
+      - _X__X_
+      - X_XX_X
+      - _X__X_
       custom_layout_name: custom
       directional_change_penalty: 2
       effort_map:
-        - "040030020020"
-        - "695594493493"
-        - "030020010010"
-        - "030"
-        - "192"
-        - "040"
-        - "030"
-        - "192"
-        - "040"
+      - '040030020020'
+      - '695594493493'
+      - '030020010010'
+      - '030'
+      - '192'
+      - '040'
+      - '030'
+      - '192'
+      - '040'
       layout: charachorder
     standard:
       custom_layout:
-        - _byou'"ldwv_
-        - _ciea,.htsn_
-        - _gxjk-?rmfp_
-        - ____
+      - _byou'"ldwv_
+      - _ciea,.htsn_
+      - _gxjk-?rmfp_
+      - ____
       custom_layout_name: engram
       effort_map:
-        - "987669"
-        - "754338"
-        - "987658"
-        - "43"
+      - '987669'
+      - '754338'
+      - '987658'
+      - '43'
       layout: custom
       same_column_chord_penalty: 2
       same_row_chord_penalty: 2
@@ -119,21 +121,21 @@ output:
   charachorder:
     file: ~/.config/chordgen/charachorder_chords.json
   formats:
-    - qmk
-    - zmk
-    - charachorder
-    - kanata
-    - training
+  - qmk
+  - zmk
+  - charachorder
+  - kanata
+  - training
   kanata:
     alt1_keys:
-      - lalt
+    - lalt
     alt2_keys:
-      - spc
+    - spc
     alt3_keys:
-      - lalt
-      - spc
+    - lalt
+    - spc
     chord_keys:
-      - prtsc
+    - prtsc
     chord_timeout: 100
     file: ~/nix/keymaps/kanata/chords.kbd
     key_mapping:
@@ -150,31 +152,31 @@ output:
       k: c
       l: i
       m: .
-      n: "'"
+      n: ''''
       o: w
       p: rsft
-      r: ","
+      r: ','
       s: ;
       t: l
       u: e
-      v: "["
+      v: '['
       w: p
       x: z
       y: q
     limit: 0
     shifted_chord_keys:
-      - prtsc
-      - ralt
+    - prtsc
+    - ralt
   qmk:
     alt1_keys:
-      - KC_CHORD_ALT1
+    - KC_CHORD_ALT1
     alt2_keys:
-      - KC_CHORD_ALT2
+    - KC_CHORD_ALT2
     alt3_keys:
-      - KC_CHORD_ALT1
-      - KC_CHORD_ALT2
+    - KC_CHORD_ALT1
+    - KC_CHORD_ALT2
     chord_keys:
-      - KC_CHORD
+    - KC_CHORD
     file: ~/code/qmk_firmware/keyboards/dlip/koumori/keymaps/engram_en/chords.def
     key_codes:
       A: KC_GUI_A
@@ -188,30 +190,30 @@ output:
       T: KC_CTL_T
       X: KC_CAG_X
     shifted_chord_keys:
-      - KC_CHORD
-      - KC_CHORD_SFT
+    - KC_CHORD
+    - KC_CHORD_SFT
   training:
     file: ~/.config/chordgen/training.txt
   zmk:
     alt1_keys:
-      - "!"
+    - '!'
     alt2_keys:
-      - "@"
+    - '@'
     alt3_keys:
-      - "!"
-      - "@"
+    - '!'
+    - '@'
     chord_keys:
-      - $
+    - $
     chord_timeout: 100
     chords_file: ~/.config/chordgen/zmk_chords.dtsi
     key_positions:
-      - _qwertyuiop_
-      - _asdfghjkl;_
-      - _zxcvbnm,./_
-      - _!@#$_
+    - _qwertyuiop_
+    - _asdfghjkl;_
+    - _zxcvbnm,./_
+    - _!@#$_
     limit: 0
     macros_file: ~/.config/chordgen/zmk_macros.dtsi
     shifted_chord_keys:
-      - $
-      - "#"
+    - $
+    - '#'
 theme: catppuccin-macchiato
