@@ -179,16 +179,16 @@ output:
     - KC_CHORD
     file: ~/code/qmk_firmware/keyboards/dlip/koumori/keymaps/engram/chords.def
     key_codes:
-      A: KC_GUI_A
+      A: KC_CTL_A
       C: KC_SFT_C
-      E: KC_CTL_E
-      H: KC_SFT_H
+      E: KC_GUI_E
+      H: KC_CTL_H
       I: KC_ALT_I
-      L: KC_CAG_L
-      R: KC_GUI_R
+      J: KC_CAG_J
+      M: KC_CAG_M
+      N: KC_SFT_N
       S: KC_ALT_S
-      T: KC_CTL_T
-      X: KC_CAG_X
+      T: KC_GUI_T
     shifted_chord_keys:
     - KC_CHORD
     - KC_CHORD_SFT
