@@ -54,7 +54,6 @@ gen:
     min_frequency_weight: 1.0
     priority_tiers: []
     unmatched_penalty: 10000.0
-  debug: true
   file: ~/.config/chordgen/chords.csv
   key_replacement:
     '''': x
@@ -87,11 +86,11 @@ gen:
       layout: charachorder
     standard:
       custom_layout:
-      - _byou'"dngv_
-      - _hiae,.trsc_
-      - _kjxw-?mlfp_
+      - _byou'"ldwv_
+      - _ciea,.hnst_
+      - _gxjk-?rmfp_
       - ____
-      custom_layout_name: engram_en
+      custom_layout_name: engram
       effort_map:
       - '987669'
       - '754338'
