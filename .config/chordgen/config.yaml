@@ -56,7 +56,22 @@ gen:
     unmatched_penalty: 10000.0
   debug: false
   file: ~/.config/chordgen/chords.csv
-  ignore_words: []
+  ignore_words:
+  - ha
+  - ho
+  - od
+  - hoo
+  - doo
+  - hee
+  - ah
+  - um
+  - eh
+  - hm
+  - ya
+  - oi
+  - em
+  - mps
+  - non
   key_replacement:
     '''': x
     q: k
