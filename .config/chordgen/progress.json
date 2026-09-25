@@ -3,9 +3,9 @@
   "speed_samples": [],
   "recall_speed_samples": [],
   "daily": {
-    "date": "2026-09-24",
-    "new_count": 20,
-    "review_count": 0
+    "date": "2026-09-25",
+    "new_count": 7,
+    "review_count": 9
   },
   "words": {
     "the": {
@@ -13,15 +13,15 @@
         "card_id": 1790224959642,
         "state": 2,
         "step": null,
-        "stability": 0.9570039048729513,
-        "difficulty": 6.465117287118156,
-        "due": "2026-09-25T04:44:45.029810+00:00",
-        "last_review": "2026-09-24T04:44:45.029810+00:00"
+        "stability": 1.0084555060541487,
+        "difficulty": 6.453880539127876,
+        "due": "2026-09-26T00:41:51.903999+00:00",
+        "last_review": "2026-09-25T00:41:51.903999+00:00"
       },
-      "reps": 7,
+      "reps": 8,
       "lapses": 0,
-      "last_seen_date": "2026-09-24",
-      "wpm_ewma": 29.513124563135545,
+      "last_seen_date": "2026-09-25",
+      "wpm_ewma": 22.650229393850832,
       "mapping": "9c432272253cb2e7ae6b659b6ba06640a2273dfbdd422ff2a964cb311d25d904"
     },
     "a": {
@@ -45,15 +45,15 @@
         "card_id": 1790224963986,
         "state": 2,
         "step": null,
-        "stability": 0.8972247677554069,
-        "difficulty": 6.475003964289575,
-        "due": "2026-09-25T04:44:53.359027+00:00",
-        "last_review": "2026-09-24T04:44:53.359027+00:00"
+        "stability": 0.9494836814101076,
+        "difficulty": 6.4637573296221245,
+        "due": "2026-09-26T00:41:54.660216+00:00",
+        "last_review": "2026-09-25T00:41:54.660216+00:00"
       },
-      "reps": 7,
+      "reps": 8,
       "lapses": 0,
-      "last_seen_date": "2026-09-24",
-      "wpm_ewma": 26.626188916476693,
+      "last_seen_date": "2026-09-25",
+      "wpm_ewma": 21.252352895292546,
       "mapping": "fa43bfe0b64f81e600fb6478fb2146a1958b700f639cd744ca9f51986cbf03c5"
     },
     "you": {
@@ -77,15 +77,15 @@
         "card_id": 1790224977914,
         "state": 2,
         "step": null,
-        "stability": 1.4527404734155027,
-        "difficulty": 4.719753565426781,
-        "due": "2026-09-25T04:44:43.992156+00:00",
-        "last_review": "2026-09-24T04:44:43.992156+00:00"
+        "stability": 1.4893721106516076,
+        "difficulty": 4.710262181158193,
+        "due": "2026-09-26T00:41:57.490881+00:00",
+        "last_review": "2026-09-25T00:41:57.490881+00:00"
       },
-      "reps": 6,
+      "reps": 7,
       "lapses": 0,
-      "last_seen_date": "2026-09-24",
-      "wpm_ewma": 26.300899395529427,
+      "last_seen_date": "2026-09-25",
+      "wpm_ewma": 22.230892232307788,
       "mapping": "2991703b6ab765d1a814af59c2fc85c3d3065516e0a02f20482b7ed7b862b3fb"
     },
     "for": {
@@ -93,96 +93,128 @@
         "card_id": 1790225065851,
         "state": 2,
         "step": null,
-        "stability": 0.9195778681345905,
-        "difficulty": 6.702767656473703,
-        "due": "2026-09-25T04:48:54.412578+00:00",
-        "last_review": "2026-09-24T04:48:54.412578+00:00"
+        "stability": 0.9715642817589073,
+        "difficulty": 6.691293258114067,
+        "due": "2026-09-26T00:41:59.372292+00:00",
+        "last_review": "2026-09-25T00:41:59.372292+00:00"
       },
-      "reps": 7,
+      "reps": 8,
       "lapses": 0,
-      "last_seen_date": "2026-09-24",
-      "wpm_ewma": 19.25540378017032,
+      "last_seen_date": "2026-09-25",
+      "wpm_ewma": 21.141368143478374,
       "mapping": "7f5361ce3d96571fa13b23855eb55ab33b70faafa2379bef353a91be4e50dab2"
-    },
-    "have": {
-      "card": {
-        "card_id": 1790225074901,
-        "state": 2,
-        "step": null,
-        "stability": 1.4915164426544159,
-        "difficulty": 5.062850437782726,
-        "due": "2026-09-25T04:48:13.745282+00:00",
-        "last_review": "2026-09-24T04:48:13.745282+00:00"
-      },
-      "reps": 6,
-      "lapses": 0,
-      "last_seen_date": "2026-09-24",
-      "wpm_ewma": 45.00225374487067,
-      "mapping": "7ed6968c91c977b1f3754f90b3dc64759dc45d770d036f67a1679603b943caa9"
     },
     "was": {
       "card": {
         "card_id": 1790225112527,
         "state": 2,
         "step": null,
-        "stability": 0.224768933430198,
-        "difficulty": 9.804266390142303,
-        "due": "2026-09-25T04:53:23.216079+00:00",
-        "last_review": "2026-09-24T04:53:23.216079+00:00"
+        "stability": 0.13199041701681147,
+        "difficulty": 9.891521709716152,
+        "due": "2026-09-26T00:45:11.196706+00:00",
+        "last_review": "2026-09-25T00:45:11.196706+00:00"
       },
-      "reps": 21,
-      "lapses": 0,
-      "last_seen_date": "2026-09-24",
-      "wpm_ewma": 61.269938763008966,
+      "reps": 24,
+      "lapses": 1,
+      "last_seen_date": "2026-09-25",
+      "wpm_ewma": 38.18344413264139,
       "mapping": "0f9dd2d365e7376a6a93eacaecdb6dcd96dead526691da725e70fb07f29d6718"
     },
-    "do": {
+    "this": {
       "card": {
-        "card_id": 1790225130429,
-        "state": 2,
-        "step": null,
-        "stability": 1.4893721106516076,
-        "difficulty": 4.714817640612499,
-        "due": "2026-09-25T04:49:15.387503+00:00",
-        "last_review": "2026-09-24T04:49:15.387503+00:00"
+        "card_id": 1790297048845,
+        "state": 1,
+        "step": 2,
+        "stability": 1.3333787168039835,
+        "difficulty": 4.748284761594571,
+        "due": "2026-09-25T00:46:42.766889+00:00",
+        "last_review": "2026-09-25T00:45:42.766889+00:00"
       },
-      "reps": 6,
+      "reps": 3,
       "lapses": 0,
-      "last_seen_date": "2026-09-24",
-      "wpm_ewma": 21.345695088739397,
-      "mapping": "5880f4f124dd883d481f33261c4975336a645eccd13bf1c49bf5b69fe48b696d"
+      "last_seen_date": "2026-09-25",
+      "wpm_ewma": 7.785017992191403,
+      "mapping": "c00e7f5f695841cd2b42450f3eee972ab9c1a70c59e0b0cdefdc05a54e0bf809"
     },
-    "he": {
+    "they": {
       "card": {
-        "card_id": 1790225336486,
-        "state": 2,
-        "step": null,
-        "stability": 0.6379715591501108,
-        "difficulty": 7.628205815691766,
-        "due": "2026-09-25T04:53:07.855143+00:00",
-        "last_review": "2026-09-24T04:53:07.855143+00:00"
+        "card_id": 1790297051161,
+        "state": 1,
+        "step": 1,
+        "stability": 0.24668918777567272,
+        "difficulty": 6.402115069296838,
+        "due": "2026-09-25T00:46:04.132163+00:00",
+        "last_review": "2026-09-25T00:45:04.132163+00:00"
       },
-      "reps": 8,
+      "reps": 2,
       "lapses": 0,
-      "last_seen_date": "2026-09-24",
-      "wpm_ewma": 25.91671419521414,
-      "mapping": "9e54f82794a96465bb20adabae2f8fc0fab69bcf8fc3a75523e5628295d8acb4"
+      "last_seen_date": "2026-09-25",
+      "wpm_ewma": 43.91970025929798,
+      "mapping": "6baaac93884bacb865db1a41f1d23f672ace9be2d555645d1ac5608511de92e3"
     },
-    "be": {
+    "are": {
       "card": {
-        "card_id": 1790225360382,
-        "state": 2,
-        "step": null,
-        "stability": 1.4915164426544159,
-        "difficulty": 5.062850437782726,
-        "due": "2026-09-25T04:52:58.309275+00:00",
-        "last_review": "2026-09-24T04:52:58.309275+00:00"
+        "card_id": 1790297054210,
+        "state": 1,
+        "step": 2,
+        "stability": 2.3065,
+        "difficulty": 2.111214235785395,
+        "due": "2026-09-25T00:46:05.484806+00:00",
+        "last_review": "2026-09-25T00:45:05.484806+00:00"
       },
-      "reps": 6,
+      "reps": 2,
       "lapses": 0,
-      "last_seen_date": "2026-09-24",
-      "wpm_ewma": 23.30111664445164,
-      "mapping": "78e91a9e93c32e37669600eda7ffd325d4c573b4003f9f702fa7b79f15dc7118"
+      "last_seen_date": "2026-09-25",
+      "wpm_ewma": 21.698488271911707,
+      "mapping": "2647e6f536cdce4ba42ddfd9066348c010f4e924b8b5be3f32ea7ce8b67dbfd7"
+    },
+    "what": {
+      "card": {
+        "card_id": 1790297056596,
+        "state": 1,
+        "step": 2,
+        "stability": 2.3065,
+        "difficulty": 2.111214235785395,
+        "due": "2026-09-25T00:46:07.072281+00:00",
+        "last_review": "2026-09-25T00:45:07.072281+00:00"
+      },
+      "reps": 2,
+      "lapses": 0,
+      "last_seen_date": "2026-09-25",
+      "wpm_ewma": 28.968435857158422,
+      "mapping": "db5db93ca48d934a3c71754b3b965b2e2fcd4d783df42d6414ae5d71a341cf20"
+    },
+    "but": {
+      "card": {
+        "card_id": 1790297062765,
+        "state": 1,
+        "step": 2,
+        "stability": 2.3065,
+        "difficulty": 2.111214235785395,
+        "due": "2026-09-25T00:46:08.963713+00:00",
+        "last_review": "2026-09-25T00:45:08.963713+00:00"
+      },
+      "reps": 2,
+      "lapses": 0,
+      "last_seen_date": "2026-09-25",
+      "wpm_ewma": 13.06481085371772,
+      "mapping": "9acf98c6f804ef494db8d9423664d7fcae62162aae29c9db6aab23c0926dfe8b"
+    },
+    "with": {
+      "card": {
+        "card_id": 1790297078583,
+        "state": 1,
+        "step": 2,
+        "stability": 2.3065,
+        "difficulty": 2.111214235785395,
+        "due": "2026-09-25T00:46:19.388387+00:00",
+        "last_review": "2026-09-25T00:45:19.388387+00:00"
+      },
+      "reps": 2,
+      "lapses": 0,
+      "last_seen_date": "2026-09-25",
+      "wpm_ewma": 14.892407050627192,
+      "mapping": "5c26c6df2ae622ed748c2b3b6b336608368f0c2f3feda2ece730f102de400f98"
     }
   }
 }
