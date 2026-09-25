@@ -120,7 +120,7 @@ gen:
       scissor_penalty: 3
     type: standard
   min_chord_length: 0
-  min_word_length: 1
+  min_word_length: 3
 learn:
   learning_steps: 5
   leech_threshold: 8
