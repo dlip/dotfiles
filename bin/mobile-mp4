@@ -112,7 +112,7 @@ while IFS= read -r -d '' input; do
   fi
   cleanup
   temporary=''
-done < <(find "$source_dir" -path "$output_dir" -prune -o -type f -print0)
+done < <(find "$source_dir" -path "$output_dir" -prune -o -type f -print0 | LC_ALL=C sort -z -f)
 
 printf 'Converted: %d; skipped: %d; failed: %d\n' "$converted" "$skipped" "$failed"
 [[ $failed == 0 ]]
