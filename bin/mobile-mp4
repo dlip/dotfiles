@@ -77,6 +77,11 @@ converted=0
 skipped=0
 failed=0
 while IFS= read -r -d '' input; do
+  extension=${input##*.}
+  case $(printf '%s' "$extension" | tr '[:upper:]' '[:lower:]') in
+    mp4|m4v|mkv|mov|avi|webm|wmv|flv|mpg|mpeg|mpe|m2v|ts|mts|m2ts|vob|ogv|3gp|3g2|asf|divx|f4v) ;;
+    *) continue ;;
+  esac
   video=$(ffprobe -v error -select_streams V:0 -show_entries stream=codec_type \
     -of default=noprint_wrappers=1:nokey=1 "$input" 2>/dev/null) || continue
   [[ $video == video ]] || continue
