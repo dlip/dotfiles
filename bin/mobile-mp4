@@ -1,0 +1,113 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ $# != 1 || $1 == -h || $1 == --help ]]; then
+  echo 'Usage: mobile-mp4 OUTPUT_DIR'
+  echo 'Recursively convert videos from the current directory to H.264/AAC MP4.'
+  echo 'Fit within 1920x1080 without upscaling; skip existing outputs.'
+  exit "$(( $# != 1 ))"
+fi
+
+for command in ffmpeg ffprobe; do
+  command -v "$command" >/dev/null || { echo "Required command: $command" >&2; exit 1; }
+done
+
+source_dir=$(pwd -P)
+mkdir -p -- "$1"
+output_dir=$(cd -- "$1" && pwd -P)
+if [[ $output_dir == "$source_dir" ]]; then
+  echo 'Output directory must differ from the current directory.' >&2
+  exit 1
+fi
+
+scale="scale=w='min(1920,iw)':h='min(1080,ih)':force_original_aspect_ratio=decrease:force_divisible_by=2,setsar=1,format=yuv420p"
+device_args=()
+encoder_args=(-c:v libx264 -preset medium -crf 23)
+filter=$scale
+encoder=libx264
+
+try_encoder() {
+  local candidate=$1 candidate_filter=$2
+  shift 2
+  if ffmpeg -hide_banner -loglevel error -nostdin "${device_args[@]}" \
+    -f lavfi -i 'color=size=128x128:rate=30' -frames:v 3 \
+    -vf "$candidate_filter" "$@" -f null - >/dev/null 2>&1; then
+    encoder=$candidate
+    encoder_args=("$@")
+    filter=$candidate_filter
+    return 0
+  fi
+  return 1
+}
+
+if try_encoder h264_nvenc "$scale" -c:v h264_nvenc -preset p4 -rc vbr -cq 23 -b:v 0; then
+  :
+elif try_encoder h264_videotoolbox "$scale" -c:v h264_videotoolbox -allow_sw 0 -b:v 5M; then
+  :
+else
+  for device in /dev/dri/renderD*; do
+    [[ -e $device ]] || continue
+    device_args=(-vaapi_device "$device")
+    if try_encoder h264_vaapi "$scale,format=nv12,hwupload" -c:v h264_vaapi -qp 23; then
+      break
+    fi
+  done
+  if [[ $encoder == libx264 ]]; then
+    device_args=()
+    if try_encoder h264_qsv "$scale" -c:v h264_qsv -global_quality 23; then
+      :
+    elif try_encoder h264_amf "$scale" -c:v h264_amf -quality balanced -rc cqp -qp_i 23 -qp_p 23; then
+      :
+    elif try_encoder h264_v4l2m2m "$scale" -c:v h264_v4l2m2m -b:v 5M; then
+      :
+    fi
+  fi
+fi
+echo "Encoder: $encoder"
+
+temporary=''
+cleanup() {
+  [[ -z $temporary ]] || rm -f -- "$temporary"
+}
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+
+converted=0
+skipped=0
+failed=0
+while IFS= read -r -d '' input; do
+  video=$(ffprobe -v error -select_streams V:0 -show_entries stream=codec_type \
+    -of default=noprint_wrappers=1:nokey=1 "$input" 2>/dev/null) || continue
+  [[ $video == video ]] || continue
+  relative=${input#"$source_dir"/}
+  filename=${relative##*/}
+  stem=${filename%.*}
+  [[ -n $stem ]] || stem=$filename
+  destination="$output_dir/$(dirname -- "$relative")/$stem.mp4"
+  if [[ -e $destination || -L $destination ]]; then
+    printf 'Skipping existing output: %s\n' "$destination"
+    skipped=$((skipped + 1))
+    continue
+  fi
+  mkdir -p -- "$(dirname -- "$destination")"
+  temporary=$(mktemp "$(dirname -- "$destination")/.mobile-mp4.XXXXXXXX.mp4")
+  printf 'Converting: %s\n' "$relative"
+  if ffmpeg -hide_banner -loglevel warning -stats -nostdin -y "${device_args[@]}" \
+    -i "$input" -map 0:V:0 -map '0:a:0?' -vf "$filter" "${encoder_args[@]}" \
+    -c:a aac -b:a 128k -ac 2 -movflags +faststart "$temporary"; then
+    if ln -- "$temporary" "$destination"; then
+      converted=$((converted + 1))
+    else
+      failed=$((failed + 1))
+    fi
+  else
+    printf 'Conversion failed: %s\n' "$relative" >&2
+    failed=$((failed + 1))
+  fi
+  cleanup
+  temporary=''
+done < <(find "$source_dir" -path "$output_dir" -prune -o -type f -print0)
+
+printf 'Converted: %d; skipped: %d; failed: %d\n' "$converted" "$skipped" "$failed"
+[[ $failed == 0 ]]
