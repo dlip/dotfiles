@@ -71,6 +71,7 @@
 
   services.hermes-dashboard = {
     enable = true;
+    environmentFiles = [ "/run/secrets/hermes-env" ];
   };
 
   services.hermes-webui = {

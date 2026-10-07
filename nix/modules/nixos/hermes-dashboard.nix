@@ -45,6 +45,12 @@
           default = "users";
           description = "group to run the dashboard service as.";
         };
+
+        environmentFiles = lib.mkOption {
+          type = lib.types.listOf lib.types.path;
+          default = [ ];
+          description = "Environment files containing dashboard authentication credentials.";
+        };
       };
 
       config = lib.mkIf cfg.enable {
@@ -70,7 +76,8 @@
             Type = "simple";
             User = cfg.user;
             Group = cfg.group;
-            ExecStart = "${config.services.hermes-agent.package}/bin/hermes dashboard --host ${cfg.host} --port ${toString cfg.port} --insecure --no-open --tui";
+            EnvironmentFile = cfg.environmentFiles;
+            ExecStart = "${config.services.hermes-agent.package}/bin/hermes dashboard --host ${cfg.host} --port ${toString cfg.port} --no-open";
             Restart = "on-failure";
             RestartSec = 5;
           };
@@ -78,4 +85,3 @@
       };
     };
 }
-
