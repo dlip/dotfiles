@@ -20,6 +20,7 @@
             "freeimage-3.18.0-unstable-2024-04-18"
             "ventoy-1.1.12"
             "pnpm-9.15.9"
+            "hakuneko-6.1.7"
           ];
         };
         overlays = [
@@ -59,13 +60,15 @@
                 };
                 cargoRoot = null;
                 cargoDeps = null;
-                nativeBuildInputs = builtins.filter (
-                  input:
-                  !builtins.elem (input.pname or "") [
-                    "cargo-setup-hook.sh"
-                    "maturin-build-hook.sh"
-                  ]
-                ) old.nativeBuildInputs ++ [ final.python314Packages.uv-build ];
+                nativeBuildInputs =
+                  builtins.filter (
+                    input:
+                    !builtins.elem (input.pname or "") [
+                      "cargo-setup-hook.sh"
+                      "maturin-build-hook.sh"
+                    ]
+                  ) old.nativeBuildInputs
+                  ++ [ final.python314Packages.uv-build ];
                 postPatch = ''
                   substituteInPlace pyproject.toml \
                     --replace-fail "uv_build==0.11.8" "uv_build==${final.python314Packages.uv-build.version}"
@@ -102,6 +105,26 @@
                     dep
                 ) old.dependencies;
               });
+
+              # codex = prev.codex.overrideAttrs (old: let
+              #   src = final.fetchFromGitHub {
+              #     owner = "openai";
+              #     repo = "codex";
+              #     tag = "rust-v0.159.2";
+              #     hash = "sha256-fYzQEit5MxsEZw/UaISMbEIsy5iaAcqb7ElEOq9eVgs=";
+              #   };
+              #   cargoHash = "sha256-U20V8MkGJZd+qTOQETzqB25QJPYxJGV89LiR1kToW7A=";
+              # in {
+              #   version = "0.159.2";
+              #   inherit src cargoHash;
+              #   cargoDeps = final.rustPlatform.fetchCargoVendor {
+              #     pname = old.pname;
+              #     version = "0.159.2";
+              #     inherit src;
+              #     sourceRoot = "${src.name}/codex-rs";
+              #     hash = cargoHash;
+              #   };
+              # });
 
               emulationstation-de = final.callPackage ../pkgs/emulationstation-de { };
               emoji-menu = final.writeShellScriptBin "emoji-menu" (
