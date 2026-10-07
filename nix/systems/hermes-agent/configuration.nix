@@ -12,7 +12,6 @@
   imports = [
     self.inputs.hermes-agent.nixosModules.default
     self.modules.nixos.hermes-dashboard
-    self.modules.nixos.hermes-webui
   ];
 
   # https://github.com/NousResearch/hermes-agent/issues/12195
@@ -72,10 +71,6 @@
   services.hermes-dashboard = {
     enable = true;
     environmentFiles = [ "/run/secrets/hermes-env" ];
-  };
-
-  services.hermes-webui = {
-    enable = true;
   };
 
   system.stateVersion = "25.05";

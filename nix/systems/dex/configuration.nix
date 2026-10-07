@@ -185,7 +185,7 @@ rec {
           settings = {
             model = {
               provider = "openai-codex";
-              default = "gpt-5.6-luna";
+              default = "gpt-6.1-sol";
               base_url = "https://litellm.${domain}/v1";
             };
             image_gen = {
@@ -239,7 +239,7 @@ rec {
           settings = {
             model = {
               provider = "openai-codex";
-              default = "gpt-5.6-luna";
+              default = "gpt-6.1-sol";
               base_url = "https://litellm.${domain}/v1";
             };
             image_gen = {
@@ -860,6 +860,7 @@ rec {
   services.gitea = {
     enable = true;
     settings.server.HTTP_PORT = 3002;
+    settings.server.ROOT_URL = "https://gitea.${domain}";
   };
 
   hardware.bluetooth.enable = true;
