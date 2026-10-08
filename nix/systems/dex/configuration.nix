@@ -831,8 +831,10 @@ rec {
     secretKeyFile = config.sops.secrets.storyteller-key.path;
     dataDir = "/media/media2/storyteller";
     whisperVariant = "linux-x64-cuda-12.9.0";
+    cudaSupport = true;
+    # GTX 1060 requires CUDA 12 for CTC inference.
+    ctcCudaVersion = "12";
     settings = {
-      # GTX 1060: use WebGPU/FP32 for CTC; its CUDA 13 provider needs a newer GPU.
       ctcDevice = "webgpu";
       ctcDtype = "fp32";
     };
