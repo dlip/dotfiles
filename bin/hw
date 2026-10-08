@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Create (or switch to) a git worktree via worktrunk and open it as a native
+# Herdr worktree workspace — the herdr-worktrunk plugin's picker without fzf.
+#
+#   hw <branch>             existing branch -> switch, new name -> create from default branch
+#   hw --current <branch>   create a new branch from the current HEAD instead
+#
+# Run from inside the repo (main checkout or any of its worktrees). worktrunk
+# shortcuts (^ default, - previous, pr:N/mr:N) are passed through as-is.
+
+usage() {
+  echo "usage: hw [--current] <branch>" >&2
+  exit 2
+}
+
+base=""
+if [ "${1:-}" = "--current" ]; then
+  base="@"
+  shift
+fi
+[ $# -eq 1 ] && [ -n "$1" ] || usage
+name=$1
+
+# Existing local/remote-tracking branches and worktrunk shortcuts are switched
+# to (wt creates the worktree if needed); anything else is a new branch.
+case $name in
+  '^' | '-' | *:*) is_existing=1 ;;
+  *)
+    if git show-ref --quiet --verify "refs/heads/$name" \
+      || git show-ref --quiet --verify "refs/remotes/$name"; then
+      is_existing=1
+    else
+      is_existing=0
+    fi
+    ;;
+esac
+
+if [ "$is_existing" -eq 1 ]; then
+  wtargs=(switch "$name")
+else
+  wtargs=(switch --create "$name")
+  [ -n "$base" ] && wtargs+=(--base "$base")
+fi
+
+# worktrunk creates the checkout and runs its hooks; hook output goes to the
+# terminal, the JSON result to stdout.
+result=$(wt "${wtargs[@]}" --no-cd --format=json)
+wtpath=$(echo "$result" | jq -r '.path // empty')
+branch=$(echo "$result" | jq -r '.branch // empty')
+if [ -z "$wtpath" ]; then
+  echo "hw: worktrunk returned no worktree path for: $name" >&2
+  exit 1
+fi
+
+# `worktree open` must start from the repo's root workspace, not a linked
+# worktree. With no workspace on the root yet, herdr would label the one it
+# auto-creates with the checkout's basename; pre-create it with the repo's name.
+source_json=$(herdr worktree list --cwd "$wtpath" --json)
+repo_root=$(echo "$source_json" | jq -r '.result.source.repo_root')
+if [ -z "$(echo "$source_json" | jq -r '.result.source.source_workspace_id // empty')" ]; then
+  repo_label=$(echo "$source_json" | jq -r '.result.source.repo_name // empty')
+  repo_label=${repo_label%.git}
+  if [ -n "$repo_label" ]; then
+    herdr workspace create --cwd "$repo_root" --label "$repo_label" --no-focus >/dev/null
+  fi
+fi
+
+# Picking the root branch itself resolves to the repo's own workspace; a label
+# would rename it to the branch, so only label linked worktrees.
+label_args=(--label "${branch:-$name}")
+if [ "$(cd "$wtpath" && pwd -P)" = "$(cd "$repo_root" && pwd -P)" ]; then
+  label_args=()
+fi
+
+herdr worktree open --cwd "$repo_root" --path "$wtpath" "${label_args[@]}" --focus >/dev/null
