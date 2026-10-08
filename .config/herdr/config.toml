@@ -71,7 +71,8 @@ open_notification_target = ["prefix+o", "ctrl+alt+o"]
 workspace_picker = ["prefix+b", "ctrl+alt+b"]
 goto = ["prefix+g", "ctrl+alt+g"]
 new_workspace = ["prefix+n", "ctrl+alt+n"]
-new_worktree = ["prefix+shift+g", "ctrl+alt+shift+g"]
+# new_worktree keys are rebound below to the worktrunk plugin so wt hooks run.
+# new_worktree = ["prefix+shift+g", "ctrl+alt+shift+g"]
 # open_worktree = ""    # optional, unset by default
 # remove_worktree = ""  # optional, unset by default; opens confirmation
 rename_workspace = ["prefix+shift+m", "ctrl+alt+shift+m"]
@@ -166,6 +167,25 @@ command = "h"
 key = ["prefix+shift+p", "ctrl+alt+shift+p"]
 type = "pane"
 command = "h --refresh"
+
+# Worktrees via worktrunk (herdr-worktrunk plugin), so wt's hooks run.
+[[keys.command]]
+key = ["prefix+shift+g", "ctrl+alt+shift+g"]
+type = "plugin_action"
+command = "worktrunk.open"
+description = "Worktree: switch / create from default branch"
+
+[[keys.command]]
+key = ["prefix+shift+c", "ctrl+alt+shift+c"]
+type = "plugin_action"
+command = "worktrunk.open-current"
+description = "Worktree: switch / create from current branch"
+
+[[keys.command]]
+key = ["prefix+shift+d", "ctrl+alt+shift+d"]
+type = "plugin_action"
+command = "worktrunk.remove"
+description = "Worktree: remove"
 
 # Legacy indexed shortcut config is still parsed for compatibility.
 # Prefer switch_tab, switch_workspace, and focus_agent for new configs.

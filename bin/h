@@ -156,4 +156,39 @@ build_workspace() {
   herdr workspace focus "$ws_id" >/dev/null
 }
 
-build_workspace
+# A linked git worktree has a git dir distinct from the repo's common git dir.
+is_worktree() {
+  local dirs
+  dirs=$(git -C "$1" rev-parse --path-format=absolute --git-dir --git-common-dir 2>/dev/null) || return 1
+  [ "$(sed -n 1p <<<"$dirs")" != "$(sed -n 2p <<<"$dirs")" ]
+}
+
+# Open a linked worktree the way the herdr-worktrunk plugin does: as a native
+# herdr worktree workspace registered under the repo's root workspace.
+# `worktree open` rejects a linked worktree as its --cwd source
+# (linked_worktree_source), so resolve the repository root and start from there.
+open_worktree() {
+  local source_json repo_root repo_label label
+  source_json=$(herdr worktree list --cwd "$dir" --json)
+  repo_root=$(echo "$source_json" | jq -r '.result.source.repo_root')
+
+  # With no workspace on the root yet, herdr would auto-create one labeled with
+  # the checkout's basename verbatim; pre-create it with the repo's name instead.
+  if [ -z "$(echo "$source_json" | jq -r '.result.source.source_workspace_id // empty')" ]; then
+    repo_label=$(echo "$source_json" | jq -r '.result.source.repo_name // empty')
+    repo_label=${repo_label%.git}
+    if [ -n "$repo_label" ]; then
+      herdr workspace create --cwd "$repo_root" --label "$repo_label" --no-focus >/dev/null
+    fi
+  fi
+
+  # Label the worktree workspace by its branch, like the plugin does.
+  label=$(git -C "$dir" branch --show-current)
+  herdr worktree open --cwd "$repo_root" --path "$dir" --label "${label:-$session}" --focus >/dev/null
+}
+
+if is_worktree "$dir"; then
+  open_worktree
+else
+  build_workspace
+fi

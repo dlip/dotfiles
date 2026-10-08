@@ -174,5 +174,6 @@
   "AI.toolcall.reviewMode.solo": "skip",
   "AI.toolcall.reviewMode.ide": "skip",
   "git.blame.editorDecoration.enabled": true,
-  "AI.toolcall.v2.solo.command.mode": "alwaysRun",
+"AI.toolcall.v2.solo.command.mode": "alwaysRun",
+"trae.network.proxy.effectiveMode": "system",
 }
