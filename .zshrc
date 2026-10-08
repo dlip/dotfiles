@@ -45,3 +45,5 @@ select-word-style bash
 
 command -v devenv >/dev/null 2>&1 && eval "$(devenv hook zsh)"
 export PATH=$HOME/.brew/opt/node/bin:$HOME/.local/bin:$PATH
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
