@@ -464,6 +464,7 @@ binds {
     Mod+O repeat=false { toggle-overview; }
 
     Mod+Q { close-window; }
+    Mod+Shift+Q repeat=false hotkey-overlay-title="Force kill focused app" { spawn-sh "pid=$(niri msg --json focused-window | jq -er '.pid // empty | select(. > 1)') && kill -KILL -- \"$pid\""; }
 
     Mod+Left  { focus-column-left; }
     Mod+Down  { focus-window-or-workspace-down; }
