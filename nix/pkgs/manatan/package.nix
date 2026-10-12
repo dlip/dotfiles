@@ -1,9 +1,7 @@
 {
   stdenv,
   fetchurl,
-  libgcc,
-  wayland,
-  libxkbcommon,
+  dpkg,
   buildFHSEnv,
 }:
 
@@ -11,7 +9,7 @@ let
 
   pkg = stdenv.mkDerivation (finalAttrs: {
     pname = "manatan";
-    version = "5.2.7";
+    version = "6.1.41";
 
     src =
       let
@@ -24,27 +22,29 @@ let
         };
       in
       fetchurl {
-        url = "https://github.com/KolbyML/Manatan/releases/download/v${finalAttrs.version}/Manatan-v${finalAttrs.version}-Linux-${system}.tar.gz";
+        url = "https://github.com/KolbyML/Manatan/releases/download/v${finalAttrs.version}/manatan_${finalAttrs.version}_${system}.deb";
         sha256 = selectSystem {
-          x86_64-linux = "sha256-4Jd58k6uotCmULPKYddhVqzB+pUxAaHGUhuVNsFjzLc=";
-          aarch64-linux = "sha256-PGKGFmyhIlFvcV9vhtq3sLLBbO/Mb3WHVF7fD1dvFFM=";
+          x86_64-linux = "sha256-qj7d4xm8lBZXQzQHKO9n2e2cngt+TwNEw0/b6WUd1mM=";
+          aarch64-linux = "sha256-dUi8kvhv6vFeutlQ929d9+L4he2mJyG5Yg2r6fLUSXc=";
         };
       };
 
-    buildInputs = [
-      libgcc
-    ];
-
+    nativeBuildInputs = [ dpkg ];
+    unpackPhase = ''
+      runHook preUnpack
+      dpkg-deb -x "$src" .
+      runHook postUnpack
+    '';
     sourceRoot = ".";
 
     installPhase = ''
-      install -m755 -D manatan $out/bin/manatan
+      runHook preInstall
+      mkdir -p "$out"
+      cp -r usr/lib usr/share "$out/"
+      substituteInPlace "$out/share/applications/manatan.desktop" \
+        --replace-fail "Exec=/usr/bin/manatan" "Exec=manatan"
+      runHook postInstall
     '';
-
-    runtimeDependencies = [
-      wayland
-      libxkbcommon
-    ];
 
     meta = {
       homepage = "https://manatan.com";
@@ -64,7 +64,11 @@ buildFHSEnv {
     ];
   };
 
-  runScript = "${pkg.outPath}/bin/manatan";
+  runScript = "${pkg}/lib/manatan/manatan-bootstrapper";
+  extraInstallCommands = ''
+    mkdir -p "$out/share"
+    cp -r ${pkg}/share/applications ${pkg}/share/icons "$out/share/"
+  '';
 
   targetPkgs =
     pkgs: with pkgs; [
@@ -75,6 +79,13 @@ buildFHSEnv {
       libz
       libGL
       glib
+      gtk3
+      libsecret
+      gdk-pixbuf
+      harfbuzz
+      libepoxy
+      curl
+      expat
       nspr
       nss
       dbus
@@ -85,6 +96,7 @@ buildFHSEnv {
       libxdamage
       libxext
       libxfixes
+      libxi
       libxrandr
       libgbm
       libxcb
@@ -93,5 +105,11 @@ buildFHSEnv {
       lsof
       udev
       alsa-lib
+      libgcc
+      mpv
+      gst_all_1.gstreamer
+      gst_all_1.gst-plugins-base
+      gst_all_1.gst-plugins-good
+      pipewire
     ];
 }
