@@ -153,3 +153,4 @@
 !/flake.nix
 !/nix/
 !/nix/**
+!/nix/pkgs/manatan/package.nix

@@ -63,6 +63,7 @@
       hermes-desktop
       zed-editor
       codex
+      manatan
     ];
 
   hardware.graphics = {

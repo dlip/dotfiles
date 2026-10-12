@@ -5,8 +5,9 @@
     "aarch64-linux"
   ];
   perSystem =
-    { system, ... }:
+    { system, pkgs, ... }:
     {
+      packages.manatan = pkgs.manatan;
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;
         config = {
@@ -92,6 +93,7 @@
                 doCheck = !prev.stdenv.hostPlatform.isi686;
               };
               mokuro-reader = inputs.mokuro-reader.packages.${final.stdenv.hostPlatform.system}.default;
+              manatan = final.callPackage ../pkgs/manatan/package.nix { };
               bottles = (prev.bottles.override { removeWarningPopup = true; });
 
               litellm = litellmOlder.overridePythonAttrs (old: {
