@@ -534,6 +534,42 @@ rec {
   # database.createLocally is true (the default).
   services.postgresql.enable = true;
 
+  sops.secrets.romm-env = {
+    restartUnits = [
+      "romm.service"
+      "romm-worker.service"
+      "romm-scheduler.service"
+      "romm-watcher.service"
+    ];
+  };
+  services.romm = {
+    enable = true;
+    environmentFile = config.sops.secrets.romm-env.path;
+    port = 8087;
+    redis.port = 6380;
+    dataDir = "/media/games/romm";
+    nginx.virtualHost = "romm.${domain}";
+    extraEnvironment = {
+      ROMM_BASE_URL = "https://romm.${domain}";
+      ROMM_SESSION_SECURE_COOKIE = "true";
+      HASHEOUS_API_ENABLED = "true";
+    };
+  };
+  services.nginx.virtualHosts."romm.${domain}".listen = [
+    {
+      addr = "127.0.0.1";
+      port = dex-services.romm;
+    }
+  ];
+  fileSystems."/var/lib/romm/library/roms" = {
+    device = "/media/games/ROMs";
+    fsType = "none";
+    options = [
+      "bind"
+      "x-systemd.requires-mounts-for=/media/games"
+    ];
+  };
+
   sops.secrets.sparkyfitness-env = { };
   services.sparkyfitness = {
     enable = true;
@@ -706,6 +742,10 @@ rec {
 
   services.home-assistant = {
     enable = true;
+    package = pkgs.home-assistant.overrideAttrs {
+      doCheck = false;
+      doInstallCheck = false;
+    };
     customComponents = with pkgs.home-assistant-custom-components; [
       frigate
     ];
@@ -1394,6 +1434,13 @@ rec {
       {
         "Media Providers" = [
           {
+            RomM = {
+              icon = "romm.png";
+              href = "https://romm.${domain}";
+              description = "ROM library and browser emulation";
+            };
+          }
+          {
             Plex = {
               icon = "plex.png";
               href = "https://plex.${domain}";
@@ -1520,11 +1567,11 @@ rec {
     };
   };
 
-  services.vikunja = {
-    enable = true;
-    frontendScheme = "https";
-    frontendHostname = "vikunja.${domain}";
-  };
+  # services.vikunja = {
+  #   enable = true;
+  #   frontendScheme = "https";
+  #   frontendHostname = "vikunja.${domain}";
+  # };
 
   system.stateVersion = "23.05"; # Did you read the comment?
 }

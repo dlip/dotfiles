@@ -24,9 +24,9 @@
   miniflux = 8090;
   home-assistant = 8123;
   frigate = 5000;
-  vikunja = 3456;
   tududi = 3004;
   sparkyfitness = 3011;
   storyteller = 8001;
   litellm = 8086;
+  romm = 3012;
 }

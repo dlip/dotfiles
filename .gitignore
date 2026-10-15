@@ -154,3 +154,4 @@
 !/nix/
 !/nix/**
 !/nix/pkgs/manatan/package.nix
+!/repair-romm.sh
