@@ -14,10 +14,10 @@
  "hide_demo_games": false,
  "organize_options": {
   "create_folder_per_game": true,
-  "dlc_folder": "",
-  "updates_folder": "",
+  "dlc_folder": "dlc",
+  "updates_folder": "update",
   "rename_files": true,
-  "delete_empty_folders": false,
+  "delete_empty_folders": true,
   "delete_old_update_files": false,
   "folder_name_template": "{TITLE_NAME}",
   "switch_safe_file_names": true,
