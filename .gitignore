@@ -101,6 +101,8 @@
 !/.config/swaync/
 !/.config/swaync/config.json
 !/.config/swaync/configSchema.json
+!/.config/switch-library-manager
+!/.config/switch-library-manager/settings.json
 !/.config/tmux/
 !/.config/tmux/tmux.conf
 !/.config/waybar/
@@ -154,4 +156,5 @@
 !/nix/
 !/nix/**
 !/nix/pkgs/manatan/package.nix
+!/nix/pkgs/switch-library-manager/package.nix
 !/repair-romm.sh

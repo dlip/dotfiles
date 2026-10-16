@@ -8,6 +8,7 @@
     { system, pkgs, ... }:
     {
       packages.manatan = pkgs.manatan;
+      packages.switch-library-manager = pkgs.switch-library-manager;
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;
         config = {
@@ -94,6 +95,7 @@
               };
               mokuro-reader = inputs.mokuro-reader.packages.${final.stdenv.hostPlatform.system}.default;
               manatan = final.callPackage ../pkgs/manatan/package.nix { };
+              switch-library-manager = final.callPackage ../pkgs/switch-library-manager/package.nix { };
               bottles = (prev.bottles.override { removeWarningPopup = true; });
 
               litellm = litellmOlder.overridePythonAttrs (old: {

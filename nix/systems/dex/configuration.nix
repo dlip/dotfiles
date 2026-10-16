@@ -402,7 +402,7 @@ rec {
     ++ [
       restic
       restic-dex
-      pi-coding-agent
+      switch-library-manager
     ];
 
   # programs.steam = {
