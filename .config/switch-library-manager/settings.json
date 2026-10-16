@@ -1,23 +1,33 @@
 {
- "versions_etag": "W/\"effba4d454bdd1:0\"",
+ "versions_json_url": "https://raw.githubusercontent.com/blawar/titledb/master/versions.json",
+ "versions_etag": "W/\"9273770f1078e420e7435489e1a13ab7443c94baff94f1292d24904611ab2cf3\"",
+ "titles_json_url": "https://tinfoil.io/repo/db/titles.json",
  "titles_etag": "W/\"5ff4554454bdd1:0\"",
- "prod_keys": "",
- "folder": "",
+ "prod_keys": "/media/games/romm/library/bios/switch/prod.keys",
+ "folder": "/media/games/romm/library/roms/switch",
  "scan_folders": [],
- "gui": true,
- "debug": false,
+ "gui": false,
+ "debug": true,
  "check_for_missing_updates": true,
  "check_for_missing_dlc": true,
+ "hide_missing_games": false,
+ "hide_demo_games": false,
  "organize_options": {
-  "create_folder_per_game": false,
-  "rename_files": false,
+  "create_folder_per_game": true,
+  "dlc_folder": "",
+  "updates_folder": "",
+  "rename_files": true,
   "delete_empty_folders": false,
   "delete_old_update_files": false,
   "folder_name_template": "{TITLE_NAME}",
   "switch_safe_file_names": true,
-  "file_name_template": "{TITLE_NAME} ({DLC_NAME})[{TITLE_ID}][v{VERSION}]"
+  "file_name_template": "{TITLE_NAME} ({DLC_NAME})[{TITLE_ID}][v{VERSION}]",
+  "process_when_missing_base_game": false
  },
  "scan_recursively": true,
  "gui_page_size": 100,
- "ignore_dlc_title_ids": []
+ "ignore_dlc_updates": false,
+ "ignore_dlc_title_ids": [],
+ "ignore_update_title_ids": null,
+ "ignore_file_types": null
 }

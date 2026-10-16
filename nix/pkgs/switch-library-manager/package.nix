@@ -6,23 +6,27 @@
 
 buildGoModule {
   pname = "switch-library-manager";
-  version = "1.4.0";
+  version = "1.10.0-unstable-2026-09-28";
 
   src = fetchFromGitHub {
-    owner = "giwty";
+    owner = "trembon";
     repo = "switch-library-manager";
-    rev = "f69daa7e5e3bc9fc2cc17ad839a12ac3bf5e0372";
-    hash = "sha256-tbCTtFNpY4M47Ws/ohoyBOG4aQwrHJ/CozYxgO6cd5k=";
+    rev = "73bb67efc02ac0093a56343974b83ac5d91459eb";
+    hash = "sha256-hGR6YkmlONG2MW8q0OHg8gRzMa3CtEp+cvFsFLV3E90=";
   };
 
-  vendorHash = "sha256-scAnQ14ZGx2wheqrJzmKiUc/31siUSLYuWtO3GCZeLI=";
+  modRoot = "src";
+  vendorHash = "sha256-xpc+E3nABrAy+v5rXolUAxIvvr5wZOSmvyHI1Sl2VAo=";
   subPackages = [ "." ];
 
   postPatch = ''
-    rm gui.go prod.keys
-    sed -i '/appSettings.GUI = true/,/^}/c\
-    CreateConsole(workingFolder, sugar).Start()\n}' main.go
-    substituteInPlace main.go --replace-fail \
+    rm src/gui*.go src/embedded_assets_test.go
+    sed -i '/files, err := AssetDir(workingFolder)/,/^\t}/d' src/main.go
+    substituteInPlace src/main.go \
+      --replace-fail 'useGUI := appSettings.GUI' 'useGUI := false' \
+      --replace-fail 'CreateGUI(workingFolder, sugar).Start()' \
+        'fmt.Fprintln(os.Stderr, "This package provides console mode only"); os.Exit(1)'
+    substituteInPlace src/main.go --replace-fail \
       'workingFolder := filepath.Dir(exePath)' \
       'configDir, err := os.UserConfigDir()
         if err != nil { panic(err) }
@@ -30,10 +34,16 @@ buildGoModule {
         if err := os.MkdirAll(workingFolder, 0700); err != nil { panic(err) }'
   '';
 
+  checkPhase = ''
+    runHook preCheck
+    go test ./...
+    runHook postCheck
+  '';
+
   meta = {
     description = "Command-line manager for Nintendo Switch game backup libraries";
-    homepage = "https://github.com/giwty/switch-library-manager";
-    license = lib.licenses.unfree;
+    homepage = "https://github.com/trembon/switch-library-manager";
+    license = lib.licenses.mit;
     mainProgram = "switch-library-manager";
     platforms = lib.platforms.unix;
   };
