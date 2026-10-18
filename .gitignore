@@ -156,5 +156,7 @@
 !/nix/
 !/nix/**
 !/nix/pkgs/manatan/package.nix
+!/nix/pkgs/rom-converto/package.nix
+!/nix/pkgs/romm/package.nix
 !/nix/pkgs/switch-library-manager/package.nix
 !/repair-romm.sh

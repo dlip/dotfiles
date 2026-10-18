@@ -15,6 +15,15 @@ let
   hermes-services = import ../hermes-agent/services.nix;
   domain = "dex-lips.duckdns.org";
 
+  romm-queue-worker = name: {
+    description = "RomM ${name} queue worker";
+    wantedBy = [ "multi-user.target" ];
+    inherit (config.systemd.services.romm-worker) after requires environment;
+    serviceConfig = config.systemd.services.romm-worker.serviceConfig // {
+      ExecStart = "${config.services.romm.package}/bin/${name}";
+    };
+  };
+
   restic-dex = pkgs.writeShellScriptBin "restic-dex" ''
     export RESTIC_REPOSITORY="/media/backup/restic"
     export RESTIC_PASSWORD_FILE="${config.sops.secrets.restic-encryption.path}"
@@ -538,6 +547,8 @@ rec {
     restartUnits = [
       "romm.service"
       "romm-worker.service"
+      "romm-scans-worker.service"
+      "romm-streaming-worker.service"
       "romm-scheduler.service"
       "romm-watcher.service"
     ];
@@ -553,6 +564,7 @@ rec {
       ROMM_BASE_URL = "https://romm.${domain}";
       ROMM_SESSION_SECURE_COOKIE = "true";
       HASHEOUS_API_ENABLED = "true";
+      ROM_CONVERTO_ENABLED = "true";
     };
   };
   services.nginx.virtualHosts."romm.${domain}".listen = [
@@ -561,14 +573,34 @@ rec {
       port = dex-services.romm;
     }
   ];
-  fileSystems."/var/lib/romm/library/roms" = {
-    device = "/media/games/ROMs";
-    fsType = "none";
-    options = [
-      "bind"
-      "x-systemd.requires-mounts-for=/media/games"
-    ];
-  };
+  systemd.services.romm-scans-worker = romm-queue-worker "romm-scans-worker";
+  systemd.services.romm-streaming-worker = romm-queue-worker "romm-streaming-worker";
+  systemd.services.romm.preStart = lib.mkAfter ''
+    ${config.services.romm.package.pythonEnv}/bin/python <<'PY'
+    import os
+    from pathlib import Path
+    import yaml
+
+    path = Path(os.environ["ROMM_BASE_PATH"]) / "config/config.yml"
+    settings = yaml.safe_load(path.read_text()) if path.exists() else {}
+    settings = settings or {}
+    converto = settings.setdefault("converto", {})
+    converto.setdefault("platform_formats", {}).update({
+        "psx": "chd",
+        "ps2": "chd",
+        "psp": "chd",
+        "saturn": "chd",
+        "segacd": "chd",
+        "dc": "chd",
+        "ngc": "rvz",
+        "wii": "rvz",
+        "switch": "nsz",
+    })
+    temporary = path.with_suffix(".yml.tmp")
+    temporary.write_text(yaml.safe_dump(settings, sort_keys=False))
+    temporary.replace(path)
+    PY
+  '';
 
   sops.secrets.sparkyfitness-env = { };
   services.sparkyfitness = {

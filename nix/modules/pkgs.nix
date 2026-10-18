@@ -8,6 +8,8 @@
     { system, pkgs, ... }:
     {
       packages.manatan = pkgs.manatan;
+      packages.rom-converto = pkgs.rom-converto;
+      packages.romm = pkgs.romm;
       packages.switch-library-manager = pkgs.switch-library-manager;
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;
@@ -95,6 +97,8 @@
               };
               mokuro-reader = inputs.mokuro-reader.packages.${final.stdenv.hostPlatform.system}.default;
               manatan = final.callPackage ../pkgs/manatan/package.nix { };
+              rom-converto = final.callPackage ../pkgs/rom-converto/package.nix { };
+              romm = final.callPackage ../pkgs/romm/package.nix { romm = prev.romm; };
               switch-library-manager = final.callPackage ../pkgs/switch-library-manager/package.nix { };
               bottles = (prev.bottles.override { removeWarningPopup = true; });
 
