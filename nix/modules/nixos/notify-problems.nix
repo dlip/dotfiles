@@ -12,10 +12,10 @@
       ...
     }:
     {
-      config.sops.secrets.gotify = { };
+      config.sops.secrets.notify = { };
       config.systemd.services."notify-problems@" = {
         enable = true;
-        description = "Alert for %i via gotify";
+        description = "Alert for %i via Telegram";
         serviceConfig = {
           Type = "oneshot";
           User = "root";
@@ -24,13 +24,14 @@
 
         environment.SERVICE = "%i";
         script = ''
-          GOTIFY_TOKEN=$(cat ${config.sops.secrets.gotify.path})
-          ${pkgs.gotify-cli}/bin/gotify push \
-            --url "http://127.0.0.1:8080" \
-            --token "$GOTIFY_TOKEN" \
-            --title "$HOSTNAME: $SERVICE Error" \
-            --priority 5 \
-            <<< "$(systemctl status --full "$SERVICE" 2>&1)"
+          tmpfile=$(mktemp)
+          trap 'rm -f "$tmpfile"' EXIT
+          {
+            printf '%s: %s Error\n\n' "$HOSTNAME" "$SERVICE"
+            systemctl status --full "$SERVICE" 2>&1 || true
+          } > "$tmpfile"
+          ${pkgs.notify}/bin/notify -bulk -data "$tmpfile" \
+            -provider telegram -provider-config ${config.sops.secrets.notify.path}
         '';
       };
     };
