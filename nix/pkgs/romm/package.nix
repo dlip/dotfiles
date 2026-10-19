@@ -99,6 +99,9 @@ romm.overrideAttrs (
         old.installPhase;
 
     postInstall = ''
+      rm "$out/bin/romm-watcher"
+      wrap ${finalAttrs.passthru.pythonEnv}/bin/python romm-watcher \
+        --add-flags ${./watch-library.py}
       for queue in scans streaming; do
         wrap ${finalAttrs.passthru.pythonEnv}/bin/rq "romm-$queue-worker" \
           --add-flags "worker --path $out/share/romm/backend --worker-class handler.rq_worker.PreloadingWorker --connection-class handler.redis_handler.RomMRedis --with-scheduler $queue"

@@ -158,5 +158,6 @@
 !/nix/pkgs/manatan/package.nix
 !/nix/pkgs/rom-converto/package.nix
 !/nix/pkgs/romm/package.nix
+!/nix/pkgs/romm/watch-library.py
 !/nix/pkgs/switch-library-manager/package.nix
 !/repair-romm.sh
