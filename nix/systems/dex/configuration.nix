@@ -581,6 +581,7 @@ rec {
       HASHEOUS_API_ENABLED = "true";
       ROM_CONVERTO_ENABLED = "true";
       ROM_CONVERTO_TIMEOUT = "5400";
+      HLTB_API_ENABLED = "true";
     };
   };
   services.nginx.virtualHosts."romm.${domain}".listen = [
@@ -1529,7 +1530,6 @@ rec {
         "/mnt/downloader"
         "/mnt/hermes"
         "/mnt/tony"
-        "/mnt/vk"
         "/var/lib"
         "/media/personal"
       ];
@@ -1541,8 +1541,7 @@ rec {
       ];
       extraBackupArgs = [
         "--exclude-file=/etc/restic-ignore"
-        "--verbose"
-        "2"
+        "--verbose=2"
       ];
       timerConfig = {
         OnCalendar = "daily";
