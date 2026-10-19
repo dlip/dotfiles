@@ -2,27 +2,35 @@
   "title": "Restic Backup",
   "uid": "restic-backup",
   "schemaVersion": 39,
-  "version": 1,
+  "version": 3,
   "timezone": "browser",
   "editable": true,
   "panels": [
     {
       "id": 1,
-      "title": "Repository Size",
+      "title": "Latest Snapshot Size (logical)",
       "type": "stat",
-      "gridPos": { "h": 8, "w": 4, "x": 0, "y": 0 },
+      "gridPos": {
+        "h": 8,
+        "w": 4,
+        "x": 0,
+        "y": 0
+      },
       "targets": [
         {
           "expr": "restic_repository_size_bytes",
           "legendFormat": "",
-          "refId": "A"
+          "refId": "A",
+          "instant": true
         }
       ],
       "fieldConfig": {
         "defaults": {
           "unit": "bytes",
           "decimals": 2,
-          "color": { "mode": "none" }
+          "color": {
+            "mode": "none"
+          }
         },
         "overrides": []
       }
@@ -31,19 +39,27 @@
       "id": 2,
       "title": "Snapshots",
       "type": "stat",
-      "gridPos": { "h": 8, "w": 4, "x": 4, "y": 0 },
+      "gridPos": {
+        "h": 8,
+        "w": 4,
+        "x": 4,
+        "y": 0
+      },
       "targets": [
         {
           "expr": "restic_snapshots_total",
           "legendFormat": "",
-          "refId": "A"
+          "refId": "A",
+          "instant": true
         }
       ],
       "fieldConfig": {
         "defaults": {
           "unit": "none",
           "decimals": 0,
-          "color": { "mode": "none" }
+          "color": {
+            "mode": "none"
+          }
         },
         "overrides": []
       }
@@ -52,19 +68,27 @@
       "id": 3,
       "title": "Total Files",
       "type": "stat",
-      "gridPos": { "h": 8, "w": 4, "x": 8, "y": 0 },
+      "gridPos": {
+        "h": 8,
+        "w": 4,
+        "x": 8,
+        "y": 0
+      },
       "targets": [
         {
           "expr": "restic_total_file_count",
           "legendFormat": "",
-          "refId": "A"
+          "refId": "A",
+          "instant": true
         }
       ],
       "fieldConfig": {
         "defaults": {
           "unit": "none",
           "decimals": 0,
-          "color": { "mode": "none" }
+          "color": {
+            "mode": "none"
+          }
         },
         "overrides": []
       }
@@ -73,19 +97,27 @@
       "id": 4,
       "title": "Last Backup",
       "type": "stat",
-      "gridPos": { "h": 8, "w": 4, "x": 0, "y": 8 },
+      "gridPos": {
+        "h": 8,
+        "w": 4,
+        "x": 0,
+        "y": 8
+      },
       "targets": [
         {
           "expr": "restic_last_backup_timestamp_ms",
           "legendFormat": "",
-          "refId": "A"
+          "refId": "A",
+          "instant": true
         }
       ],
       "fieldConfig": {
         "defaults": {
           "unit": "dateTimeFromNow",
           "decimals": 0,
-          "color": { "mode": "none" }
+          "color": {
+            "mode": "none"
+          }
         },
         "overrides": []
       }
@@ -94,12 +126,18 @@
       "id": 5,
       "title": "Backup Status",
       "type": "stat",
-      "gridPos": { "h": 8, "w": 4, "x": 4, "y": 8 },
+      "gridPos": {
+        "h": 8,
+        "w": 4,
+        "x": 4,
+        "y": 8
+      },
       "targets": [
         {
           "expr": "restic_backup_success",
           "legendFormat": "",
-          "refId": "A"
+          "refId": "A",
+          "instant": true
         }
       ],
       "fieldConfig": {
@@ -112,13 +150,137 @@
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              { "color": "red", "value": null },
-              { "color": "green", "value": 1 }
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
             ]
           }
         },
         "overrides": []
       }
+    },
+    {
+      "id": 6,
+      "title": "Metric Collection Status",
+      "type": "stat",
+      "gridPos": {
+        "h": 8,
+        "w": 4,
+        "x": 8,
+        "y": 8
+      },
+      "targets": [
+        {
+          "expr": "restic_stats_success",
+          "legendFormat": "",
+          "refId": "A",
+          "instant": true
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 7,
+      "title": "Largest Backup Directories (logical size)",
+      "type": "bargauge",
+      "description": "Latest snapshot before compression and deduplication. Each view uses one directory depth to avoid overlapping parent/child totals. Top 50 paths per depth are exported.",
+      "gridPos": {
+        "h": 14,
+        "w": 24,
+        "x": 0,
+        "y": 16
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sort_desc(topk(25, restic_path_size_bytes{depth=\"$depth\"}))",
+          "instant": true,
+          "legendFormat": "{{path}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes",
+          "color": {
+            "mode": "continuous-GrYlRd"
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "gradient",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      }
     }
-  ]
+  ],
+  "templating": {
+    "list": [
+      {
+        "name": "depth",
+        "label": "Directory depth",
+        "type": "custom",
+        "query": "1,2,3,4",
+        "current": {
+          "text": "3",
+          "value": "3"
+        },
+        "options": [
+          {
+            "text": "1",
+            "value": "1",
+            "selected": false
+          },
+          {
+            "text": "2",
+            "value": "2",
+            "selected": false
+          },
+          {
+            "text": "3",
+            "value": "3",
+            "selected": true
+          },
+          {
+            "text": "4",
+            "value": "4",
+            "selected": false
+          }
+        ]
+      }
+    ]
+  }
 }
