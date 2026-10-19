@@ -181,7 +181,7 @@ rec {
   #     '';
   # };
 
-  sops.secrets."hermes-env" = { };
+  sops.secrets."hermes-env".restartUnits = [ "container@hermes-agent.service" ];
   containers.hermes-agent = {
     ephemeral = true;
     autoStart = true;
@@ -193,9 +193,14 @@ rec {
         {
           settings = {
             model = {
-              provider = "openai-codex";
+              provider = "custom:litellm";
               default = "gpt-6.1-sol";
               base_url = "https://litellm.${domain}/v1";
+            };
+            providers.litellm = {
+              base_url = "https://litellm.${domain}/v1";
+              api_mode = "codex_responses";
+              key_env = "OPENAI_API_KEY";
             };
             image_gen = {
               model = "fal-ai/gpt-image-2";
@@ -235,7 +240,7 @@ rec {
     };
   };
 
-  sops.secrets."tony-env" = { };
+  sops.secrets."tony-env".restartUnits = [ "container@tony-agent.service" ];
   containers.tony-agent = {
     ephemeral = true;
     autoStart = true;
@@ -247,9 +252,14 @@ rec {
         {
           settings = {
             model = {
-              provider = "openai-codex";
+              provider = "custom:litellm";
               default = "gpt-6.1-sol";
               base_url = "https://litellm.${domain}/v1";
+            };
+            providers.litellm = {
+              base_url = "https://litellm.${domain}/v1";
+              api_mode = "codex_responses";
+              key_env = "OPENAI_API_KEY";
             };
             image_gen = {
               model = "fal-ai/gpt-image-2";
@@ -295,7 +305,7 @@ rec {
     };
   };
 
-  sops.secrets.litellm-env = { };
+  sops.secrets.litellm-env.restartUnits = [ "litellm.service" ];
   services.litellm = {
     enable = true;
     port = dex-services.litellm;
@@ -306,6 +316,11 @@ rec {
     environmentFile = config.sops.secrets.litellm-env.path;
     settings = {
       model_list = [
+        {
+          model_name = "gpt-6.1-sol";
+          model_info.mode = "responses";
+          litellm_params.model = "chatgpt/gpt-6.1-sol";
+        }
         {
           model_name = "gpt-5.6-sol";
           model_info.mode = "responses";
@@ -565,6 +580,7 @@ rec {
       ROMM_SESSION_SECURE_COOKIE = "true";
       HASHEOUS_API_ENABLED = "true";
       ROM_CONVERTO_ENABLED = "true";
+      ROM_CONVERTO_TIMEOUT = "1800";
     };
   };
   services.nginx.virtualHosts."romm.${domain}".listen = [
