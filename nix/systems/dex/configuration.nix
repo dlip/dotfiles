@@ -580,7 +580,7 @@ rec {
       ROMM_SESSION_SECURE_COOKIE = "true";
       HASHEOUS_API_ENABLED = "true";
       ROM_CONVERTO_ENABLED = "true";
-      ROM_CONVERTO_TIMEOUT = "1800";
+      ROM_CONVERTO_TIMEOUT = "5400";
     };
   };
   services.nginx.virtualHosts."romm.${domain}".listen = [
@@ -1510,6 +1510,7 @@ rec {
     .cache
     .Cache
     /var/lib/docker
+    /var/lib/frigate
     .rustup
     .spago
     .vscode
@@ -1530,7 +1531,7 @@ rec {
         "/mnt/tony"
         "/mnt/vk"
         "/var/lib"
-        "/media/media/personal"
+        "/media/personal"
       ];
       repository = "/media/backup/restic";
       passwordFile = config.sops.secrets.restic-encryption.path;
