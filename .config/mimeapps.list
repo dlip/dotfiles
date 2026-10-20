@@ -33,10 +33,11 @@ application/x-7z-compressed=org.gnome.FileRoller.desktop;
 application/xml=neovide.desktop;
 application/vnd.comicbook+zip=org.gnome.FileRoller.desktop;
 image/vnd.dxf=org.inkscape.Inkscape.desktop;
-video/mp4=vlc.desktop;audacity.desktop;
+video/mp4=vlc.desktop;audacity.desktop;mpv.desktop;
 application/epub+zip=thorium-reader.desktop;
 application/xhtml+xml=neovide.desktop;
 application/smil+xml=neovide.desktop;
+text/x-nfo=neovide.desktop;
 
 [Default Applications]
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
@@ -66,5 +67,6 @@ application/vnd.rar=org.gnome.FileRoller.desktop
 x-scheme-handler/discord-712465656758665259=discord-712465656758665259.desktop
 image/vnd.dxf=org.inkscape.Inkscape.desktop
 x-scheme-handler/claude-cli=claude-code-url-handler.desktop
+video/mp4=mpv.desktop
 
 [Removed Associations]
