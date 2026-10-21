@@ -256,6 +256,7 @@
       services.udev.packages = with pkgs; [
         via
         vial
+        ns-usbloader
       ];
 
       programs.nh = {

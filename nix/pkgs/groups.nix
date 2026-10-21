@@ -264,7 +264,7 @@ let
     kitty
     kooha
     krita
-    libreoffice-fresh
+    libreoffice
     mlt
     mpv
     neovide
