@@ -28,6 +28,7 @@
           ];
         };
         overlays = [
+          inputs.eden.overlays.default
           inputs.storyteller.overlays.default
           inputs.nix-on-droid.overlays.default
           inputs.nixgl.overlay
@@ -101,6 +102,13 @@
               romm = final.callPackage ../pkgs/romm/package.nix { romm = prev.romm; };
               switch-library-manager = final.callPackage ../pkgs/switch-library-manager/package.nix { };
               bottles = (prev.bottles.override { removeWarningPopup = true; });
+              eden = prev.eden.overrideAttrs (old: {
+                postPatch = (old.postPatch or "") + ''
+                  substituteInPlace src/core/memory/cheat_engine.h \
+                    --replace-fail $'    DmntCheatVm vm;\n    CheatProcessMetadata metadata;' \
+                      $'    CheatProcessMetadata metadata{};\n    DmntCheatVm vm;'
+                '';
+              });
 
               litellm = litellmOlder.overridePythonAttrs (old: {
                 dependencies = map (
