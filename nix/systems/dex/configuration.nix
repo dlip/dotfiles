@@ -1536,12 +1536,14 @@ rec {
       repository = "/media/backup/restic";
       passwordFile = config.sops.secrets.restic-encryption.path;
       pruneOpts = [
+        "--retry-lock=5m"
         "--keep-daily 7"
         "--keep-weekly 4"
       ];
       extraBackupArgs = [
         "--exclude-file=/etc/restic-ignore"
-        "--verbose=2"
+        "--verbose=1"
+        "--retry-lock=5m"
       ];
       timerConfig = {
         OnCalendar = "daily";
