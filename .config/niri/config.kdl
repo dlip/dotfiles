@@ -10,6 +10,7 @@ workspace "web"
 workspace "terminal"
 workspace "notes"
 workspace "files"
+workspace "music"
 
 // Input device configuration.
 // Find the full list of options on the wiki:
@@ -394,6 +395,11 @@ window-rule {
 window-rule {
     match app-id="thunar"
     open-on-workspace "files"
+}
+
+window-rule {
+    match app-id="plexamp"
+    open-on-workspace "music"
 }
 
 window-rule {

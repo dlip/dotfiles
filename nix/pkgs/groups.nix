@@ -270,6 +270,7 @@ let
     neovide
     obsidian
     openscad
+    plexamp
     plex-mpv-shim
     power-menu
     prusa-slicer

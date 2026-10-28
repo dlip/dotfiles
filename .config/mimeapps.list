@@ -38,6 +38,7 @@ application/epub+zip=thorium-reader.desktop;
 application/xhtml+xml=neovide.desktop;
 application/smil+xml=neovide.desktop;
 text/x-nfo=neovide.desktop;
+x-scheme-handler/ton=org.telegram.desktop.desktop;
 
 [Default Applications]
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
@@ -68,5 +69,7 @@ x-scheme-handler/discord-712465656758665259=discord-712465656758665259.desktop
 image/vnd.dxf=org.inkscape.Inkscape.desktop
 x-scheme-handler/claude-cli=claude-code-url-handler.desktop
 video/mp4=mpv.desktop
+x-scheme-handler/abc=plexamp.desktop
+x-scheme-handler/ton=org.telegram.desktop.desktop
 
 [Removed Associations]
