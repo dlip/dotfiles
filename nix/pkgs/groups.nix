@@ -79,6 +79,7 @@ let
     unzip
     util-linux
     uv
+    visidata
     vim
     wget
     wireguard-tools

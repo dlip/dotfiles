@@ -9,6 +9,8 @@
 !/.agents/skills/humanizer/**
 !/.agents/skills/herdr
 !/.agents/skills/herdr/**
+!/.agents/skills/anki-connect
+!/.agents/skills/anki-connect/**
 !/.antidote
 !/.claude/
 !/.claude/skills/

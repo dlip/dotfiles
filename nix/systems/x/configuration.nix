@@ -56,7 +56,6 @@
   users.groups.libvirtd.members = [ "dane" ];
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
-
   environment.systemPackages =
     with pkgs;
     groups.gui
