@@ -11,6 +11,8 @@
 !/.agents/skills/herdr/**
 !/.agents/skills/anki-connect
 !/.agents/skills/anki-connect/**
+!/.agents/skills/anki-vocab-mnemonics/
+!/.agents/skills/anki-vocab-mnemonics/**
 !/.antidote
 !/.claude/
 !/.claude/skills/
