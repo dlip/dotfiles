@@ -1,60 +1,56 @@
 # Examples and failure checks
 
-These are illustrative drafts. Follow the target deck's actual meaning and chosen reading. English cues are approximate.
+Vocabulary labels identify examples here; only each story goes into the Anki Story field. The English target is bold and underlined near the end; natural wording may follow it. Mapping notes illustrate internal review data and are not rendered on cards. English cues approximate the verified Japanese reading.
 
-## Distinguishing trait: 特徴
+## 技術【ぎじゅつ】— technology
 
-**特徴【とくちょう】— characteristic; distinguishing feature**
+A **skill**ful GEEk masters the **art** of powering boots with JUice, then skates up a TSUnami while the stranded surfers beg to borrow his <b><u>technology</u></b>.
 
-**Kanji → meaning:** 特 **special** → 徴 **indications**. Special identifying indications reveal a distinguishing trait.
+Internal check: 技 skill＝ぎ (GEEk); 術 art＝じゅつ (JUice + TSUnami). The invention visibly applies knowledge, and the technology is something the surfers want to use.
 
-**Kanji → sounds:** 特 とく → TOE + COO; 徴 ちょう → CHOsen.
+## 厳しい【きびしい】— strict
 
-**Story:** A **special** spiral feather wraps around a bird's TOE. It gives a COO as the guide examines the CHOsen flock: each bird has that spiral, unlike neighboring species. These **indications** reveal their shared **characteristic—the spiral feather**.
+The **stern** librarian locks the KEY away. Even her pet BEE gets evicted for one buzz; its tearful apology cannot persuade her to be less <b><u>strict</u></b>.
 
-The feature is physically present and distinguishes the flock. “A special feather gives indications” alone leaves the connection abstract. The explicit final phrase reinforces the image rather than supplying its only meaning.
+Internal check: 厳 stern＝きび (KEY + BEE); written しい is excluded. Both cues belong to the same kanji and its rule-enforcing scene.
 
-## Excluding written kana: 取り消す
+## 取り消す【とりけす】— cancel a reservation
 
-**取り消す【とりけす】— to cancel a reservation**
+I **take** my burning booking slip with my TOE, then **extinguish** it with a KEttle. My name disappears from the hotel board, leaving my reservation <b><u>canceled</u></b>.
 
-**Kanji → meaning:** 取 **take** → 消 **extinguish**. Taking a reservation and extinguishing its active booking cancels it.
+Internal check: 取 take＝と (TOE); 消 extinguish＝け (KEttle). Written り and す are excluded. The booking ceases; water does not merely fall on unrelated paper.
 
-**Kanji → sounds:** 取 と → TOE; 消 け → KEttle. Written `り` and `す` receive no cues.
+## 招待【しょうたい】— invitation
 
-**Story:** I **take** my burning reservation slip between my TOE and heel, then **extinguish** its booking flame with a KEttle. My name vanishes from the hotel board, and the room becomes available again: the reservation is **canceled**.
+I **beckon** my neighbour and SHOW him a feast, then **wait** with a TIE-shaped napkin beside his empty chair until he accepts my dinner <b><u>invitation</u></b>.
 
-The booking ceases; water does not merely fall on unrelated paper. If furigana is grouped over `取り消`, account for the written `り` rather than encoding the entire furigana string.
+Internal check: 招 beckon＝しょう (SHOW); 待 wait＝たい (TIE). Welcoming gestures and a prepared place demonstrate the invitation before it is named.
 
-## Abstract relation made visible: 矛盾
+## 家具【かぐ】— furniture
 
-**矛盾【むじゅん】— contradiction; inconsistency**
+A **house**-sized CAt builds a **tool** for scraping GOO off chairs and sofas, licking each seat clean before proudly arranging its enormous <b><u>furniture</u></b>.
 
-**Kanji → meaning:** 矛 **halberd** → 盾 **shield**. Incompatible claims about the weapon and shield expose a contradiction.
+Internal check: 家 house＝か (CAt); 具 tool＝ぐ (GOO). House-sized identifies the CAt; tool and GOO share the next action. Chairs and sofa concretely establish furniture.
 
-**Kanji → sounds:** 矛 む → MOO; 盾 じゅん → JUNE.
+## Research note: distinctiveness and emotion
 
-**Story:** A MOOing merchant tells JUNE: “This **halberd** pierces everything; this **shield** blocks everything.” She thrusts one against the other and asks which promise will fail. His claims cannot both be true—that's the **contradiction**.
+Humor improved sentence recall in [Schmidt (1994)](https://pubmed.ncbi.nlm.nih.gov/8064254/). Bizarre imagery's recall advantage depended on context and distinctiveness in [McDaniel and Einstein (1986)](https://doi.org/10.1037/0278-7393.12.1.54); it was not an unconditional advantage for making every item bizarre. [Jay et al. (2008)](https://pubmed.ncbi.nlm.nih.gov/18437803/) found strong recall for taboo words, which does not establish that adding profanity improves memory for an associated foreign word.
 
-The interaction exposes incompatibility. Holding a weapon and shield alone does not demonstrate contradiction. This scene is a memory aid, not a claim about historical origin.
+Emotional material can also have costs. In [Schmidt (2002)](https://pubmed.ncbi.nlm.nih.gov/11911390/), nude pictures were memorable but impaired recall of background details and subsequent pictures. [Experimental work on negative emotional scenes](https://pmc.ncbi.nlm.nih.gov/articles/PMC3792043/) illustrates that effects on central and peripheral details depend on the task. These studies do not directly validate our combination of ordered RTK keywords, whole-word meaning, and English sound cues, or establish that greater sexual or violent intensity improves it.
 
-## Internal state shown through action: 我慢
+The practical inference is to make the target connection itself distinctive. For **厳しい【きびしい】— strict**, with RTK **stern** and cues KEY + BEE:
 
-**我慢【がまん】— endurance; bearing discomfort**
+**Integrated:** The **stern** referee locks the trophy KEY away; even his favourite BEE is disqualified for touching the line, and not even his pleading mother can make him less **strict**.
 
-**Kanji → meaning:** 我 **ego** → 慢 **ridicule**. Controlling a wounded ego while bearing ridicule demonstrates endurance.
+The absurd competitor and exaggerated enforcement reinforce strictness, while both cues belong to that event. An unrelated dirty joke or explosion beside a referee could be memorable without helping retrieve “strict.” Use the same check for sexual, vulgar, or violent scenes; their intensity cannot replace the semantic connection.
 
-**Kanji → sounds:** 我 が → GAp; 慢 まん → MAN.
-
-**Story:** My **ego**, a tiny crowned version of me, tries to flee through a GAp as a MAN heaps **ridicule** on my work. I hold it back, steady my trembling hands, and finish the repair despite the insults—**endurance**.
-
-Both discomfort and continued effort are visible. The abstract ego has a concrete representation.
+When comparing styles, test delayed meaning and reading recall separately. Remembering or enjoying a story alone does not demonstrate improved vocabulary recall.
 
 ## Reading edge cases
 
 - `大人【おとな】`: keep `大人＝おとな` together; do not invent per-character readings.
 - `五つ星ホテル【いつつぼしほてる】`: cue `五＝いつ` and `星＝ぼし`; exclude written `つ` and `ホテル`.
-- `100円ショップ【ひゃくえんしょっぷ】`: cue `円＝えん` only. Display the full reading in the header.
+- `100円ショップ【ひゃくえんしょっぷ】`: cue `円＝えん` only. Retain the full reading in review data.
 - `度々【たびたび】`: show the preceding character's keyword twice, for `度` and `々`.
 - `依存【いそん】` and `依存【いぞん】`: cues must match the selected valid reading; familiarity alone is not reason to normalize it.
 
@@ -64,6 +60,8 @@ Both discomfort and continued effort are visible. The abstract ego has a concret
 - Ordered keywords pasted before an unrelated ordinary example.
 - A parade of English sound props with no meaningful interaction.
 - A dictionary explanation appended to a scene depicting the wrong sense.
+- Scripted endings such as “that's technology,” or a meaning label appended after the event.
+- Keywords distant from their corresponding sound cues without a grouped-reading reason.
 - Invented RTK keywords or primitive decomposition replacing whole-character keywords.
 - Invented per-kanji readings, encoded written kana, or added syllables for convenience.
 - Ungrammatical cues such as “ME and SHE run” or “the clerk put ups a notice.”

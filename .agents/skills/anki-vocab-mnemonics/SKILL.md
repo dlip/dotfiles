@@ -15,18 +15,16 @@ Create a short visual memory aid connecting the word's actual meaning to its kan
 - Resolve conflicting definitions, spellings, or readings using context and reliable dictionary evidence. Preserve attested alternative readings. Propose source corrections separately unless already authorized; when authorized, record evidence and before/after values.
 - Prefer the user's RTK source. Otherwise use [assets/rtk-keywords.csv](assets/rtk-keywords.csv), the bundled kanji/keyword-only lookup. Some characters have alternatives: preserve the user's existing choice or choose a verified candidate consistently. Do not invent a missing RTK keyword; flag it and continue other words.
 
-## Required four-part format
+## Story-only output
 
-Use this order for examples and the rendered Story field:
+Render only the visual story in the Anki Story field. Omit the word/reading header, labeled meaning bridge, sound breakdown, and repeated pronunciation or written-kana disclaimer. For multiple examples in chat, a short vocabulary label may identify each example outside its story.
 
-1. **Word【complete reading】— precise contextual meaning**
-2. **Kanji → meaning:** each kanji with its exact RTK keyword, in written order, followed by a plain sentence connecting those images to the whole-word meaning.
-3. **Kanji → sounds:** each verified kanji reading segment with English cues; capitalize the relevant sounds, as in `CAt`, `CAke`, or `CHOsen`.
-4. **Story:** one concrete visual episode joining the ordered keyword images, meaning, and sound cues.
-
-Keep the meaning bridge visible, not solely in hidden review metadata. The story must demonstrate the meaning before its final explanatory phrase; explicitly naming the meaning may reinforce the image.
-
-Compact labeled paragraphs are sufficient. In Anki, escape HTML and use readable line breaks. Keep the characters, full reading, keyword mapping, and sound mapping visible rather than rendering only prose.
+- Weave every ordered RTK keyword and English sound cue into the scene. Bold the RTK keywords and capitalize the relevant cue sounds, such as `CAt`, `CAke`, or `CHOsen`.
+- Put each keyword next to, or in the same short clause as, the sound cue belonging to that kanji. Keep grouped readings intact; do not invent per-character assignments for irregular compounds. For those, keep the ordered keyword images and grouped cues together in one compact episode.
+- Place the English vocabulary meaning near the end, naturally participating in the scene's outcome: an object someone wants, an action completed, or a property demonstrated. It need not be the final word; prefer natural phrasing over forced word order. Render the target English meaning in both bold and underline: `<b><u>technology</u></b>` in Anki HTML. Mark the whole meaningful phrase when needed, such as `<b><u>cost of living</u></b>`. Keep ordinary RTK keyword emphasis bold only. Do not append a scripted definition such as “that's technology,” “this means strict,” or a standalone meaning label. Do not repeat the Japanese word or reading in the ending.
+- Demonstrate the meaning through the event before naming it. The ending reinforces the connection rather than supplying its only meaning.
+- Keep exact keyword mappings, full reading, kanji-only segments, cue alignment, and the meaning rationale in drafting/review data. These checks remain required even though they are not displayed on the card. Give special cue explanations only when requested or needed, rather than routinely appending them.
+- Escape story text for Anki, then insert the intended bold/underline markup; do not escape the formatting tags into visible text. Retain only useful emphasis and line breaks.
 
 Read [references/examples.md](references/examples.md) when composing initial examples or repairing a weak link. These establish quality, not wording to copy onto unrelated words.
 
@@ -34,15 +32,23 @@ Read [references/examples.md](references/examples.md) when composing initial exa
 
 - Decide what visible action, property, or relationship demonstrates the exact meaning. A characteristic is a distinguishing trait; a contradiction involves incompatible claims; endurance means continuing despite discomfort.
 - Give every RTK keyword an active or identifying role. Preserve whole-kanji written order, including repetition; `々` repeats the preceding character's keyword. Do not substitute primitive decomposition or stroke order.
-- Preserve exact keyword spelling in the mapping and use it naturally in the story, inflecting where necessary. Avoid broken English written merely to retain a marker.
+- Preserve exact keyword spelling in the internal mapping and use it naturally in the story, inflecting where necessary. Avoid broken English written merely to retain a marker.
 - Add English sound cues to the same episode, attaching them to its actors, objects, or actions. Remove decorative props that help neither meaning nor reading.
 - Prefer one setting, one main action, and a clear result. Aim for roughly 20–35 words when practical; allow more for complex compounds. This is an editing target, not a proven memory threshold.
 - Abstract keywords can be personified or given visible consequences. An abstract keyword preface followed by an unrelated example is insufficient. The learner should be able to reconstruct one vivid event.
 - Compose each story individually. Reuse the output layout, not a sentence skeleton with mechanically substituted keywords.
 
+## Use emotion and distinctiveness selectively
+
+- Use humor, exaggeration, surprise, or absurdity when they strengthen the meaning image. Vary the treatment across words; making every scene equally outrageous can reduce its distinctiveness.
+- Make the memorable action carry the target association: the ordered RTK images demonstrate the meaning, and the English sound cues participate in that action. A joke or shocking detail beside an otherwise ordinary explanation is insufficient.
+- Vulgar, sexual, violent, or frightening imagery is optional, not a requirement or a presumed improvement. Follow the user's stated preferences and the intended audience; do not infer a preference for explicit material from a general request for memorable stories.
+- Prefer a short, coherent scene over escalating shock or adding props. If the learner could remember the sensational event while forgetting what the word means or how it sounds, revise the association.
+- Treat this as evidence-informed writing guidance, not a proven formula for this RTK-plus-sound format. Read the research note in [references/examples.md](references/examples.md#research-note-distinctiveness-and-emotion) when explaining the rationale or evaluating a style change.
+
 ## Encode only the kanji reading
 
-- Display the complete word and reading in the header. Sound cues encode only reading portions belonging to written kanji.
+- Verify the complete word and reading in the inputs and review data. Sound cues encode only reading portions belonging to written kanji.
 - Exclude written kana, okurigana, particles, prefixes, and Arabic numerals. For `取り消す`, cue `取＝と` and `消＝け`, not `り` or `す`.
 - Align spelling and reliable furigana. Keep irregular whole-word or compound reading groups intact; do not invent per-character readings to fill a table. No cue may cross a written-kana gap.
 - Concatenated cue kana must exactly reproduce the selected kanji-only reading segments. Cues occur in that order in the story. Keywords also occur in character order; English cue and keyword boundaries need not coincide.
@@ -52,11 +58,12 @@ Read [references/examples.md](references/examples.md) when composing initial exa
 
 ## Review every story
 
-- **Meaning:** Does the event demonstrate the intended definition rather than merely label it? Does the visible meaning bridge explain this particular image?
+- **Meaning:** Does the event demonstrate the intended definition rather than merely label it? Does the internal meaning rationale explain this particular image? Is the English meaning naturally near the end and both bold and underlined, without a scripted definition?
 - **Kanji:** Are source keywords correct, ordered, and involved in the event? Are the actions causally coherent?
-- **Reading:** Are cues recognizable English, approximately sound-matched, ordered, and limited to the kanji reading? Does the guide match the actual story?
+- **Reading:** Are cues recognizable English, approximately sound-matched, ordered, and limited to the kanji reading? Does the internal cue mapping match the actual story, with each keyword close to its corresponding cue?
 - **English:** Check pronouns (`ME` as object, `SHE` as subject), agreement, and phrasal verbs. Repair grammar rather than forcing convenient cues.
 - **Memory load:** Can the learner picture one event without learning an unrelated prop list?
+- **Distinctiveness:** Does the funny, emotional, or unusual feature reinforce the target meaning and cues, rather than compete with them? Does it remain distinguishable from neighboring stories?
 
 For bulk work, validate membership, duplicates, keyword mappings, and reading-segment coverage programmatically. Semantic review still requires reading every story. Use independent reviewers when available and authorized, particularly after a format change. Checkpoint drafts and reviewed IDs so interruptions do not trigger regeneration. Do not describe sampled review as full review.
 
