@@ -24,9 +24,9 @@ Use [assets/sound-characters.csv](../assets/sound-characters.csv) as the shared 
 
 1. Establish the verified whole-word meaning, kanji-only reading segments and ordered RTK keywords exactly as in the main skill.
 2. Within each kanji segment, select the contracted mora as one unit (`しゃ`, not `し + や`). Treat `ん`, small `っ`, and vowel length using the roster's marker rules. A true hiatus remains two vowels; a long vowel holds one vowel for two beats. Native audio governs this distinction.
-3. Have the sound actors perform or embody their corresponding RTK images in reading order, with the keyword close to the actor it belongs to. The ordered keyword and sound constraints remain separate checks. For irregular grouped readings, keep all relevant images in one compact episode without inventing per-kanji assignments.
+3. Open the scene with the bold-and-underlined whole-word meaning. For multi-kanji words, follow with each ordered RTK keyword before its corresponding sound actors, keeping them in the same short clause where practical. For single-kanji words, omit the separate RTK keyword and let the sound actors demonstrate the meaning. The ordered keyword and sound constraints remain separate checks. For irregular grouped readings, keep all relevant images in one compact episode without inventing per-kanji assignments.
 4. Make those actions cause the whole-word meaning. Preserve one setting and a clear result. Introduce actors when their sound occurs; do not let decorative appearances, earlier pronouns, or repeated name mentions scramble the recoverable cue sequence.
-5. Place the natural English meaning near the end in bold and underline. The card still contains only the story.
+5. Italicize sound-character names (including named nasal/closure markers), using `<i>…</i>` in Anki HTML. Check that the action demonstrates the opening meaning; no closing definition is required. The card still contains only the story.
 
 An actor's iconic appearance helps identification. Its action must serve this vocabulary word: Mario need not jump in every story, and Anpanman need not throw the same punch every time. Do not add a character's usual props unless they help the reading or meaning. Repeated sound tokens may use the same actor again; preserve the repeated sound in internal data even when one actor performs two ordered actions.
 
@@ -40,28 +40,20 @@ A character identity/name change is a registry change, not a per-word improvisat
 
 ## Short examples
 
-These examples use verified RTK mappings from the bundled lookup. Character assignments below are proposed roster choices except Mario and Anpanman.
+### 旅行【りょこう】 — travel
 
-### 今【いま】 — now
+During her <b><u>travel</u></b> adventure, a **trip** sends *Rio* tumbling onto a **going** escalator that *Conan Edogawa* stretches across the ocean.
 
-Eevee yelps **now** as the starting gate drops; Mario bursts through before it closes, seizing his chance to run <b><u>now</u></b>.
+Internal: 旅 = trip, `りょ → Rio` (user-authorized approximation); 行 = going, `こ → Conan Edogawa`, stretching holds /o/ for the lengthening `う`. Meaning comes first; each keyword precedes its actor. Both actors participate in the journey.
 
-Internal: 今 = now; `い → Eevee`, `ま → Mario`; one grouped kanji reading `いま`. The immediate alarm makes the present moment actionable.
+### 牛【ぎゅう】 — cow
 
-### 赤【あか】 — red
+A <b><u>cow</u></b> chews *Gustave*’s mechanical arm, stretching him across the paddock as he desperately tries to pull free.
 
-Anpanman spills **red** paint over Kirby's round face; every white patch turns the color of a tomato, leaving his entire costume <b><u>red</u></b>.
-
-Internal: 赤 = red; `あ → Anpanman`, `か → Kirby (Japanese KAAbii)`; one kanji reading `あか`. Both actors visibly cause the color change.
+Internal: one kanji, so omit the separate RTK keyword. `ぎゅ → Gustave` (registered approximation); stretching marks the long /u/. The cow drives the action.
 
 ### 取り消す【とりけす】 — cancel a reservation
 
-Totoro **takes** the booking slip and passes it to Ken, who **extinguishes** its flames in water; the hotel erases the booking, leaving the reservation <b><u>canceled</u></b>.
+To <b><u>cancel a reservation</u></b>, **take** the burning booking slip with *Totoro* and **extinguish** it with *Ken Masters*; its magical hotel entry vanishes in the steam.
 
-Internal: 取 = take, `と → Totoro`; 消 = extinguish, `け → Ken`. Written `り` and `す` are excluded. The named cancellation happens in the hotel system as a result of destroying the booking slip.
-
-### 学校【がっこう】 — school (closure and length)
-
-Gaston's **study** desk is crushed by Thwomp; Conan stretches the **exam** corridor into a long hall of classrooms where children attend <b><u>school</u></b>.
-
-Internal: 学校 = `がっこう`; `が → Gaston`, `っ → Thwomp` closes before /k/, `こ → Conan` with the /o/ held for the lengthening `う`. This does not summon Usagi or pronounce “Thwomp.” Keywords `study → exam` retain written order. Prefer a more natural scene if this marker-heavy version is harder to recall; the markers cannot be dropped.
+Internal: 取 = take, `と → Totoro`; 消 = extinguish, `け → Ken Masters`. Written `り` and `す` receive no actors. There are two kanji, so both keywords remain.

@@ -21,10 +21,11 @@ For new stories, use the stable sound-character roster: read [references/charact
 
 Render only the visual story in the Anki Story field. Omit the word/reading header, labeled meaning bridge, sound breakdown, and repeated pronunciation or written-kana disclaimer. For multiple examples in chat, a short vocabulary label may identify each example outside its story.
 
-- Weave every ordered RTK keyword and its sound characters into the scene. Bold the RTK keywords; keep character names readable and consistent with the registry. In explicitly requested legacy English-object mode, capitalize cue sounds such as `CAt`, `CAke`, or `CHOsen`.
-- Put each keyword next to, or in the same short clause as, the sound cue belonging to that kanji. Keep grouped readings intact; do not invent per-character assignments for irregular compounds. For those, keep the ordered keyword images and grouped cues together in one compact episode.
-- Place the English vocabulary meaning near the end, naturally participating in the scene's outcome: an object someone wants, an action completed, or a property demonstrated. It need not be the final word; prefer natural phrasing over forced word order. Render the target English meaning in both bold and underline: `<b><u>technology</u></b>` in Anki HTML. Mark the whole meaningful phrase when needed, such as `<b><u>cost of living</u></b>`. Keep ordinary RTK keyword emphasis bold only. Do not append a scripted definition such as “that's technology,” “this means strict,” or a standalone meaning label. Do not repeat the Japanese word or reading in the ending.
-- Demonstrate the meaning through the event before naming it. The ending reinforces the connection rather than supplying its only meaning.
+- Open with the English whole-word meaning, woven naturally into the scene rather than presented as a standalone label. Render the meaning in bold and underline: `<b><u>travel</u></b>` in Anki HTML. Mark the whole meaningful phrase when needed.
+- Follow this narrative order: **whole-word meaning → first RTK keyword + its sound characters → next RTK keyword + its sound characters**. Put each keyword before its corresponding sound characters, in the same short clause where practical. Bold RTK keywords only. Italicize sound-character names, using `<i>Mario</i>` in Anki HTML or `*Mario*` in Markdown previews; use the roster display name consistently. Italicize named nasal/closure markers such as Nemo and Thwomp when they appear, too. In explicitly requested legacy English-object mode, capitalize cue sounds such as `CAt` or `CHOsen`.
+- For words containing only one written kanji, omit the separate RTK keyword from the displayed story. Use the whole-word meaning and the kanji's sound characters to create the visual event. Still verify the kanji and its reading internally. Written kana do not count as additional kanji; `々` represents a repeated kanji and retains its repeated keyword image.
+- Keep grouped readings intact; do not invent per-character assignments for irregular compounds. For those, open with the meaning, then keep the ordered keyword images and grouped sound characters together in one compact episode, preserving both orders even when strict keyword/actor alternation is impossible.
+- Make the action demonstrate the opening meaning. A meaning label followed by unrelated props is insufficient. Do not require the meaning to recur at the end or append a scripted definition such as “that's technology.” The story may use multiple sentences when needed.
 - Keep exact keyword mappings, full reading, kanji-only segments, cue alignment, and the meaning rationale in drafting/review data. These checks remain required even though they are not displayed on the card. Give special cue explanations only when requested or needed, rather than routinely appending them.
 - Escape story text for Anki, then insert the intended bold/underline markup; do not escape the formatting tags into visible text. Retain only useful emphasis and line breaks.
 
@@ -33,8 +34,8 @@ Read the character examples in [references/character-cues.md](references/charact
 ## Build the meaning image first
 
 - Decide what visible action, property, or relationship demonstrates the exact meaning. A characteristic is a distinguishing trait; a contradiction involves incompatible claims; endurance means continuing despite discomfort.
-- Give every RTK keyword an active or identifying role. Preserve whole-kanji written order, including repetition; `々` repeats the preceding character's keyword. Do not substitute primitive decomposition or stroke order.
-- Preserve exact keyword spelling in the internal mapping and use it naturally in the story, inflecting where necessary. Avoid broken English written merely to retain a marker.
+- For multi-kanji words, give every RTK keyword an active or identifying role. Preserve whole-kanji written order, including repetition; `々` repeats the preceding character's keyword. Do not substitute primitive decomposition or stroke order.
+- Preserve exact keyword spelling in the internal mapping and, when displayed, use it naturally in the story, inflecting where necessary. Avoid broken English written merely to retain a marker.
 - Make the registered sound characters act within that same episode. Their actions must help demonstrate the meaning and incorporate the RTK images. Remove decorative characters or props that help neither meaning nor reading.
 - Prefer one setting, one main action, and a clear result. Aim for roughly 20–35 words when practical; allow more for complex compounds. This is an editing target, not a proven memory threshold.
 - Abstract keywords can be personified or given visible consequences. An abstract keyword preface followed by an unrelated example is insufficient. The learner should be able to reconstruct one vivid event.
@@ -60,8 +61,8 @@ Read the character examples in [references/character-cues.md](references/charact
 
 ## Review every story
 
-- **Meaning:** Does the event demonstrate the intended definition rather than merely label it? Does the internal meaning rationale explain this particular image? Is the English meaning naturally near the end and both bold and underlined, without a scripted definition?
-- **Kanji:** Are source keywords correct, ordered, and involved in the event? Are the actions causally coherent?
+- **Meaning:** Does the event demonstrate the intended definition rather than merely label it? Does the internal meaning rationale explain this particular image? Does the story open naturally with the English meaning in bold and underline, with the following action demonstrating it?
+- **Kanji:** For multi-kanji words, are source keywords correct, ordered, and placed before their corresponding sound characters? For single-kanji words, is the separate RTK keyword omitted? Are the actions causally coherent?
 - **Reading:** Are the registered characters recognizable, correctly sound-matched, ordered, and limited to the kanji reading, with length/closure markers preserved? Does the internal cue mapping match the actual story, with each keyword close to its corresponding cue?
 - **English:** Check pronouns (`ME` as object, `SHE` as subject), agreement, and phrasal verbs. Repair grammar rather than forcing convenient cues.
 - **Memory load:** Can the learner picture one event without learning an unrelated prop list?
