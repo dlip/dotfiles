@@ -6,7 +6,7 @@ The learner recognizes Naruto himself but has not watched Naruto; all other Naru
 
 Read [character-cues.md](character-cues.md) before composing stories. Names marked Japanese use that character's Japanese/localized pronunciation; do not silently substitute a different English pronunciation. A long vowel later in a name does not automatically lengthen the encoded prefix.
 
-The authoritative roster is [assets/sound-characters.csv](../assets/sound-characters.csv). Columns: `kana`, `romaji`, `character`, `cue_reading`, `franchise`, `visual_anchor`, and `selection_note`. Each row assigns one written kana entry to its actor; homophone aliases have separate rows.
+The authoritative roster is [assets/sound-characters.csv](../assets/sound-characters.csv). Columns: `kana`, `romaji`, `character`, `cue_reading`, `franchise`, `visual_anchor`, `selection_note`, and `signature_actions`. Each row assigns one written kana entry to its actor; homophone aliases have separate rows.
 
 ## Aliases and exceptional markers
 
@@ -34,3 +34,5 @@ Do not manufacture cues through props, moves, film/band titles, animal noises, o
 A provisional spoken-name mapping must be checked before story use. Gyorg's proposed GY-org reading is unverified and would not work if the learner says GUY-org or GEE-org. Familiarity review does not itself verify pronunciation.
 
 If no suitable proposal exists, leave actor fields blank and mark `selection_note` as `UNRESOLVED`; do not invent a name or pronunciation. Nasal, closure, and vowel-length operations remain separate markers.
+
+`signature_actions` lists optional recognizable actions for the recorded character or explicitly identified role. Use them when they support the word’s meaning; avoid forcing the same move into every story. Real-person entries describe public performance or a named role, not invented personal traits. Nemo’s mouth-closing cue is a designed mnemonic gesture.

@@ -1,105 +1,105 @@
-kana,romaji,character,cue_reading,franchise,visual_anchor,selection_note
-あ,a,Anpanman,あんぱんまん,Anpanman,Round bread head and red cape,User choice.
-い,i,Eevee,いーぶい,Pokemon,Brown fox-like body and fluffy cream collar,Initial EE sound only.
-う,u,Ultraman,うるとらまん,Ultraman,Silver-and-red giant with glowing chest timer,Japanese U-rutoraman prefix.
-え,e,Elsa,えるさ,Frozen,Blue gown and ice powers,
-お,o,Olaf,おらふ,Frozen,Living snowman and carrot nose,
-か,ka,Kirby,かーびぃ,Kirby,Round pink body inhaling enemies,Japanese KAAbii name cue; not English Kirby.
-き,ki,Kiki,きき,Kiki's Delivery Service,Young witch flying with a black cat and red bow,Initial KI sound.
-く,ku,Krillin,くりりん,Dragon Ball,Bald head with six dots,Japanese name cue.
-け,ke,Ken Masters,けん,Street Fighter,Red gi and blond hair,
-こ,ko,Conan Edogawa,こなん,Detective Conan,Glasses and red bow tie,Japanese name cue.
-さ,sa,Samus Aran,さむす,Metroid,Orange armor and arm cannon,
-し,shi,Shiva,しゔぁ,Final Fantasy,Blue-skinned ice summon with long hair,Initial SHI sound.
-す,su,Superman,すーぱーまん,DC,Blue suit and red cape,Japanese name cue.
-せ,se,Sephiroth,せふぃろす,Final Fantasy VII,Silver hair and long sword,
-そ,so,Sonic,そにっく,Sonic the Hedgehog,Blue spikes and red shoes,
-た,ta,Taz,たず,Looney Tunes,Brown Tasmanian devil spinning in a tornado,Japanese TAZU name cue.
-ち,chi,Chip,ちっぷ,Chip 'n Dale,Small chipmunk with black nose,Japanese CHIppu name cue; not Dale.
-つ,tsu,Tsung,つん,Mortal Kombat,Shapeshifting sorcerer in his original arcade costume,Full identity: Shang Tsung; use Tsung in story prose; cue Japanese name component TSUn; English pronunciations vary; initial tsu only.
-て,te,Tails,ているす,Sonic the Hedgehog,Orange fox with two spinning tails,Japanese TEirusu name cue; not English TAY sound.
-と,to,Totoro,ととろ,My Neighbor Totoro,Huge gray furry body,
-な,na,Naruto Uzumaki,なると,Naruto,Orange clothes and whisker marks,
-に,ni,Nico Robin,にこ,One Piece,Extra arms sprouting from surfaces,
-ぬ,nu,Numa Numa Guy (Gary Brolsma),ぬまぬま,Numa Numa internet video,Webcam performer dancing in his chair with headphones,Cue the famous NUma Numa nickname; not personal name Gary.
-ね,ne,Ned Flanders,ねっど,The Simpsons,Moustache and round glasses with green sweater,Initial NE sound.
-の,no,Nobita Nobi,のびた,Doraemon,Round glasses and yellow shirt,
-は,ha,Harry Potter,はりーぽったー,Harry Potter,Round glasses and lightning scar with a wand,Japanese HArii name cue.
-ひ,hi,He-Man,ひーまん,Masters of the Universe,Blond muscular hero raising a sword,HEE sound supplies hi only.
-ふ,fu,Fubuki,ふぶき,One-Punch Man,Black-haired psychic hero wearing a dark green dress and a white fur coat,User choice; exact Japanese fu opening.
-へ,he,Hercules,へらくれす,Hercules,Muscular red-haired hero in a brown tunic,Japanese HE-rakuresu name cue.
-ほ,ho,Homer Simpson,ほーまー,The Simpsons,Yellow skin and white shirt,Japanese name cue.
-ま,ma,Mario,まりお,Super Mario,Red M cap and blue overalls,User choice.
-み,mi,Mickey Mouse,みっきーまうす,Disney,Round black ears and red shorts with white gloves,Initial MI sound.
-む,mu,Mulan,むーらん,Mulan,Armor and sword,Japanese name cue.
-め,me,Metal Sonic,めたるそにっく,Sonic the Hedgehog,Blue robot hedgehog with red eyes and chest engine,Initial ME sound.
-も,mo,Morty Smith,もーてぃー,Rick and Morty,Yellow shirt and anxious expression,Japanese name cue.
-や,ya,Yahoo Serious,やーふーしりあす,Australian cinema / Young Einstein,Wild-haired Australian actor portraying Einstein holding a violin,English YAH opening resembles ya; real stage name; Australian 1980s film reference.
-ゆ,yu,Yuffie Kisaragi,ゆふぃ,Final Fantasy VII,Ninja with short dark hair and giant throwing star,Japanese YUfi name cue.
-よ,yo,Yoshi,よっしー,Super Mario,Green dinosaur and long tongue,
-ら,ra,Rambo,らんぼー,Rambo,Red headband and bow,
-り,ri,Rick Sanchez,りっく,Rick and Morty,Scientist with spiky blue hair and portal gun,Japanese RI-kku name cue.
-る,ru,Luffy,るふぃ,One Piece,Straw hat and stretching body,Japanese name cue.
-れ,re,Rex,れっくす,Toy Story,Green plastic tyrannosaurus with tiny arms,Initial RE sound.
-ろ,ro,Rosalina (Rosetta),ろぜった,Super Mario,Pale blue gown and star wand,Use Japanese Rosetta name; initial ro only.
-わ,wa,Wario,わりお,Super Mario,Yellow W cap and zigzag moustache,
-を,o,Olaf,おらふ,Frozen,Same snowman as お,Sound alias of お.
-ん,n,Nemo,ん,Finding Nemo,Orange clownfish with white stripes and one small fin; closes his mouth for a nasal hum,Nasal marker only; imagined closing gesture; do not pronounce Nemo or add a vowel.
-が,ga,Gaston,がすとん,Beauty and the Beast,Muscular hunter in red shirt,Japanese GAsuton name cue.
-ぎ,gi,Gizmo,ぎずも,Gremlins,Small furry mogwai with enormous ears,Hard G in GI-zmo.
-ぐ,gu,Goofy,ぐーふぃー,Disney,Long ears and green hat,
-げ,ge,Geralt of Rivia,げらると,The Witcher,White-haired monster hunter carrying two swords,Japanese GE-raruto name cue; hard G.
-ご,go,Goku,ごくう,Dragon Ball,Orange gi and spiky hair,
-ざ,za,Zangief,ざんぎえふ,Street Fighter,Huge wrestler with red trunks,
-じ,ji,Genie,じーにー,Aladdin,Blue genie emerging from a lamp,Initial JEE sound only.
-ず,zu,Zuul,ずーる,Ghostbusters,Horned red-eyed Terror Dog,Japanese ZUuru name cue; initial zu only.
-ぜ,ze,Zelda,ぜるだ,The Legend of Zelda,Princess dress and Triforce imagery,
-ぞ,zo,Zoro,ぞろ,One Piece,Green hair and three swords,
-だ,da,Darth Vader,だーすべいだー,Star Wars,Black helmet and red lightsaber,
-ぢ,ji,Genie,じーにー,Aladdin,Same blue lamp genie as じ,Sound alias of じ.
-づ,zu,Zuul,ずーる,Ghostbusters,Same horned red-eyed Terror Dog as ず,Sound alias of ず.
-で,de,Deku,でく,My Hero Academia,Green costume and freckles,
-ど,do,Donkey Kong,どんきーこんぐ,Donkey Kong,Gorilla with red DK tie,
-ば,ba,Batman,ばっとまん,DC,Black cowl and bat cape,
-び,bi,Beast,びーすと,Beauty and the Beast,Horned furry prince in blue formal coat,Initial BEE sound only.
-ぶ,bu,Boo,ぶー,Super Mario,Round white ghost hiding its face,English BOO cue; Japanese name Teresa is not the cue.
-べ,be,Belle,べる,Beauty and the Beast,Yellow ball gown and book,
-ぼ,bo,Bo Peep,ぼーぴーぷ,Toy Story,Shepherd's crook and bonnet,
-ぱ,pa,Pac-Man,ぱっくまん,Pac-Man,Yellow circle eating pellets,
-ぴ,pi,Pikachu,ぴかちゅう,Pokemon,Yellow body and lightning tail,
-ぷ,pu,Pooh,ぷー,Winnie the Pooh,Yellow bear and red shirt,
-ぺ,pe,Peppa Pig,ぺっぱぴっぐ,Peppa Pig,Pink pig in a red dress,Initial PE sound.
-ぽ,po,Popeye,ぽぱい,Popeye,Sailor hat and huge forearms,Japanese name cue.
-きゃ,kya,Kyary Pamyu Pamyu,きゃりーぱみゅぱみゅ,Japanese pop music,Pop singer in colorful surreal costumes and oversized bows,User choice; initial KYA sound only.
-きゅ,kyu,Q,きゅー,James Bond,Gadget inventor demonstrating spy equipment,Letter name Q supplies KYOO; initial kyu only.
-きょ,kyo,Kyoshi,きょーし,Avatar: The Last Airbender,Avatar in green robes with white face paint and a tall gold headdress,English KYO-shee name cue; variants may separate kee-OH into two syllables; only initial kyo is encoded.
-しゃ,sha,Shadow,しゃどう,Sonic the Hedgehog,Black-red hedgehog,
-しゅ,shu,Shrek,しゅれっく,Shrek,Green ogre with trumpet-shaped ears and a brown vest,Japanese SHU-rekku name cue.
-しょ,sho,Shaun the Sheep,しょーん,Shaun the Sheep,White woolly sheep with black face and legs,Japanese SHOn name cue; initial sho only.
-ちゃ,cha,Chucky,ちゃっきー,Child's Play,Red-haired doll in striped shirt,Japanese name cue.
-ちゅ,chu,Chun-Li,ちゅんりー,Street Fighter,Blue outfit and hair buns,
-ちょ,cho,Chopper,ちょっぱー,One Piece,Reindeer and pink X hat,
-にゃ,nya,Nyan Cat,にゃんきゃっと,Nyan Cat,Pixel cat with pastry body leaving a rainbow trail,Initial NYA sound.
-にゅ,nyu,Newton,にゅーとん,History of science,Wig-wearing scientist beneath a falling apple,Full identity: Isaac Newton; use Newton in story prose; cue surname NYUuton; real historical person; initial nyu only.
-にょ,nyo,Neo,にーおう,The Matrix,Black-coated hero wearing sunglasses and dodging bullets,Loose English NEE-oh name resemblance to nyo; English has two syllables rather than Japanese contracted nyo; not an exact match.
-ひゃ,hya,Hyacinth Bucket,はいあしんす,Keeping Up Appearances,Suburban social climber in formal clothes insisting her surname is Bouquet,User choice; English HIGH-uh approximates hya; diphthong and syllable count differ.
-ひゅ,hyu,Huey,ひゅーい,DuckTales,Donald Duck nephew in red cap and shirt,Japanese HYUui name cue; not HOO pronunciation.
-ひょ,hyo,Hyogoro,ひょうごろう,One Piece,Small elderly samurai with blue flame-shaped hair and large tattoos,User choice; exact Japanese hyo opening.
-みゃ,mya,Mya,まいあ,R&B / Lady Marmalade (2001),Singer from the Lady Marmalade music video in a feathered stage costume,"Full identity: Mya Harrison, stage name styled Mya with a diaeresis; actual English MY-ah opening loosely resembles mya; diphthong and two syllables differ."
-みゅ,myu,Myuutuu,みゅうつー,Pokemon / Mewtwo,Tall pale psychic creature with a purple tail,User choice; Myuutuu is the chosen display spelling for Mewtwo (Japanese Myuutsuu); encodes only initial myu.
-みょ,myo,Myojin,みょうじんやひこ,Rurouni Kenshin,Young black-haired swordsman carrying a bamboo practice sword,User choice; Yahiko Myojin; use surname Myojin; exact Japanese myo opening.
-りゃ,rya,Leah,りーあ,Stardew Valley,Red-haired artist living in a cottage near Cindersap Forest,"User choice: Leah, the red-haired artist from Stardew Valley; non-Japanese LEE-ah name opening loosely approximates rya; two English syllables and the L sound differ from contracted Japanese rya."
-りゅ,ryu,Ryu,りゅう,Street Fighter,White gi and red headband,Use RYOO sound; not RYE-you.
-りょ,ryo,Rio,りお,Japanese adult entertainment,Japanese adult actress Rio,"User choice; Rio, the Japanese adult actress; ri-o approximates ryo. Explicitly authorized exception to the exact-Japanese-name rule; do not generalize."
-ぎゃ,gya,Gambit,ぎゃんびっと,Marvel / X-Men,Trench-coated mutant throwing glowing playing cards,Japanese GYA-nbitto name cue.
-ぎゅ,gyu,Gustave,ぎゅすたーゔ,Clair Obscur: Expedition 33,Expeditioner Gustave with his mechanical arm,User choice: Gustave from Clair Obscur: Expedition 33; French name opening approximates gyu; English GUS opening differs.
-ぎょ,gyo,Gyoro Gyoro,ぎょろぎょろ,One-Punch Man,Round pink one-eyed monster with small arms,User choice; exact Japanese gyo opening.
-じゃ,ja,Jack Sparrow,じゃっく,Pirates of the Caribbean,Pirate hat and braided beard,
-じゅ,ju,Juri Han,じゅり,Street Fighter,Purple costume and hair horns,
-じょ,jo,Joker,じょーかー,DC,Green hair and purple suit,
-びゃ,bya,Beatrix Kiddo,びーあとりくすきどー,Kill Bill,The Bride in a yellow tracksuit carrying a katana,Approximate English BEE-uh opening resembles bya; two English syllables rather than a contracted Japanese mora; cue Beatrix rather than the alias Bride.
-びゅ,byu,Bueller,びゅーらー,Ferris Bueller's Day Off,Teenager in a patterned waistcoat skipping school,Full identity: Ferris Bueller; use Bueller in story prose; direct English surname BUELLER /BYOO-ler/ opening supplies byu; explicitly cue surname rather than Ferris.
-びょ,byo,Bjorn Ironside,びょるん,Vikings,Blond Viking warrior in armor,Japanese Byorun name; check familiarity.
-ぴゃ,pya,Pia Miranda,ぴーあみらんだ,Australian film / Looking for Alibrandi,Pia Miranda as Josie Alibrandi in her school uniform,User choice; English PEE-ah approximates pya; two syllables rather than one contracted mora.
-ぴゅ,pyu,PewDiePie,ぴゅーでぃぱい,YouTube,Blond bearded video creator wearing headphones at a gaming desk,Initial PYOO sound only.
-ぴょ,pyo,Pyotr Tchaikovsky,ぴょーとるちゃいこふすきー,Classical music,Bearded composer associated with The Nutcracker and Swan Lake,User choice; Pyotr Ilyich Tchaikovsky; cue given name Pyotr; Russian PYOTR opening approximates pyo.
+kana,romaji,character,cue_reading,franchise,visual_anchor,selection_note,signature_actions
+あ,a,Anpanman,あんぱんまん,Anpanman,Round bread head and red cape,User choice.,shares bread from his head; flies to the rescue; throws Anpunch
+い,i,Eevee,いーぶい,Pokemon,Brown fox-like body and fluffy cream collar,Initial EE sound only.,evolves into different forms; tackles with its fluffy body
+う,u,Ultraman,うるとらまん,Ultraman,Silver-and-red giant with glowing chest timer,Japanese U-rutoraman prefix.,grows gigantic; fires a crossed-arm energy beam; fights giant monsters
+え,e,Elsa,えるさ,Frozen,Blue gown and ice powers,,creates ice palaces; freezes surfaces; conjures snow
+お,o,Olaf,おらふ,Frozen,Living snowman and carrot nose,,gives warm hugs; detaches and rearranges snowball body parts
+か,ka,Kirby,かーびぃ,Kirby,Round pink body inhaling enemies,Japanese KAAbii name cue; not English Kirby.,inhales objects; copies abilities; inflates and floats
+き,ki,Kiki,きき,Kiki's Delivery Service,Young witch flying with a black cat and red bow,Initial KI sound.,flies on a broom; delivers parcels
+く,ku,Krillin,くりりん,Dragon Ball,Bald head with six dots,Japanese name cue.,throws a Destructo Disc; fires energy blasts; uses Solar Flare
+け,ke,Kenny,けにー,South Park,Child in an orange parka with the hood covering almost his entire face,User choice; full identity: Kenny McCormick; English KEN-ee opening approximates ke; only initial ke encoded.,speaks through his tightly drawn hood; suffers absurd fatal accidents; returns in later episodes
+こ,ko,Conan,こなん,Detective Conan,Glasses and red bow tie,Full identity: Conan Edogawa. Japanese name cue.,solves crimes; fires a tranquilizer from his watch; changes his voice with his bow tie
+さ,sa,Samus,さむす,Metroid,Orange armor and arm cannon,Full identity: Samus Aran.,fires her arm cannon; curls into Morph Ball; drops bombs
+し,shi,Shin,しんのすけ,Crayon Shin-chan,"Small boy with thick eyebrows, a red shirt, and yellow shorts","User choice; full identity: Shinnosuke Nohara, commonly Shin-chan; exact Japanese shi opening. Only shi encoded; the n in Shin does not encode a nasal marker.",plays mischievous pranks; imitates Action Kamen; embarrasses his parents with cheeky remarks
+す,su,Superman,すーぱーまん,DC,Blue suit and red cape,Japanese name cue.,flies; lifts enormous weights; fires heat vision
+せ,se,Sephiroth,せふぃろす,Final Fantasy VII,Silver hair and long sword,,slashes with his long Masamune; descends with one black wing
+そ,so,Sonic,そにっく,Sonic the Hedgehog,Blue spikes and red shoes,,runs at supersonic speed; curls into a spinning ball; collects rings
+た,ta,Taz,たず,Looney Tunes,Brown Tasmanian devil spinning in a tornado,Japanese TAZU name cue.,spins into a destructive tornado; devours food
+ち,chi,Chip,ちっぷ,Chip 'n Dale,Small chipmunk with black nose,Japanese CHIppu name cue; not Dale.,collects acorns; outwits Donald Duck with Dale
+つ,tsu,Tsung,つん,Mortal Kombat,Shapeshifting sorcerer in his original arcade costume,Full identity: Shang Tsung; use Tsung in story prose; cue Japanese name component TSUn; English pronunciations vary; initial tsu only.,shapeshifts into opponents; steals souls; casts flaming skulls
+て,te,Tails,ているす,Sonic the Hedgehog,Orange fox with two spinning tails,Japanese TEirusu name cue; not English TAY sound.,flies by spinning his twin tails; builds and repairs machines
+と,to,Totoro,ととろ,My Neighbor Totoro,Huge gray furry body,,grows trees; rides a spinning top; shelters beneath an umbrella
+な,na,Naruto,なると,Naruto,Orange clothes and whisker marks,Full identity: Naruto Uzumaki.,creates shadow clones; forms a Rasengan; eats ramen
+に,ni,Nico,にこ,One Piece,Extra arms sprouting from surfaces,Full identity: Nico Robin.,sprouts extra arms from surfaces; restrains opponents with multiplied limbs
+ぬ,nu,Nukem,ぬーけむ,Duke Nukem,"Blond action hero wearing sunglasses, a red tank top, and ammunition straps",User choice; full identity: Duke Nukem; use surname Nukem. Cue English NOOK-em opening for nu; NYOOK-em would instead resemble nyu. Only initial nu encoded; vowel length is not automatic.,fires oversized guns at aliens; delivers action-movie one-liners; kicks enemies
+ね,ne,Ned,ねっど,The Simpsons,Moustache and round glasses with green sweater,Full identity: Ned Flanders. Initial NE sound.,offers cheerful neighborly help; says okily-dokily; prays
+の,no,Nobita,のびた,Doraemon,Round glasses and yellow shirt,Full identity: Nobita Nobi.,begs Doraemon for gadgets; oversleeps; struggles with homework
+は,ha,Harry,はりーぽったー,Harry Potter,Round glasses and lightning scar with a wand,Full identity: Harry Potter. Japanese HArii name cue.,casts spells with a wand; rides a broom; catches the Golden Snitch
+ひ,hi,He-Man,ひーまん,Masters of the Universe,Blond muscular hero raising a sword,HEE sound supplies hi only.,raises his sword to transform; lifts enormous weights; fights Skeletor
+ふ,fu,Fubuki,ふぶき,One-Punch Man,Black-haired psychic hero wearing a dark green dress and a white fur coat,User choice; exact Japanese fu opening.,levitates objects with psychic force; creates psychic barriers
+へ,he,Hercules,へらくれす,Hercules,Muscular red-haired hero in a brown tunic,Japanese HE-rakuresu name cue.,lifts enormous objects; battles mythological monsters
+ほ,ho,Homer,ほーまー,The Simpsons,Yellow skin and white shirt,Full identity: Homer Simpson. Japanese name cue.,eats doughnuts; drinks Duff beer; dozes at the nuclear plant
+ま,ma,Mario,まりお,Super Mario,Red M cap and blue overalls,User choice.,jumps on enemies; collects coins; throws fireballs after a power-up
+み,mi,Mickey,みっきーまうす,Disney,Round black ears and red shorts with white gloves,Full identity: Mickey Mouse. Initial MI sound.,steers a steamboat; conducts music; as the Sorcerer's Apprentice animates brooms
+む,mu,Mulan,むーらん,Mulan,Armor and sword,Japanese name cue.,disguises herself as a soldier; fights with a sword; triggers an avalanche
+め,me,Meg,めぐ,Family Guy,"Meg Griffin wearing a pink beanie, round glasses, and a pink T-shirt",User choice; full identity: Meg Griffin from Family Guy; English MEG opening approximates me; not Meg from Hercules.,endures dismissive remarks from her family; tries to fit in at school; protests being ignored
+も,mo,Morty,もーてぃー,Rick and Morty,Yellow shirt and anxious expression,Full identity: Morty Smith. Japanese name cue.,follows Rick through portals; panics during dangerous adventures
+や,ya,Yahoo,やーふーしりあす,Australian cinema / Young Einstein,Wild-haired Australian actor portraying Einstein holding a violin,Full identity: Yahoo Serious. English YAH opening resembles ya; real stage name; Australian 1980s film reference.,as Einstein in Young Einstein splits a beer atom; plays violin; invents rock and roll
+ゆ,yu,Yuffie,ゆふぃ,Final Fantasy VII,Ninja with short dark hair and giant throwing star,Full identity: Yuffie Kisaragi. Japanese YUfi name cue.,steals materia; throws a giant shuriken
+よ,yo,Yoshi,よっしー,Super Mario,Green dinosaur and long tongue,,grabs food with his long tongue; swallows enemies; lays eggs
+ら,ra,Rambo,らんぼー,Rambo,Red headband and bow,,survives in the wilderness; sets traps; fires explosive arrows
+り,ri,Rick,りっく,Rick and Morty,Scientist with spiky blue hair and portal gun,Full identity: Rick Sanchez. Japanese RI-kku name cue.,opens portals with his portal gun; builds bizarre inventions
+る,ru,Luffy,るふぃ,One Piece,Straw hat and stretching body,Japanese name cue.,stretches his rubber limbs; throws long-range punches; eats enormous meals
+れ,re,Rex,れっくす,Toy Story,Green plastic tyrannosaurus with tiny arms,Initial RE sound.,roars nervously; frets about being frightening enough
+ろ,ro,Rosetta,ろぜった,Super Mario,Pale blue gown and star wand,Full identity: Rosalina (Rosetta). Use Japanese Rosetta name; initial ro only.,cares for Lumas; travels through space; guides the Comet Observatory
+わ,wa,Wario,わりお,Super Mario,Yellow W cap and zigzag moustache,,hoards coins; shoulder-charges obstacles; rides his motorbike
+を,o,Olaf,おらふ,Frozen,Same snowman as お,Sound alias of お.,gives warm hugs; detaches and rearranges snowball body parts
+ん,n,Nemo,ん,Finding Nemo,Orange clownfish with white stripes and one small fin; closes his mouth for a nasal hum,Nasal marker only; imagined closing gesture; do not pronounce Nemo or add a vowel.,swims with his small lucky fin; explores the reef; mnemonic-only nasal gesture: closes his mouth while learner hums
+が,ga,Gaston,がすとん,Beauty and the Beast,Muscular hunter in red shirt,Japanese GAsuton name cue.,flexes his muscles; boasts about himself; hunts
+ぎ,gi,Gizmo,ぎずも,Gremlins,Small furry mogwai with enormous ears,Hard G in GI-zmo.,sings softly; recoils from bright light
+ぐ,gu,Goofy,ぐーふぃー,Disney,Long ears and green hat,,stumbles through slapstick accidents; attempts ordinary tasks with disastrous results
+げ,ge,Geralt,げらると,The Witcher,White-haired monster hunter carrying two swords,Full identity: Geralt of Rivia. Japanese GE-raruto name cue; hard G.,hunts monsters; fights with swords; casts witcher Signs
+ご,go,Goku,ごくう,Dragon Ball,Orange gi and spiky hair,,fires a Kamehameha; transforms into a Super Saiyan; eats huge meals
+ざ,za,Zangief,ざんぎえふ,Street Fighter,Huge wrestler with red trunks,,performs a spinning piledriver; wrestles; uses a spinning lariat
+じ,ji,Genie,じーにー,Aladdin,Blue genie emerging from a lamp,Initial JEE sound only.,grants wishes; transforms himself; conjures spectacular magical displays
+ず,zu,Zuul,ずーる,Ghostbusters,Horned red-eyed Terror Dog,Japanese ZUuru name cue; initial zu only.,possesses a human host; snarls and charges as a Terror Dog
+ぜ,ze,Zelda,ぜるだ,The Legend of Zelda,Princess dress and Triforce imagery,,wields sacred light; seals evil; protects Hyrule
+ぞ,zo,Zoro,ぞろ,One Piece,Green hair and three swords,,"fights with three swords, one in his mouth; gets hopelessly lost"
+だ,da,Darth,だーすべいだー,Star Wars,Black helmet and red lightsaber,Full identity: Darth Vader.,chokes enemies with the Force; duels with a red lightsaber; breathes through his mask
+ぢ,ji,Genie,じーにー,Aladdin,Same blue lamp genie as じ,Sound alias of じ.,grants wishes; transforms himself; conjures spectacular magical displays
+づ,zu,Zuul,ずーる,Ghostbusters,Same horned red-eyed Terror Dog as ず,Sound alias of ず.,possesses a human host; snarls and charges as a Terror Dog
+で,de,Deku,でく,My Hero Academia,Green costume and freckles,,channels One For All; delivers powerful smashes; analyzes heroes
+ど,do,Donkey,どんきーこんぐ,Donkey Kong,Gorilla with red DK tie,Full identity: Donkey Kong.,throws barrels; pounds the ground; swings through jungle vines
+ば,ba,Batman,ばっとまん,DC,Black cowl and bat cape,,throws Batarangs; grapples between rooftops; investigates crimes
+び,bi,Beast,びーすと,Beauty and the Beast,Horned furry prince in blue formal coat,Initial BEE sound only.,roars in anger; struggles to behave gently; dances with Belle
+ぶ,bu,Boo,ぶー,Super Mario,Round white ghost hiding its face,English BOO cue; Japanese name Teresa is not the cue.,hides his face when watched; pursues people when they look away; floats through walls
+べ,be,Belle,べる,Beauty and the Beast,Yellow ball gown and book,,reads books; dances with the Beast; looks beyond appearances
+ぼ,bo,Bo,ぼーぴーぷ,Toy Story,Shepherd's crook and bonnet,Full identity: Bo Peep.,herds sheep; hooks and pulls with her shepherd's crook
+ぱ,pa,Pac-Man,ぱっくまん,Pac-Man,Yellow circle eating pellets,,eats pellets through a maze; eats power pellets and chases ghosts
+ぴ,pi,Pikachu,ぴかちゅう,Pokemon,Yellow body and lightning tail,,releases electric shocks; uses Thunderbolt; rides on a trainer's shoulder
+ぷ,pu,Pooh,ぷー,Winnie the Pooh,Yellow bear and red shirt,,eats honey; gets stuck reaching for more honey; visits friends in the Hundred Acre Wood
+ぺ,pe,Peppa,ぺっぱぴっぐ,Peppa Pig,Pink pig in a red dress,Full identity: Peppa Pig. Initial PE sound.,jumps in muddy puddles; snorts and giggles
+ぽ,po,Popeye,ぽぱい,Popeye,Sailor hat and huge forearms,Japanese name cue.,eats spinach for strength; punches with enormous forearms
+きゃ,kya,Kyary,きゃりーぱみゅぱみゅ,Japanese pop music,Pop singer in colorful surreal costumes and oversized bows,Full identity: Kyary Pamyu Pamyu. User choice; initial KYA sound only.,sings and dances in surreal pop videos; performs in colorful elaborate costumes
+きゅ,kyu,Q,きゅー,James Bond,Gadget inventor demonstrating spy equipment,Letter name Q supplies KYOO; initial kyu only.,demonstrates spy gadgets; equips Bond; warns him to return equipment intact
+きょ,kyo,Kyoshi,きょーし,Avatar: The Last Airbender,Avatar in green robes with white face paint and a tall gold headdress,English KYO-shee name cue; variants may separate kee-OH into two syllables; only initial kyo is encoded.,earthbends with metal fans; moves massive rock formations
+しゃ,sha,Shaq,しゃっく,Basketball / Shaquille O’Neal,Towering muscular basketball player in a Lakers jersey beside a basketball hoop,User choice; full identity: Shaquille O’Neal; English SHACK opening approximates sha; English vowel differs from Japanese a; final consonant is not encoded.,slam-dunks with enormous reach; overwhelms defenders near the basket; breaks a backboard with a powerful dunk
+しゅ,shu,Shrek,しゅれっく,Shrek,Green ogre with trumpet-shaped ears and a brown vest,Japanese SHU-rekku name cue.,guards his swamp; scares intruders; trades grumpy banter with Donkey
+しょ,sho,Shaun,しょーん,Shaun the Sheep,White woolly sheep with black face and legs,Full identity: Shaun the Sheep. Japanese SHOn name cue; initial sho only.,devises farmyard schemes; disguises himself to fool humans; leads the flock
+ちゃ,cha,Chucky,ちゃっきー,Child's Play,Red-haired doll in striped shirt,Japanese name cue.,pretends to be an ordinary doll; stalks victims with a knife
+ちゅ,chu,Chun-Li,ちゅんりー,Street Fighter,Blue outfit and hair buns,,performs rapid Lightning Kicks; executes a Spinning Bird Kick
+ちょ,cho,Chopper,ちょっぱー,One Piece,Reindeer and pink X hat,,treats injured crewmates; transforms with Rumble Balls
+にゃ,nya,Nyan,にゃんきゃっと,Nyan Cat,Pixel cat with pastry body leaving a rainbow trail,Full identity: Nyan Cat. Initial NYA sound.,flies through space with a rainbow trail
+にゅ,nyu,Newton,にゅーとん,History of science,Wig-wearing scientist beneath a falling apple,Full identity: Isaac Newton; use Newton in story prose; cue surname NYUuton; real historical person; initial nyu only.,studies a falling apple as a gravity image; splits white light with a prism
+にょ,nyo,Neo,にーおう,The Matrix,Black-coated hero wearing sunglasses and dodging bullets,Loose English NEE-oh name resemblance to nyo; English has two syllables rather than Japanese contracted nyo; not an exact match.,dodges bullets in slow motion; stops bullets; fights inside the Matrix
+ひゃ,hya,Hyacinth,はいあしんす,Keeping Up Appearances,Suburban social climber in formal clothes insisting her surname is Bouquet,Full identity: Hyacinth Bucket. User choice; English HIGH-uh approximates hya; diphthong and syllable count differ.,insists Bucket is pronounced Bouquet; hosts formal teas; fusses over fine china
+ひゅ,hyu,Huey,ひゅーい,DuckTales,Donald Duck nephew in red cap and shirt,Japanese HYUui name cue; not HOO pronunciation.,investigates adventures with his brothers; consults the Junior Woodchucks Guidebook
+ひょ,hyo,Hyogoro,ひょうごろう,One Piece,Small elderly samurai with blue flame-shaped hair and large tattoos,User choice; exact Japanese hyo opening.,teaches advanced Armament Haki; demonstrates samurai swordsmanship
+みゃ,mya,Mya,まいあ,R&B / Lady Marmalade (2001),Singer from the Lady Marmalade music video in a feathered stage costume,"Full identity: Mya Harrison, stage name styled Mya with a diaeresis; actual English MY-ah opening loosely resembles mya; diphthong and two syllables differ.",sings and dances in Lady Marmalade; performs choreographed stage routines
+みゅ,myu,Myuutuu,みゅうつー,Pokemon / Mewtwo,Tall pale psychic creature with a purple tail,User choice; Myuutuu is the chosen display spelling for Mewtwo (Japanese Myuutsuu); encodes only initial myu.,moves objects telekinetically; creates psychic barriers; levitates
+みょ,myo,Myojin,みょうじんやひこ,Rurouni Kenshin,Young black-haired swordsman carrying a bamboo practice sword,User choice; Yahiko Myojin; use surname Myojin; exact Japanese myo opening.,trains with a bamboo sword; catches an opponent's blade
+りゃ,rya,Leah,りーあ,Stardew Valley,Red-haired artist living in a cottage near Cindersap Forest,"User choice: Leah, the red-haired artist from Stardew Valley; non-Japanese LEE-ah name opening loosely approximates rya; two English syllables and the L sound differ from contracted Japanese rya.",sculpts wood; sketches outdoors; exhibits artwork
+りゅ,ryu,Ryu,りゅう,Street Fighter,White gi and red headband,Use RYOO sound; not RYE-you.,throws Hadoukens; performs a Shoryuken; uses a hurricane kick
+りょ,ryo,Rio,りお,Japanese adult entertainment,Japanese adult actress Rio,"User choice; Rio, the Japanese adult actress; ri-o approximates ryo. Explicitly authorized exception to the exact-Japanese-name rule; do not generalize.",poses for the camera; performs on camera as an actress
+ぎゃ,gya,Gambit,ぎゃんびっと,Marvel / X-Men,Trench-coated mutant throwing glowing playing cards,Japanese GYA-nbitto name cue.,charges playing cards with kinetic energy; throws explosive cards; fights with a staff
+ぎゅ,gyu,Gustave,ぎゅすたーゔ,Clair Obscur: Expedition 33,Expeditioner Gustave with his mechanical arm,User choice: Gustave from Clair Obscur: Expedition 33; French name opening approximates gyu; English GUS opening differs.,charges his mechanical arm; releases Overcharge; attacks with Lumiere Assault
+ぎょ,gyo,Gyoro,ぎょろぎょろ,One-Punch Man,Round pink one-eyed monster with small arms,Full identity: Gyoro Gyoro. User choice; exact Japanese gyo opening.,levitates objects and opponents; restrains enemies with psychic force
+じゃ,ja,Jack,じゃっく,Pirates of the Caribbean,Pirate hat and braided beard,Full identity: Jack Sparrow.,staggers and improvises escapes; duels with a cutlass; captains the Black Pearl
+じゅ,ju,Juri,じゅり,Street Fighter,Purple costume and hair horns,Full identity: Juri Han.,fights with taekwondo kicks; unleashes Feng Shui Engine attacks
+じょ,jo,Joker,じょーかー,DC,Green hair and purple suit,,sets elaborate traps; spreads chaos; laughs theatrically
+びゃ,bya,Beatrix,びーあとりくすきどー,Kill Bill,The Bride in a yellow tracksuit carrying a katana,Full identity: Beatrix Kiddo. Approximate English BEE-uh opening resembles bya; two English syllables rather than a contracted Japanese mora; cue Beatrix rather than the alias Bride.,duels with a katana; uses the Five Point Palm Exploding Heart Technique
+びゅ,byu,Bueller,びゅーらー,Ferris Bueller's Day Off,Teenager in a patterned waistcoat skipping school,Full identity: Ferris Bueller; use Bueller in story prose; direct English surname BUELLER /BYOO-ler/ opening supplies byu; explicitly cue surname rather than Ferris.,skips school; performs in a parade; talks directly to the camera
+びょ,byo,Bjorn,びょるん,Vikings,Blond Viking warrior in armor,Full identity: Bjorn Ironside. Japanese Byorun name; check familiarity.,leads Viking raids; sails longships; fights with sword and shield
+ぴゃ,pya,Pia,ぴーあみらんだ,Australian film / Looking for Alibrandi,Pia Miranda as Josie Alibrandi in her school uniform,Full identity: Pia Miranda. User choice; English PEE-ah approximates pya; two syllables rather than one contracted mora.,as Josie in Looking for Alibrandi attends school; challenges family expectations; navigates romance and family conflict
+ぴゅ,pyu,PewDiePie,ぴゅーでぃぱい,YouTube,Blond bearded video creator wearing headphones at a gaming desk,Initial PYOO sound only.,plays games while commentating; reacts dramatically to gameplay
+ぴょ,pyo,Pyotr,ぴょーとるちゃいこふすきー,Classical music,Bearded composer associated with The Nutcracker and Swan Lake,Full identity: Pyotr Tchaikovsky. User choice; Pyotr Ilyich Tchaikovsky; cue given name Pyotr; Russian PYOTR opening approximates pyo.,composes ballet music; writes orchestral scores; supplies music for Swan Lake and The Nutcracker

@@ -17,7 +17,7 @@ Use [assets/sound-characters.csv](../assets/sound-characters.csv) as the shared 
 - **Non-Japanese names may use similar-sounding openings.** Record the real pronunciation and specific difference in `selection_note`; prefer small differences and distinguish neighboring kana. Do not present loose English approximations as exact Japanese readings. A familiar character does not automatically make a poor sound association useful.
 - Do not manufacture cues through props, moves, weapons, titles, band/film names, animal noises, or consonant-plus-word combinations. King Kong cannot encode `きょ`; Thor cannot encode `みょ` by holding Mjolnir. A named object may itself be the actor when its own name supplies the cue. Check uncertain spoken-name mappings before story use. If a new rule conflicts with a previously explicit user choice, retain that choice and flag the conflict rather than silently replacing it or treating it as an approved exception.
 - If no accurate candidate is found, leave `character`, `franchise`, and `visual_anchor` blank, retain the target kana in `cue_reading`, and start `selection_note` with `UNRESOLVED`. An unresolved row is not a usable actor; flag the missing cue when composing stories rather than silently filling it. Nasal/closure/length markers remain explicit operations, not ordinary name-prefix mappings.
-- Make `character` the name actually spoken in the story and used for its opening sound. If the cue uses a surname or another name component, put that component first as the main display name: `Newton`, `Bueller`, `Tsung`. Keep the full identity in `selection_note`; do not prepend an uncued first name in story prose.
+- Keep `character` to one word: the name actually spoken in the story and used for its opening sound. Retain the full identity in `selection_note`. If the cue uses a surname or another name component, put that component first as the main display name: `Newton`, `Bueller`, `Tsung`. Keep the full identity in `selection_note`; do not prepend an uncued first name in story prose.
 - Keep canonical names readable in the story, such as Mario and Anpanman. The registry and review data hold the exact sound mapping; routine stories need no kana label or repeated cue explanation.
 
 ## Turn the reading into one event
@@ -42,9 +42,9 @@ A character identity/name change is a registry change, not a per-word improvisat
 
 ### 旅行【りょこう】 — travel
 
-During her <b><u>travel</u></b> adventure, a **trip** sends *Rio* tumbling onto a **going** escalator that *Conan Edogawa* stretches across the ocean.
+During her <b><u>travel</u></b> adventure, a **trip** sends *Rio* tumbling onto a **going** escalator that *Conan* stretches across the ocean.
 
-Internal: 旅 = trip, `りょ → Rio` (user-authorized approximation); 行 = going, `こ → Conan Edogawa`, stretching holds /o/ for the lengthening `う`. Meaning comes first; each keyword precedes its actor. Both actors participate in the journey.
+Internal: 旅 = trip, `りょ → Rio` (user-authorized approximation); 行 = going, `こ → Conan`, stretching holds /o/ for the lengthening `う`. Meaning comes first; each keyword precedes its actor. Both actors participate in the journey.
 
 ### 牛【ぎゅう】 — cow
 
@@ -54,6 +54,6 @@ Internal: one kanji, so omit the separate RTK keyword. `ぎゅ → Gustave` (reg
 
 ### 取り消す【とりけす】 — cancel a reservation
 
-To <b><u>cancel a reservation</u></b>, **take** the burning booking slip with *Totoro* and **extinguish** it with *Ken Masters*; its magical hotel entry vanishes in the steam.
+To <b><u>cancel a reservation</u></b>, **take** the burning booking slip with *Totoro* and **extinguish** it with *Ken*; its magical hotel entry vanishes in the steam.
 
-Internal: 取 = take, `と → Totoro`; 消 = extinguish, `け → Ken Masters`. Written `り` and `す` receive no actors. There are two kanji, so both keywords remain.
+Internal: 取 = take, `と → Totoro`; 消 = extinguish, `け → Ken`. Written `り` and `す` receive no actors. There are two kanji, so both keywords remain.
