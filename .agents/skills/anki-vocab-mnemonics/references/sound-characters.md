@@ -25,6 +25,8 @@ The CSV `unknown` column is learner feedback. `Y` (case-insensitive) rejects the
 
 ## Name cues, English approximations, and unresolved entries
 
+Japanese names require an exact matching initial mora, including contracted sounds. `みお` is not `みょ`, and `りお` is not `りょ`; do not merge separate Japanese morae. Similar-sounding approximations are permitted for non-Japanese names only. The user explicitly reaffirmed one exception: `りょ → Rio` despite the Japanese reading `りお`. Retain that choice; do not extend the exception to other Japanese names. Apply the distinction to the actual name/pronunciation, not the franchise or nationality.
+
 Use actual spoken name openings or an explicitly recorded name component. The user permits similar English names; keep the real pronunciation and describe the mismatch in `selection_note`. For example, Bueller supplies `びゅ` through his surname's BYOO opening. `character` stores the sound-bearing display name; `selection_note` retains Ferris Bueller as the full identity. Likewise, use Newton and Tsung in stories rather than prepending Isaac or Shang. Mia's MEE-ah is a loose resemblance to `みゃ`, not an exact Japanese contracted mora. Do not claim that English names are pronounced as their target kana.
 
 Do not manufacture cues through props, moves, film/band titles, animal noises, or consonant-plus-word combinations. King Kong does not supply `きょ`. Mjolnir can supply `みょ` as the actual named hammer; its owner Thor cannot supply that sound merely by holding it.
