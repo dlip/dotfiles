@@ -1,28 +1,34 @@
 # Japanese sound characters
 
-One stable actor for each sound. **あ = Anpanman** and **ま = Mario** are the user's choices; the others are proposed defaults, not claims about the user's familiarity. There are 104 standard kana entries, including homophone aliases. English character names identify the actors; the kana cue column specifies the intended sound prefix, not the whole name.
+One stable actor for each sound. **あ = Anpanman** and **ま = Mario** are the user's choices; the others are proposed defaults, not claims about the user's familiarity. There are 104 standard kana entries, including homophone aliases. English character names identify the actors; the kana cue column records the actual name pronunciation used for its opening sound. Unmatched sounds have blank actor fields and an UNRESOLVED selection note.
+
+The learner recognizes Naruto himself but has not watched Naruto; all other Naruto characters have been replaced with proposed alternatives. Familiarity with replacements is recorded in the CSV. The learner knows only very popular Pokemon and is unfamiliar with Gundam and King of Fighters. The learner is also unfamiliar with Korean pop culture. Avoid lesser-known Pokemon, Pokemon trainers, Korean pop-culture references, and both unfamiliar franchises.
 
 Read [character-cues.md](character-cues.md) before composing stories. Names marked Japanese use that character's Japanese/localized pronunciation; do not silently substitute a different English pronunciation. A long vowel later in a name does not automatically lengthen the encoded prefix.
 
-The authoritative roster is [assets/sound-characters.csv](../assets/sound-characters.csv). Columns: `kana`, `romaji`, `character`, `cue_reading`, `franchise`, `visual_anchor`, and `selection_note`. Each row assigns one written kana entry to its actor; homophone aliases have separate rows.
+The authoritative roster is [assets/sound-characters.csv](../assets/sound-characters.csv). Columns: `kana`, `romaji`, `character`, `cue_reading`, `franchise`, `visual_anchor`, `selection_note`, and `unknown`. Each row assigns one written kana entry to its actor; homophone aliases have separate rows.
 
 ## Aliases and exceptional markers
 
 - Standard modern Japanese `を` uses the same sound actor as `お`; `ぢ` shares `じ`, and `づ` shares `ず`. Preserve the actual written kana in review data. For attested dialectal or lexical distinctions, follow the audio instead of forcing these aliases.
 - `ぢゃ・ぢゅ・ぢょ`, when encountered, share `じゃ・じゅ・じょ` in the usual modern pronunciation.
-- `ん` uses Pokemon's **N** as a nasal-closing marker. Picture his nasal hum; do not pronounce his name “en” or insert an extra vowel.
+- `ん` uses **Nemo** as a nasal-closing marker. Imagine him closing his mouth while the learner hums the nasal sound; this is a designed mnemonic gesture, not a canonical character sound. Do not say Nemo or add a vowel.
 - Small `っ` uses **Thwomp** as a closure marker: it slams shut immediately before the following consonant. It does not encode `つ` or the sound of “Thwomp.”
 - Long vowels use the preceding actor visibly stretching/holding the vowel for a second beat. Do not add Usagi merely because a lengthening `う` is written, or confuse that with a genuinely separate `う`.
 - Foreign combinations such as `ティ・ファ・ヴァ` are outside this core inventory. Extend the registry deliberately when actually needed; do not silently split them into different sounds.
 
-## Source checks for less familiar choices
+## Familiarity review
 
-These links establish the character identities; they do not prove the mnemonic works for this learner.
+The learner is Australian and an '80s kid, has played many retro video games, and likes movies. Favor retro games, classic films, and Australian childhood television when proposing actors; individual familiarity still comes from the learner's review.
 
-- [Myau: SEGA's Phantasy Star character page](https://www.sega.jp/fb/album/07_ps/character.html).
-- [Pyunma: official Cyborg 009 character page](https://cyborg009.jp/008-2/).
-- [Bjorn: HISTORY's Vikings cast page](https://www.history.com/shows/vikings/cast/bjorn).
-- [LYA: licensed WDZY merchandise](https://www.sk-japan.co.jp/character-fancy/product/wdzy/cfgoods-13996); [localized リャ reading](https://daebak.tokyo/2020/09/11/itzy-line-friends-2/). Treat this less familiar localized name as provisional.
-- [Koito: official character page](https://shinycolors-anime2nd.idolmaster-official.jp/character/koito/); [game dialogue transcription including ぴゃ](https://gamesink.net/imassc/characters/22). Her proposed `ぴゃ` mapping uses the startled cry, **not** the pronunciation of Koito. Replace it if that association is unfamiliar; do not pass it off as a name-prefix match.
+The CSV `unknown` column is learner feedback. `Y` (case-insensitive) rejects the current actor as unfamiliar; `?` marks a replacement awaiting review. Other values are preserved without assuming familiarity. Rejected names remain in `selection_note` to avoid suggesting them again. Prefer familiar actors, but keep sound accuracy; rare-sound proposals may still be unfamiliar.
 
-An unknown character adds another association to learn. Replace unfamiliar choices with a character the learner already pictures; keep the sound match and update the registry once rather than changing actors between stories.
+## Name cues, English approximations, and unresolved entries
+
+Use actual spoken name openings or an explicitly recorded name component. The user permits similar English names; keep the real pronunciation and describe the mismatch in `selection_note`. For example, Bueller supplies `びゅ` through his surname's BYOO opening. `character` stores the sound-bearing display name; `selection_note` retains Ferris Bueller as the full identity. Likewise, use Newton and Tsung in stories rather than prepending Isaac or Shang. Mia's MEE-ah is a loose resemblance to `みゃ`, not an exact Japanese contracted mora. Do not claim that English names are pronounced as their target kana.
+
+Do not manufacture cues through props, moves, film/band titles, animal noises, or consonant-plus-word combinations. King Kong does not supply `きょ`. Mjolnir can supply `みょ` as the actual named hammer; its owner Thor cannot supply that sound merely by holding it.
+
+A provisional spoken-name mapping must be checked before story use. Gyorg's proposed GY-org reading is unverified and would not work if the learner says GUY-org or GEE-org. Familiarity review does not itself verify pronunciation.
+
+If no suitable proposal exists, leave actor fields blank and mark `selection_note` as `UNRESOLVED`; do not invent a name or pronunciation. Nasal, closure, and vowel-length operations remain separate markers.

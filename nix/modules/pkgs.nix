@@ -8,6 +8,7 @@
     { system, pkgs, ... }:
     {
       packages.manatan = pkgs.manatan;
+      packages.pokedinner = pkgs.pokedinner;
       packages.rom-converto = pkgs.rom-converto;
       packages.romm = pkgs.romm;
       packages.switch-library-manager = pkgs.switch-library-manager;
@@ -98,6 +99,7 @@
               };
               mokuro-reader = inputs.mokuro-reader.packages.${final.stdenv.hostPlatform.system}.default;
               manatan = final.callPackage ../pkgs/manatan/package.nix { };
+              pokedinner = final.callPackage ../pkgs/pokedinner/package.nix { };
               rom-converto = final.callPackage ../pkgs/rom-converto/package.nix { };
               romm = final.callPackage ../pkgs/romm/package.nix { romm = prev.romm; };
               switch-library-manager = final.callPackage ../pkgs/switch-library-manager/package.nix { };

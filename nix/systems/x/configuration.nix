@@ -18,6 +18,7 @@
   ];
 
   programs.eden.enable = true;
+  services.openssh.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -66,6 +67,7 @@
       zed-editor
       codex
       manatan
+      pokedinner
     ];
 
   hardware.graphics = {

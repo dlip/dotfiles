@@ -160,6 +160,7 @@
 !/nix/
 !/nix/**
 !/nix/pkgs/manatan/package.nix
+!/nix/pkgs/pokedinner/package.nix
 !/nix/pkgs/rom-converto/package.nix
 !/nix/pkgs/romm/package.nix
 !/nix/pkgs/romm/watch-library.py

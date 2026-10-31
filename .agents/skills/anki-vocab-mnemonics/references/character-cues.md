@@ -4,11 +4,19 @@ Use [assets/sound-characters.csv](../assets/sound-characters.csv) as the shared 
 
 ## Select the actors
 
+- The learner is Australian, grew up as an '80s kid, has played many retro video games, and enjoys movies. Prioritize recognizable retro-game characters, classic film characters, and Australian childhood television or public figures. Use these as search directions, not proof that a particular character is familiar. Prefer recognizable English names and record any Japanese alias or other cue association explicitly. Do not loosen the sound match merely to fit a famous name.
+- The learner has not watched Naruto and recognizes only Naruto himself; do not use other Naruto characters.
+- The learner is unfamiliar with Korean pop culture; avoid Korean pop stars, actors, television characters, and related references when proposing replacements.
+- The learner is unfamiliar with Gundam and King of Fighters; avoid proposing characters from those franchises.
+- The learner knows only the very popular Pokemon. Do not propose lesser-known Pokemon or Pokemon trainers; preserve individual reviewed choices and avoid recycling rejected names.
 - Preserve the user's fixed choices: `あ → Anpanman`, `ま → Mario`. Other roster entries are proposed defaults. Prefer actors the learner already recognizes. Offer a replacement when a rare or unfamiliar actor would otherwise become extra homework; no need to reconfirm familiar choices for every word.
 - Use the same actor for the same sound throughout a run and across decks. One actor should not stand for two distinct sounds. Homophone aliases in the roster are deliberate exceptions, not alternative pronunciations to invent.
 - Most names encode only their listed initial mora: Mario supplies `ま`, not `まりお`; Anpanman supplies `あ`, not `あん`. Never accidentally encode the rest of a character's name.
-- The roster records a pronunciation cue alongside the English identity. Some use the Japanese name or a surname: Meowth/Nyarth for `にゃ`, Hinata HYUga for `ひゅ`. Make that association clear during roster setup. Do not assume English spelling guarantees the sound; Kirby's ordinary English name does not supply `き`.
-- The provisional Koito `ぴゃ` entry uses her recognizable startled cry, not her name. Keep this exception explicit in setup/review data. Do not invent purported canonical catchphrases to fill other gaps.
+- The roster records a pronunciation cue alongside the English identity. Some use the Japanese name or a surname: Newton (Isaac Newton; Japanese NYUuton) for `にゅ`, Huey (Japanese HYUui) for `ひゅ`. Make that association clear during roster setup. Do not assume English spelling guarantees the sound; Kirby's ordinary English name does not supply `き`.
+- Respect the CSV `unknown` column: `Y` (case-insensitive) means the learner does not recognize that actor; replace it when requested and mark the new proposal `?`. `?` means awaiting familiarity review, not confirmed familiar. Preserve other values and columns. Keep rejected actor names in `selection_note` so they are not proposed again.
+- Sound cues must come directly from, or approximate, the actual spoken opening of the selected character name or an explicitly recorded name component. Use a verified Japanese name pronunciation only when clearly recorded; never infer it from English spelling. Do not use props, moves, weapons, titles, band names, film titles, animal noises, isolated consonants plus other words, or other indirect associations to manufacture the sound. King Kong cannot encode `きょ`; Thor's Mjolnir cannot make Thor encode `みょ`. The user allows English names resembling Japanese pronunciation. Record real English pronunciation and the specific approximation in `selection_note`; never disguise a rough match as an exact Japanese reading. Prefer small differences and clearly distinguish similar kana. Loose matches involving two English syllables or different vowels are proposals for learner review, not verified phonetic equivalences. The actual named object Mjolnir may be a cue actor itself; this does not make Thor a cue for its sound. Unverified spoken-name mappings, such as Gyorg, must be flagged and checked before story use.
+- If no accurate candidate is found, leave `character`, `franchise`, and `visual_anchor` blank, retain the target kana in `cue_reading`, and start `selection_note` with `UNRESOLVED`. Keep `unknown` as `?` for review. An unresolved row is not a usable actor; flag the missing cue when composing stories rather than silently filling it. Preserve rejected-name history so it is not recycled. Nasal/closure/length markers remain explicit operations, not ordinary name-prefix mappings.
+- Make `character` the name actually spoken in the story and used for its opening sound. If the cue uses a surname or another name component, put that component first as the main display name: `Newton`, `Bueller`, `Tsung`. Keep the full identity in `selection_note`; do not prepend an uncued first name in story prose. Preserve existing familiarity flags during display-name-only edits.
 - Keep canonical names readable in the story, such as Mario and Anpanman. The registry and review data hold the exact sound mapping; routine stories need no kana label or repeated cue explanation.
 
 ## Turn the reading into one event
@@ -35,15 +43,15 @@ These examples use verified RTK mappings from the bundled lookup. Character assi
 
 ### 今【いま】 — now
 
-Itachi shouts **now** as the starting gate drops; Mario bursts through before it closes, seizing his chance to run <b><u>now</u></b>.
+Eevee yelps **now** as the starting gate drops; Mario bursts through before it closes, seizing his chance to run <b><u>now</u></b>.
 
-Internal: 今 = now; `い → Itachi`, `ま → Mario`; one grouped kanji reading `いま`. The immediate alarm makes the present moment actionable.
+Internal: 今 = now; `い → Eevee`, `ま → Mario`; one grouped kanji reading `いま`. The immediate alarm makes the present moment actionable.
 
 ### 赤【あか】 — red
 
-Anpanman spills **red** paint over Kakashi's masked face; every white patch turns the color of a tomato, leaving his entire costume <b><u>red</u></b>.
+Anpanman spills **red** paint over Kirby's round face; every white patch turns the color of a tomato, leaving his entire costume <b><u>red</u></b>.
 
-Internal: 赤 = red; `あ → Anpanman`, `か → Kakashi`; one kanji reading `あか`. Both actors visibly cause the color change.
+Internal: 赤 = red; `あ → Anpanman`, `か → Kirby (Japanese KAAbii)`; one kanji reading `あか`. Both actors visibly cause the color change.
 
 ### 取り消す【とりけす】 — cancel a reservation
 
@@ -53,6 +61,6 @@ Internal: 取 = take, `と → Totoro`; 消 = extinguish, `け → Ken`. Written
 
 ### 学校【がっこう】 — school (closure and length)
 
-Gaara's **study** desk is crushed by Thwomp; Conan stretches the **exam** corridor into a long hall of classrooms where children attend <b><u>school</u></b>.
+Gaston's **study** desk is crushed by Thwomp; Conan stretches the **exam** corridor into a long hall of classrooms where children attend <b><u>school</u></b>.
 
-Internal: 学校 = `がっこう`; `が → Gaara`, `っ → Thwomp` closes before /k/, `こ → Conan` with the /o/ held for the lengthening `う`. This does not summon Usagi or pronounce “Thwomp.” Keywords `study → exam` retain written order. Prefer a more natural scene if this marker-heavy version is harder to recall; the markers cannot be dropped.
+Internal: 学校 = `がっこう`; `が → Gaston`, `っ → Thwomp` closes before /k/, `こ → Conan` with the /o/ held for the lengthening `う`. This does not summon Usagi or pronounce “Thwomp.” Keywords `study → exam` retain written order. Prefer a more natural scene if this marker-heavy version is harder to recall; the markers cannot be dropped.
