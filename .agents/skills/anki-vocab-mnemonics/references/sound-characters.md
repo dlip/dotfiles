@@ -2,11 +2,11 @@
 
 One stable actor for each sound. **あ = Anpanman** and **ま = Mario** are the user's choices; the others are proposed defaults, not claims about the user's familiarity. There are 104 standard kana entries, including homophone aliases. English character names identify the actors; the kana cue column records the actual name pronunciation used for its opening sound. Unmatched sounds have blank actor fields and an UNRESOLVED selection note.
 
-The learner recognizes Naruto himself but has not watched Naruto; all other Naruto characters have been replaced with proposed alternatives. Familiarity with replacements is recorded in the CSV. The learner knows only very popular Pokemon and is unfamiliar with Gundam and King of Fighters. The learner is also unfamiliar with Korean pop culture. Avoid lesser-known Pokemon, Pokemon trainers, Korean pop-culture references, and both unfamiliar franchises.
+The learner recognizes Naruto himself but has not watched Naruto; all other Naruto characters have been replaced with proposed alternatives. Personalize replacements using the learner’s direct feedback. The learner knows only very popular Pokemon and is unfamiliar with Gundam and King of Fighters. The learner is also unfamiliar with Korean pop culture. Avoid lesser-known Pokemon, Pokemon trainers, Korean pop-culture references, and both unfamiliar franchises.
 
 Read [character-cues.md](character-cues.md) before composing stories. Names marked Japanese use that character's Japanese/localized pronunciation; do not silently substitute a different English pronunciation. A long vowel later in a name does not automatically lengthen the encoded prefix.
 
-The authoritative roster is [assets/sound-characters.csv](../assets/sound-characters.csv). Columns: `kana`, `romaji`, `character`, `cue_reading`, `franchise`, `visual_anchor`, `selection_note`, and `unknown`. Each row assigns one written kana entry to its actor; homophone aliases have separate rows.
+The authoritative roster is [assets/sound-characters.csv](../assets/sound-characters.csv). Columns: `kana`, `romaji`, `character`, `cue_reading`, `franchise`, `visual_anchor`, and `selection_note`. Each row assigns one written kana entry to its actor; homophone aliases have separate rows.
 
 ## Aliases and exceptional markers
 
@@ -21,7 +21,7 @@ The authoritative roster is [assets/sound-characters.csv](../assets/sound-charac
 
 The learner is Australian and an '80s kid, has played many retro video games, and likes movies. Favor retro games, classic films, and Australian childhood television when proposing actors; individual familiarity still comes from the learner's review.
 
-The CSV `unknown` column is learner feedback. `Y` (case-insensitive) rejects the current actor as unfamiliar; `?` marks a replacement awaiting review. Other values are preserved without assuming familiarity. Rejected names remain in `selection_note` to avoid suggesting them again. Prefer familiar actors, but keep sound accuracy; rare-sound proposals may still be unfamiliar.
+Use the learner’s direct feedback to replace unfamiliar actors when requested. Prefer familiar actors while preserving sound accuracy. Keep `selection_note` focused on the current cue, pronunciation differences, and explicit exceptions.
 
 ## Name cues, English approximations, and unresolved entries
 
