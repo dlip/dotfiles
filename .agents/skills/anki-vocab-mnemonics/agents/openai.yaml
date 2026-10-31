@@ -1,4 +1,4 @@
 interface:
   display_name: "Anki Vocabulary Mnemonics"
-  short_description: "Link Japanese words, RTK kanji, and English sound cues"
-  default_prompt: "Use $anki-vocab-mnemonics to draft meaning-linked RTK mnemonics for my selected Japanese Anki deck."
+  short_description: "Link Japanese words, RTK kanji, and sound characters"
+  default_prompt: "Use $anki-vocab-mnemonics to draft meaning-linked RTK stories using my sound-character roster for my selected Japanese Anki deck."

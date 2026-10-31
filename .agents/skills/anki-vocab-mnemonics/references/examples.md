@@ -1,4 +1,6 @@
-# Examples and failure checks
+# Legacy English-object examples and shared failure checks
+
+New stories default to the character roster in [character-cues.md](character-cues.md). These older English-object examples remain useful for explicit legacy requests and for checking meaning links.
 
 Vocabulary labels identify examples here; only each story goes into the Anki Story field. The English target is bold and underlined near the end; natural wording may follow it. Mapping notes illustrate internal review data and are not rendered on cards. English cues approximate the verified Japanese reading.
 

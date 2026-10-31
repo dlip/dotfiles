@@ -1,0 +1,105 @@
+kana,romaji,character,cue_reading,franchise,visual_anchor,selection_note
+あ,a,Anpanman,あんぱんまん,Anpanman,Round bread head and red cape,user choice
+い,i,Itachi Uchiha,いたち,Naruto,Red-cloud cloak and crows,proposed
+う,u,Usagi Tsukino,うさぎ,Sailor Moon,Sailor uniform and long twin tails,proposed
+え,e,Elsa,えるさ,Frozen,Blue gown and ice powers,proposed
+お,o,Olaf,おらふ,Frozen,Living snowman and carrot nose,proposed
+か,ka,Kakashi Hatake,かかし,Naruto,Face mask and tilted forehead protector,proposed
+き,ki,Kirito,きりと,Sword Art Online,Black coat and swords,proposed
+く,ku,Krillin,くりりん,Dragon Ball,Bald head with six dots,Japanese name cue
+け,ke,Ken Masters,けん,Street Fighter,Red gi and blond hair,proposed
+こ,ko,Conan Edogawa,こなん,Detective Conan,Glasses and red bow tie,Japanese name cue
+さ,sa,Samus Aran,さむす,Metroid,Orange armor and arm cannon,proposed
+し,shi,Shikamaru Nara,しかまる,Naruto,Ponytail and shadow manipulation,proposed
+す,su,Superman,すーぱーまん,DC,Blue suit and red cape,Japanese name cue
+せ,se,Sephiroth,せふぃろす,Final Fantasy VII,Silver hair and long sword,proposed
+そ,so,Sonic,そにっく,Sonic the Hedgehog,Blue spikes and red shoes,proposed
+た,ta,Tanjiro Kamado,たんじろう,Demon Slayer,Green-black checkered coat,proposed
+ち,chi,Chihiro Ogino,ちひろ,Spirited Away,Bathhouse work clothes,proposed
+つ,tsu,Tsunade,つなで,Naruto,Green jacket and forehead diamond,proposed
+て,te,Tenten,てんてん,Naruto,Twin hair buns and weapon scrolls,proposed
+と,to,Totoro,ととろ,My Neighbor Totoro,Huge gray furry body,proposed
+な,na,Naruto Uzumaki,なると,Naruto,Orange clothes and whisker marks,proposed
+に,ni,Nico Robin,にこ,One Piece,Extra arms sprouting from surfaces,proposed
+ぬ,nu,Nunu,ぬぬ,League of Legends,Boy riding the yeti Willump,proposed
+ね,ne,Nezuko Kamado,ねずこ,Demon Slayer,Bamboo muzzle and pink kimono,proposed
+の,no,Nobita Nobi,のびた,Doraemon,Round glasses and yellow shirt,proposed
+は,ha,Haku,はく,Spirited Away,White dragon form,proposed
+ひ,hi,Hiei,ひえい,Yu Yu Hakusho,Third eye and black clothes,proposed
+ふ,fu,Fuu,ふう,Samurai Champloo,Pink kimono and small squirrel,proposed
+へ,he,Hestia,へすてぃあ,DanMachi,White dress and blue ribbon,proposed
+ほ,ho,Homer Simpson,ほーまー,The Simpsons,Yellow skin and white shirt,Japanese name cue
+ま,ma,Mario,まりお,Super Mario,Red M cap and blue overalls,user choice
+み,mi,Mikasa Ackerman,みかさ,Attack on Titan,Red scarf and maneuver gear,proposed
+む,mu,Mulan,むーらん,Mulan,Armor and sword,Japanese name cue
+め,me,Megumin,めぐみん,KonoSuba,Wizard hat and explosion magic,proposed
+も,mo,Morty Smith,もーてぃー,Rick and Morty,Yellow shirt and anxious expression,Japanese name cue
+や,ya,Yami Yugi,やみゆうぎ,Yu-Gi-Oh!,Spiky tricolor hair and puzzle pendant,proposed
+ゆ,yu,Yuna,ゆうな,Final Fantasy X,Summoner staff and kimono-style outfit,proposed
+よ,yo,Yoshi,よっしー,Super Mario,Green dinosaur and long tongue,proposed
+ら,ra,Rambo,らんぼー,Rambo,Red headband and bow,proposed
+り,ri,Riku,りく,Kingdom Hearts,Silver hair and keyblade,proposed
+る,ru,Luffy,るふぃ,One Piece,Straw hat and stretching body,Japanese name cue
+れ,re,Rem,れむ,Re:Zero,Blue hair and maid outfit,proposed
+ろ,ro,Rock Lee,ろっくりー,Naruto,Green jumpsuit and thick eyebrows,Japanese name cue
+わ,wa,Wario,わりお,Super Mario,Yellow W cap and zigzag moustache,proposed
+を,o,Olaf,おらふ,Frozen,Same snowman as お,sound alias of お
+ん,n,N,ん,Pokemon,Green hair and black-white cap; closes with a nasal hum,nasal marker; not the spoken name en
+が,ga,Gaara,があら,Naruto,Sand gourd and red hair,proposed
+ぎ,gi,Giyu Tomioka,ぎゆう,Demon Slayer,Split-pattern haori and water sword,proposed
+ぐ,gu,Goofy,ぐーふぃー,Disney,Long ears and green hat,proposed
+げ,ge,Gengar,げんがー,Pokemon,Round purple ghost and huge grin,proposed
+ご,go,Goku,ごくう,Dragon Ball,Orange gi and spiky hair,proposed
+ざ,za,Zangief,ざんぎえふ,Street Fighter,Huge wrestler with red trunks,proposed
+じ,ji,Jiraiya,じらいや,Naruto,White hair and toad summoning,proposed
+ず,zu,Zubat,ずばっと,Pokemon,Blue bat with no visible eyes,proposed
+ぜ,ze,Zelda,ぜるだ,The Legend of Zelda,Princess dress and Triforce imagery,proposed
+ぞ,zo,Zoro,ぞろ,One Piece,Green hair and three swords,proposed
+だ,da,Darth Vader,だーすべいだー,Star Wars,Black helmet and red lightsaber,proposed
+ぢ,ji,Jiraiya,じらいや,Naruto,Same toad sage as じ,sound alias of じ
+づ,zu,Zubat,ずばっと,Pokemon,Same blue bat as ず,sound alias of ず
+で,de,Deku,でく,My Hero Academia,Green costume and freckles,proposed
+ど,do,Donkey Kong,どんきーこんぐ,Donkey Kong,Gorilla with red DK tie,proposed
+ば,ba,Batman,ばっとまん,DC,Black cowl and bat cape,proposed
+び,bi,Bidoof,びっぱ,Pokemon,Brown beaver and large front teeth,English BEE-doof or Japanese Bippa
+ぶ,bu,Majin Buu,ぶう,Dragon Ball,Pink round body and head tentacle,cue Buu; ignore title Majin
+べ,be,Belle,べる,Beauty and the Beast,Yellow ball gown and book,proposed
+ぼ,bo,Bo Peep,ぼーぴーぷ,Toy Story,Shepherd's crook and bonnet,proposed
+ぱ,pa,Pac-Man,ぱっくまん,Pac-Man,Yellow circle eating pellets,proposed
+ぴ,pi,Pikachu,ぴかちゅう,Pokemon,Yellow body and lightning tail,proposed
+ぷ,pu,Pooh,ぷー,Winnie the Pooh,Yellow bear and red shirt,proposed
+ぺ,pe,Perry the Platypus,ぺりー,Phineas and Ferb,Teal platypus with brown fedora,proposed
+ぽ,po,Popeye,ぽぱい,Popeye,Sailor hat and huge forearms,Japanese name cue
+きゃ,kya,Catwoman,きゃっとうーまん,DC,Cat mask and whip,Japanese name cue
+きゅ,kyu,Kyubey,きゅうべえ,Puella Magi Madoka Magica,White creature with red eyes,proposed
+きょ,kyo,Kyo Kusanagi,きょうくさなぎ,The King of Fighters,Flaming fists and white headband,proposed
+しゃ,sha,Shadow,しゃどう,Sonic the Hedgehog,Black-red hedgehog,proposed
+しゅ,shu,Shuri,しゅり,Black Panther,Wakandan technology and gauntlets,proposed
+しょ,sho,Shoto Todoroki,しょうと,My Hero Academia,Half-white half-red hair; ice and fire,proposed
+ちゃ,cha,Chucky,ちゃっきー,Child's Play,Red-haired doll in striped shirt,Japanese name cue
+ちゅ,chu,Chun-Li,ちゅんりー,Street Fighter,Blue outfit and hair buns,proposed
+ちょ,cho,Chopper,ちょっぱー,One Piece,Reindeer and pink X hat,proposed
+にゃ,nya,Meowth (Nyarth),にゃーす,Pokemon,Coin on forehead and speaking cat,use Japanese Nyarth name
+にゅ,nyu,Newt Scamander,にゅーと,Fantastic Beasts,Blue coat and creature-filled suitcase,use NYOO sound; not NOO
+にょ,nyo,Poliwhirl (Nyorozo),にょろぞ,Pokemon,Blue body and belly spiral,use Japanese Nyorozo name
+ひゃ,hya,Hyakkimaru,ひゃっきまる,Dororo,Prosthetic limbs and hidden swords,proposed
+ひゅ,hyu,Hinata Hyuga,ひゅうが,Naruto,Pale eyes and Byakugan,cue surname HYUga; not first name
+ひょ,hyo,Hyoga,ひょうが,Saint Seiya,Swan armor and ice powers,check familiarity
+みゃ,mya,Myau,みゃう,Phantasy Star,Talking musk cat,check familiarity
+みゅ,myu,Mew,みゅう,Pokemon,Tiny pink floating cat,proposed
+みょ,myo,Myoga,みょうが,Inuyasha,Tiny old flea demon,check familiarity
+りゃ,rya,LYA,りゃ,WDZY / ITZY x LINE FRIENDS,Smiling sloth mascot,provisional; learn localized RYA name first
+りゅ,ryu,Ryu,りゅう,Street Fighter,White gi and red headband,use RYOO sound; not RYE-you
+りょ,ryo,Kankichi Ryotsu,りょうつ,Kochikame,Policeman with connected eyebrows,cue surname RYOtsu
+ぎゃ,gya,Gyarados,ぎゃらどす,Pokemon,Huge blue sea serpent,proposed
+ぎゅ,gyu,Ox-King (Gyumao),ぎゅうまおう,Dragon Ball,Horned helmet and huge body,use Japanese Gyumao name
+ぎょ,gyo,Gyomei Himejima,ぎょうめい,Demon Slayer,Huge monk and prayer beads,proposed
+じゃ,ja,Jack Sparrow,じゃっく,Pirates of the Caribbean,Pirate hat and braided beard,proposed
+じゅ,ju,Juri Han,じゅり,Street Fighter,Purple costume and hair horns,proposed
+じょ,jo,Joker,じょーかー,DC,Green hair and purple suit,proposed
+びゃ,bya,Byakuya Kuchiki,びゃくや,Bleach,White scarf and petal-like blades,proposed
+びゅ,byu,Beauty,びゅてぃ,Bobobo-bo Bo-bobo,Short pink hair and blue-white outfit,Japanese Byuti name; check familiarity
+びょ,byo,Bjorn Ironside,びょるん,Vikings,Blond Viking warrior in armor,Japanese Byorun name; check familiarity
+ぴゃ,pya,Koito Fukumaru,ぴゃ,The Idolmaster Shiny Colors,Small nervous idol squealing PYA,provisional; catchphrase cue not name prefix
+ぴゅ,pyu,Pyunma / Cyborg 008,ぴゅんま,Cyborg 009,Red cyborg uniform and underwater abilities,check familiarity
+ぴょ,pyo,Pyoro,ぴょろ,WarioWare,Small bird with an elastic tongue,proposed
