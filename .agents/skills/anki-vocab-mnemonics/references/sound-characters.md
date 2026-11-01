@@ -12,7 +12,7 @@ The authoritative roster is [assets/sound-characters.csv](../assets/sound-charac
 
 - Standard modern Japanese `を` uses the same sound actor as `お`; `ぢ` shares `じ`, and `づ` shares `ず`. Preserve the actual written kana in review data. For attested dialectal or lexical distinctions, follow the audio instead of forcing these aliases.
 - `ぢゃ・ぢゅ・ぢょ`, when encountered, share `じゃ・じゅ・じょ` in the usual modern pronunciation.
-- `ん` uses **Nemo** as a nasal-closing marker. Imagine him closing his mouth while the learner hums the nasal sound; this is a designed mnemonic gesture, not a canonical character sound. Do not say Nemo or add a vowel.
+- `ん` uses **N** as a nasal-closing marker. Imagine him closing his mouth while the learner hums the nasal sound; this is a designed mnemonic gesture, not a canonical character sound. Do not pronounce the letter name “en” or add a vowel. N is the trainer from Pokémon Black/White.
 - Small `っ` uses **Thwomp** as a closure marker: it slams shut immediately before the following consonant. It does not encode `つ` or the sound of “Thwomp.”
 - Long vowels use the preceding actor visibly stretching/holding the vowel for a second beat. Do not add Usagi merely because a lengthening `う` is written, or confuse that with a genuinely separate `う`.
 - Foreign combinations such as `ティ・ファ・ヴァ` are outside this core inventory. Extend the registry deliberately when actually needed; do not silently split them into different sounds.
@@ -35,4 +35,4 @@ A provisional spoken-name mapping must be checked before story use. Gyorg's prop
 
 If no suitable proposal exists, leave actor fields blank and mark `selection_note` as `UNRESOLVED`; do not invent a name or pronunciation. Nasal, closure, and vowel-length operations remain separate markers.
 
-`signature_actions` lists optional recognizable actions for the recorded character or explicitly identified role. Use them when they support the word’s meaning; avoid forcing the same move into every story. Real-person entries describe public performance or a named role, not invented personal traits. Nemo’s mouth-closing cue is a designed mnemonic gesture.
+`signature_actions` lists optional recognizable actions for the recorded character or explicitly identified role. Use them when they support the word’s meaning; avoid forcing the same move into every story. Real-person entries describe public performance or a named role, not invented personal traits. N’s mouth-closing cue is a designed mnemonic gesture.
