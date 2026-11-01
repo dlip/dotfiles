@@ -24,7 +24,7 @@ Use [assets/sound-characters.csv](../assets/sound-characters.csv) as the shared 
 
 1. Establish the verified whole-word meaning, kanji-only reading segments and ordered RTK keywords exactly as in the main skill.
 2. Within each kanji segment, select the contracted mora as one unit (`しゃ`, not `し + や`). Treat `ん`, small `っ`, and vowel length using the roster's marker rules. A true hiatus remains two vowels; a long vowel holds one vowel for two beats. Native audio governs this distinction.
-3. Open the scene with the bold-and-underlined whole-word meaning. For multi-kanji words, follow with each ordered RTK keyword before its corresponding sound actors, keeping them in the same short clause where practical. For single-kanji words, omit the separate RTK keyword and let the sound actors demonstrate the meaning. The ordered keyword and sound constraints remain separate checks. For irregular grouped readings, keep all relevant images in one compact episode without inventing per-kanji assignments.
+3. Open the scene with the bold-and-underlined whole-word meaning. For multi-kanji words, let each RTK image interact with its corresponding sound actors. Either may come first locally; choose vivid imagery and natural grammar, keeping them in the same short clause where practical. Preserve keyword writing order and actor reading order independently. For single-kanji words, omit the separate RTK keyword and let the sound actors demonstrate the meaning. The ordered keyword and sound constraints remain separate checks. For irregular grouped readings, keep all relevant images in one compact episode without inventing per-kanji assignments.
 4. Make those actions cause the whole-word meaning. Preserve one setting and a clear result. Introduce actors when their sound occurs; do not let decorative appearances, earlier pronouns, or repeated name mentions scramble the recoverable cue sequence.
 5. Italicize sound-character names (including named nasal/closure markers), using `<i>…</i>` in Anki HTML. Check that the action demonstrates the opening meaning; no closing definition is required. The card still contains only the story.
 
@@ -42,9 +42,9 @@ A character identity/name change is a registry change, not a per-word improvisat
 
 ### 旅行【りょこう】 — travel
 
-During her <b><u>travel</u></b> adventure, a **trip** sends *Rio* tumbling onto a **going** escalator that *Conan* stretches across the ocean.
+During her <b><u>travel</u></b> adventure, *Rio* films her **trip** aboard a runaway suitcase; **going** across the ocean, *Conan* stretches from deck to deck to investigate its missing ticket.
 
-Internal: 旅 = trip, `りょ → Rio` (user-authorized approximation); 行 = going, `こ → Conan`, stretching holds /o/ for the lengthening `う`. Meaning comes first; each keyword precedes its actor. Both actors participate in the journey.
+Internal: 旅 = trip, `りょ → Rio` (user-authorized approximation); 行 = going, `こ → Conan`, stretching holds /o/ for the lengthening `う`. Meaning comes first; the first actor precedes its keyword, while the next keyword precedes its actor. Both keyword writing order and actor reading order remain intact. Both actors participate in the journey.
 
 ### 牛【ぎゅう】 — cow
 
@@ -54,6 +54,6 @@ Internal: one kanji, so omit the separate RTK keyword. `ぎゅ → Gustave` (reg
 
 ### 取り消す【とりけす】 — cancel a reservation
 
-To <b><u>cancel a reservation</u></b>, **take** the burning booking slip with *Totoro* and **extinguish** it with *Ken*; its magical hotel entry vanishes in the steam.
+To <b><u>cancel a reservation</u></b>, **take** the burning booking slip with *Totoro* and **extinguish** it with *Kenny*; its magical hotel entry vanishes in the steam.
 
-Internal: 取 = take, `と → Totoro`; 消 = extinguish, `け → Ken`. Written `り` and `す` receive no actors. There are two kanji, so both keywords remain.
+Internal: 取 = take, `と → Totoro`; 消 = extinguish, `け → Kenny`. Written `り` and `す` receive no actors. There are two kanji, so both keywords remain.
