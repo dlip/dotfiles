@@ -44,8 +44,8 @@ in
     # sidequest
     ra
     ryubing
-    skyscraper
-    (stable.emulationstation-de { retroarch = ra; })
+    # skyscraper
+    # (stable.emulationstation-de { retroarch = ra; })
     retool
     vulkan-tools
     wine

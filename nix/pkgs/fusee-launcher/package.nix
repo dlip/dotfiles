@@ -3,7 +3,7 @@
   stdenv,
   python3Packages,
   python3,
-  fetchFromGitHub,
+  src,
   pkgsCross,
   makeWrapper,
 }:
@@ -14,14 +14,8 @@ in
 
 stdenv.mkDerivation {
   pname = "fusee-launcher";
-  version = "unstable-2018-07-14";
-
-  src = fetchFromGitHub {
-    owner = "Cease-and-DeSwitch";
-    repo = "fusee-launcher";
-    rev = "265e8f3e1987751ec41db6f1946d132b296aba43";
-    sha256 = "1pqkgw5bk0xcz9x7pc1f0r0b9nsc8jnnvcs1315d8ml8mx23fshm";
-  };
+  version = "unstable-${builtins.substring 0 8 src.lastModifiedDate}";
+  inherit src;
 
   makeFlags = [
     "CROSS_COMPILE=${arm-embedded-cc.targetPrefix}"
@@ -50,7 +44,7 @@ stdenv.mkDerivation {
   pythonPath = with python3Packages; [ pyusb ];
 
   meta = with lib; {
-    homepage = "https://github.com/Cease-and-DeSwitch/fusee-launcher";
+    homepage = "https://github.com/soup6020/fusee-launcher";
     description = "Work-in-progress launcher for one of the Tegra X1 bootROM exploits";
     mainProgram = "fusee-launcher";
     license = licenses.gpl2;

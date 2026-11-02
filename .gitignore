@@ -159,6 +159,7 @@
 !/flake.nix
 !/nix/
 !/nix/**
+!/nix/pkgs/eden-fefw/package.nix
 !/nix/pkgs/manatan/package.nix
 !/nix/pkgs/pokedinner/package.nix
 !/nix/pkgs/rom-converto/package.nix

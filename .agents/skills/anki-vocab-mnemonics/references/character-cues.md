@@ -24,7 +24,7 @@ Use [assets/sound-characters.csv](../assets/sound-characters.csv) as the shared 
 
 1. Establish the verified whole-word meaning, kanji-only reading segments and ordered RTK keywords exactly as in the main skill.
 2. Within each kanji segment, select the contracted mora as one unit (`しゃ`, not `し + や`). Treat `ん`, small `っ`, and vowel length using the roster's marker rules. A true hiatus remains two vowels; a long vowel holds one vowel for two beats. Native audio governs this distinction.
-3. Open the scene with the bold-and-underlined whole-word meaning. For multi-kanji words, let each RTK image interact with its corresponding sound actors. Either may come first locally; choose vivid imagery and natural grammar, keeping them in the same short clause where practical. Preserve keyword writing order and actor reading order independently. For single-kanji words, omit the separate RTK keyword and let the sound actors demonstrate the meaning. The ordered keyword and sound constraints remain separate checks. For irregular grouped readings, keep all relevant images in one compact episode without inventing per-kanji assignments.
+3. Open the scene with the bold-and-underlined whole-word meaning. For multi-kanji words, let each RTK image interact with its corresponding sound actors. Either may come first locally; choose vivid imagery and natural grammar, keeping them in the same short clause where practical. Preserve keyword writing order and actor reading order independently. For single-kanji words, omit a redundant same-meaning RTK keyword; retain and bold it when its meaning differs substantially, making it interact with the actors to demonstrate the vocabulary meaning. The ordered keyword and sound constraints remain separate checks. For irregular grouped readings, keep all relevant images in one compact episode without inventing per-kanji assignments.
 4. Make those actions cause the whole-word meaning. Preserve one setting and a clear result. Introduce actors when their sound occurs; do not let decorative appearances, earlier pronouns, or repeated name mentions scramble the recoverable cue sequence.
 5. Italicize sound-character names (including named nasal/closure markers), using `<i>…</i>` in Anki HTML. Check that the action demonstrates the opening meaning; no closing definition is required. The card still contains only the story.
 
@@ -50,7 +50,7 @@ Internal: 旅 = trip, `りょ → Rio` (user-authorized approximation); 行 = go
 
 A <b><u>cow</u></b> chews *Gustave*’s mechanical arm, stretching him across the paddock as he desperately tries to pull free.
 
-Internal: one kanji, so omit the separate RTK keyword. `ぎゅ → Gustave` (registered approximation); stretching marks the long /u/. The cow drives the action.
+Internal: the RTK keyword cow matches the vocabulary meaning, so omit its redundant separate mention. `ぎゅ → Gustave` (registered approximation); stretching marks the long /u/. The cow drives the action.
 
 ### 取り消す【とりけす】 — cancel a reservation
 

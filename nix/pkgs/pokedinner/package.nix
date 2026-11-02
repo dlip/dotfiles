@@ -1,19 +1,12 @@
 {
   eden,
-  fetchFromGitea,
+  src,
 }:
 
 eden.overrideAttrs (old: {
   pname = "pokedinner";
-  version = "unstable-2026-10-31";
-
-  src = fetchFromGitea {
-    domain = "git.eden-emu.dev";
-    owner = "Franseven";
-    repo = "PokeDinner-a-Eglantine-Fork";
-    rev = "774cd4f589d3d0531886d854a6a04d8c90194947";
-    hash = "sha256-4kqAgTxYBFWJeqHnxLg3MqdbVI08d3ehsTkqzK0KjTk=";
-  };
+  version = "unstable-${builtins.substring 0 8 src.lastModifiedDate}";
+  inherit src;
 
   postInstall = (old.postInstall or "") + ''
     mv "$out/bin/eden-cli" "$out/bin/eglantine-cli"

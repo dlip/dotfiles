@@ -39,6 +39,7 @@ application/xhtml+xml=neovide.desktop;
 application/smil+xml=neovide.desktop;
 text/x-nfo=neovide.desktop;
 x-scheme-handler/ton=org.telegram.desktop.desktop;
+application/x-nx-nsp=dev.eglantine.eglantine.desktop;
 
 [Default Applications]
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop

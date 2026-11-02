@@ -66,6 +66,7 @@
       hermes-desktop
       zed-editor
       codex
+      eden-fefw
       manatan
       pokedinner
     ];

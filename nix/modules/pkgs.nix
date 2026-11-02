@@ -7,6 +7,8 @@
   perSystem =
     { system, pkgs, ... }:
     {
+      packages.eden-fefw = pkgs.eden-fefw;
+      packages.fusee-launcher = pkgs.fusee-launcher;
       packages.manatan = pkgs.manatan;
       packages.pokedinner = pkgs.pokedinner;
       packages.rom-converto = pkgs.rom-converto;
@@ -98,11 +100,18 @@
                 doCheck = !prev.stdenv.hostPlatform.isi686;
               };
               mokuro-reader = inputs.mokuro-reader.packages.${final.stdenv.hostPlatform.system}.default;
+              eden-fefw = final.callPackage ../pkgs/eden-fefw/package.nix {
+                src = inputs.eden-fefw;
+              };
               manatan = final.callPackage ../pkgs/manatan/package.nix { };
-              pokedinner = final.callPackage ../pkgs/pokedinner/package.nix { };
+              pokedinner = final.callPackage ../pkgs/pokedinner/package.nix {
+                src = inputs.pokedinner;
+              };
               rom-converto = final.callPackage ../pkgs/rom-converto/package.nix { };
               romm = final.callPackage ../pkgs/romm/package.nix { romm = prev.romm; };
-              switch-library-manager = final.callPackage ../pkgs/switch-library-manager/package.nix { };
+              switch-library-manager = final.callPackage ../pkgs/switch-library-manager/package.nix {
+                src = inputs.switch-library-manager;
+              };
               bottles = (prev.bottles.override { removeWarningPopup = true; });
               eden = prev.eden.overrideAttrs (old: {
                 postPatch = (old.postPatch or "") + ''
@@ -151,7 +160,9 @@
 
               freeimage = final.callPackage ../pkgs/freeimage/package.nix { };
               # libjpeg_turbo = final.callPackage ../pkgs/libjpeg-turbo/package.nix { };
-              fusee-launcher = final.callPackage ../pkgs/fusee-launcher/package.nix { };
+              fusee-launcher = final.callPackage ../pkgs/fusee-launcher/package.nix {
+                src = inputs.fusee-launcher;
+              };
               groups = final.callPackage ../pkgs/groups.nix { };
               # myEspanso = final.callPackage ../pkgs/espanso {};
               # hyprland = hyprland.packages.${final.stdenv.hostPlatform.system}.hyprland;
