@@ -69,6 +69,7 @@
       eden-fefw
       manatan
       pokedinner
+      nup
     ];
 
   hardware.graphics = {

@@ -10,6 +10,10 @@
       url = "git+https://git.eden-emu.dev/Duck912/eden-fefw?ref=main&shallow=1";
       flake = false;
     };
+    nup = {
+      url = "github:a55uka/nup";
+      flake = false;
+    };
     pokedinner = {
       url = "git+https://git.eden-emu.dev/Franseven/PokeDinner-a-Eglantine-Fork?ref=master&shallow=1";
       flake = false;

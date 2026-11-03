@@ -1,5 +1,6 @@
 {
   eden,
+  fetchFromGitHub,
   src,
 }:
 
@@ -7,6 +8,25 @@ eden.overrideAttrs (old: {
   pname = "pokedinner";
   version = "unstable-${builtins.substring 0 8 src.lastModifiedDate}";
   inherit src;
+
+  cmakeFlags = old.cmakeFlags ++ [
+    "-DOpus_CUSTOM_DIR=${
+      fetchFromGitHub {
+        owner = "xiph";
+        repo = "opus";
+        rev = "a3f0ec02b3";
+        hash = "sha256-SyGUedfpqWb5+URiX0Tw/g3VPWxJBNPDSHmv/j9xHls=";
+      }
+    }"
+    "-Dzstd_CUSTOM_DIR=${
+      fetchFromGitHub {
+        owner = "facebook";
+        repo = "zstd";
+        rev = "33618c8";
+        hash = "sha256-UP99PUq8N+fmU972Jxim4f9u//T+4hRW+wuTZzWg3uI=";
+      }
+    }"
+  ];
 
   postInstall = (old.postInstall or "") + ''
     mv "$out/bin/eden-cli" "$out/bin/eglantine-cli"

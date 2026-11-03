@@ -776,13 +776,29 @@
         "type": "github"
       }
     },
+    "nup": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1793637734,
+        "narHash": "sha256-dboiD5vyfdAyylUhRczwj+trNRZBRZBdtoOO7RxSmN0=",
+        "owner": "a55uka",
+        "repo": "nup",
+        "rev": "744fb7e30ce3ace787f1839ee3e7f8a010e36c04",
+        "type": "github"
+      },
+      "original": {
+        "owner": "a55uka",
+        "repo": "nup",
+        "type": "github"
+      }
+    },
     "pokedinner": {
       "flake": false,
       "locked": {
-        "lastModified": 1793442487,
-        "narHash": "sha256-94H7VWAoAhxPbOxrt1z7zEeaQ+jDCsH0n1mA+/j32Uo=",
+        "lastModified": 1793671031,
+        "narHash": "sha256-vfJWoptKeYpEAWTHd1BNCjCu6I1X0cvhOPQMgpRuGg0=",
         "ref": "master",
-        "rev": "c3ce9bcd5b04e5a1480ebf764ad7f1dd47b1adaa",
+        "rev": "216b5034c60acebda5b04eba8c3002404d9b9752",
         "shallow": true,
         "type": "git",
         "url": "https://git.eden-emu.dev/Franseven/PokeDinner-a-Eglantine-Fork"
@@ -878,6 +894,7 @@
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-stable": "nixpkgs-stable",
         "noctalia": "noctalia",
+        "nup": "nup",
         "pokedinner": "pokedinner",
         "power-menu": "power-menu",
         "sops-nix": "sops-nix",

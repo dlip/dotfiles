@@ -79,6 +79,7 @@ imports = [
 - New shared NixOS modules go in `nix/modules/nixos/` and are exposed as `self.modules.nixos.<name>`.
 - Files outside `nix/modules/` (e.g. in `nix/home/`, `nix/systems/`, `nix/pkgs/`) are imported explicitly by the modules, so they must be referenced from an existing module.
 - The flake uses `flake-parts` for structuring outputs.
+- For new custom packages, prefer declaring the upstream source as a flake input in `flake.nix` (with `flake = false` for source-only repositories) and passing it to the package as `src` via `callPackage`. Keep source revisions and hashes in `flake.lock` rather than in the package definition.
 
 ## Sudo Commands
 

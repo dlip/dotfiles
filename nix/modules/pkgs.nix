@@ -10,6 +10,7 @@
       packages.eden-fefw = pkgs.eden-fefw;
       packages.fusee-launcher = pkgs.fusee-launcher;
       packages.manatan = pkgs.manatan;
+      packages.nup = pkgs.nup;
       packages.pokedinner = pkgs.pokedinner;
       packages.rom-converto = pkgs.rom-converto;
       packages.romm = pkgs.romm;
@@ -104,6 +105,9 @@
                 src = inputs.eden-fefw;
               };
               manatan = final.callPackage ../pkgs/manatan/package.nix { };
+              nup = final.callPackage ../pkgs/nup/package.nix {
+                src = inputs.nup;
+              };
               pokedinner = final.callPackage ../pkgs/pokedinner/package.nix {
                 src = inputs.pokedinner;
               };
