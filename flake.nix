@@ -6,6 +6,26 @@
       url = "github:Daaboulex/eden-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    eden-fefw = {
+      url = "git+https://git.eden-emu.dev/Duck912/eden-fefw?ref=main&shallow=1";
+      flake = false;
+    };
+    nup = {
+      url = "github:a55uka/nup";
+      flake = false;
+    };
+    pokedinner = {
+      url = "git+https://git.eden-emu.dev/Franseven/PokeDinner-a-Eglantine-Fork?ref=master&shallow=1";
+      flake = false;
+    };
+    fusee-launcher = {
+      url = "github:soup6020/fusee-launcher";
+      flake = false;
+    };
+    switch-library-manager = {
+      url = "github:trembon/switch-library-manager";
+      flake = false;
+    };
     flake-utils = {
       url = "github:numtide/flake-utils";
     };

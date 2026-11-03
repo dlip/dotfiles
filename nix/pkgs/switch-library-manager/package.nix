@@ -1,19 +1,13 @@
 {
   lib,
   buildGoModule,
-  fetchFromGitHub,
+  src,
 }:
 
 buildGoModule {
   pname = "switch-library-manager";
-  version = "1.10.0-unstable-2026-09-28";
-
-  src = fetchFromGitHub {
-    owner = "trembon";
-    repo = "switch-library-manager";
-    rev = "73bb67efc02ac0093a56343974b83ac5d91459eb";
-    hash = "sha256-hGR6YkmlONG2MW8q0OHg8gRzMa3CtEp+cvFsFLV3E90=";
-  };
+  version = "unstable-${builtins.substring 0 8 src.lastModifiedDate}";
+  inherit src;
 
   modRoot = "src";
   vendorHash = "sha256-xpc+E3nABrAy+v5rXolUAxIvvr5wZOSmvyHI1Sl2VAo=";

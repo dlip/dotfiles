@@ -150,7 +150,7 @@ let
     jc
     jdk11
     joshuto
-    jreadability
+    # jreadability
     k9s
     kaf
     kanata
@@ -318,7 +318,7 @@ let
     retool
     retroarchWithCores
     # ryubing
-    skyscraper
+    # skyscraper
     vulkan-tools
     wine
     winetricks

@@ -1,19 +1,32 @@
 {
   eden,
-  fetchFromGitea,
+  fetchFromGitHub,
+  src,
 }:
 
 eden.overrideAttrs (old: {
   pname = "pokedinner";
-  version = "unstable-2026-10-31";
+  version = "unstable-${builtins.substring 0 8 src.lastModifiedDate}";
+  inherit src;
 
-  src = fetchFromGitea {
-    domain = "git.eden-emu.dev";
-    owner = "Franseven";
-    repo = "PokeDinner-a-Eglantine-Fork";
-    rev = "774cd4f589d3d0531886d854a6a04d8c90194947";
-    hash = "sha256-4kqAgTxYBFWJeqHnxLg3MqdbVI08d3ehsTkqzK0KjTk=";
-  };
+  cmakeFlags = old.cmakeFlags ++ [
+    "-DOpus_CUSTOM_DIR=${
+      fetchFromGitHub {
+        owner = "xiph";
+        repo = "opus";
+        rev = "a3f0ec02b3";
+        hash = "sha256-SyGUedfpqWb5+URiX0Tw/g3VPWxJBNPDSHmv/j9xHls=";
+      }
+    }"
+    "-Dzstd_CUSTOM_DIR=${
+      fetchFromGitHub {
+        owner = "facebook";
+        repo = "zstd";
+        rev = "33618c8";
+        hash = "sha256-UP99PUq8N+fmU972Jxim4f9u//T+4hRW+wuTZzWg3uI=";
+      }
+    }"
+  ];
 
   postInstall = (old.postInstall or "") + ''
     mv "$out/bin/eden-cli" "$out/bin/eglantine-cli"

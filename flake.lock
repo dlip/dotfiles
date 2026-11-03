@@ -43,6 +43,24 @@
         "type": "github"
       }
     },
+    "eden-fefw": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1793548650,
+        "narHash": "sha256-gygfnVK9qPzXKvv8/a3RP0WpWQxqVbviIQXjns7nxio=",
+        "ref": "main",
+        "rev": "8c6f0522b6ee07caa47ab4363823d3dc00aa8ac1",
+        "shallow": true,
+        "type": "git",
+        "url": "https://git.eden-emu.dev/Duck912/eden-fefw"
+      },
+      "original": {
+        "ref": "main",
+        "shallow": true,
+        "type": "git",
+        "url": "https://git.eden-emu.dev/Duck912/eden-fefw"
+      }
+    },
     "emoji-menu": {
       "flake": false,
       "locked": {
@@ -237,6 +255,22 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "fusee-launcher": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1531543658,
+        "narHash": "sha256-FWo3RK+IVtRKGEGzba1ETNu0QAYusHt6+qyDuQp/E98=",
+        "owner": "soup6020",
+        "repo": "fusee-launcher",
+        "rev": "265e8f3e1987751ec41db6f1946d132b296aba43",
+        "type": "github"
+      },
+      "original": {
+        "owner": "soup6020",
+        "repo": "fusee-launcher",
         "type": "github"
       }
     },
@@ -742,6 +776,40 @@
         "type": "github"
       }
     },
+    "nup": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1793637734,
+        "narHash": "sha256-dboiD5vyfdAyylUhRczwj+trNRZBRZBdtoOO7RxSmN0=",
+        "owner": "a55uka",
+        "repo": "nup",
+        "rev": "744fb7e30ce3ace787f1839ee3e7f8a010e36c04",
+        "type": "github"
+      },
+      "original": {
+        "owner": "a55uka",
+        "repo": "nup",
+        "type": "github"
+      }
+    },
+    "pokedinner": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1793671031,
+        "narHash": "sha256-vfJWoptKeYpEAWTHd1BNCjCu6I1X0cvhOPQMgpRuGg0=",
+        "ref": "master",
+        "rev": "216b5034c60acebda5b04eba8c3002404d9b9752",
+        "shallow": true,
+        "type": "git",
+        "url": "https://git.eden-emu.dev/Franseven/PokeDinner-a-Eglantine-Fork"
+      },
+      "original": {
+        "ref": "master",
+        "shallow": true,
+        "type": "git",
+        "url": "https://git.eden-emu.dev/Franseven/PokeDinner-a-Eglantine-Fork"
+      }
+    },
     "power-menu": {
       "flake": false,
       "locked": {
@@ -812,9 +880,11 @@
       "inputs": {
         "disko": "disko",
         "eden": "eden",
+        "eden-fefw": "eden-fefw",
         "emoji-menu": "emoji-menu",
         "flake-parts": "flake-parts_3",
         "flake-utils": "flake-utils",
+        "fusee-launcher": "fusee-launcher",
         "hermes-agent": "hermes-agent",
         "home-manager": "home-manager_2",
         "import-tree": "import-tree",
@@ -824,10 +894,13 @@
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-stable": "nixpkgs-stable",
         "noctalia": "noctalia",
+        "nup": "nup",
+        "pokedinner": "pokedinner",
         "power-menu": "power-menu",
         "sops-nix": "sops-nix",
         "sparkyfitness": "sparkyfitness",
         "storyteller": "storyteller",
+        "switch-library-manager": "switch-library-manager",
         "tududi": "tududi",
         "whisrs": "whisrs"
       }
@@ -931,6 +1004,22 @@
         "ref": "feat/nixos-module",
         "type": "git",
         "url": "https://gitlab.com/dlip/storyteller"
+      }
+    },
+    "switch-library-manager": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1790627953,
+        "narHash": "sha256-hGR6YkmlONG2MW8q0OHg8gRzMa3CtEp+cvFsFLV3E90=",
+        "owner": "trembon",
+        "repo": "switch-library-manager",
+        "rev": "73bb67efc02ac0093a56343974b83ac5d91459eb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "trembon",
+        "repo": "switch-library-manager",
+        "type": "github"
       }
     },
     "systems": {

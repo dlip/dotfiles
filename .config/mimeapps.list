@@ -23,7 +23,7 @@ x-scheme-handler/tg=org.telegram.desktop.desktop;
 x-scheme-handler/tonsite=org.telegram.desktop.desktop;
 image/svg+xml=com.google.Chrome.desktop;org.inkscape.Inkscape.desktop;
 model/obj=PrusaSlicer.desktop;
-application/octet-stream=neovide.desktop;
+application/octet-stream=dev.eglantine.eglantine.desktop;neovide.desktop;
 text/x-python=neovide.desktop;
 application/vnd.rar=org.gnome.FileRoller.desktop;
 application/json=neovide.desktop;
@@ -39,6 +39,7 @@ application/xhtml+xml=neovide.desktop;
 application/smil+xml=neovide.desktop;
 text/x-nfo=neovide.desktop;
 x-scheme-handler/ton=org.telegram.desktop.desktop;
+application/x-nx-nsp=dev.eglantine.eglantine.desktop;
 
 [Default Applications]
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
