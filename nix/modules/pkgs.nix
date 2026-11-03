@@ -56,30 +56,30 @@
                   dep: if (dep.pname or null) == "fastapi" then fastapiOlder else dep
                 ) old.dependencies;
               });
-              litellmOlder = prev.litellm.overridePythonAttrs (old: {
-                version = "1.89.5";
-                src = final.fetchFromGitHub {
-                  owner = "BerriAI";
-                  repo = "litellm";
-                  tag = "v1.89.5";
-                  hash = "sha256-qRoRxoSvJh+0KD74JRzhA3YsAQa6X8qiyPvPfUuBdhY=";
-                };
-                cargoRoot = null;
-                cargoDeps = null;
-                nativeBuildInputs =
-                  builtins.filter (
-                    input:
-                    !builtins.elem (input.pname or "") [
-                      "cargo-setup-hook.sh"
-                      "maturin-build-hook.sh"
-                    ]
-                  ) old.nativeBuildInputs
-                  ++ [ final.python314Packages.uv-build ];
-                postPatch = ''
-                  substituteInPlace pyproject.toml \
-                    --replace-fail "uv_build==0.11.8" "uv_build==${final.python314Packages.uv-build.version}"
-                '';
-              });
+              # litellmOlder = prev.litellm.overridePythonAttrs (old: {
+              #   version = "1.89.5";
+              #   src = final.fetchFromGitHub {
+              #     owner = "BerriAI";
+              #     repo = "litellm";
+              #     tag = "v1.89.5";
+              #     hash = "sha256-qRoRxoSvJh+0KD74JRzhA3YsAQa6X8qiyPvPfUuBdhY=";
+              #   };
+              #   cargoRoot = null;
+              #   cargoDeps = null;
+              #   nativeBuildInputs =
+              #     builtins.filter (
+              #       input:
+              #       !builtins.elem (input.pname or "") [
+              #         "cargo-setup-hook.sh"
+              #         "maturin-build-hook.sh"
+              #       ]
+              #     ) old.nativeBuildInputs
+              #     ++ [ final.python314Packages.uv-build ];
+              #   postPatch = ''
+              #     substituteInPlace pyproject.toml \
+              #       --replace-fail "uv_build==0.11.8" "uv_build==${final.python314Packages.uv-build.version}"
+              #   '';
+              # });
             in
             {
               # actualServer = final.callPackage ../pkgs/actualServer {
@@ -112,18 +112,18 @@
                 '';
               });
 
-              litellm = litellmOlder.overridePythonAttrs (old: {
-                dependencies = map (
-                  dep:
-                  if (dep.pname or null) == "fastapi" then
-                    fastapiOlder
-                  else if (dep.pname or null) == "fastapi-sso" then
-                    fastapiSsoOlder
-                  else
-                    dep
-                ) old.dependencies;
-              });
-
+              # litellm = litellmOlder.overridePythonAttrs (old: {
+              #   dependencies = map (
+              #     dep:
+              #     if (dep.pname or null) == "fastapi" then
+              #       fastapiOlder
+              #     else if (dep.pname or null) == "fastapi-sso" then
+              #       fastapiSsoOlder
+              #     else
+              #       dep
+              #   ) old.dependencies;
+              # });
+              #
               # codex = prev.codex.overrideAttrs (old: let
               #   src = final.fetchFromGitHub {
               #     owner = "openai";

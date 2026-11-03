@@ -56,7 +56,6 @@ rec {
   boot.initrd = {
     availableKernelModules = [ "e1000e" ];
     systemd = {
-      enable = true;
       network = {
         enable = true;
         networks."10-enp0s31f6" = {
@@ -790,7 +789,7 @@ rec {
   };
 
   services.home-assistant = {
-    enable = true;
+    enable = false;
     package = pkgs.home-assistant.overrideAttrs {
       doCheck = false;
       doInstallCheck = false;
