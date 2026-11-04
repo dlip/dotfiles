@@ -152,7 +152,7 @@
 !/Library/Keyboard Layouts/Engrammer.bundle/**
 !/README.md
 !/bin/
-!/bin/*
+!/bin/**
 !/docker/
 !/docker/**
 !/flake.lock
