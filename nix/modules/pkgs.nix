@@ -9,6 +9,7 @@
     {
       packages.eden-fefw = pkgs.eden-fefw;
       packages.fusee-launcher = pkgs.fusee-launcher;
+      packages.lichii = pkgs.lichii;
       packages.manatan = pkgs.manatan;
       packages.nup = pkgs.nup;
       packages.pokedinner = pkgs.pokedinner;
@@ -103,6 +104,9 @@
               mokuro-reader = inputs.mokuro-reader.packages.${final.stdenv.hostPlatform.system}.default;
               eden-fefw = final.callPackage ../pkgs/eden-fefw/package.nix {
                 src = inputs.eden-fefw;
+              };
+              lichii = final.callPackage ../pkgs/lichii/package.nix {
+                src = inputs.lichii;
               };
               manatan = final.callPackage ../pkgs/manatan/package.nix { };
               nup = final.callPackage ../pkgs/nup/package.nix {

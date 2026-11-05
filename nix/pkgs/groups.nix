@@ -178,7 +178,7 @@ let
     notify-desktop
     ns-usbloader
     nushell
-    opencode
+    # opencode
     openssl
     openvpn
     pandoc
@@ -307,23 +307,23 @@ let
     gamemode
     heroic
     igir
-    lutris
+    # lutris
     mame-tools
     mangohud
     maxcso
     mesa-demos
     moonlight-qt
-    protontricks
-    protonup-ng
+    # protontricks
+    # protonup-ng
     retool
-    retroarchWithCores
+    # retroarchWithCores
     # ryubing
     # skyscraper
     vulkan-tools
     wine
     winetricks
-    xemu
-    xenia-canary
+    # xemu
+    # xenia-canary
   ];
 in
 {

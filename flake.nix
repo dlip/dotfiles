@@ -7,7 +7,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     eden-fefw = {
-      url = "git+https://git.eden-emu.dev/Duck912/eden-fefw?ref=main&shallow=1";
+      url = "git+https://git.eden-emu.dev/NuLLxD/eden-fefw?ref=main&shallow=1";
+      flake = false;
+    };
+    lichii = {
+      url = "github:zortos293/Lichii/nx2";
       flake = false;
     };
     nup = {
