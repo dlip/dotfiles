@@ -9,7 +9,7 @@
   ...
 }:
 let
-  cifsOptions = "uid=1000,gid=100,x-systemd.automount,noauto,nofail,soft,timeo=100,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,credentials=/etc/nixos/smb-secrets";
+  cifsOptions = "uid=1000,gid=100,x-systemd.automount,noauto,nofail,soft,x-systemd.idle-timeout=60,x-systemd.mount-timeout=5s,credentials=/etc/nixos/smb-secrets";
 in
 {
   imports = [
