@@ -2,8 +2,6 @@
   lib,
   romm,
   rom-converto,
-  fetchFromGitHub,
-  fetchNpmDeps,
   fetchPypi,
   python3,
 }:
@@ -39,14 +37,6 @@ let
 in
 romm.overrideAttrs (
   finalAttrs: old: {
-    version = "5.4.0";
-    src = fetchFromGitHub {
-      owner = "rommapp";
-      repo = "romm";
-      tag = finalAttrs.version;
-      hash = "sha256-oIYEdIAJgXkcqjZtWlWKD/NFiQ3gbo7gxwLhqZOCWpM=";
-    };
-
     passthru = old.passthru // {
       pythonEnv = python3.withPackages (
         _:
@@ -73,15 +63,6 @@ romm.overrideAttrs (
           pythonPackages.httpx2
         ]
       );
-      frontend = romm.frontend.overrideAttrs {
-        inherit (finalAttrs) version;
-        src = "${finalAttrs.src}/frontend";
-        npmDepsHash = "sha256-f5IcpOVv7JYFzUPkZIq5nbT3dS1f/KCSllh8Vkgl1P0=";
-        npmDeps = fetchNpmDeps {
-          src = "${finalAttrs.src}/frontend";
-          hash = "sha256-f5IcpOVv7JYFzUPkZIq5nbT3dS1f/KCSllh8Vkgl1P0=";
-        };
-      };
     };
 
     installPhase =
