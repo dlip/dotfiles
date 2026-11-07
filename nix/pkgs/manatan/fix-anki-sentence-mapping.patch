@@ -1,0 +1,28 @@
+--- a/src/Manatan/components/DictionaryView.tsx
++++ b/src/Manatan/components/DictionaryView.tsx
+@@ -672,11 +671,0 @@
+-            const mappedSentenceValue = mapSentenceFieldValue(
+-                mapType,
+-                sentence,
+-                sentenceFurigana,
+-                entry.headword,
+-            );
+-            if (mappedSentenceValue !== null) {
+-                fields[ankiField] = mappedSentenceValue;
+-                continue;
+-            }
+-
+--- a/src/features/anime/reader/components/AnimeVideoPlayer.tsx
++++ b/src/features/anime/reader/components/AnimeVideoPlayer.tsx
+@@ -2772,11 +2771,0 @@
+-                const mappedSentenceValue = mapSentenceFieldValue(
+-                    mapType,
+-                    sentence,
+-                    sentenceFurigana,
+-                    entry.headword,
+-                );
+-                if (mappedSentenceValue !== null) {
+-                    fields[ankiField] = mappedSentenceValue;
+-                    return;
+-                }
+-

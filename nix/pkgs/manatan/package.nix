@@ -36,6 +36,8 @@ let
       ./webui-yarn-lock.patch
       ./prefer-hls-js.patch
       ./separate-hls-audio.patch
+      ./fix-anki-sentence-mapping.patch
+      ./fix-sentence-audio-fallback.patch
     ];
   };
 
