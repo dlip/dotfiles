@@ -1,0 +1,75 @@
+--- a/src/features/anime/reader/screens/AnimeEpisode.tsx
++++ b/src/features/anime/reader/screens/AnimeEpisode.tsx
+@@ -58,0 +59 @@
++    audioTracks?: Array<{ url: string; lang: string }>;
+@@ -334 +335,25 @@
+-    const videoSrc = playlistSrc ?? dashSrc ?? proxyBaseUrl ?? '';
++    const audioTracks = currentVideo?.audioTracks;
++    const [hlsMaster, setHlsMaster] = useState<{ playlist: string; url: string } | null>(null);
++    useEffect(() => {
++        if (!playlistSrc || !audioTracks?.length) {
++            setHlsMaster(null);
++            return undefined;
++        }
++        const attribute = (value: string) => value.replace(/["\r\n]/g, '');
++        const manifest = [
++            '#EXTM3U',
++            '#EXT-X-VERSION:3',
++            ...audioTracks.map((track, index) =>
++                `#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="audio",NAME="${attribute(track.lang || `Audio ${index + 1}`)}",DEFAULT=${index === 0 ? 'YES' : 'NO'},AUTOSELECT=YES,URI="${attribute(track.url)}"`),
++            '#EXT-X-STREAM-INF:BANDWIDTH=8000000,AUDIO="audio"',
++            playlistSrc,
++            '',
++        ].join('\n');
++        const url = URL.createObjectURL(new Blob([manifest], { type: 'application/vnd.apple.mpegurl' }));
++        setHlsMaster({ playlist: playlistSrc, url });
++        return () => URL.revokeObjectURL(url);
++    }, [playlistSrc, audioTracks]);
++    const videoSrc = playlistSrc && audioTracks?.length
++        ? hlsMaster?.playlist === playlistSrc ? hlsMaster.url : ''
++        : playlistSrc ?? dashSrc ?? proxyBaseUrl ?? '';
++    const hlsProxyReferer = currentVideo?.headers?.find(({ first }) => first.toLowerCase() === 'referer')?.second;
+@@ -608,0 +634 @@
++            hlsProxyReferer={hlsProxyReferer}
+--- a/src/features/anime/reader/components/AnimeVideoPlayer.tsx
++++ b/src/features/anime/reader/components/AnimeVideoPlayer.tsx
+@@ -59 +59 @@
+-import Hls from 'hls.js';
++import Hls, { type LoaderCallbacks, type LoaderConfiguration, type LoaderContext } from 'hls.js';
+@@ -136,0 +137 @@
++    hlsProxyReferer?: string;
+@@ -577,0 +579 @@
++    hlsProxyReferer,
+@@ -1470,2 +1472,23 @@
+-        const hls = new Hls(
+-            isBrave
++        const backendBase = requestManager.getBaseUrl() || window.location.origin;
++        const backendOrigin = new URL(backendBase, window.location.href).origin;
++        class ProxyLoader extends Hls.DefaultConfig.loader {
++            load(context: LoaderContext, config: LoaderConfiguration, callbacks: LoaderCallbacks<LoaderContext>) {
++                const sourceUrl = context.url;
++                if (!sourceUrl.startsWith('http') || new URL(sourceUrl).origin === backendOrigin) {
++                    super.load(context, config, callbacks);
++                    return;
++                }
++                const params = new URLSearchParams({ url: sourceUrl });
++                if (hlsProxyReferer) params.set('referer', hlsProxyReferer);
++                super.load({ ...context, url: `${backendBase}/api/v1/media/hls/segment?${params}` }, config, {
++                    ...callbacks,
++                    // Resolve relative playlist entries against their upstream URL.
++                    onSuccess: (response, stats, _context, details) => callbacks.onSuccess(
++                        { ...response, url: sourceUrl }, stats, context, details,
++                    ),
++                });
++            }
++        }
++        const hls = new Hls({
++            loader: ProxyLoader,
++            ...(isBrave
+@@ -1479,2 +1502,2 @@
+-                : { enableWorker: true, lowLatencyMode: true },
+-        );
++                : { enableWorker: true, lowLatencyMode: true }),
++        });
+@@ -1514,0 +1538 @@
++        hlsProxyReferer,

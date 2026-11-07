@@ -34,6 +34,7 @@
       "dialout"
       "adbusers"
       "cdrom"
+      "nordvpn"
     ]; # Enable ‘sudo’ for the user.
   };
 
@@ -70,7 +71,6 @@
       pokedinner
       nup
       lichii
-      nordvpn
     ];
 
   hardware.graphics = {
@@ -189,6 +189,8 @@
       ];
     };
   };
+
+  services.nordvpn.enable = true;
 
   system.stateVersion = "23.05";
 }

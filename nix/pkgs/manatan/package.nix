@@ -35,6 +35,7 @@ let
     patches = [
       ./webui-yarn-lock.patch
       ./prefer-hls-js.patch
+      ./separate-hls-audio.patch
     ];
   };
 
