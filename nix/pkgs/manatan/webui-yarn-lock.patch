@@ -1,0 +1,90 @@
+--- a/yarn.lock
++++ b/yarn.lock
+@@ -2056,0 +2057,35 @@
++"@svta/cml-608@1.1.0":
++  version "1.1.0"
++  resolved "https://registry.yarnpkg.com/@svta/cml-608/-/cml-608-1.1.0.tgz#6debec40754d264fc4501e0b2f15fb332024e821"
++  integrity sha512-r427FE+vTYsgh9wi7lc6gkixFpdBiTSy+fIy4zdwe8+mgOtMiVjP9xHW68z1KcH/WNSGRDzCEunNIsX4tIljTA==
++
++"@svta/cml-cmcd@2.8.2":
++  version "2.8.2"
++  resolved "https://registry.yarnpkg.com/@svta/cml-cmcd/-/cml-cmcd-2.8.2.tgz#710289ff68188c6fc2a47ab76c6e2f9b141b6cbb"
++  integrity sha512-/safKRbApNeycQBJHdA6EgrPj+6vqsChRLX6oQr1//DKKfoyjed2Pn7oDUNxw17hTN+X02AvvOtKrg7niY4AQw==
++
++"@svta/cml-cmsd@1.1.1":
++  version "1.1.1"
++  resolved "https://registry.yarnpkg.com/@svta/cml-cmsd/-/cml-cmsd-1.1.1.tgz#e401fcdc7f9b33b67cbee9410fa94ebf02431038"
++  integrity sha512-Om3w7qU33E7i/K3Gd0GOG8njIDP9GD3R3XjqxIGc/ZXFexTVvMK3eQIN9cyVLdJrLR7XLMUIih7Kc1D+tNLl8Q==
++
++"@svta/cml-dash@1.0.9":
++  version "1.0.9"
++  resolved "https://registry.yarnpkg.com/@svta/cml-dash/-/cml-dash-1.0.9.tgz#644c4cc9b7dddc6038fe0005709c135740a9a072"
++  integrity sha512-+ufdUrkKpeNPtxDXA/8b7gXJAR9FnntGVvImgexzrjoIH4j/5QkhPmwjT2fUk/l3bsMGqRkZcFoqKLagT21BVQ==
++
++"@svta/cml-id3@1.0.9":
++  version "1.0.9"
++  resolved "https://registry.yarnpkg.com/@svta/cml-id3/-/cml-id3-1.0.9.tgz#ddafbf120b5199641dbd0fe05f5addc1d7a6addc"
++  integrity sha512-dH902qkWEscl5srsL5pxJjyXMHWV6r3E9Up/thlnGj0M5hc0e+M6VeIFsmLVtZkuwwhugXb39PAkRP1IRRm8Nw==
++
++"@svta/cml-request@1.0.21":
++  version "1.0.21"
++  resolved "https://registry.yarnpkg.com/@svta/cml-request/-/cml-request-1.0.21.tgz#9cdc64ef1d4cb9f67d244a67e68da47ad85b0fd2"
++  integrity sha512-OEpyH5F4Buh8fYfaOXtbbWrHY3BG7J5i2euEz5qemj1H8ABVgmHHXnkv+NNSSvJH/0bjoqFbXwUcD2KHUUoaSA==
++
++"@svta/cml-xml@1.2.1":
++  version "1.2.1"
++  resolved "https://registry.yarnpkg.com/@svta/cml-xml/-/cml-xml-1.2.1.tgz#404025128c618652fa3ecadcabe204743d93eaa7"
++  integrity sha512-zTogQQ6h6Lhzi78MU9pH2NEuCDK2lpWjMsmvQqGoLipozQAkLO7OXgEc4K9KZ1qmwg77DSiiJQo6TNtyT9PbQw==
++
+@@ -3109,0 +3145,5 @@
++codem-isoboxer@0.3.10:
++  version "0.3.10"
++  resolved "https://registry.yarnpkg.com/codem-isoboxer/-/codem-isoboxer-0.3.10.tgz#75182f8b1754163dfdbfd9bc975d7c7994d99e47"
++  integrity sha512-eNk3TRV+xQMJ1PEj0FQGY8KD4m0GPxT487XJ+Iftm7mVa9WpPFDMWqPt+46buiP5j5Wzqe5oMIhqBcAeKfygSA==
++
+@@ -3324,0 +3365,19 @@
++
++dashjs@^5.1.1:
++  version "5.3.0"
++  resolved "https://registry.yarnpkg.com/dashjs/-/dashjs-5.3.0.tgz#bea78184de0cb5f01ca40674ede2aae86eed3302"
++  integrity sha512-2Pe1gl4kUX30RkjmGVywT8Frje0a5reGqmqXDqsD/YC/3EkfN1XFuDoBg1p4gnfaHIDcL2KwD/4iqpCKz8tuwA==
++  dependencies:
++    "@svta/cml-608" "1.1.0"
++    "@svta/cml-cmcd" "2.8.2"
++    "@svta/cml-cmsd" "1.1.1"
++    "@svta/cml-dash" "1.0.9"
++    "@svta/cml-id3" "1.0.9"
++    "@svta/cml-request" "1.0.21"
++    "@svta/cml-xml" "1.2.1"
++    codem-isoboxer "0.3.10"
++    fast-deep-equal "3.1.3"
++    html-entities "^2.6.0"
++    imsc "^1.1.5"
++    localforage "^1.10.0"
++    path-browserify "^1.0.1"
+@@ -4208 +4267 @@
+-fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
++fast-deep-equal@3.1.3, fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
+@@ -4724,0 +4784,5 @@
++html-entities@^2.6.0:
++  version "2.6.0"
++  resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-2.6.0.tgz#7c64f1ea3b36818ccae3d3fb48b6974208e984f8"
++  integrity sha512-kig+rMn/QOVRvr7c86gQ8lWXq+Hkv6CbAH1hLu+RG338StTpE8Z0b44SDVaqVu7HGKf27frdmUYEs9hTUX/cLQ==
++
+@@ -4816,0 +4881,7 @@
++
++imsc@^1.1.5:
++  version "1.1.5"
++  resolved "https://registry.yarnpkg.com/imsc/-/imsc-1.1.5.tgz#7e52690fbfc8a122c1480bc3349336f4bb997034"
++  integrity sha512-V8je+CGkcvGhgl2C1GlhqFFiUOIEdwXbXLiu1Fcubvvbo+g9inauqT3l0pNYXGoLPBj3jxtZz9t+wCopMkwadQ==
++  dependencies:
++    sax "1.2.1"
+@@ -5448 +5519 @@
+-localforage@1.10.0:
++localforage@1.10.0, localforage@^1.10.0:
+@@ -6602,0 +6674,5 @@
++
++sax@1.2.1:
++  version "1.2.1"
++  resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.1.tgz#7b8e656190b228e81a66aea748480d828cd2d37a"
++  integrity sha512-8I2a3LovHTOpm7NV5yOyO8IHqgVsfK4+UuySrXU8YXkSRX7k6hCV9b3HrkKCr3nMpgj+0bmocaJJWpvp1oc7ZA==

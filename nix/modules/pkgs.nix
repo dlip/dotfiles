@@ -108,7 +108,9 @@
               lichii = final.callPackage ../pkgs/lichii/package.nix {
                 src = inputs.lichii;
               };
-              manatan = final.callPackage ../pkgs/manatan/package.nix { };
+              manatan = final.callPackage ../pkgs/manatan/package.nix {
+                src = inputs.manatan;
+              };
               nup = final.callPackage ../pkgs/nup/package.nix {
                 src = inputs.nup;
               };

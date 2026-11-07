@@ -379,17 +379,33 @@
     "lichii": {
       "flake": false,
       "locked": {
-        "lastModified": 1793905881,
-        "narHash": "sha256-lLdmKdBL3qwYhrn4I7I30eLppHiWaQgmSLCU1e9cyEc=",
+        "lastModified": 1794012907,
+        "narHash": "sha256-a42sAIq5/Liw0QIsYGrE2ViL67ith/NRLDWMViYvJQY=",
         "owner": "zortos293",
         "repo": "Lichii",
-        "rev": "27226d2568c99c70cf78aa37adaf98b60457b2e5",
+        "rev": "9fa4a71fa051aa857e2d8f370aa31739a4f062c2",
         "type": "github"
       },
       "original": {
         "owner": "zortos293",
         "ref": "nx2",
         "repo": "Lichii",
+        "type": "github"
+      }
+    },
+    "manatan": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1794026995,
+        "narHash": "sha256-T1AgnTPTw9t4LMDpkHeC9AWMU7Cvx99W5Mbke/Rc+DI=",
+        "owner": "KolbyML",
+        "repo": "Manatan",
+        "rev": "808e63f566b34db1c7f0ca3c89c245b8fe72ed33",
+        "type": "github"
+      },
+      "original": {
+        "owner": "KolbyML",
+        "repo": "Manatan",
         "type": "github"
       }
     },
@@ -906,6 +922,7 @@
         "home-manager": "home-manager_2",
         "import-tree": "import-tree",
         "lichii": "lichii",
+        "manatan": "manatan",
         "mokuro-reader": "mokuro-reader",
         "nix-on-droid": "nix-on-droid",
         "nixgl": "nixgl",

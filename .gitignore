@@ -162,6 +162,8 @@
 !/nix/pkgs/eden-fefw/package.nix
 !/nix/pkgs/lichii/package.nix
 !/nix/pkgs/manatan/package.nix
+!/nix/pkgs/manatan/prefer-hls-js.patch
+!/nix/pkgs/manatan/webui-yarn-lock.patch
 !/nix/pkgs/nup/package.nix
 !/nix/pkgs/pokedinner/package.nix
 !/nix/pkgs/rom-converto/package.nix

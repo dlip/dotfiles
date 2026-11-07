@@ -1,0 +1,18 @@
+--- a/src/features/anime/reader/components/AnimeVideoPlayer.tsx
++++ b/src/features/anime/reader/components/AnimeVideoPlayer.tsx
+@@ -1455,14 +1455 @@
+-        if (!isBrave && video.canPlayType('application/vnd.apple.mpegurl')) {
+-            video.src = videoSrc;
+-            video.load();
+-            userPausedRef.current = false;
+-            attemptPlay(true);
+-            return () => {
+-                if (playTimeout !== null) {
+-                    window.clearTimeout(playTimeout);
+-                }
+-                clearBraveResets();
+-                restoreBraveAudio();
+-            };
+-        }
+-
++        // Chromium can advertise native HLS even when playback fails. Prefer Hls.js.

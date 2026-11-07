@@ -14,6 +14,10 @@
       url = "github:zortos293/Lichii/nx2";
       flake = false;
     };
+    manatan = {
+      url = "github:KolbyML/Manatan";
+      flake = false;
+    };
     nup = {
       url = "github:a55uka/nup";
       flake = false;
