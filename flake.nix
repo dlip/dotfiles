@@ -10,6 +10,10 @@
       url = "git+https://git.eden-emu.dev/NuLLxD/eden-fefw?ref=main&shallow=1";
       flake = false;
     };
+    hookshot = {
+      url = "github:NotRexed/Hookshot";
+      flake = false;
+    };
     lichii = {
       url = "github:zortos293/Lichii/nx2";
       flake = false;

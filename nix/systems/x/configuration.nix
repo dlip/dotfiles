@@ -64,6 +64,7 @@
     ++ groups.gaming
     ++ [
       godot
+      hookshot
       hermes-desktop
       zed-editor
       codex
