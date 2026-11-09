@@ -72,6 +72,7 @@
       pokedinner
       nup
       lichii
+      omp
     ];
 
   hardware.graphics = {

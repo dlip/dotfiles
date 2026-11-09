@@ -126,6 +126,9 @@
 !/.config/zed/settings.json
 !/.gitignore
 !/.gitmodules
+!/.omp/
+!/.omp/agent/
+!/.omp/agent/config.yml
 !/.profile
 !/.shell/
 !/.shell/**
