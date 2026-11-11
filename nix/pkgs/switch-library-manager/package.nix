@@ -1,31 +1,54 @@
 {
   lib,
-  buildGoModule,
+  buildGo127Module,
+  python3,
   src,
 }:
 
-buildGoModule {
+buildGo127Module {
   pname = "switch-library-manager";
   version = "unstable-${builtins.substring 0 8 src.lastModifiedDate}";
   inherit src;
 
   modRoot = "src";
-  vendorHash = "sha256-xpc+E3nABrAy+v5rXolUAxIvvr5wZOSmvyHI1Sl2VAo=";
+  vendorHash = "sha256-1KaL7eK2VU0fTnvqiIOQu5pzCIhEKh3nvmWCYV02K2Q=";
   subPackages = [ "." ];
 
   postPatch = ''
-    rm src/gui*.go src/embedded_assets_test.go
-    sed -i '/files, err := AssetDir(workingFolder)/,/^\t}/d' src/main.go
-    substituteInPlace src/main.go \
-      --replace-fail 'useGUI := appSettings.GUI' 'useGUI := false' \
-      --replace-fail 'CreateGUI(workingFolder, sugar).Start()' \
-        'fmt.Fprintln(os.Stderr, "This package provides console mode only"); os.Exit(1)'
-    substituteInPlace src/main.go --replace-fail \
-      'workingFolder := filepath.Dir(exePath)' \
-      'configDir, err := os.UserConfigDir()
-        if err != nil { panic(err) }
-        workingFolder := filepath.Join(configDir, "switch-library-manager")
-        if err := os.MkdirAll(workingFolder, 0700); err != nil { panic(err) }'
+    rm -r src/backend/app
+    ${python3}/bin/python <<'PYTHON'
+    from pathlib import Path
+
+    path = Path("src/main.go")
+    source = path.read_text()
+    for line in (
+        '\t"embed"\n',
+        '\t"github.com/trembon/switch-library-manager/backend/app"\n',
+        '//go:embed all:frontend\nvar frontendAssets embed.FS\n',
+    ):
+        assert line in source, line
+        source = source.replace(line, "", 1)
+    start = source.index("\tif useGUI {\n")
+    end = source.index("\n}\n\nfunc resolveGUIMode", start)
+    source = source[:start] + """\tconsole.FixConsoleOutput()
+    \tconsoleapp.CreateConsole(dataFolder, sugar, consoleFlags).Start()""" + source[end:]
+    old = "useGUI := resolveGUIMode(appSettings.GUI.Enabled, consoleFlags.Mode.IsSet(), consoleFlags.Mode.String())"
+    assert old in source
+    source = source.replace(old, "useGUI := false", 1)
+    old = "resolveRuntimeDataFolder(runtime.GOOS, exePath, os.UserConfigDir)"
+    assert old in source
+    source = source.replace(old, "resolveNixDataFolder()", 1)
+    source += """
+    func resolveNixDataFolder() (string, error) {
+        configDir, err := os.UserConfigDir()
+        if err != nil { return "", err }
+        dataDir := filepath.Join(configDir, "switch-library-manager")
+        return dataDir, os.MkdirAll(dataDir, 0700)
+    }
+    """
+    path.write_text(source)
+    PYTHON
+    gofmt -w src/main.go
   '';
 
   checkPhase = ''

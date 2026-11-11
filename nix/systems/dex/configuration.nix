@@ -622,8 +622,11 @@ rec {
   services.sparkyfitness = {
     enable = true;
     backendPackage = lib.mkForce (
-      self.inputs.sparkyfitness.packages.${pkgs.system}.sparkyfitness-server.overrideAttrs (_: {
+      self.inputs.sparkyfitness.packages.${pkgs.system}.sparkyfitness-server.overrideAttrs (old: {
         doCheck = false;
+        pnpmDeps = old.pnpmDeps.overrideAttrs {
+          outputHash = "sha256-8rWfvkY7bH4U95K3x1gbBCI4zoDBJGbnGcFEXxoPBCQ=";
+        };
       })
     );
     frontendPackage = lib.mkForce (
@@ -1021,6 +1024,16 @@ rec {
         {
           publicKey = "SjRIualgEpDnqE5ohIrYD+u7aeIz3zrVVwXHohenVmA=";
           allowedIPs = [ "10.100.0.7/32" ];
+        }
+        # nmob
+        {
+          publicKey = "jbH0waqo1y/nQEhwwQe8yA7WF/sXGa0jPjf6opv+BlQ=";
+          allowedIPs = [ "10.100.0.8/32" ];
+        }
+        # y700
+        {
+          publicKey = "tUe0oJAilFQJCoBh9p64pqJM3ltdZEzfhOfKUzx5DmY=";
+          allowedIPs = [ "10.100.0.9/32" ];
         }
       ];
     };
