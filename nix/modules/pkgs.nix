@@ -12,6 +12,7 @@
       packages.hookshot = pkgs.hookshot;
       packages.lichii = pkgs.lichii;
       packages.manatan = pkgs.manatan;
+      packages.nx2android = pkgs.nx2android;
       packages.nup = pkgs.nup;
       packages.pokedinner = pkgs.pokedinner;
       packages.rom-converto = pkgs.rom-converto;
@@ -114,6 +115,9 @@
               };
               manatan = final.callPackage ../pkgs/manatan/package.nix {
                 src = inputs.manatan;
+              };
+              nx2android = final.callPackage ../pkgs/nx2android/package.nix {
+                src = inputs.nx2android;
               };
               nup = final.callPackage ../pkgs/nup/package.nix {
                 src = inputs.nup;

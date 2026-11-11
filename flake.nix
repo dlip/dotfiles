@@ -22,6 +22,10 @@
       url = "github:KolbyML/Manatan";
       flake = false;
     };
+    nx2android = {
+      url = "github:shirai91/nx2android";
+      flake = false;
+    };
     nup = {
       url = "github:a55uka/nup";
       flake = false;

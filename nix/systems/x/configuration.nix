@@ -71,6 +71,7 @@
       manatan
       pokedinner
       nup
+      nx2android
       lichii
       omp
     ];
