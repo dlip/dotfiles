@@ -361,6 +361,22 @@
         "type": "github"
       }
     },
+    "hookshot": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1794106162,
+        "narHash": "sha256-M5/5pigvmhYwxvXw5DtC/8pPoGxj9N2pvq+ObLFOefM=",
+        "owner": "NotRexed",
+        "repo": "Hookshot",
+        "rev": "4cfa08f32d060cb61c5eb015e5e05b63cf43418f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NotRexed",
+        "repo": "Hookshot",
+        "type": "github"
+      }
+    },
     "import-tree": {
       "locked": {
         "lastModified": 1788467110,
@@ -825,6 +841,22 @@
         "type": "github"
       }
     },
+    "nx2android": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1794293326,
+        "narHash": "sha256-XEJhTcfcRM7SL5oS1rLgL0YmJqeK6RPOPM2VTOOb3uI=",
+        "owner": "shirai91",
+        "repo": "nx2android",
+        "rev": "4f97d3e5fce31993137bd726ede7f9ad84ec0144",
+        "type": "github"
+      },
+      "original": {
+        "owner": "shirai91",
+        "repo": "nx2android",
+        "type": "github"
+      }
+    },
     "pokedinner": {
       "flake": false,
       "locked": {
@@ -920,6 +952,7 @@
         "fusee-launcher": "fusee-launcher",
         "hermes-agent": "hermes-agent",
         "home-manager": "home-manager_2",
+        "hookshot": "hookshot",
         "import-tree": "import-tree",
         "lichii": "lichii",
         "manatan": "manatan",
@@ -930,6 +963,7 @@
         "nixpkgs-stable": "nixpkgs-stable",
         "noctalia": "noctalia",
         "nup": "nup",
+        "nx2android": "nx2android",
         "pokedinner": "pokedinner",
         "power-menu": "power-menu",
         "sops-nix": "sops-nix",

@@ -1,0 +1,8 @@
+modelRoles:
+  default: openai-codex/gpt-6.1-sol
+symbolPreset: nerd
+composer:
+  shape: band
+theme:
+  dark: titanium
+setupVersion: 2

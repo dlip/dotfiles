@@ -64,13 +64,16 @@
     ++ groups.gaming
     ++ [
       godot
+      hookshot
       hermes-desktop
       zed-editor
       codex
       manatan
       pokedinner
       nup
+      nx2android
       lichii
+      omp
     ];
 
   hardware.graphics = {

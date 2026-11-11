@@ -9,8 +9,10 @@
     {
       packages.eden-fefw = pkgs.eden-fefw;
       packages.fusee-launcher = pkgs.fusee-launcher;
+      packages.hookshot = pkgs.hookshot;
       packages.lichii = pkgs.lichii;
       packages.manatan = pkgs.manatan;
+      packages.nx2android = pkgs.nx2android;
       packages.nup = pkgs.nup;
       packages.pokedinner = pkgs.pokedinner;
       packages.rom-converto = pkgs.rom-converto;
@@ -105,11 +107,17 @@
               eden-fefw = final.callPackage ../pkgs/eden-fefw/package.nix {
                 src = inputs.eden-fefw;
               };
+              hookshot = final.callPackage ../pkgs/hookshot/package.nix {
+                src = inputs.hookshot;
+              };
               lichii = final.callPackage ../pkgs/lichii/package.nix {
                 src = inputs.lichii;
               };
               manatan = final.callPackage ../pkgs/manatan/package.nix {
                 src = inputs.manatan;
+              };
+              nx2android = final.callPackage ../pkgs/nx2android/package.nix {
+                src = inputs.nx2android;
               };
               nup = final.callPackage ../pkgs/nup/package.nix {
                 src = inputs.nup;

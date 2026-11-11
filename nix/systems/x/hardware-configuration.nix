@@ -44,34 +44,34 @@ in
     fsType = "vfat";
   };
 
-  fileSystems."/media/media" = {
-    device = "//10.10.0.123/media";
-    fsType = "cifs";
-    options = [
-      cifsOptions
-    ];
-  };
-  fileSystems."/media/media2" = {
-    device = "//10.10.0.123/media2";
-    fsType = "cifs";
-    options = [
-      cifsOptions
-    ];
-  };
-  fileSystems."/media/personal" = {
-    device = "//10.10.0.123/personal";
-    fsType = "cifs";
-    options = [
-      cifsOptions
-    ];
-  };
-  fileSystems."/media/games" = {
-    device = "//10.10.0.123/games";
-    fsType = "cifs";
-    options = [
-      cifsOptions
-    ];
-  };
+  # fileSystems."/media/media" = {
+  #   device = "//10.10.0.123/media";
+  #   fsType = "cifs";
+  #   options = [
+  #     cifsOptions
+  #   ];
+  # };
+  # fileSystems."/media/media2" = {
+  #   device = "//10.10.0.123/media2";
+  #   fsType = "cifs";
+  #   options = [
+  #     cifsOptions
+  #   ];
+  # };
+  # fileSystems."/media/personal" = {
+  #   device = "//10.10.0.123/personal";
+  #   fsType = "cifs";
+  #   options = [
+  #     cifsOptions
+  #   ];
+  # };
+  # fileSystems."/media/games" = {
+  #   device = "//10.10.0.123/games";
+  #   fsType = "cifs";
+  #   options = [
+  #     cifsOptions
+  #   ];
+  # };
 
   swapDevices = [
     {
