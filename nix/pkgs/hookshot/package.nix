@@ -57,7 +57,7 @@ stdenv.mkDerivation {
     runHook preInstall
     tools=$out/share/hookshot
     mkdir -p "$tools" $out/bin $out/share/applications $out/share/icons/hicolor/256x256/apps
-    cp -r nx2 host gpu third_party builder assets LICENSE readme.md "$tools/"
+    cp -r nx2 host gpu third_party builder scripts assets LICENSE readme.md "$tools/"
     echo ${lib.escapeShellArg src.shortRev} > "$tools/VERSION"
     mkdir -p "$tools/cpm"/{vulkanheaders,spirv-headers,vulkanmemoryallocator}
     ln -s ${vulkan-headers} "$tools/cpm/vulkanheaders/nix"
