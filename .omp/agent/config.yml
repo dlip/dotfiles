@@ -4,5 +4,5 @@ symbolPreset: nerd
 composer:
   shape: band
 theme:
-  dark: titanium
+  dark: dark-catppuccin
 setupVersion: 2

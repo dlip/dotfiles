@@ -37,6 +37,12 @@ Open a new shell and run this to switch:
 nixconfig
 ```
 
+## Language tooling
+
+The `lsp` list in [`nix/pkgs/groups.nix`](nix/pkgs/groups.nix) is included in the `default`, `extra`, and `gui` package groups. It includes TypeScript/JavaScript, Bash, YAML, HTML, CSS, and JSON language servers, plus the `vscode-js-debug` debugger.
+
+`vscode-js-debug` provides `js-debug`; omp needs an adapter-path override to use it. Python debugging also requires `debugpy` in the Python environment used by omp's adapter.
+
 ## Adding or removing tracked files
 
 The repo uses an ignore-everything allowlist in `.gitignore`:

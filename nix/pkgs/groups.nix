@@ -2,9 +2,10 @@
 with pkgs;
 let
   lsp = [
+    bash-language-server
     deadnix
     delve
-    (python3Packages.debugpy)
+    python3Packages.debugpy
     eslint_d
     gofumpt
     gopls
@@ -24,7 +25,11 @@ let
     stylua
     taplo
     tree-sitter
+    typescript-language-server
+    vscode-js-debug
+    vscode-langservers-extracted
     yamllint
+    yaml-language-server
   ];
   default = lsp ++ [
     bash
