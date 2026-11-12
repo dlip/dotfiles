@@ -25,6 +25,8 @@ This clones the repo's `.git` into `~`, backs up any conflicting files to `~/.do
 
 ## Home Manager
 
+`nix/home/` contains the standalone `docker`, `coder`, and `cloudide` profiles; `docker-arm` reuses `docker.nix`. App configuration files are tracked directly in this repository rather than installed through Home Manager.
+
 If using standalone nix, add a config to [nix/modules/homemanager.nix](nix/modules/homemanager.nix) then and to ~/.zshrc.local, replacing `CONFIG` with the name
 
 ```sh

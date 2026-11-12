@@ -53,7 +53,7 @@ This means **every `.nix` file under `nix/modules/` is automatically imported** 
 - **`nix/modules/nixos/`** — Shared NixOS modules exposed as `self.modules.nixos.<name>` (e.g. `common`, `sops`, `niri`, `xfce`, `komf`, `ssmtp`, `notify-problems`). Hosts opt in to these via their `imports` list.
 - **`nix/systems/`** — Per-host NixOS/darwin system configurations (e.g. `dex/`, `ptv/`, `x/`). Each host's `configuration.nix` is a curried function: `top@{ self, ... }: { config, pkgs, ... }: { ... }`. The first arg receives flake-parts attrs (including `self` for accessing `self.modules.nixos.*`), the second receives NixOS module args.
 - **`nix/systems/common/`** — Shared data files only (secrets, wireguard peers). **Not** NixOS modules — all shared modules live in `nix/modules/nixos/`.
-- **`nix/home/`** — Home Manager modules, composed into profiles by the hosts.
+- **`nix/home/`** — Standalone Home Manager profiles for Docker, Coder, and Cloud IDE. App configuration files are tracked directly in the repository.
 - **`nix/pkgs/`** — Custom Nix package definitions.
 
 ### How hosts are defined
