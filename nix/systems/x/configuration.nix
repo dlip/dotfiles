@@ -153,6 +153,192 @@
     };
   };
 
+  services.triggerhappy =
+    let
+      gamescopeShortcut = pkgs.writeShellScript "gamescope-shortcut" ''
+        for steam_pid in $(${pkgs.procps}/bin/pgrep --euid "$UID" --exact steam); do
+          unset DISPLAY WAYLAND_DISPLAY XAUTHORITY DBUS_SESSION_BUS_ADDRESS XDG_RUNTIME_DIR XDG_SESSION_ID
+          while IFS= read -r -d "" variable; do
+            case "$variable" in
+              DISPLAY=*|XAUTHORITY=*|DBUS_SESSION_BUS_ADDRESS=*|XDG_RUNTIME_DIR=*|XDG_SESSION_ID=*)
+                declare -x "$variable"
+                ;;
+            esac
+          done < "/proc/$steam_pid/environ"
+          [[ -n "''${XDG_SESSION_ID:-}" ]] || continue
+          [[ $(${pkgs.systemd}/bin/loginctl show-session "$XDG_SESSION_ID" --property=Desktop --value) == steam ]] || continue
+          [[ $(${pkgs.systemd}/bin/loginctl show-session "$XDG_SESSION_ID" --property=Active --value) == yes ]] || continue
+          case "$1" in
+            volume-up)
+              exec ${pkgs.wireplumber}/bin/wpctl set-volume --limit 1 @DEFAULT_AUDIO_SINK@ 5%+
+              ;;
+            volume-down)
+              exec ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+              ;;
+            mute)
+              exec ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+              ;;
+            mic-mute)
+              exec ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+              ;;
+            quit)
+              exec ${pkgs.systemd}/bin/loginctl terminate-session "$XDG_SESSION_ID"
+              ;;
+            kill-app)
+              window=$(${pkgs.xdotool}/bin/xdotool getwindowfocus) || exit 1
+              [[ "$window" =~ ^[0-9]+$ && "$window" -gt 1 ]] || exit 0
+              exec ${pkgs.xdotool}/bin/xdotool windowkill "$window"
+              ;;
+            cycle)
+              read -r _ _ focusable < <(${pkgs.xprop}/bin/xprop -root -notype GAMESCOPE_FOCUSABLE_WINDOWS)
+              IFS=', ' read -r -a entries <<< "$focusable"
+              windows=()
+              # Gamescope publishes [window, app ID, PID] triplets in focus-priority order.
+              for ((i = 0; i < ''${#entries[@]}; i += 3)); do
+                windows+=("''${entries[i]}")
+              done
+              # Apps launched outside Steam need a game tag before Gamescope can focus them.
+              for candidate in $(${pkgs.xdotool}/bin/xdotool search --onlyvisible --class .); do
+                properties=$(${pkgs.xprop}/bin/xprop -id "$candidate" -notype \
+                  STEAM_GAME STEAM_OVERLAY GAMESCOPE_EXTERNAL_OVERLAY \
+                  WM_TRANSIENT_FOR _NET_WM_WINDOW_TYPE _NET_WM_STATE) || continue
+                case "$properties" in
+                  *"STEAM_GAME = "[1-9]*|*"STEAM_OVERLAY = "[1-9]*|*"GAMESCOPE_EXTERNAL_OVERLAY = "[1-9]*|*"WM_TRANSIENT_FOR = "*|*"_NET_WM_STATE_SKIP_TASKBAR"*)
+                    continue
+                    ;;
+                esac
+                if [[ "$properties" == *"_NET_WM_WINDOW_TYPE = "* && "$properties" != *"_NET_WM_WINDOW_TYPE_NORMAL"* ]]; then
+                  continue
+                fi
+                ${pkgs.xprop}/bin/xprop -id "$candidate" -f STEAM_GAME 32c -set STEAM_GAME 2147483648 || continue
+                windows+=("$candidate")
+              done
+              (( ''${#windows[@]} > 1 )) || exit 0
+              # Stable window order lets repeated Alt+Tab reach every app, not just the last two.
+              mapfile -t windows < <(printf '%s\n' "''${windows[@]}" | ${pkgs.coreutils}/bin/sort -nu)
+              read -r _ _ focused < <(${pkgs.xprop}/bin/xprop -root -notype GAMESCOPE_FOCUSED_WINDOW)
+              next="''${windows[0]}"
+              for ((i = 0; i < ''${#windows[@]}; i++)); do
+                if [[ "''${windows[i]}" == "$focused" ]]; then
+                  next="''${windows[(i + 1) % ''${#windows[@]}]}"
+                  break
+                fi
+              done
+              exec ${pkgs.xprop}/bin/xprop -root -f GAMESCOPECTRL_BASELAYER_WINDOW 32c -set GAMESCOPECTRL_BASELAYER_WINDOW "$next"
+              ;;
+            terminal)
+              [[ -n "''${DISPLAY:-}" ]] || continue
+              export HOME=/home/dane USER=dane LOGNAME=dane
+              ${pkgs.kitty}/bin/kitty --override linux_display_server=x11 --directory "$HOME" &
+              kitty_pid=$!
+              if ! window=$(${pkgs.coreutils}/bin/timeout 10s ${pkgs.xdotool}/bin/xdotool search --sync --onlyvisible --limit 1 --pid "$kitty_pid"); then
+                echo "Kitty did not create an X11 window" >&2
+                kill "$kitty_pid" 2>/dev/null || true
+                wait "$kitty_pid" || true
+                exit 1
+              fi
+              read -r _ _ previous_focus < <(${pkgs.xprop}/bin/xprop -root -notype GAMESCOPECTRL_BASELAYER_WINDOW)
+              # Steam mode ignores untagged windows; identify kitty as a non-Steam app.
+              ${pkgs.xprop}/bin/xprop -id "$window" -f STEAM_GAME 32c -set STEAM_GAME 2147483648
+              ${pkgs.xprop}/bin/xprop -root -f GAMESCOPECTRL_BASELAYER_WINDOW 32c -set GAMESCOPECTRL_BASELAYER_WINDOW "$window"
+              wait "$kitty_pid"
+              status=$?
+              if read -r _ _ current_focus < <(${pkgs.xprop}/bin/xprop -root -notype GAMESCOPECTRL_BASELAYER_WINDOW); then
+                if [[ "$current_focus" == "$window" ]]; then
+                  ${pkgs.xprop}/bin/xprop -root -f GAMESCOPECTRL_BASELAYER_WINDOW 32c -set GAMESCOPECTRL_BASELAYER_WINDOW "$previous_focus"
+                fi
+              fi
+              exit "$status"
+              ;;
+          esac
+        done
+      '';
+    in
+    {
+      enable = true;
+      user = "dane";
+      bindings =
+        builtins.concatMap
+          (
+            super:
+            [
+              {
+                keys = [
+                  "Q"
+                  super
+                ];
+                cmd = "${gamescopeShortcut} kill-app";
+              }
+              {
+                keys = [
+                  "T"
+                  super
+                ];
+                cmd = "${gamescopeShortcut} terminal";
+              }
+            ]
+            ++
+              builtins.map
+                (shift: {
+                  keys = [
+                    "Q"
+                    super
+                    shift
+                  ];
+                  cmd = "${gamescopeShortcut} quit";
+                })
+                [
+                  "LEFTSHIFT"
+                  "RIGHTSHIFT"
+                ]
+          )
+          [
+            "LEFTMETA"
+            "RIGHTMETA"
+          ]
+        ++
+          builtins.map
+            (alt: {
+              keys = [
+                "TAB"
+                alt
+              ];
+              cmd = "${gamescopeShortcut} cycle";
+            })
+            [
+              "LEFTALT"
+              "RIGHTALT"
+            ]
+        ++
+          builtins.concatMap
+            (event: [
+              {
+                keys = [ "VOLUMEUP" ];
+                inherit event;
+                cmd = "${gamescopeShortcut} volume-up";
+              }
+              {
+                keys = [ "VOLUMEDOWN" ];
+                inherit event;
+                cmd = "${gamescopeShortcut} volume-down";
+              }
+            ])
+            [
+              "press"
+              "hold"
+            ]
+        ++ [
+          {
+            keys = [ "MUTE" ];
+            cmd = "${gamescopeShortcut} mute";
+          }
+          {
+            keys = [ "MICMUTE" ];
+            cmd = "${gamescopeShortcut} mic-mute";
+          }
+        ];
+    };
+
   networking.firewall = {
     allowedTCPPorts = [
       3000
@@ -167,6 +353,7 @@
 
   programs.steam = {
     enable = true;
+    gamescopeSession.enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers

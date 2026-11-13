@@ -4,7 +4,7 @@
 }:
 {
   flake.modules.nixos.niri =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     {
       imports = [
         # DankMaterialShell replaced by Noctalia v5 (spawned from the niri
@@ -28,12 +28,12 @@
       #   DMS_MODAL_LAYER = "overlay";
       # };
 
-      # Login via greetd + tuigreet, launching niri-session.
+      # Login via greetd + tuigreet, with niri-session as the fallback.
       services.greetd = {
         enable = true;
         settings = {
           default_session = {
-            command = "${pkgs.tuigreet}/bin/tuigreet --sessions /run/current-system/sw/share/wayland-sessions --remember --remember-session --cmd niri-session";
+            command = "${pkgs.tuigreet}/bin/tuigreet --sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions --remember --remember-session --cmd niri-session";
             user = "greeter";
           };
         };

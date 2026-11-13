@@ -103,6 +103,18 @@
               openldap = prev.openldap.overrideAttrs {
                 doCheck = !prev.stdenv.hostPlatform.isi686;
               };
+              omp = prev.omp.overrideAttrs (old: {
+                # Voice backends use dlopen; expose their libraries to Bun at startup.
+                postFixup = (old.postFixup or "") + ''
+                  wrapProgram "$out/bin/omp" \
+                    --prefix LD_LIBRARY_PATH : ${
+                      final.lib.makeLibraryPath [
+                        final.libpulseaudio
+                        final.alsa-lib
+                      ]
+                    }
+                '';
+              });
               mokuro-reader = inputs.mokuro-reader.packages.${final.stdenv.hostPlatform.system}.default;
               eden-fefw = final.callPackage ../pkgs/eden-fefw/package.nix {
                 src = inputs.eden-fefw;

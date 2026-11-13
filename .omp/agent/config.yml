@@ -6,3 +6,7 @@ composer:
 theme:
   dark: dark-catppuccin
 setupVersion: 2
+stt:
+  enabled: false
+dev:
+  autoqaConsent: denied

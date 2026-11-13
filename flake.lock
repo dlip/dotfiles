@@ -364,11 +364,11 @@
     "hookshot": {
       "flake": false,
       "locked": {
-        "lastModified": 1794441591,
-        "narHash": "sha256-RnUjNUAePlahY+QEyAjc9ryRzlxDCF2qfy7b3rPUYKg=",
+        "lastModified": 1794518116,
+        "narHash": "sha256-nLVx4j/tEFMBaX0jZ808nZEW+Ui01lfFxLtOJtIbRJU=",
         "owner": "NotRexed",
         "repo": "Hookshot",
-        "rev": "ef81aee767f848255ca08171bba33b8c40c79347",
+        "rev": "e0e60920991931f24cbe817bd5fff782ef4f5d9d",
         "type": "github"
       },
       "original": {
