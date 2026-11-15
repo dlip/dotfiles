@@ -183,6 +183,7 @@ let
     notify-desktop
     ns-usbloader
     nushell
+    omp
     # opencode
     openssl
     openvpn

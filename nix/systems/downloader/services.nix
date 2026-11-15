@@ -5,6 +5,7 @@
   bazarr = 6767;
   readarr = 8787;
   qbittorrent = 8080;
+  qui = 7476;
   prowlarr = 9696;
   # suwayomi = 4567;
 }

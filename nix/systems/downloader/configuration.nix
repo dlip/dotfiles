@@ -124,6 +124,39 @@ in
     group = "root";
   };
 
+  services.qui = {
+    enable = true;
+    secretFile = "/var/lib/qui/session-secret";
+    settings = {
+      host = "0.0.0.0";
+      port = downloader-services.qui;
+      sessionCookieSecure = true;
+    };
+  };
+
+  systemd.services.qui = {
+    requires = [ "qui-session-secret.service" ];
+    after = [ "qui-session-secret.service" ];
+  };
+
+  systemd.services.qui-session-secret = {
+    description = "Initialize Qui session secret";
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      User = "qui";
+      Group = "qui";
+      StateDirectory = "qui";
+      StateDirectoryMode = "0700";
+      UMask = "0077";
+    };
+    script = ''
+      if [ ! -s /var/lib/qui/session-secret ]; then
+        ${pkgs.openssl}/bin/openssl rand -hex 32 > /var/lib/qui/session-secret
+      fi
+    '';
+  };
+
   # services.suwayomi-server = {
   #   enable = true;
   #   user = "root";

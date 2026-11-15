@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if (( EUID != 0 )); then
+  echo "Run: sudo $0" >&2
+  exit 1
+fi
+
+driver_version=$(awk '/Kernel Module/ {print $8; exit}' /proc/driver/nvidia/version)
+driver_path=
+for candidate in /nix/store/*-nvidia-x11-"$driver_version"; do
+  if [[ -e "$candidate/lib/libcuda.so.1" && -e "$candidate/lib/libnvidia-ml.so.1" ]]; then
+    driver_path=$candidate
+    break
+  fi
+done
+if [[ -z "$driver_path" ]]; then
+  echo "No installed NVIDIA libraries match loaded driver $driver_version." >&2
+  exit 1
+fi
+
+env LD_LIBRARY_PATH="$driver_path/lib" nvidia-smi \
+  --query-gpu=name,driver_version --format=csv,noheader
+
+override_dir=/run/systemd/system/plex.service.d
+mkdir -p "$override_dir"
+printf '[Service]\nEnvironment="LD_LIBRARY_PATH=%s/lib"\n' "$driver_path" \
+  > "$override_dir/90-loaded-nvidia.conf"
+systemctl daemon-reload
+systemctl reset-failed plex.service
+systemctl restart plex.service
+systemctl status plex.service --no-pager
+echo 'Plex uses the loaded driver libraries until reboot. Other services are unchanged.'

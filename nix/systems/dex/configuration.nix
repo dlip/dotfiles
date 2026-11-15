@@ -51,6 +51,20 @@ rec {
 
   fileSystems."/".device = lib.mkForce "/dev/mapper/cryptroot";
 
+  console.keyMap = lib.mkForce (
+    pkgs.writeText "us-ctrl-arrows.map" ''
+      include "${pkgs.kbd}/share/keymaps/i386/qwerty/us.map.gz"
+      control keycode 105 = F200
+      control keycode 106 = F201
+      control keycode 103 = F202
+      control keycode 108 = F203
+      string F200 = "\033[1;5D"
+      string F201 = "\033[1;5C"
+      string F202 = "\033[1;5A"
+      string F203 = "\033[1;5B"
+    ''
+  );
+
   # Remote unlock
   boot.kernelParams = [ "rd.systemd.debug_shell=1" ];
   boot.initrd = {
@@ -1465,6 +1479,13 @@ rec {
       }
       {
         "Download Clients" = [
+          {
+            Qui = {
+              icon = "qbittorrent.png";
+              href = "https://qui.${domain}";
+              description = "qBittorrent management";
+            };
+          }
           {
             qBittorrent = {
               icon = "qbittorrent.png";
