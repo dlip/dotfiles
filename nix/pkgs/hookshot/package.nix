@@ -109,7 +109,7 @@ stdenv.mkDerivation {
 
   meta = {
     description = "Build and run Ocarina of Time natively from your own game dump";
-    homepage = "https://github.com/NotRexed/Hookshot";
+    homepage = "https://git.notrexed.dev/Hookshot/Hookshot";
     license = lib.licenses.gpl3Only;
     platforms = [ "x86_64-linux" ];
     mainProgram = "hookshot";

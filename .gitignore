@@ -165,6 +165,7 @@
 !/nix/pkgs/eden-fefw/package.nix
 !/nix/pkgs/hookshot/package.nix
 !/nix/pkgs/lichii/package.nix
+!/nix/pkgs/longshot/package.nix
 !/nix/pkgs/manatan/fix-anki-sentence-mapping.patch
 !/nix/pkgs/manatan/fix-sentence-audio-fallback.patch
 !/nix/pkgs/manatan/package.nix

@@ -364,17 +364,19 @@
     "hookshot": {
       "flake": false,
       "locked": {
-        "lastModified": 1794518116,
-        "narHash": "sha256-nLVx4j/tEFMBaX0jZ808nZEW+Ui01lfFxLtOJtIbRJU=",
-        "owner": "NotRexed",
-        "repo": "Hookshot",
-        "rev": "e0e60920991931f24cbe817bd5fff782ef4f5d9d",
-        "type": "github"
+        "lastModified": 1794625977,
+        "narHash": "sha256-dA4ke122mPgwsPHfMpsphYbUDNbt+MsD83rgHgJPPiA=",
+        "ref": "main",
+        "rev": "0822ffb4b3837cb8d5d4a136246432d26b8e2390",
+        "shallow": true,
+        "type": "git",
+        "url": "https://git.notrexed.dev/Hookshot/Hookshot.git"
       },
       "original": {
-        "owner": "NotRexed",
-        "repo": "Hookshot",
-        "type": "github"
+        "ref": "main",
+        "shallow": true,
+        "type": "git",
+        "url": "https://git.notrexed.dev/Hookshot/Hookshot.git"
       }
     },
     "import-tree": {
@@ -407,6 +409,50 @@
         "ref": "nx2",
         "repo": "Lichii",
         "type": "github"
+      }
+    },
+    "longshot": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1794717215,
+        "narHash": "sha256-VqW2zCrd1u0KpXKjT2TaBhVwdMOuD+tJuHkAruD7BgA=",
+        "ref": "main",
+        "rev": "e090cc48b63e2fb4e655133807903ac59149b723",
+        "shallow": true,
+        "type": "git",
+        "url": "https://git.magicbean.dev/MagicBeanDev/Longshot.git"
+      },
+      "original": {
+        "ref": "main",
+        "shallow": true,
+        "type": "git",
+        "url": "https://git.magicbean.dev/MagicBeanDev/Longshot.git"
+      }
+    },
+    "longshot-astc-encoder": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1757170821,
+        "narHash": "sha256-8L9iV/QjuopxbEign00supsSvcUmNqdM83KVYyqQGq0=",
+        "type": "tarball",
+        "url": "https://files.pythonhosted.org/packages/4f/1e/fca57bdb9b429a1d2e2f83ad0621b4ab6af65ee5fefc38a4f318afad0d8e/astc_encoder_py-0.1.12.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://files.pythonhosted.org/packages/4f/1e/fca57bdb9b429a1d2e2f83ad0621b4ab6af65ee5fefc38a4f318afad0d8e/astc_encoder_py-0.1.12.tar.gz"
+      }
+    },
+    "longshot-texture2ddecoder": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768570671,
+        "narHash": "sha256-CFwYg5wBBZUTHHr48nHHwmkWD7jI42ubbvv1T3fVoLg=",
+        "type": "tarball",
+        "url": "https://files.pythonhosted.org/packages/d8/25/603483a6c5f0fcd694732cbb079c83a026aa4ff153278a1f400c2bdf65e7/texture2ddecoder-1.0.6.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://files.pythonhosted.org/packages/d8/25/603483a6c5f0fcd694732cbb079c83a026aa4ff153278a1f400c2bdf65e7/texture2ddecoder-1.0.6.tar.gz"
       }
     },
     "manatan": {
@@ -955,6 +1001,9 @@
         "hookshot": "hookshot",
         "import-tree": "import-tree",
         "lichii": "lichii",
+        "longshot": "longshot",
+        "longshot-astc-encoder": "longshot-astc-encoder",
+        "longshot-texture2ddecoder": "longshot-texture2ddecoder",
         "manatan": "manatan",
         "mokuro-reader": "mokuro-reader",
         "nix-on-droid": "nix-on-droid",

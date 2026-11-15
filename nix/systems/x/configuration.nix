@@ -73,6 +73,7 @@
       nup
       nx2android
       lichii
+      longshot
       omp
     ];
 
@@ -153,6 +154,8 @@
     };
   };
 
+  services.blueman.enable = true;
+
   services.triggerhappy =
     let
       gamescopeShortcut = pkgs.writeShellScript "gamescope-shortcut" ''
@@ -199,6 +202,8 @@
               done
               # Apps launched outside Steam need a game tag before Gamescope can focus them.
               for candidate in $(${pkgs.xdotool}/bin/xdotool search --onlyvisible --class .); do
+                # Gamescope can discover a Steam app ID without a STEAM_GAME property.
+                [[ " ''${windows[*]} " == *" $candidate "* ]] && continue
                 properties=$(${pkgs.xprop}/bin/xprop -id "$candidate" -notype \
                   STEAM_GAME STEAM_OVERLAY GAMESCOPE_EXTERNAL_OVERLAY \
                   WM_TRANSIENT_FOR _NET_WM_WINDOW_TYPE _NET_WM_STATE) || continue
@@ -226,22 +231,38 @@
               done
               exec ${pkgs.xprop}/bin/xprop -root -f GAMESCOPECTRL_BASELAYER_WINDOW 32c -set GAMESCOPECTRL_BASELAYER_WINDOW "$next"
               ;;
-            terminal)
+            terminal|bluetooth)
               [[ -n "''${DISPLAY:-}" ]] || continue
               export HOME=/home/dane USER=dane LOGNAME=dane
-              ${pkgs.kitty}/bin/kitty --override linux_display_server=x11 --directory "$HOME" &
-              kitty_pid=$!
-              if ! window=$(${pkgs.coreutils}/bin/timeout 10s ${pkgs.xdotool}/bin/xdotool search --sync --onlyvisible --limit 1 --pid "$kitty_pid"); then
-                echo "Kitty did not create an X11 window" >&2
-                kill "$kitty_pid" 2>/dev/null || true
-                wait "$kitty_pid" || true
+              app_pid=
+              window=
+              if [[ "$1" == bluetooth ]]; then
+                window=$(${pkgs.xdotool}/bin/xdotool search --onlyvisible --limit 1 --class blueman-manager) || window=
+                if [[ -z "$window" ]]; then
+                  GDK_BACKEND=x11 XDG_DATA_DIRS="${pkgs.blueman}/share:''${XDG_DATA_DIRS:-/run/current-system/sw/share}" \
+                    ${pkgs.dbus}/bin/dbus-run-session -- ${pkgs.blueman}/bin/blueman-manager &
+                  app_pid=$!
+                fi
+                search_args=(--class blueman-manager)
+              else
+                ${pkgs.kitty}/bin/kitty --override linux_display_server=x11 --directory "$HOME" &
+                app_pid=$!
+                search_args=(--pid "$app_pid")
+              fi
+              if [[ -z "$window" ]] && ! window=$(${pkgs.coreutils}/bin/timeout 10s ${pkgs.xdotool}/bin/xdotool search --sync --onlyvisible --limit 1 "''${search_args[@]}"); then
+                echo "$1 did not create an X11 window" >&2
+                if [[ -n "$app_pid" ]]; then
+                  kill "$app_pid" 2>/dev/null || true
+                  wait "$app_pid" || true
+                fi
                 exit 1
               fi
               read -r _ _ previous_focus < <(${pkgs.xprop}/bin/xprop -root -notype GAMESCOPECTRL_BASELAYER_WINDOW)
-              # Steam mode ignores untagged windows; identify kitty as a non-Steam app.
+              # Steam mode ignores untagged windows; identify the launched app as non-Steam.
               ${pkgs.xprop}/bin/xprop -id "$window" -f STEAM_GAME 32c -set STEAM_GAME 2147483648
               ${pkgs.xprop}/bin/xprop -root -f GAMESCOPECTRL_BASELAYER_WINDOW 32c -set GAMESCOPECTRL_BASELAYER_WINDOW "$window"
-              wait "$kitty_pid"
+              [[ -n "$app_pid" ]] || exit 0
+              wait "$app_pid"
               status=$?
               if read -r _ _ current_focus < <(${pkgs.xprop}/bin/xprop -root -notype GAMESCOPECTRL_BASELAYER_WINDOW); then
                 if [[ "$current_focus" == "$window" ]]; then
@@ -275,6 +296,13 @@
                   super
                 ];
                 cmd = "${gamescopeShortcut} terminal";
+              }
+              {
+                keys = [
+                  "B"
+                  super
+                ];
+                cmd = "${gamescopeShortcut} bluetooth";
               }
             ]
             ++
@@ -351,13 +379,49 @@
     ]; # Clients and peers can use the same port, see listenport
   };
 
-  programs.steam = {
-    enable = true;
-    gamescopeSession.enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-  };
+  programs.steam =
+    let
+      steamDesktop = pkgs.writeShellScript "steam-desktop" ''
+        set -e
+        /usr/bin/steam steam://close/bigpicture
+        /usr/bin/steam steam://open/main
+        for ((attempt = 0; attempt < 100; attempt++)); do
+          for window in $(${pkgs.xdotool}/bin/xdotool search --onlyvisible --class '^steam$'); do
+            [[ $(${pkgs.xdotool}/bin/xdotool getwindowname "$window") == Steam ]] || continue
+            ${pkgs.xprop}/bin/xprop -root -f GAMESCOPECTRL_BASELAYER_WINDOW 32c \
+              -set GAMESCOPECTRL_BASELAYER_WINDOW "$window"
+            exit 0
+          done
+          ${pkgs.coreutils}/bin/sleep 0.1
+        done
+        echo "Steam did not show its desktop window" >&2
+        exit 1
+      '';
+      sessionSelect = pkgs.writeShellScriptBin "steamos-session-select" ''
+        [[ "''${1:-}" == plasma ]] || exit 2
+        # Steam waits for this hook; deliver its UI request after returning.
+        exec ${pkgs.util-linux}/bin/setsid --fork ${steamDesktop} \
+          </dev/null >"$XDG_RUNTIME_DIR/steam-desktop.log" 2>&1
+      '';
+      sessionSteam = config.programs.steam.package.override (previous: {
+        extraPkgs = p: (previous.extraPkgs p) ++ [ sessionSelect ];
+      });
+    in
+    {
+      enable = true;
+      gamescopeSession = {
+        enable = true;
+        env.PATH = "${sessionSteam}/bin:$PATH";
+        steamArgs = [
+          "-tenfoot"
+          "-pipewire-dmabuf"
+          "-steamos3"
+        ];
+      };
+      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+      localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+    };
   hardware.steam-hardware.enable = true;
 
   programs.obs-studio = {

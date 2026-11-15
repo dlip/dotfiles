@@ -11,6 +11,7 @@
       packages.fusee-launcher = pkgs.fusee-launcher;
       packages.hookshot = pkgs.hookshot;
       packages.lichii = pkgs.lichii;
+      packages.longshot = pkgs.longshot;
       packages.manatan = pkgs.manatan;
       packages.nx2android = pkgs.nx2android;
       packages.nup = pkgs.nup;
@@ -124,6 +125,11 @@
               };
               lichii = final.callPackage ../pkgs/lichii/package.nix {
                 src = inputs.lichii;
+              };
+              longshot = final.callPackage ../pkgs/longshot/package.nix {
+                src = inputs.longshot;
+                astcEncoderSrc = inputs.longshot-astc-encoder;
+                textureDecoderSrc = inputs.longshot-texture2ddecoder;
               };
               manatan = final.callPackage ../pkgs/manatan/package.nix {
                 src = inputs.manatan;

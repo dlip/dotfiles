@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export SHELL
 
 # Herdr project workspace manager (herdr port of `t`).
 # Picks a project under $PROJECTS with fzf and opens a Herdr workspace for it,
