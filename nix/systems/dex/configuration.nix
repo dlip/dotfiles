@@ -207,7 +207,7 @@ rec {
           settings = {
             model = {
               provider = "custom:litellm";
-              default = "gpt-6.1-sol";
+              default = "gpt-6.2-sol";
               base_url = "https://litellm.${domain}/v1";
             };
             providers.litellm = {
@@ -266,7 +266,7 @@ rec {
           settings = {
             model = {
               provider = "custom:litellm";
-              default = "gpt-6.1-sol";
+              default = "gpt-6.2-sol";
               base_url = "https://litellm.${domain}/v1";
             };
             providers.litellm = {
@@ -329,6 +329,11 @@ rec {
     environmentFile = config.sops.secrets.litellm-env.path;
     settings = {
       model_list = [
+        {
+          model_name = "gpt-6.2-sol";
+          model_info.mode = "responses";
+          litellm_params.model = "chatgpt/gpt-6.2-sol";
+        }
         {
           model_name = "gpt-6.1-sol";
           model_info.mode = "responses";
