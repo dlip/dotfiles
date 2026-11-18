@@ -39,6 +39,22 @@ Open a new shell and run this to switch:
 nixconfig
 ```
 
+## Hookshot on `x`
+
+[Hookshot](https://git.notrexed.dev/Hookshot/Hookshot) is packaged natively as `.#hookshot`. Its builder is retained at `~/.local/share/hookshot/tools` and its game is installed at `~/Games/Hookshot`; the **Hookshot** applications entry starts that folder. Saves remain in `~/.local/share/hookshot/save`, separate from Longshot.
+
+To update its pinned source and rebuild an existing game, run from this repository:
+
+```sh
+nix flake update hookshot
+nix build --impure .#hookshot --out-link "$HOME/.local/share/hookshot/tools"
+"$HOME/.local/share/hookshot/tools/bin/hookshot" --cli --update "$HOME/Games/Hookshot" --jobs 4
+```
+
+The Linux package includes the native host sources, carries the wheel-text and C++ compatibility patch in `nix/pkgs/hookshot/linux-game-build.patch`, and embeds FFmpeg and C++ runtime library search paths in built games. Game caches and logs are in `~/Games/Hookshot/cache` and `~/Games/Hookshot/logs`.
+
+Both game builders select matching Clang, LLD and LLVM from `llvmPackages_23` to support their shipped play profiles and lightweight compilation passes. This is package-scoped; the system's default compiler is unchanged. Changing the toolchain invalidates compiled-object caches and requires rebuilding the games.
+
 ## Longshot on `x`
 
 [Longshot](https://git.magicbean.dev/MagicBeanDev/Longshot) is packaged natively as `.#longshot` and included in `x`'s system packages, alongside Hookshot. Its source and controller-prompt dependencies are pinned in `flake.lock`; it does not download an external compiler or use an AppImage environment.
@@ -64,6 +80,8 @@ The Gamescope Alt+Tab helper preserves app identities already discovered by Game
 Steam uses its UI controller layout while its window is focused. Returning to a Steam-launched game restores that game's layout.
 
 **Super+B** opens Blueman in the Gamescope session (either Super key works). It uses a separate D-Bus session so it does not activate a manager on another desktop; pressing it again focuses the existing window. Closing Blueman restores the previous app. The `x` host enables Blueman's package and Bluetooth service integration.
+
+**Super+Shift+S** suspends the system with `systemctl suspend` while the Steam Gamescope session is active. Either Super key and either Shift key work.
 
 Steam's **Switch to Desktop** power-menu action opens regular Steam inside the same Gamescope session. The session uses its own Steam FHS environment with `-steamos3` and a `steamos-session-select plasma` hook, instead of Steam's display-manager user-switch fallback. The hook returns promptly and dispatches the UI change in a detached worker, then focuses Steam's new window without changing its app identity. It does not stop Steam, terminate Gamescope, or change the login session. Use Steam's **View → Big Picture Mode** to return.
 

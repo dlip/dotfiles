@@ -163,6 +163,7 @@
 !/nix/
 !/nix/**
 !/nix/pkgs/eden-fefw/package.nix
+!/nix/pkgs/hookshot/linux-game-build.patch
 !/nix/pkgs/hookshot/package.nix
 !/nix/pkgs/lichii/package.nix
 !/nix/pkgs/longshot/package.nix

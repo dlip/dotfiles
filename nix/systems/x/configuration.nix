@@ -184,6 +184,9 @@
             mic-mute)
               exec ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
               ;;
+            suspend)
+              exec ${pkgs.systemd}/bin/systemctl suspend
+              ;;
             quit)
               exec ${pkgs.systemd}/bin/loginctl terminate-session "$XDG_SESSION_ID"
               ;;
@@ -306,15 +309,25 @@
               }
             ]
             ++
-              builtins.map
-                (shift: {
-                  keys = [
-                    "Q"
-                    super
-                    shift
-                  ];
-                  cmd = "${gamescopeShortcut} quit";
-                })
+              builtins.concatMap
+                (shift: [
+                  {
+                    keys = [
+                      "Q"
+                      super
+                      shift
+                    ];
+                    cmd = "${gamescopeShortcut} quit";
+                  }
+                  {
+                    keys = [
+                      "S"
+                      super
+                      shift
+                    ];
+                    cmd = "${gamescopeShortcut} suspend";
+                  }
+                ])
                 [
                   "LEFTSHIFT"
                   "RIGHTSHIFT"

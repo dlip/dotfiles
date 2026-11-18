@@ -122,6 +122,7 @@
               };
               hookshot = final.callPackage ../pkgs/hookshot/package.nix {
                 src = inputs.hookshot;
+                inherit (final.llvmPackages_23) clang lld llvm;
               };
               lichii = final.callPackage ../pkgs/lichii/package.nix {
                 src = inputs.lichii;
@@ -130,6 +131,7 @@
                 src = inputs.longshot;
                 astcEncoderSrc = inputs.longshot-astc-encoder;
                 textureDecoderSrc = inputs.longshot-texture2ddecoder;
+                inherit (final.llvmPackages_23) clang lld llvm;
               };
               manatan = final.callPackage ../pkgs/manatan/package.nix {
                 src = inputs.manatan;

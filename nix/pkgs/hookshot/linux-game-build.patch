@@ -1,0 +1,137 @@
+--- a/gpu/vk/vk_texture.cpp
++++ b/gpu/vk/vk_texture.cpp
+@@ -3139,7 +3139,7 @@
+ uint64_t parked_bytes = 0;
+ std::atomic<int64_t> st_parked{0}, st_restored{0}, st_park_dropped{0}, st_park_stale{0};
+ uint64_t park_cap() {
+-    static const uint64_t cap = [] {
++    static const uint64_t cap = []() -> uint64_t {
+         if (const char* e = getenv("RX_VK_PARK_MB")) return (uint64_t)std::max(0, atoi(e)) << 20;
+         uint64_t ram = 0;
+ #ifdef _WIN32
+--- a/gpu/vk/vk_wheel.cpp
++++ b/gpu/vk/vk_wheel.cpp
+@@ -25,6 +25,11 @@
+ #include "vk_menu.h"
+ #include "oot_wheel_state.h"
+ #include "video_core/textures/astc.h"
++#ifndef _WIN32
++#include "imgui_internal.h"
++#include "vk_game_font.h"
++extern const unsigned char hookshot_font_strong[];
++#endif
+ 
+ namespace mkwvk {
+ namespace {
+@@ -354,6 +359,7 @@
+     int w = 0, h = 0;
+     std::vector<uint8_t> cov;
+ };
++#ifdef _WIN32
+ HFONT text_font(int px) {
+     return CreateFontA(-px, 0, 0, 0, FW_BOLD, 0, 0, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, ANTIALIASED_QUALITY,
+                        DEFAULT_PITCH, "Segoe UI");
+@@ -443,6 +449,92 @@
+     DeleteDC(dc);
+     return m;
+ }
++#else
++struct WheelFont {
++    std::vector<unsigned char> bytes;
++    stbtt_fontinfo info{};
++    WheelFont() {
++        const char* off = getenv("RX_VK_UI_GAME_FONT");
++        game_font::Reader reader;
++        if (!(off && *off == '0') && host && host->romfs_dir && reader.open(host->romfs_dir()))
++            bytes = reader.read("ClarimoUDPE-DemiBold");
++        const unsigned char* data = bytes.empty() ? hookshot_font_strong : bytes.data();
++        stbtt_InitFont(&info, data, stbtt_GetFontOffsetForIndex(data, 0));
++    }
++};
++const stbtt_fontinfo& text_font() {
++    static const WheelFont font;
++    return font.info;
++}
++unsigned next_letter(const char*& s) {
++    unsigned cp = 0;
++    s += std::max(1, ImTextCharFromUtf8(&cp, s, nullptr));
++    return cp;
++}
++struct TextBounds {
++    int left = 0, top = 0, right = 0, bottom = 0;
++};
++TextBounds text_bounds(const char* s, float scale) {
++    const auto& font = text_font();
++    TextBounds bounds;
++    float pen = 0;
++    unsigned previous = 0;
++    while (*s) {
++        const unsigned cp = next_letter(s);
++        pen += stbtt_GetCodepointKernAdvance(&font, previous, cp) * scale;
++        const int x = (int)std::floor(pen);
++        int x0, y0, x1, y1, advance;
++        stbtt_GetCodepointBitmapBoxSubpixel(&font, cp, scale, scale, pen - x, 0, &x0, &y0, &x1, &y1);
++        bounds.left = std::min(bounds.left, x + x0);
++        bounds.top = std::min(bounds.top, y0);
++        bounds.right = std::max(bounds.right, x + x1);
++        bounds.bottom = std::max(bounds.bottom, y1);
++        stbtt_GetCodepointHMetrics(&font, cp, &advance, nullptr);
++        pen += advance * scale;
++        previous = cp;
++    }
++    bounds.right = std::max(bounds.right, (int)std::ceil(pen));
++    return bounds;
++}
++void text_size(const char* s, int px, int* w, int* h) {
++    const TextBounds bounds = text_bounds(s, stbtt_ScaleForPixelHeight(&text_font(), (float)px));
++    *w = bounds.right - bounds.left, *h = bounds.bottom - bounds.top;
++}
++TextMask text_mask(const char* s, int px, int pad) {
++    const auto& font = text_font();
++    const float scale = stbtt_ScaleForPixelHeight(&font, (float)px);
++    const TextBounds bounds = text_bounds(s, scale);
++    TextMask mask;
++    mask.w = bounds.right - bounds.left + 2 * pad + 2;
++    mask.h = bounds.bottom - bounds.top + 2 * pad + 2;
++    mask.cov.resize((size_t)mask.w * mask.h);
++    std::vector<unsigned char> glyph;
++    float pen = 0;
++    unsigned previous = 0;
++    while (*s) {
++        const unsigned cp = next_letter(s);
++        pen += stbtt_GetCodepointKernAdvance(&font, previous, cp) * scale;
++        const int x = (int)std::floor(pen);
++        int x0, y0, x1, y1, advance;
++        stbtt_GetCodepointBitmapBoxSubpixel(&font, cp, scale, scale, pen - x, 0, &x0, &y0, &x1, &y1);
++        const int width = x1 - x0, height = y1 - y0;
++        if (width && height) {
++            glyph.resize((size_t)width * height);
++            stbtt_MakeCodepointBitmapSubpixel(&font, glyph.data(), width, height, width, scale, scale, pen - x, 0, cp);
++            const int left = pad + 1 + x + x0 - bounds.left, top = pad + 1 + y0 - bounds.top;
++            for (int row = 0; row < height; row++)
++                for (int col = 0; col < width; col++) {
++                    auto& coverage = mask.cov[(size_t)(top + row) * mask.w + left + col];
++                    coverage = std::max(coverage, glyph[(size_t)row * width + col]);
++                }
++        }
++        stbtt_GetCodepointHMetrics(&font, cp, &advance, nullptr);
++        pen += advance * scale;
++        previous = cp;
++    }
++    return mask;
++}
++#endif
+ // text with a dark outline o pixels wide, centred on (cx, cy)
+ void text(Canvas& c, const char* s, int px, float cx, float cy, const Rgba& col, int o) {
+     if (!*s) return;
+--- a/nx2/build.py
++++ b/nx2/build.py
+@@ -1793,7 +1793,7 @@
+                        "-DIMGUI_DISABLE_WIN32_FUNCTIONS", "-DIMGUI_DISABLE_DEMO_WINDOWS", "-DIMGUI_DISABLE_DEBUG_TOOLS"]
+         imgui_deps = b"".join(open(os.path.join(d, f), "rb").read() for d in (imgui, os.path.join(imgui, "backends"), zbic)
+                               for f in sorted(os.listdir(d)) if f.endswith(".h"))
+-        imgui_users = ("vk_imgui.cpp", "vk_menu.cpp")
++        imgui_users = ("vk_imgui.cpp", "vk_menu.cpp", "vk_wheel.cpp")
+         for f in ("imgui.cpp", "imgui_draw.cpp", "imgui_tables.cpp", "imgui_widgets.cpp", "backends/imgui_impl_vulkan.cpp"):
+             vk_jobs.append((cxx, os.path.join(imgui, *f.split("/")),
+                             os.path.join(obj_dir, "vk_imgui_" + os.path.basename(f)[:-4] + ".o"), tp_vflags + imgui_flags,

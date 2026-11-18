@@ -38,6 +38,7 @@ stdenv.mkDerivation {
   pname = "hookshot";
   version = "0-unstable-${builtins.substring 0 8 src.lastModifiedDate}";
   inherit src;
+  patches = [ ./linux-game-build.patch ];
 
   nativeBuildInputs = [
     makeWrapper
@@ -57,7 +58,7 @@ stdenv.mkDerivation {
     runHook preInstall
     tools=$out/share/hookshot
     mkdir -p "$tools" $out/bin $out/share/applications $out/share/icons/hicolor/256x256/apps
-    cp -r nx2 host gpu third_party builder scripts assets LICENSE readme.md "$tools/"
+    cp -r nx2 host gpu native third_party builder scripts assets LICENSE readme.md "$tools/"
     echo ${lib.escapeShellArg src.shortRev} > "$tools/VERSION"
     mkdir -p "$tools/cpm"/{vulkanheaders,spirv-headers,vulkanmemoryallocator}
     ln -s ${vulkan-headers} "$tools/cpm/vulkanheaders/nix"
@@ -100,7 +101,7 @@ stdenv.mkDerivation {
 
   postPatch = ''
     substituteInPlace nx2/build.py \
-      --replace-fail 'return cflags, libs' 'return cflags, libs + ["-Wl,-rpath,${lib.getLib ffmpeg}/lib"]'
+      --replace-fail 'return cflags, libs' 'return cflags, libs + ["-Wl,-rpath,${lib.makeLibraryPath [ ffmpeg stdenv.cc.cc ]}"]'
     substituteInPlace host/posix/win32_posix.c \
       --replace-fail 'snprintf(base, sizeof path - (size_t)(base - path), "%s", mapped);' 'snprintf(path, sizeof path, "%s", mapped);' \
       --replace-fail '"libSDL2-2.0.so.0"' '"${lib.getLib SDL2}/lib/libSDL2-2.0.so.0"' \

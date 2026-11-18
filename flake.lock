@@ -364,10 +364,10 @@
     "hookshot": {
       "flake": false,
       "locked": {
-        "lastModified": 1794625977,
-        "narHash": "sha256-dA4ke122mPgwsPHfMpsphYbUDNbt+MsD83rgHgJPPiA=",
+        "lastModified": 1794907036,
+        "narHash": "sha256-JAQ/0bqb4HZ3RTiAxvzi+sWBSqNiZfEcgmh5bE+NYtU=",
         "ref": "main",
-        "rev": "0822ffb4b3837cb8d5d4a136246432d26b8e2390",
+        "rev": "338b511b168f1e3031825f690af182585a842846",
         "shallow": true,
         "type": "git",
         "url": "https://git.notrexed.dev/Hookshot/Hookshot.git"
@@ -414,10 +414,10 @@
     "longshot": {
       "flake": false,
       "locked": {
-        "lastModified": 1794717215,
-        "narHash": "sha256-VqW2zCrd1u0KpXKjT2TaBhVwdMOuD+tJuHkAruD7BgA=",
+        "lastModified": 1794887414,
+        "narHash": "sha256-G3/ElEOd51FXGm9Y9hwGnOlbRgMVPkeXk8eogwHG5uI=",
         "ref": "main",
-        "rev": "e090cc48b63e2fb4e655133807903ac59149b723",
+        "rev": "544229a260c5f5008f241b9cf48ae6b01c1602b9",
         "shallow": true,
         "type": "git",
         "url": "https://git.magicbean.dev/MagicBeanDev/Longshot.git"
