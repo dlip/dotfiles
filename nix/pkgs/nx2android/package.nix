@@ -48,7 +48,7 @@ stdenvNoCC.mkDerivation {
 
   postPatch = ''
     substituteInPlace nxnative/dm/android/build.py \
-      --replace-fail "GLSLC = Path(a.ndk) / 'shader-tools' / host / ('glslc.exe' if os.name == 'nt' else 'glslc')" \
+      --replace-fail "GLSLC = Path(a.ndk) / 'shader-tools' / host_dir('shader-tools', 'glslc') / ('glslc.exe' if os.name == 'nt' else 'glslc')" \
         "GLSLC = Path('${lib.getBin shaderc}/bin/glslc')"
   '';
 

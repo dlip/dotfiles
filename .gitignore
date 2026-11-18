@@ -180,4 +180,5 @@
 !/nix/pkgs/romm/package.nix
 !/nix/pkgs/romm/watch-library.py
 !/nix/pkgs/switch-library-manager/package.nix
+!/nix/pkgs/tagainijisho/sqlite-bind-result.patch
 !/repair-romm.sh

@@ -17,6 +17,7 @@
   fontconfig,
   freetype,
   bzip2,
+  zstd,
   libxkbcommon,
   wayland,
   makeDesktopItem,
@@ -138,6 +139,7 @@ let
       fontconfig
       freetype
       bzip2
+      zstd
       libxkbcommon
       wayland
     ];

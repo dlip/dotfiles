@@ -89,6 +89,10 @@
               # });
             in
             {
+              tagainijisho = prev.tagainijisho.overrideAttrs (old: {
+                patches = old.patches ++ [ ../pkgs/tagainijisho/sqlite-bind-result.patch ];
+              });
+
               # actualServer = final.callPackage ../pkgs/actualServer {
               #   src = actual-server;
               #   nodejs = final.nodejs-16_x;
@@ -254,7 +258,6 @@
               # myPythonPackages = final.callPackage ../pkgs/pythonPackages { };
               skyscraper = final.callPackage ../pkgs/skyscraper { };
               # solang = final.callPackage ../pkgs/solang { };
-              jreadability = final.callPackage ../pkgs/jreadability/package.nix { };
               # Stock upstream build: CPU-only and cheap, because GPU decoding is
               # done by whisper-cpp via the asr-sidecar backend rather than by
               # whisrs's own vendored whisper.cpp.

@@ -67,15 +67,15 @@
       # zed-editor
       codex
       godot
-      hermes-desktop
-      lichii
+      # hermes-desktop
+      # lichii
       longshot
       manatan
       nup
       nx2android
       omp
       pi-coding-agent
-      pokedinner
+      # pokedinner
     ];
 
   hardware.graphics = {
