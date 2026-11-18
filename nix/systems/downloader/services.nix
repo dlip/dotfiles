@@ -7,5 +7,6 @@
   qbittorrent = 8080;
   qui = 7476;
   prowlarr = 9696;
+  seerr = 5055;
   # suwayomi = 4567;
 }

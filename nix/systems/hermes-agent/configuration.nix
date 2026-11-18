@@ -57,7 +57,7 @@
   services.hermes-agent = {
     enable = true;
     environmentFiles = [ "/run/secrets/hermes-env" ];
-    group = "users";
+    group = "hermes";
     addToSystemPackages = true;
     extraDependencyGroups = [
       "messaging"
@@ -70,6 +70,7 @@
 
   services.hermes-dashboard = {
     enable = true;
+    group = config.services.hermes-agent.group;
     environmentFiles = [ "/run/secrets/hermes-env" ];
   };
 

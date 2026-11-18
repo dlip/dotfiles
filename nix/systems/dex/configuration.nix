@@ -1428,6 +1428,13 @@ rec {
       {
         "Media Mangement" = [
           {
+            Seerr = {
+              icon = "seerr.png";
+              href = "https://seerr.${domain}";
+              description = "Movie and TV requests";
+            };
+          }
+          {
             Sonarr = {
               icon = "sonarr.png";
               href = "https://sonarr.${domain}";

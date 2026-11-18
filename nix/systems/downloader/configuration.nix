@@ -118,6 +118,12 @@ in
     enable = true;
   };
 
+  services.seerr = {
+    enable = true;
+    port = downloader-services.seerr;
+    stateRevision = 1;
+  };
+
   services.qbittorrent = {
     enable = true;
     user = "root";
