@@ -206,7 +206,7 @@ let
     strace
     tagainijisho
     tesseract
-    texlive.combined.scheme-medium
+    texliveMedium
     tio
     tiramisu
     tldr

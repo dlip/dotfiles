@@ -63,18 +63,19 @@
     groups.gui
     ++ groups.gaming
     ++ [
-      godot
-      hookshot
-      hermes-desktop
-      zed-editor
+      # hookshot
+      # zed-editor
       codex
-      manatan
-      pokedinner
-      nup
-      nx2android
+      godot
+      hermes-desktop
       lichii
       longshot
+      manatan
+      nup
+      nx2android
       omp
+      pi-coding-agent
+      pokedinner
     ];
 
   hardware.graphics = {
