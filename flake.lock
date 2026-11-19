@@ -1123,11 +1123,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1793622745,
-        "narHash": "sha256-2TomC8+an/gVOwbeklHRWSEHA1KYYHOxUHY1MZmq6uc=",
+        "lastModified": 1795054163,
+        "narHash": "sha256-ujVtoqBX68PlUGnIo0IRQKsd5fZIvDIvduJCw1k+zcg=",
         "ref": "feat/nixos-module",
-        "rev": "b555517567690191f7f08fe659e3438379c48719",
-        "revCount": 1735,
+        "rev": "eb68e249f19d2b22d880e43139df74846807ec7d",
+        "revCount": 1760,
         "type": "git",
         "url": "https://gitlab.com/dlip/storyteller"
       },
