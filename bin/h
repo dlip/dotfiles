@@ -4,7 +4,7 @@ export SHELL
 
 # Herdr project workspace manager (herdr port of `t`).
 # Picks a project under $PROJECTS with fzf and opens a Herdr workspace for it,
-# with one tab each for editor, shell, git (lazygit), and files (yazi).
+# with one tab each for editor, shell, git (lazygit), files (yazi), and ai (omp).
 
 PROJECTS="$HOME/code"
 CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/h-projects"
@@ -28,6 +28,7 @@ tab_program() {
     editor) echo "${EDITOR:-vi}" ;;
     git) echo lazygit ;;
     files) echo yazi ;;
+    ai) echo omp ;;
     *) echo "" ;;
   esac
 }
@@ -50,7 +51,7 @@ repopulate_workspace() {
 }
 
 # --restore: repopulate every workspace. Run in the background at Herdr startup
-# so restored workspaces get their editor/git/files programs back automatically.
+# so restored workspaces get their editor/git/files/ai programs back automatically.
 if [ "${1:-}" = "--restore" ]; then
   # Wait for the freshly started server's socket (background, so no visible lag).
   for _ in $(seq 1 100); do
@@ -132,7 +133,7 @@ build_workspace() {
   fi
 
   # Create the workspace; its root pane becomes the editor tab.
-  local ws_json ws_id editor_tab editor_pane git_pane files_pane
+  local ws_json ws_id editor_tab editor_pane git_pane files_pane ai_pane
   ws_json=$(herdr workspace create --cwd "$dir" --label "$session" --focus)
   ws_id=$(echo "$ws_json" | jq -r '.result.workspace.workspace_id')
   editor_tab=$(echo "$ws_json" | jq -r '.result.tab.tab_id')
@@ -152,6 +153,11 @@ build_workspace() {
   files_pane=$(herdr tab create --workspace "$ws_id" --cwd "$dir" --label files --no-focus \
     | jq -r '.result.root_pane.pane_id')
   herdr pane run "$files_pane" "yazi" >/dev/null
+
+  # ai tab -> omp
+  ai_pane=$(herdr tab create --workspace "$ws_id" --cwd "$dir" --label ai --no-focus \
+    | jq -r '.result.root_pane.pane_id')
+  herdr pane run "$ai_pane" "omp" >/dev/null
 
   # Focus the workspace (leaves the editor tab active).
   herdr workspace focus "$ws_id" >/dev/null

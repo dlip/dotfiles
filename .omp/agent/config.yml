@@ -5,7 +5,7 @@ composer:
   shape: band
 theme:
   dark: dark-catppuccin
-setupVersion: 2
+setupVersion: 3
 stt:
   enabled: false
 dev:
