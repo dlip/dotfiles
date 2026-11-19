@@ -276,7 +276,7 @@ spawn-at-startup "noctalia"
 // spawn-at-startup "niri" "msg" "action" "focus-workspace" "terminal"
 // spawn-at-startup "kitty" "-e" "t" "dotfiles"
 // spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
-// spawn-at-startup "thunar"
+// spawn-at-startup "luciole"
 // spawn-at-startup "Telegram"
 // spawn-at-startup "hypridle"
 // spawn-at-startup "udiskie" "--tray"
@@ -393,7 +393,7 @@ window-rule {
 }
 
 window-rule {
-    match app-id="thunar"
+    match app-id="luciole"
     open-on-workspace "files"
 }
 
