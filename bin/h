@@ -4,7 +4,7 @@ export SHELL
 
 # Herdr project workspace manager (herdr port of `t`).
 # Picks a project under $PROJECTS with fzf and opens a Herdr workspace for it,
-# with one tab each for editor, shell, git (lazygit), files (yazi), and ai (omp).
+# with one tab each for editor, shell, git (lazygit), files (yazi), and ai (opencode).
 
 PROJECTS="$HOME/code"
 CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/h-projects"
@@ -28,7 +28,7 @@ tab_program() {
     editor) echo "${EDITOR:-vi}" ;;
     git) echo lazygit ;;
     files) echo yazi ;;
-    ai) echo omp ;;
+    ai) echo opencode ;;
     *) echo "" ;;
   esac
 }
@@ -46,8 +46,8 @@ repopulate_workspace() {
     if [ -n "$cmd" ]; then
       herdr pane run "$pane_id" "$cmd" >/dev/null
     fi
-  done < <(herdr pane list --workspace "$ws" \
-    | jq -r '.result.panes[] | "\(.tab_id) \(.pane_id)"')
+  done < <(herdr pane list --workspace "$ws" |
+    jq -r '.result.panes[] | "\(.tab_id) \(.pane_id)"')
 }
 
 # --restore: repopulate every workspace. Run in the background at Herdr startup
@@ -62,8 +62,8 @@ if [ "${1:-}" = "--restore" ]; then
   # keystrokes aren't dropped.
   sleep 1
   link_plugins
-  herdr workspace list 2>/dev/null | jq -r '.result.workspaces[].workspace_id' \
-    | while read -r ws; do repopulate_workspace "$ws"; done
+  herdr workspace list 2>/dev/null | jq -r '.result.workspaces[].workspace_id' |
+    while read -r ws; do repopulate_workspace "$ws"; done
   exit 0
 fi
 
@@ -124,9 +124,9 @@ zoxide add "$dir"
 build_workspace() {
   # If a workspace with this label already exists, just focus it.
   local existing
-  existing=$(herdr workspace list \
-    | jq -r --arg l "$session" '.result.workspaces[] | select(.label == $l) | .workspace_id' \
-    | head -n1)
+  existing=$(herdr workspace list |
+    jq -r --arg l "$session" '.result.workspaces[] | select(.label == $l) | .workspace_id' |
+    head -n1)
   if [ -n "$existing" ]; then
     herdr workspace focus "$existing" >/dev/null
     return
@@ -145,19 +145,19 @@ build_workspace() {
   herdr tab create --workspace "$ws_id" --cwd "$dir" --label shell --no-focus >/dev/null
 
   # git tab -> lazygit
-  git_pane=$(herdr tab create --workspace "$ws_id" --cwd "$dir" --label git --no-focus \
-    | jq -r '.result.root_pane.pane_id')
+  git_pane=$(herdr tab create --workspace "$ws_id" --cwd "$dir" --label git --no-focus |
+    jq -r '.result.root_pane.pane_id')
   herdr pane run "$git_pane" "lazygit" >/dev/null
 
   # files tab -> yazi
-  files_pane=$(herdr tab create --workspace "$ws_id" --cwd "$dir" --label files --no-focus \
-    | jq -r '.result.root_pane.pane_id')
+  files_pane=$(herdr tab create --workspace "$ws_id" --cwd "$dir" --label files --no-focus |
+    jq -r '.result.root_pane.pane_id')
   herdr pane run "$files_pane" "yazi" >/dev/null
 
-  # ai tab -> omp
-  ai_pane=$(herdr tab create --workspace "$ws_id" --cwd "$dir" --label ai --no-focus \
-    | jq -r '.result.root_pane.pane_id')
-  herdr pane run "$ai_pane" "omp" >/dev/null
+  # ai tab -> opencode
+  ai_pane=$(herdr tab create --workspace "$ws_id" --cwd "$dir" --label ai --no-focus |
+    jq -r '.result.root_pane.pane_id')
+  herdr pane run "$ai_pane" "opencode" >/dev/null
 
   # Focus the workspace (leaves the editor tab active).
   herdr workspace focus "$ws_id" >/dev/null

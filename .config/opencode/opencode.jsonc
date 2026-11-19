@@ -1,0 +1,42 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "openai/gpt-6.2-sol",
+  "providers": {
+    "openai": {
+      "models": {
+        "gpt-6.2-sol": {
+          "name": "GPT-6.2 Sol",
+          "capabilities": {
+            "tools": true,
+            "input": ["text", "image", "pdf"],
+            "output": ["text"],
+            "reasoning": {
+              "supported": true,
+              "effort": ["low", "medium", "high", "xhigh", "max"]
+            }
+          },
+          "limit": {
+            "context": 1050000,
+            "input": 922000,
+            "output": 128000
+          }
+        }
+      }
+    }
+  },
+   "provider": {
+    "litellm": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "LiteLLM",
+      "options": {
+        "baseURL": "https://litellm.dex-lips.duckdns.org/v1",
+        "apiKey": "{file:~/.config/opencode/litellm-api-key}"
+      },
+      "models": {
+        "gpt-5.6-luna": {
+          "name": "gpt-5.6-luna"
+        }
+      }
+    }
+  }
+}

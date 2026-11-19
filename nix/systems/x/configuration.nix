@@ -64,8 +64,6 @@
     ++ groups.gaming
     ++ [
       # hookshot
-      # zed-editor
-      codex
       godot
       # hermes-desktop
       # lichii
@@ -73,8 +71,7 @@
       manatan
       nup
       nx2android
-      omp
-      pi-coding-agent
+      opencode
       # pokedinner
     ];
 

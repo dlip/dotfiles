@@ -96,6 +96,8 @@
 !/.config/nvim/**
 !/.config/nvim.bak/
 !/.config/nvim.bak/**
+!/.config/opencode/
+!/.config/opencode/opencode.jsonc
 !/.config/plex-mpv-shim/
 !/.config/plex-mpv-shim/conf.json
 !/.config/rofi/
