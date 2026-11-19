@@ -14,6 +14,7 @@
     self.modules.nixos.common
     self.modules.nixos.sops
     self.modules.nixos.niri
+    self.modules.nixos.umbriel
     self.modules.nixos.whisrs
   ];
 

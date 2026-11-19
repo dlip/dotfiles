@@ -1,0 +1,281 @@
+[general]
+mod_key = "Super"
+show_cheatsheet = false
+autostart = [
+  "noctalia",
+  "umbriel-startup",
+]
+
+[environment]
+QS_DISABLE_CRASH_HANDLER = "1"
+
+[events]
+lid_close = "loginctl lock-session"
+
+[input.keyboard]
+numlock_toggle = true
+
+[input.touchpad]
+tap = true
+natural_scroll = false
+
+[input.mouse]
+sensitivity = -0.8
+accel_profile = "adaptive"
+
+[input.cursor]
+follows_focus = true
+
+[input.focus]
+follows_mouse = "off"
+
+[output."Panasonic Industry Company PanasonicTV1 0x01010101"]
+mode = "1360x768@59.664"
+scale = 1.0
+
+[layout]
+mode = "scrolling"
+gap = 0
+extent_presets = [0.33333, 0.5, 0.66667]
+
+[layout.scrolling]
+default_extent_fraction = 1.0
+center_underfull_strip = false
+center_focused = "never"
+
+[appearance]
+prefer_no_csd = true
+border_width = 4
+corner_radius = 0
+
+[appearance.shadow]
+enabled = false
+
+[colors.border]
+focused = "#7fc8ff"
+unfocused = "#505050"
+
+[animation]
+duration_ms = 125
+curve = "easeout"
+
+[[workspace]]
+name = "scratch"
+
+[[workspace]]
+name = "chat"
+
+[[workspace]]
+name = "cad"
+
+[[workspace]]
+name = "web"
+
+[[workspace]]
+name = "terminal"
+
+[[workspace]]
+name = "notes"
+
+[[workspace]]
+name = "files"
+
+[[workspace]]
+name = "music"
+
+[[window_rule]]
+match.app_id = '^com\.libretro\.RetroArch$'
+default_focused = true
+
+[[window_rule]]
+match.title = "^Picture-in-Picture$"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "qalculate-gtk"
+default_scrolling_extent = 0.25
+
+[[window_rule]]
+match.app_id = "PrusaSlicer"
+match.title = "Save G-code file as:"
+default_floating = true
+
+[[window_rule]]
+match.app_id = ["org.telegram.desktop", "discord"]
+default_workspace = "chat"
+
+[[window_rule]]
+match.app_id = ["org.freecad.FreeCAD", "KiCad"]
+default_workspace = "cad"
+
+[[window_rule]]
+match.app_id = "kitty"
+default_workspace = "terminal"
+
+[[window_rule]]
+match.app_id = "google-chrome"
+default_workspace = "web"
+
+[[window_rule]]
+match.app_id = "md.obsidian.Obsidian"
+default_workspace = "notes"
+
+[[window_rule]]
+match.app_id = "luciole"
+default_workspace = "files"
+
+[[window_rule]]
+match.app_id = "plexamp"
+default_workspace = "music"
+
+[[window_rule]]
+match.app_id = "fuwari"
+default_floating = true
+
+[[window_rule]]
+match.app_id = "^dev.noctalia.Noctalia$"
+default_floating = true
+default_floating_size_px = { width = 1020, height = 900 }
+
+[[window_rule]]
+match.app_id = "^dev.noctalia.UmbrielSharePicker$"
+default_floating = true
+default_floating_size_px = { width = 800, height = 600 }
+
+[keybinds]
+"Mod+Shift+Slash" = { action = "cheatsheet-toggle", repeat = false }
+"Mod+Slash" = { action = "spawn qalculate-gtk -n", repeat = false }
+"Mod+Shift+C" = { action = "spawn rofi -modi clipboard:cliphist-rofi-img -show clipboard -show-icons", repeat = false }
+"Mod+T" = { action = "spawn kitty", repeat = false }
+"Mod+E" = { action = "spawn emoji-menu", repeat = false }
+"Mod+Space" = { action = "spawn rofi -show-icons -show combi -combi-modi drun,run -modi combi", repeat = false }
+"Mod+D" = { action = "spawn whisrs toggle", repeat = false }
+"Mod+Shift+D" = { action = "spawn whisrs cancel", repeat = false }
+"Ctrl+Space" = { action = "spawn fcitx5-remote -t", repeat = false }
+
+"Mod+O" = { action = "overview-toggle", repeat = false }
+"Mod+Q" = { action = "window-close", repeat = false }
+"Mod+Shift+Q" = { action = "window-kill", repeat = false }
+
+"Mod+Left" = "window-focus-left"
+"Mod+Down" = "window-focus-or-workspace-down"
+"Mod+Up" = "window-focus-or-workspace-up"
+"Mod+Right" = "window-focus-right"
+"Mod+H" = "window-focus-left"
+"Mod+J" = "window-focus-down"
+"Mod+K" = "window-focus-up"
+"Mod+L" = "window-focus-right"
+
+"Mod+Shift+Left" = "column-move-left"
+"Mod+Shift+Down" = "window-move-down"
+"Mod+Shift+Up" = "window-move-or-workspace-up"
+"Mod+Shift+Right" = "column-move-right"
+"Mod+Shift+H" = "column-move-left"
+"Mod+Shift+J" = "window-move-down"
+"Mod+Shift+K" = "window-move-up"
+"Mod+Shift+L" = "column-move-right"
+
+"Mod+Home" = "column-focus-first"
+"Mod+End" = "column-focus-last"
+"Mod+Ctrl+Home" = "column-move-to-first"
+"Mod+Ctrl+End" = "column-move-to-last"
+
+"Mod+Ctrl+Left" = "output-focus-left"
+"Mod+Ctrl+Down" = "output-focus-down"
+"Mod+Ctrl+Up" = "output-focus-up"
+"Mod+Ctrl+Right" = "output-focus-right"
+"Mod+Ctrl+H" = "output-focus-left"
+"Mod+Ctrl+J" = "output-focus-down"
+"Mod+Ctrl+K" = "output-focus-up"
+"Mod+Ctrl+L" = "output-focus-right"
+
+"Mod+Shift+Ctrl+Left" = "column-move-to-output-left"
+"Mod+Shift+Ctrl+Down" = "column-move-to-output-down"
+"Mod+Shift+Ctrl+Up" = "column-move-to-output-up"
+"Mod+Shift+Ctrl+Right" = "column-move-to-output-right"
+"Mod+Shift+Ctrl+H" = "column-move-to-output-left"
+"Mod+Shift+Ctrl+J" = "column-move-to-output-down"
+"Mod+Shift+Ctrl+K" = "column-move-to-output-up"
+"Mod+Shift+Ctrl+L" = "column-move-to-output-right"
+
+"Mod+Shift+Page_Down" = "workspace-move-down"
+"Mod+Shift+Page_Up" = "workspace-move-up"
+"Mod+Shift+U" = "workspace-move-down"
+"Mod+Shift+I" = "workspace-move-up"
+"Mod+WheelDown" = { action = "workspace-next", cooldown_ms = 150 }
+"Mod+WheelUp" = { action = "workspace-previous", cooldown_ms = 150 }
+"Mod+Ctrl+WheelDown" = { action = "column-move-to-workspace-next", cooldown_ms = 150 }
+"Mod+Ctrl+WheelUp" = { action = "column-move-to-workspace-previous", cooldown_ms = 150 }
+"Mod+WheelRight" = "window-focus-right"
+"Mod+WheelLeft" = "window-focus-left"
+"Mod+Ctrl+WheelRight" = "column-move-right"
+"Mod+Ctrl+WheelLeft" = "column-move-left"
+"Mod+Shift+WheelDown" = "window-focus-right"
+"Mod+Shift+WheelUp" = "window-focus-left"
+"Mod+Ctrl+Shift+WheelDown" = "column-move-right"
+"Mod+Ctrl+Shift+WheelUp" = "column-move-left"
+
+"Mod+1" = "workspace-switch 1"
+"Mod+2" = "workspace-switch 2"
+"Mod+3" = "workspace-switch 3"
+"Mod+4" = "workspace-switch 4"
+"Mod+5" = "workspace-switch 5"
+"Mod+6" = "workspace-switch 6"
+"Mod+7" = "workspace-switch 7"
+"Mod+8" = "workspace-switch 8"
+"Mod+9" = "workspace-switch 9"
+"Mod+Shift+1" = "column-move-to-workspace 1"
+"Mod+Shift+2" = "column-move-to-workspace 2"
+"Mod+Shift+3" = "column-move-to-workspace 3"
+"Mod+Shift+4" = "column-move-to-workspace 4"
+"Mod+Shift+5" = "column-move-to-workspace 5"
+"Mod+Shift+6" = "column-move-to-workspace 6"
+"Mod+Shift+7" = "column-move-to-workspace 7"
+"Mod+Shift+8" = "column-move-to-workspace 8"
+"Mod+Shift+9" = "column-move-to-workspace 9"
+"Mod+Tab" = "workspace-focus-last"
+
+"Mod+BracketLeft" = "window-consume-or-expel-left"
+"Mod+BracketRight" = "window-consume-or-expel-right"
+"Mod+Comma" = "window-consume-from-right"
+"Mod+Period" = "window-consume-or-expel-right"
+"Mod+R" = "window-cycle-primary-extent"
+"Mod+Shift+R" = "window-cycle-secondary-extent"
+"Mod+Ctrl+R" = "window-set-secondary-extent 1.0"
+"Mod+F" = { action = "window-toggle-maximize", repeat = false }
+"Mod+Shift+F" = { action = "window-toggle-fullscreen", repeat = false }
+# Umbriel has no expand-to-available-width or center-visible-columns actions.
+"Mod+C" = "column-center"
+"Mod+Minus" = "window-modify-primary-extent -0.1"
+"Mod+Equal" = "window-modify-primary-extent +0.1"
+"Mod+Shift+Minus" = "window-modify-secondary-extent -0.1"
+"Mod+Shift+Equal" = "window-modify-secondary-extent +0.1"
+"Mod+V" = { action = "window-toggle-floating", repeat = false }
+"Mod+Shift+V" = { action = "window-focus-switch-floating", repeat = false }
+"Mod+W" = { action = "column-toggle-tabbed", repeat = false }
+
+"Print" = { action = "spawn noctalia msg screenshot-region", repeat = false }
+"Ctrl+Print" = { action = "spawn noctalia msg screenshot-fullscreen", repeat = false }
+"Alt+Print" = { action = "spawn noctalia msg screenshot-window", repeat = false }
+"Mod+Escape" = { action = "shortcuts-inhibit-toggle", allow_when_inhibited = true, repeat = false }
+"Mod+Shift+E" = { action = "session-quit", repeat = false }
+"Ctrl+Alt+Delete" = { action = "session-quit", repeat = false }
+"Mod+Shift+P" = { action = "dpms-off", repeat = false }
+
+"Mod+Shift+Return" = { action = "spawn noctalia msg panel-toggle wallpaper", repeat = false }
+"Mod+S" = { action = "spawn noctalia msg panel-toggle control-center", repeat = false }
+"Mod+Shift+S" = { action = "spawn noctalia msg settings-toggle", repeat = false }
+"Mod+Ctrl+Return" = { action = "spawn noctalia msg panel-toggle launcher", repeat = false }
+"Mod+Alt+L" = { action = "spawn noctalia msg session lock", repeat = false }
+"Mod+P" = { action = "spawn noctalia msg panel-toggle session", repeat = false }
+
+"XF86AudioRaiseVolume" = { action = "spawn noctalia msg volume-up", allow_when_locked = true }
+"XF86AudioLowerVolume" = { action = "spawn noctalia msg volume-down", allow_when_locked = true }
+"XF86AudioMute" = { action = "spawn noctalia msg volume-mute", allow_when_locked = true, repeat = false }
+"XF86AudioMicMute" = { action = "spawn noctalia msg mic-mute", allow_when_locked = true, repeat = false }
+"XF86AudioNext" = { action = "spawn noctalia msg media next", allow_when_locked = true }
+"XF86AudioPrev" = { action = "spawn noctalia msg media previous", allow_when_locked = true }
+"XF86AudioPlay" = { action = "spawn noctalia msg media toggle", allow_when_locked = true, repeat = false }
+"XF86AudioPause" = { action = "spawn noctalia msg media toggle", allow_when_locked = true, repeat = false }
+"XF86MonBrightnessUp" = { action = "spawn noctalia msg brightness-up", allow_when_locked = true }
+"XF86MonBrightnessDown" = { action = "spawn noctalia msg brightness-down", allow_when_locked = true }

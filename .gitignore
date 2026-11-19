@@ -112,6 +112,8 @@
 !/.config/switch-library-manager/settings.json
 !/.config/tmux/
 !/.config/tmux/tmux.conf
+!/.config/umbriel/
+!/.config/umbriel/config.toml
 !/.config/waybar/
 !/.config/waybar/config.jsonc
 !/.config/waybar/macchiato.css
@@ -165,6 +167,7 @@
 !/flake.nix
 !/nix/
 !/nix/**
+!/nix/modules/nixos/umbriel.nix
 !/nix/pkgs/eden-fefw/package.nix
 !/nix/pkgs/hookshot/linux-game-build.patch
 !/nix/pkgs/hookshot/package.nix
