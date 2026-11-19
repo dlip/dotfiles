@@ -159,7 +159,6 @@ let
     kanata
     kind
     kmonad
-    krename
     kubectl
     kubectx
     kubernetes-helm
@@ -179,15 +178,13 @@ let
     nodejs
     notify
     notify-desktop
-    ns-usbloader
     nushell
-    omp
+    # omp
     # opencode
     openssl
     openvpn
     pandoc
     patchelf
-    pavucontrol
     php
     pinentry-curses
     postgresql
@@ -202,7 +199,6 @@ let
     ssh-to-age
     stern
     strace
-    tagainijisho
     tesseract
     texliveMedium
     tio
@@ -212,7 +208,6 @@ let
     ttyper
     typioca
     unrar
-    usbimager
     usbutils
     valkey
     vegeta
@@ -224,7 +219,6 @@ let
     yarn
     yq
     yt-dlp
-    zgrviewer
     zoxide
   ];
   gui = extra ++ [
@@ -268,14 +262,17 @@ let
     keyd
     kitty
     kooha
+    krename
     krita
     libreoffice
     luciole
     mlt
     mpv
     neovide
+    ns-usbloader
     obsidian
     openscad
+    pavucontrol
     plexamp
     plex-mpv-shim
     power-menu
@@ -285,8 +282,10 @@ let
     remote-touchpad
     screenkey
     slack
+    tagainijisho
     telegram-desktop
     thorium-reader
+    usbimager
     v4l-utils
     via
     vial
@@ -296,6 +295,7 @@ let
     xmodmap
     yacreader
     zathura
+    zgrviewer
     zoom-us
   ];
   gaming = [
