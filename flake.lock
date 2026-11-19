@@ -454,6 +454,26 @@
         "url": "https://files.pythonhosted.org/packages/d8/25/603483a6c5f0fcd694732cbb079c83a026aa4ff153278a1f400c2bdf65e7/texture2ddecoder-1.0.6.tar.gz"
       }
     },
+    "luciole": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1795052093,
+        "narHash": "sha256-j3BcMUcBRqLPLKMXDMJCO++GicyWCUgcmV41yhT9XAs=",
+        "owner": "noctalia-dev",
+        "repo": "luciole",
+        "rev": "e2004254d4faffb848a69a39226032259229c4c1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "luciole",
+        "type": "github"
+      }
+    },
     "manatan": {
       "flake": false,
       "locked": {
@@ -982,6 +1002,7 @@
         "longshot": "longshot",
         "longshot-astc-encoder": "longshot-astc-encoder",
         "longshot-texture2ddecoder": "longshot-texture2ddecoder",
+        "luciole": "luciole",
         "manatan": "manatan",
         "mokuro-reader": "mokuro-reader",
         "nix-on-droid": "nix-on-droid",

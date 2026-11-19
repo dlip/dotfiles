@@ -270,6 +270,7 @@ let
     kooha
     krita
     libreoffice
+    luciole
     mlt
     mpv
     neovide

@@ -121,6 +121,7 @@
                 '';
               });
               mokuro-reader = inputs.mokuro-reader.packages.${final.stdenv.hostPlatform.system}.default;
+              luciole = inputs.luciole.packages.${final.stdenv.hostPlatform.system}.default;
               eden-fefw = final.callPackage ../pkgs/eden-fefw/package.nix {
                 src = inputs.eden-fefw;
               };

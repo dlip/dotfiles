@@ -105,6 +105,10 @@
     noctalia = {
       url = "github:noctalia-dev/noctalia/cachix";
     };
+    luciole = {
+      url = "github:noctalia-dev/luciole";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     mokuro-reader = {
       url = "github:dlip/mokuro-reader";
     };
