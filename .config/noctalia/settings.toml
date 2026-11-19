@@ -8,11 +8,8 @@ margin_edge = 0
 margin_ends = 0
 radius = 0
 start = ["launcher", "wallpaper", "workspaces", "active_window"]
+center = []
 end = [
-    "media",
-    "weather",
-    "notifications",
-    "clipboard",
     "network",
     "bluetooth",
     "volume",
@@ -23,6 +20,11 @@ end = [
     "battery",
     "control-center",
     "tray",
+    "media",
+    "weather",
+    "clock",
+    "notifications",
+    "clipboard",
     "session",
 ]
 
