@@ -175,7 +175,10 @@
           documentation = [ "https://github.com/y0sif/whisrs" ];
           partOf = [ "graphical-session.target" ];
           after = [ "graphical-session.target" ];
-          wantedBy = [ "niri.service" ];
+          wantedBy = [
+            "niri.service"
+            "umbriel-session.target"
+          ];
 
           # Window tracking shells out to `niri msg --json focused-window`, so
           # the daemon needs niri on PATH. niri-session runs

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [[ $(whoami) == 'dane' ]]; then
-  umbriel msg workspace-switch terminal
+  umbriel msg workspace-switch ''
   kitty -e h dotfiles &
   luciole &
   Telegram &

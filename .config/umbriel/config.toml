@@ -29,6 +29,9 @@ follows_focus = true
 [input.focus]
 follows_mouse = "off"
 
+[output.eDP-1]
+workspaces = ["", "", "", "", "", "", "", "", ""]
+
 [output."Panasonic Industry Company PanasonicTV1 0x01010101"]
 mode = "1360x768@59.664"
 scale = 1.0
@@ -60,32 +63,40 @@ duration_ms = 125
 curve = "easeout"
 
 [[workspace]]
-name = "scratch"
+name = "" # scratch
 
 [[workspace]]
-name = "chat"
+name = "" # chat
 
 [[workspace]]
-name = "cad"
+name = "" # cad
 
 [[workspace]]
-name = "web"
+name = "" # web
 
 [[workspace]]
-name = "terminal"
+name = "" # terminal
 
 [[workspace]]
-name = "notes"
+name = "" # notes
 
 [[workspace]]
-name = "files"
+name = "" # files
 
 [[workspace]]
-name = "music"
+name = "" # music
+
+[[workspace]]
+name = "" # gaming
 
 [[window_rule]]
 match.app_id = '^com\.libretro\.RetroArch$'
+default_workspace = ""
 default_focused = true
+
+[[window_rule]]
+match.app_id = '^([Ss]team|com\.valvesoftware\.Steam)$'
+default_workspace = ""
 
 [[window_rule]]
 match.title = "^Picture-in-Picture$"
@@ -102,31 +113,31 @@ default_floating = true
 
 [[window_rule]]
 match.app_id = ["org.telegram.desktop", "discord"]
-default_workspace = "chat"
+default_workspace = ""
 
 [[window_rule]]
 match.app_id = ["org.freecad.FreeCAD", "KiCad"]
-default_workspace = "cad"
+default_workspace = ""
 
 [[window_rule]]
 match.app_id = "kitty"
-default_workspace = "terminal"
+default_workspace = ""
 
 [[window_rule]]
 match.app_id = "google-chrome"
-default_workspace = "web"
+default_workspace = ""
 
 [[window_rule]]
 match.app_id = "md.obsidian.Obsidian"
-default_workspace = "notes"
+default_workspace = ""
 
 [[window_rule]]
 match.app_id = "luciole"
-default_workspace = "files"
+default_workspace = ""
 
 [[window_rule]]
 match.app_id = "plexamp"
-default_workspace = "music"
+default_workspace = ""
 
 [[window_rule]]
 match.app_id = "fuwari"
@@ -222,7 +233,7 @@ default_floating_size_px = { width = 800, height = 600 }
 "Mod+6" = "workspace-switch 6"
 "Mod+7" = "workspace-switch 7"
 "Mod+8" = "workspace-switch 8"
-"Mod+9" = "workspace-switch 9"
+"Mod+9" = "workspace-switch "
 "Mod+Shift+1" = "column-move-to-workspace 1"
 "Mod+Shift+2" = "column-move-to-workspace 2"
 "Mod+Shift+3" = "column-move-to-workspace 3"

@@ -26,6 +26,10 @@ end = [
     "session",
 ]
 
+[widget.workspaces]
+label_source = "name"
+font_family = "FiraCode Nerd Font"
+
 [widget.cpu]
 type = "sysmon"
 stat = "cpu_usage"
