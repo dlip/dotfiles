@@ -4,7 +4,7 @@
 }:
 {
   flake.modules.nixos.niri =
-    { config, pkgs, ... }:
+    { pkgs, ... }:
     {
       imports = [
         # DankMaterialShell replaced by Noctalia v5 (spawned from the niri
@@ -28,16 +28,7 @@
       #   DMS_MODAL_LAYER = "overlay";
       # };
 
-      # Login via greetd + tuigreet, with niri-session as the fallback.
-      services.greetd = {
-        enable = true;
-        settings = {
-          default_session = {
-            command = "${pkgs.tuigreet}/bin/tuigreet --sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions --remember --remember-session --cmd niri-session";
-            user = "greeter";
-          };
-        };
-      };
+      services.displayManager.noctalia-greeter.enable = true;
       services.xserver.desktopManager.runXdgAutostartIfNone = true;
       environment.systemPackages = with pkgs; [
         inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -59,7 +50,6 @@
         swayidle
         swaylock
         swaynotificationcenter
-        tuigreet
         udiskie
         waybar
         wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout

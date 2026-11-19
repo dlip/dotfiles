@@ -275,7 +275,6 @@ spawn-at-startup "noctalia"
 // spawn-at-startup "dms run --session"
 // spawn-at-startup "niri" "msg" "action" "focus-workspace" "terminal"
 // spawn-at-startup "kitty" "-e" "t" "dotfiles"
-// spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 // spawn-at-startup "luciole"
 // spawn-at-startup "Telegram"
 // spawn-at-startup "hypridle"
@@ -443,11 +442,9 @@ binds {
 
     Mod+Slash hotkey-overlay-title="Open Calculator" { spawn "bash" "-c" "niri msg action set-window-width 1440 && qalculate-gtk -n"; }
 
-    Mod+Shift+C hotkey-overlay-title="Clipboard" { spawn "rofi" "-modi" "clipboard:cliphist-rofi-img" "-show" "clipboard" "-show-icons"; }
     Mod+T hotkey-overlay-title="Open a Terminal" { spawn "kitty"; }
     Mod+E hotkey-overlay-title="Emoji Menu" { spawn "emoji-menu"; }
     // Mod+P hotkey-overlay-title="Power menu" { spawn "rofi" "-show" "power-menu" "-modi" "power-menu:power-menu"; }
-    Mod+Space hotkey-overlay-title="Run an Application" { spawn "rofi" "-show-icons" "-show" "combi" "-combi-modi" "drun,run" "-modi" "combi"; }
 
     // whisrs dictation. Press to start recording, press again to stop; the
     // transcript is typed at the cursor. Mod+Shift+D discards a recording.

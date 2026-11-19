@@ -3,7 +3,6 @@
 if [[ $(whoami) == 'dane' ]]; then
   umbriel msg workspace-switch terminal
   kitty -e h dotfiles &
-  wl-paste --watch cliphist store &
   luciole &
   Telegram &
   waytron google-chrome-stable &

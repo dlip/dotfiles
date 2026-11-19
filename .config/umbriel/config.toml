@@ -145,10 +145,9 @@ default_floating_size_px = { width = 800, height = 600 }
 [keybinds]
 "Mod+Shift+Slash" = { action = "cheatsheet-toggle", repeat = false }
 "Mod+Slash" = { action = "spawn qalculate-gtk -n", repeat = false }
-"Mod+Shift+C" = { action = "spawn rofi -modi clipboard:cliphist-rofi-img -show clipboard -show-icons", repeat = false }
+"Mod+Shift+C" = { action = "spawn noctalia msg panel-toggle clipboard", repeat = false }
 "Mod+T" = { action = "spawn kitty", repeat = false }
 "Mod+E" = { action = "spawn emoji-menu", repeat = false }
-"Mod+Space" = { action = "spawn rofi -show-icons -show combi -combi-modi drun,run -modi combi", repeat = false }
 "Mod+D" = { action = "spawn whisrs toggle", repeat = false }
 "Mod+Shift+D" = { action = "spawn whisrs cancel", repeat = false }
 "Ctrl+Space" = { action = "spawn fcitx5-remote -t", repeat = false }
@@ -265,7 +264,7 @@ default_floating_size_px = { width = 800, height = 600 }
 "Mod+Shift+Return" = { action = "spawn noctalia msg panel-toggle wallpaper", repeat = false }
 "Mod+S" = { action = "spawn noctalia msg panel-toggle control-center", repeat = false }
 "Mod+Shift+S" = { action = "spawn noctalia msg settings-toggle", repeat = false }
-"Mod+Ctrl+Return" = { action = "spawn noctalia msg panel-toggle launcher", repeat = false }
+"Mod+Space" = { action = "spawn noctalia msg panel-toggle launcher", repeat = false }
 "Mod+Alt+L" = { action = "spawn noctalia msg session lock", repeat = false }
 "Mod+P" = { action = "spawn noctalia msg panel-toggle session", repeat = false }
 

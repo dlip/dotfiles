@@ -65,6 +65,8 @@
 !/.config/kitty/kitty.conf
 !/.config/lazygit/
 !/.config/lazygit/config.yml
+!/.config/luciole/
+!/.config/luciole/colors.toml
 !/.config/mimeapps.list
 !/.config/mpv/
 !/.config/mpv/mpv.conf
