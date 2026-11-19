@@ -71,7 +71,6 @@
       manatan
       nup
       nx2android
-      opencode
       # pokedinner
     ];
 

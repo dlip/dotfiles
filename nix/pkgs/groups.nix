@@ -65,6 +65,7 @@ let
     neovim
     nettools
     nmap
+    opencode
     openssh_gssapi
     p7zip
     pciutils
@@ -119,8 +120,6 @@ let
     cargo-wasi
     cheat
     clang-tools
-    claude-code
-    codex
     delve
     deno
     devenv
@@ -179,8 +178,6 @@ let
     notify
     notify-desktop
     nushell
-    # omp
-    # opencode
     openssl
     openvpn
     pandoc
