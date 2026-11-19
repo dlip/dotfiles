@@ -54,7 +54,7 @@ min_length = 80
 max_length = 500
 
 [widget.clock]
-format = "{:%H:%M} - {:%a} {:%d}/{:%m}/{:%Y}"
+format = "{:%a} {:%d}/{:%m}/{:%Y} {:%H:%M}"
 
 [location]
 address = "Nishinomiya, Japan"
