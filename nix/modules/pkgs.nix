@@ -152,6 +152,7 @@
               };
               rom-converto = final.callPackage ../pkgs/rom-converto/package.nix { };
               romm = final.callPackage ../pkgs/romm/package.nix { romm = prev.romm; };
+              rommix = final.callPackage ../pkgs/rommix/package.nix { };
               switch-library-manager = final.callPackage ../pkgs/switch-library-manager/package.nix {
                 src = inputs.switch-library-manager;
               };
@@ -231,8 +232,6 @@
               retroarchWithCores = (
                 final.retroarch.withCores (
                   cores: with cores; [
-                    beetle-psx
-                    beetle-psx-hw
                     dosbox-pure
                     fbneo
                     freeintv
@@ -247,6 +246,7 @@
                     ppsspp
                     snes9x
                     stella
+                    swanstation
                   ]
                 )
               );

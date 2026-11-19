@@ -318,7 +318,8 @@ let
     # protontricks
     # protonup-ng
     retool
-    # retroarchWithCores
+    retroarchWithCores
+    rommix
     # ryubing
     # skyscraper
     vulkan-tools

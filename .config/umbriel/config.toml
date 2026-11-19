@@ -6,9 +6,6 @@ autostart = [
   "umbriel-startup",
 ]
 
-[environment]
-QS_DISABLE_CRASH_HANDLER = "1"
-
 [events]
 lid_close = "loginctl lock-session"
 
@@ -48,7 +45,7 @@ center_focused = "never"
 
 [appearance]
 prefer_no_csd = true
-border_width = 4
+border_width = 2
 corner_radius = 0
 
 [appearance.shadow]
@@ -96,6 +93,10 @@ default_focused = true
 
 [[window_rule]]
 match.app_id = '^([Ss]team|com\.valvesoftware\.Steam)$'
+default_workspace = ""
+
+[[window_rule]]
+match.app_id = '^be\.bl_it\.RomMix$'
 default_workspace = ""
 
 [[window_rule]]

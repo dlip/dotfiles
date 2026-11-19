@@ -103,6 +103,8 @@
 !/.config/opencode/opencode.jsonc
 !/.config/plex-mpv-shim/
 !/.config/plex-mpv-shim/conf.json
+!/.config/retroarch/
+!/.config/retroarch/retroarch.cfg
 !/.config/rofi/
 !/.config/rofi/config.rasi
 !/.config/rofi/rofi.theme.rasi
@@ -187,6 +189,7 @@
 !/nix/pkgs/rom-converto/package.nix
 !/nix/pkgs/romm/package.nix
 !/nix/pkgs/romm/watch-library.py
+!/nix/pkgs/rommix/package.nix
 !/nix/pkgs/switch-library-manager/package.nix
 !/nix/pkgs/tagainijisho/sqlite-bind-result.patch
 !/repair-romm.sh
