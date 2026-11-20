@@ -184,6 +184,8 @@
 !/nix/pkgs/manatan/separate-hls-audio.patch
 !/nix/pkgs/manatan/webui-yarn-lock.patch
 !/nix/pkgs/nup/package.nix
+!/nix/pkgs/plex-desktop/package.nix
+!/nix/pkgs/plexamp/package.nix
 !/nix/pkgs/nx2android/package.nix
 !/nix/pkgs/pokedinner/package.nix
 !/nix/pkgs/rom-converto/package.nix

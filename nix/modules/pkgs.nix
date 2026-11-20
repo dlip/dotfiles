@@ -147,6 +147,10 @@
               nup = final.callPackage ../pkgs/nup/package.nix {
                 src = inputs.nup;
               };
+              plex-desktop = final.callPackage ../pkgs/plex-desktop/package.nix {
+                inherit (prev) plex-desktop;
+              };
+              plexamp = final.callPackage ../pkgs/plexamp/package.nix { };
               pokedinner = final.callPackage ../pkgs/pokedinner/package.nix {
                 src = inputs.pokedinner;
               };

@@ -137,7 +137,7 @@ match.app_id = "luciole"
 default_workspace = ""
 
 [[window_rule]]
-match.app_id = "plexamp"
+match.app_id = '^(Plex|Plexamp|plexamp|tv\.plex\.plexamp)$'
 default_workspace = ""
 
 [[window_rule]]

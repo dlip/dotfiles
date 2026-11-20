@@ -59,6 +59,10 @@
   users.groups.libvirtd.members = [ "dane" ];
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
+  virtualisation.waydroid = {
+    enable = true;
+    package = pkgs.waydroid-nftables;
+  };
   environment.systemPackages =
     with pkgs;
     groups.gui
@@ -72,6 +76,7 @@
       manatan
       nup
       nx2android
+      plex-desktop
       # pokedinner
     ];
 
