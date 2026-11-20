@@ -7,15 +7,15 @@
 
 let
   pname = "rommix";
-  version = "0.24.0";
+  version = "0.25.0";
   releases = {
     x86_64-linux = {
       arch = "x86_64";
-      hash = "sha256-IMKTnR8eHC4k8NRwB1o3tJuoSaR5AceSZIbO4m+d6Pw=";
+      hash = "sha256-8+WwhlDMl1NkDrQ5EwFfjM+1QWHIEUn0VR8M8bSLK/w=";
     };
     aarch64-linux = {
       arch = "arm64";
-      hash = "sha256-nAus6AFvGACMYbzMSuBWRSE1vqCnx90HRQZOnwa055o=";
+      hash = "sha256-yisMJ/TYvzqjTpxk8k1rT/TrgzVwYxRb8m9eYFSrl30=";
     };
   };
   release = releases.${stdenv.hostPlatform.system};
