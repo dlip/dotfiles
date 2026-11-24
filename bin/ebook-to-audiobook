@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  printf 'Usage: ebook-to-audiobook EBOOK [OUTPUT_DIR]\n'
+}
+
+if [[ ${1:-} == --help || ${1:-} == -h ]]; then
+  usage
+  exit 0
+fi
+
+if (( $# < 1 || $# > 2 )); then
+  usage >&2
+  exit 2
+fi
+
+if [[ ! -f $1 || ! -r $1 ]]; then
+  printf 'Cannot read ebook: %s\n' "$1" >&2
+  exit 1
+fi
+
+ebook=$(realpath -- "$1")
+output_dir=${2:-$(dirname -- "$ebook")}
+mkdir -p -- "$output_dir"
+if [[ ! -w $output_dir ]]; then
+  printf 'Output directory is not writable: %s\n' "$output_dir" >&2
+  exit 1
+fi
+output_dir=$(realpath -- "$output_dir")
+
+device=CPU
+if [[ ! -v CUDA_VISIBLE_DEVICES || -n $CUDA_VISIBLE_DEVICES && $CUDA_VISIBLE_DEVICES != -1 ]]; then
+  gpu_args=()
+  if [[ -v CUDA_VISIBLE_DEVICES ]]; then
+    gpu_args+=("--id=$CUDA_VISIBLE_DEVICES")
+  fi
+  if gpus=$(nvidia-smi "${gpu_args[@]}" \
+    --query-gpu=uuid,compute_cap,memory.total --format=csv,noheader,nounits 2>/dev/null); then
+    # A 4 GiB card can report slightly less than 4096 MiB after driver reservations.
+    gpu=$(awk -F ', *' '$1 ~ /^GPU-/ && $2 ~ /^[0-9]+\.[0-9]+$/ && $2 >= 5 && $3 ~ /^[0-9]+$/ && $3 >= 4000 { print $1; exit }' <<< "$gpus")
+    if [[ -n $gpu ]]; then
+      device=CUDA
+      if [[ ! -v CUDA_VISIBLE_DEVICES ]]; then
+        export CUDA_VISIBLE_DEVICES=$gpu
+      fi
+    fi
+  fi
+fi
+printf 'Using %s for conversion.\n' "$device" >&2
+
+exec ebook2audiobook --headless --ebook "$ebook" --output_dir "$output_dir" \
+  --device "$device" --language eng --tts_engine xtts --fine_tuned EvaSeymour \
+  --output_format m4b
