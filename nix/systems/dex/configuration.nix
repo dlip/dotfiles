@@ -14,7 +14,6 @@ let
   downloader-services = import ../downloader/services.nix;
   hermes-services = import ../hermes-agent/services.nix;
   domain = "dex-lips.duckdns.org";
-  ebook2audiobook = self.inputs.ebook2audiobook.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
   romm-queue-worker = name: {
     description = "RomM ${name} queue worker";
@@ -710,7 +709,7 @@ rec {
       DO_NOT_TRACK = "1";
     };
     serviceConfig = {
-      ExecStart = lib.getExe ebook2audiobook;
+      ExecStart = lib.getExe pkgs.ebook2audiobook;
       User = "ebook2audiobook-web";
       Group = "ebook2audiobook-web";
       StateDirectory = "ebook2audiobook";

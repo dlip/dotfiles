@@ -68,6 +68,7 @@
     groups.gui
     ++ groups.gaming
     ++ [
+      ebook2audiobook
       # hookshot
       godot
       # hermes-desktop

@@ -201,6 +201,7 @@
               #   };
               # });
 
+              ebook2audiobook = inputs.ebook2audiobook.packages.${pkgs.stdenv.hostPlatform.system}.default;
               emulationstation-de = final.callPackage ../pkgs/emulationstation-de { };
               emoji-menu = final.writeShellScriptBin "emoji-menu" (
                 builtins.readFile "${inputs.emoji-menu}/bin/emoji-menu"
