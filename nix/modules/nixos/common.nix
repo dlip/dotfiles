@@ -254,8 +254,6 @@
 
       hardware.ledger.enable = true;
       services.udev.packages = with pkgs; [
-        via
-        vial
         ns-usbloader
       ];
 

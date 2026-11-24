@@ -14,6 +14,7 @@ let
   downloader-services = import ../downloader/services.nix;
   hermes-services = import ../hermes-agent/services.nix;
   domain = "dex-lips.duckdns.org";
+  ebook2audiobook = self.inputs.ebook2audiobook.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
   romm-queue-worker = name: {
     description = "RomM ${name} queue worker";
@@ -442,6 +443,7 @@ rec {
     with pkgs;
     groups.extra
     ++ [
+      ebook2audiobook
       restic
       restic-dex
       switch-library-manager
@@ -644,7 +646,7 @@ rec {
       self.inputs.sparkyfitness.packages.${pkgs.system}.sparkyfitness-server.overrideAttrs (old: {
         doCheck = false;
         pnpmDeps = old.pnpmDeps.overrideAttrs {
-          outputHash = "sha256-8rWfvkY7bH4U95K3x1gbBCI4zoDBJGbnGcFEXxoPBCQ=";
+          outputHash = "sha256-r9XoqmYxxdhR3Esti6X63o0gNY1ecZxpUWZ1J/si3/Q=";
         };
       })
     );
@@ -680,6 +682,43 @@ rec {
   services.audiobookshelf = {
     enable = true;
     port = 13378;
+  };
+
+  # Reserve the old IDs while files outside the app state still use them.
+  users.groups.ebook2audiobook.gid = 964;
+  users.users.ebook2audiobook = {
+    isSystemUser = true;
+    uid = 969;
+    group = "ebook2audiobook";
+    description = "Reserved ebook2audiobook UID";
+  };
+
+  users.groups.ebook2audiobook-web = { };
+  users.users.ebook2audiobook-web = {
+    isSystemUser = true;
+    group = "ebook2audiobook-web";
+    home = "/var/lib/ebook2audiobook";
+  };
+
+  systemd.services.ebook2audiobook = {
+    description = "ebook2audiobook web UI";
+    wantedBy = [ "multi-user.target" ];
+    wants = [ "network-online.target" ];
+    after = [ "network-online.target" ];
+    environment = {
+      HOME = "/var/lib/ebook2audiobook";
+      DO_NOT_TRACK = "1";
+    };
+    serviceConfig = {
+      ExecStart = lib.getExe ebook2audiobook;
+      User = "ebook2audiobook-web";
+      Group = "ebook2audiobook-web";
+      StateDirectory = "ebook2audiobook";
+      StateDirectoryMode = "0700";
+      WorkingDirectory = "/var/lib/ebook2audiobook";
+      Restart = "on-failure";
+      RestartSec = "30s";
+    };
   };
 
   services.mosquitto = {
@@ -1152,6 +1191,11 @@ rec {
     };
     dynamicConfigOptions = {
       http = {
+        middlewares.ebook2audiobook-private.ipAllowList.sourceRange = [
+          "10.100.0.0/24"
+          "127.0.0.1/32"
+          "::1/128"
+        ];
         middlewares.cors.headers = {
           accessControlAllowOriginList = [ "*" ];
           accessControlAllowMethods = [ "*" ];
@@ -1177,7 +1221,7 @@ rec {
           pkgs.lib.attrsets.nameValuePair "${name}" {
             rule = "Host(`${name}.${domain}`)";
             service = "${name}";
-            middlewares = [ "cors" ];
+            middlewares = lib.optional (name == "ebook2audiobook") "ebook2audiobook-private" ++ [ "cors" ];
             tls = {
               domains = [
                 {

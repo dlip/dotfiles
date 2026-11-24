@@ -8,6 +8,7 @@
   syncthing = 8384;
   actual = 5006;
   audiobookshelf = 13378;
+  ebook2audiobook = 7860;
   # nextcloud = 9000;
   paperless = 28981;
   yaruki = 8095;
