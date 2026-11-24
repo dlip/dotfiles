@@ -141,6 +141,10 @@ match.app_id = '^(Plex|Plexamp|plexamp|tv\.plex\.plexamp)$'
 default_workspace = ""
 
 [[window_rule]]
+match.app_id = "waydroid.app.chimahon"
+default_workspace = ""
+
+[[window_rule]]
 match.app_id = "fuwari"
 default_floating = true
 

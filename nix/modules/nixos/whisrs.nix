@@ -46,6 +46,9 @@
         [audio]
         device = "default"
 
+        [hooks]
+        media_auto_pause = true
+
         [asr-sidecar]
         url = "http://127.0.0.1:${toString cfg.port}/inference"
         model = "${cfg.model}"
