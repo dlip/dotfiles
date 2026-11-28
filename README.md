@@ -57,21 +57,21 @@ Both game builders select matching Clang, LLD and LLVM from `llvmPackages_23` to
 
 ## Longshot on `x`
 
-[Longshot](https://git.magicbean.dev/MagicBeanDev/Longshot) is packaged natively as `.#longshot` and included in `x`'s system packages, alongside Hookshot. Its source and controller-prompt dependencies are pinned in `flake.lock`; it does not download an external compiler or use an AppImage environment.
+[Longshot](https://git.magicbean.dev/MagicBeanDev/Longshot) is packaged natively as `.#longshot` and included in `x`'s system packages, alongside Hookshot. The package builds the Rust builder and the game's Rust library with Nix. Game builds use Nix's compiler instead of an AppImage or downloaded toolchain.
 
-The local installation keeps its builder at `~/.local/share/longshot/tools` (a Nix GC root) and its built game at `~/Games/Longshot`. Start it from the **Longshot** applications entry or run `~/Games/Longshot/longshot`. After system activation, `longshot` also starts that folder; `longshot --cli` runs the builder.
+The local installation keeps its builder at `~/.local/share/longshot/tools` (a Nix GC root) and its built game at `~/Games/Longshot`. Start it from the **Longshot** applications entry or run `longshot` after system activation. For Steam, keep the existing shortcut and `env -u LD_PRELOAD %command%` launch option. Use `longshot-builder` for build commands.
 
 The initial build uses Hookshot's extracted `romfs` and `.hookshot_exefs`, with RomFS hard-linked rather than duplicated. Settings and caches are separate. Saves are in `~/.local/share/longshot/save`; Hookshot's saves are not imported or modified. See the upstream [save-transfer guide](https://git.magicbean.dev/MagicBeanDev/Longshot/src/branch/main/docs/saves.md) to carry over an adventure after closing both games.
 
-To update the source and rebuild the local game, run from this repository:
+To migrate a game built by the old Python builder, first close the game. Build into a separate folder using your `.nup` or an unpacked dump with `romfs/` and `exefs/`:
 
 ```sh
-nix flake update longshot
 nix build --impure .#longshot --out-link "$HOME/.local/share/longshot/tools"
-"$HOME/.local/share/longshot/tools/bin/longshot" --cli --update "$HOME/Games/Longshot" --jobs 4
+"$HOME/.local/share/longshot/tools/bin/longshot-builder" build \
+  --game /path/to/your/dump --out "$HOME/Games/Longshot-Rust" --jobs 4 --no-prepare-shaders
 ```
 
-The build log is `~/.cache/longshot-builder/build.log`; runtime caches and logs are in `~/Games/Longshot/cache` and `~/Games/Longshot/logs`.
+The Rust builder cannot `update` a Python build that lacks `longshot_build.json`. Once the new build is verified, keep the old folder as a backup and put the new one at `~/Games/Longshot` to reuse the existing Steam shortcut. Future game updates use `longshot-builder update "$HOME/Games/Longshot" --jobs 4`. Runtime caches and logs are in the game folder.
 
 ## Gamescope focus on `x`
 

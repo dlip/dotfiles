@@ -431,10 +431,10 @@
     "longshot": {
       "flake": false,
       "locked": {
-        "lastModified": 1795213282,
-        "narHash": "sha256-xBBMOs3B2TTMk8YjwPDpRrAnAu8PqD8K0G84HVLPbUU=",
+        "lastModified": 1795822799,
+        "narHash": "sha256-xroxvn2JV44p64unqtRIfVF81CNVMpimrTVCzjDuyLA=",
         "ref": "main",
-        "rev": "2c107e73ba1bb9c5698741a53e6bb0df79ac5529",
+        "rev": "fc917e0bfc627c941775a2ad3c5016d05486d81d",
         "shallow": true,
         "type": "git",
         "url": "https://git.magicbean.dev/MagicBeanDev/Longshot.git"
@@ -444,32 +444,6 @@
         "shallow": true,
         "type": "git",
         "url": "https://git.magicbean.dev/MagicBeanDev/Longshot.git"
-      }
-    },
-    "longshot-astc-encoder": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1757170821,
-        "narHash": "sha256-8L9iV/QjuopxbEign00supsSvcUmNqdM83KVYyqQGq0=",
-        "type": "tarball",
-        "url": "https://files.pythonhosted.org/packages/4f/1e/fca57bdb9b429a1d2e2f83ad0621b4ab6af65ee5fefc38a4f318afad0d8e/astc_encoder_py-0.1.12.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://files.pythonhosted.org/packages/4f/1e/fca57bdb9b429a1d2e2f83ad0621b4ab6af65ee5fefc38a4f318afad0d8e/astc_encoder_py-0.1.12.tar.gz"
-      }
-    },
-    "longshot-texture2ddecoder": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1768570671,
-        "narHash": "sha256-CFwYg5wBBZUTHHr48nHHwmkWD7jI42ubbvv1T3fVoLg=",
-        "type": "tarball",
-        "url": "https://files.pythonhosted.org/packages/d8/25/603483a6c5f0fcd694732cbb079c83a026aa4ff153278a1f400c2bdf65e7/texture2ddecoder-1.0.6.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://files.pythonhosted.org/packages/d8/25/603483a6c5f0fcd694732cbb079c83a026aa4ff153278a1f400c2bdf65e7/texture2ddecoder-1.0.6.tar.gz"
       }
     },
     "luciole": {
@@ -1048,8 +1022,6 @@
         "import-tree": "import-tree",
         "lichii": "lichii",
         "longshot": "longshot",
-        "longshot-astc-encoder": "longshot-astc-encoder",
-        "longshot-texture2ddecoder": "longshot-texture2ddecoder",
         "luciole": "luciole",
         "manatan": "manatan",
         "mokuro-reader": "mokuro-reader",

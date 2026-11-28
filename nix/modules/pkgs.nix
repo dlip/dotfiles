@@ -134,8 +134,6 @@
               };
               longshot = final.callPackage ../pkgs/longshot/package.nix {
                 src = inputs.longshot;
-                astcEncoderSrc = inputs.longshot-astc-encoder;
-                textureDecoderSrc = inputs.longshot-texture2ddecoder;
                 inherit (final.llvmPackages_23) clang lld llvm;
               };
               manatan = final.callPackage ../pkgs/manatan/package.nix {

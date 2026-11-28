@@ -164,16 +164,17 @@
     let
       gamescopeShortcut = pkgs.writeShellScript "gamescope-shortcut" ''
         for steam_pid in $(${pkgs.procps}/bin/pgrep --euid "$UID" --exact steam); do
-          unset DISPLAY WAYLAND_DISPLAY XAUTHORITY DBUS_SESSION_BUS_ADDRESS XDG_RUNTIME_DIR XDG_SESSION_ID
+           unset DISPLAY WAYLAND_DISPLAY XAUTHORITY DBUS_SESSION_BUS_ADDRESS XDG_RUNTIME_DIR XDG_SESSION_ID XDG_CURRENT_DESKTOP
           while IFS= read -r -d "" variable; do
             case "$variable" in
-              DISPLAY=*|XAUTHORITY=*|DBUS_SESSION_BUS_ADDRESS=*|XDG_RUNTIME_DIR=*|XDG_SESSION_ID=*)
+               DISPLAY=*|XAUTHORITY=*|DBUS_SESSION_BUS_ADDRESS=*|XDG_RUNTIME_DIR=*|XDG_SESSION_ID=*|XDG_CURRENT_DESKTOP=*)
                 declare -x "$variable"
                 ;;
             esac
           done < "/proc/$steam_pid/environ"
           [[ -n "''${XDG_SESSION_ID:-}" ]] || continue
-          [[ $(${pkgs.systemd}/bin/loginctl show-session "$XDG_SESSION_ID" --property=Desktop --value) == steam ]] || continue
+           # greetd can leave logind's Desktop property empty.
+           [[ "''${XDG_CURRENT_DESKTOP:-}" == gamescope ]] || continue
           [[ $(${pkgs.systemd}/bin/loginctl show-session "$XDG_SESSION_ID" --property=Active --value) == yes ]] || continue
           case "$1" in
             volume-up)

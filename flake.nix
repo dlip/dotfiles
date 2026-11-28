@@ -22,14 +22,6 @@
       url = "git+https://git.magicbean.dev/MagicBeanDev/Longshot.git?ref=main&shallow=1";
       flake = false;
     };
-    longshot-astc-encoder = {
-      url = "https://files.pythonhosted.org/packages/4f/1e/fca57bdb9b429a1d2e2f83ad0621b4ab6af65ee5fefc38a4f318afad0d8e/astc_encoder_py-0.1.12.tar.gz";
-      flake = false;
-    };
-    longshot-texture2ddecoder = {
-      url = "https://files.pythonhosted.org/packages/d8/25/603483a6c5f0fcd694732cbb079c83a026aa4ff153278a1f400c2bdf65e7/texture2ddecoder-1.0.6.tar.gz";
-      flake = false;
-    };
     manatan = {
       url = "github:KolbyML/Manatan";
       flake = false;
